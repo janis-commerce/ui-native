@@ -1,24 +1,34 @@
 {
-  "name": "ui-native",
-  "version": "0.0.1",
-  "description": "components library for Janis app",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/janis-commerce/ui-native.git"
-  },
-  "keywords": [
-    "janis",
-    "app",
-    "ui"
-  ],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/janis-commerce/ui-native/issues"
-  },
-  "homepage": "https://github.com/janis-commerce/ui-native#readme"
+	"name": "ui-native",
+	"version": "0.0.1",
+	"description": "components library for Janis app",
+	"main": "index.js",
+	"scripts": {
+		"prepare": "husky install",
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"release:minor": "standard-version --release-as minor",
+		"release:patch": "standard-version --release-as patch",
+		"release:major": "standard-version --release-as major"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/janis-commerce/ui-native.git"
+	},
+	"keywords": [
+		"janis",
+		"app",
+		"ui"
+	],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/janis-commerce/ui-native/issues"
+	},
+	"homepage": "https://github.com/janis-commerce/ui-native#readme",
+	"devDependencies": {
+		"@commitlint/cli": "^16.2.3",
+		"@commitlint/config-conventional": "^16.2.1",
+		"husky": "^8.0.1",
+		"standard-version": "^9.5.0"
+	}
 }
