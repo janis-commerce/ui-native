@@ -1,0 +1,24 @@
+{
+  "name": "ui-native",
+  "version": "0.0.1",
+  "description": "components library for Janis app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/janis-commerce/ui-native.git"
+  },
+  "keywords": [
+    "janis",
+    "app",
+    "ui"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/janis-commerce/ui-native/issues"
+  },
+  "homepage": "https://github.com/janis-commerce/ui-native#readme"
+}
