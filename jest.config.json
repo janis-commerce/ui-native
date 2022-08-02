@@ -1,0 +1,42 @@
+{
+	"preset": "jest-expo",
+	"roots": ["<rootDir>"],
+	"setupFiles": ["<rootDir>/setupTest/jest.setup.js"],
+	"setupFilesAfterEnv": ["<rootDir>/setupTest/jest.setup.js"],
+	"verbose": true,
+	"moduleDirectories": ["node_modules", "src"],
+	"clearMocks": true,
+	"moduleFileExtensions": ["js", "jsx", "json", "ts", "tsx"],
+	"testMatch": [
+		"**/__tests__/**/*.js?(x)",
+		"**/?(*.)+(spec|test).js?(x)",
+		"**/__tests__/**/*.ts?(x)",
+		"**/?(*.)+(spec|test).ts?(x)"
+	],
+	"coverageReporters": ["html", "text"],
+	"coverageDirectory": "coverage",
+	"collectCoverageFrom": [
+		"src/**/*.{js,jsx,ts,tsx}",
+		"!**/node_modules/**",
+		"!**/vendor/**",
+		"!**/ios/**",
+		"!**/android/**",
+		"!**/env/**",
+		"!<rootDir>/index.js",
+		"!<rootDir>/App.tsx",
+		"!**/jestMocks/**"
+	],
+	"coveragePathIgnorePatterns": ["/node_modules/",  "<rootDir>/index.js"],
+	"coverageThreshold": {
+		"global": {
+			"branches": 100,
+			"functions": 100,
+			"lines": 100,
+			"statements": 100
+		}
+	},
+	"moduleNameMapper": {
+		".+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "jest-transform-stub",
+		"\\.(css|less)$": "identity-obj-proxy"
+	}
+}
