@@ -1,8 +1,6 @@
 {
 	"preset": "jest-expo",
 	"roots": ["<rootDir>"],
-	"setupFiles": ["<rootDir>/setupTest/jest.setup.js"],
-	"setupFilesAfterEnv": ["<rootDir>/setupTest/jest.setup.js"],
 	"verbose": true,
 	"moduleDirectories": ["node_modules", "src"],
 	"clearMocks": true,
@@ -26,7 +24,7 @@
 		"!<rootDir>/App.tsx",
 		"!**/jestMocks/**"
 	],
-	"coveragePathIgnorePatterns": ["/node_modules/",  "<rootDir>/index.js"],
+	"coveragePathIgnorePatterns": ["/node_modules/", "<rootDir>/index.js"],
 	"coverageThreshold": {
 		"global": {
 			"branches": 100,

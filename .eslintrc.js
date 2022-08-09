@@ -14,13 +14,23 @@ module.exports = {
 	parserOptions: {
 		ecmaFeatures: {
 			jsx: true,
-			tsx: true,
 		},
 		ecmaVersion: 2018,
 		sourceType: 'module',
 	},
 	plugins: ['react', 'prettier'],
 	rules: {
+		'no-use-before-define': 'off',
+		'import/extensions': [
+			'error',
+			'ignorePackages',
+			{
+				js: 'never',
+				jsx: 'never',
+				ts: 'never',
+				tsx: 'never',
+			},
+		],
 		'prettier/prettier': 'error',
 		'react/jsx-filename-extension': [
 			'off',
@@ -39,6 +49,9 @@ module.exports = {
 	settings: {
 		'import/resolver': {
 			'babel-module': {},
+			node: {
+				extensions: ['.js', '.jsx', '.ts', '.tsx'],
+			},
 		},
 	},
 };
