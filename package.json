@@ -32,11 +32,13 @@
 		"url": "https://github.com/janis-commerce/ui-native/issues"
 	},
 	"homepage": "https://github.com/janis-commerce/ui-native#readme",
-	"dependencies": {
+	"peerDependencies": {
 		"react": "16.13.1",
 		"react-native": "0.63.4"
 	},
 	"devDependencies": {
+		"react": "16.13.1",
+		"react-native": "0.63.4",
 		"@babel/core": "^7.8.4",
 		"@babel/runtime": "^7.8.4",
 		"@commitlint/cli": "^16.2.3",
