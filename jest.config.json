@@ -1,10 +1,10 @@
 {
-	"preset": "jest-expo",
+	"preset": "react-native",
 	"roots": ["<rootDir>"],
 	"verbose": true,
 	"moduleDirectories": ["node_modules", "src"],
 	"clearMocks": true,
-	"moduleFileExtensions": ["js", "jsx", "json", "ts", "tsx"],
+	"moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
 	"testMatch": [
 		"**/__tests__/**/*.js?(x)",
 		"**/?(*.)+(spec|test).js?(x)",
@@ -21,7 +21,7 @@
 		"!**/android/**",
 		"!**/env/**",
 		"!<rootDir>/index.js",
-		"!<rootDir>/App.tsx",
+		"!<rootDir>/coverage",
 		"!**/jestMocks/**"
 	],
 	"coveragePathIgnorePatterns": ["/node_modules/", "<rootDir>/index.js"],
@@ -34,7 +34,7 @@
 		}
 	},
 	"moduleNameMapper": {
-		".+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "jest-transform-stub",
+		".+\\.(css|style|less|sass|scss|png|jpg|ttf|woff|woff2)$": "jest-transform-stub",
 		"\\.(css|less)$": "identity-obj-proxy"
 	}
 }

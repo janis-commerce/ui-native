@@ -13,8 +13,8 @@
 		"release:minor": "standard-version --release-as minor",
 		"release:patch": "standard-version --release-as patch",
 		"release:major": "standard-version --release-as major",
-		"validate-code": "npm run lint -- --fix  && jest --collectCoverage",
-		"test-commit": "jest --colors --c jestApp.config.json --bail --findRelatedTests",
+		"validate:code": "npm run lint -- --fix  && jest --collectCoverage",
+		"test:commit": "jest --colors --c jest.config.json --bail --findRelatedTests",
 		"test:coverage": "jest --collectCoverage"
 	},
 	"repository": {
@@ -37,8 +37,6 @@
 		"react-native": "0.63.4"
 	},
 	"devDependencies": {
-		"react": "16.13.1",
-		"react-native": "0.63.4",
 		"@babel/core": "^7.8.4",
 		"@babel/runtime": "^7.8.4",
 		"@commitlint/cli": "^16.2.3",
@@ -57,10 +55,13 @@
 		"eslint-import-resolver-babel-module": "^5.2.0",
 		"eslint-plugin-react": "^7.30.1",
 		"eslint-plugin-react-native": "^4.0.0",
-		"husky": "^8.0.1",
+		"husky": "^8.0.0",
 		"jest": "^25.1.0",
 		"jest-expo": "^41.0.0",
+		"lint-staged": "^13.0.3",
 		"metro-react-native-babel-preset": "^0.59.0",
+		"react": "16.13.1",
+		"react-native": "0.63.4",
 		"react-test-renderer": "16.13.1",
 		"standard-version": "^9.5.0",
 		"typescript": "^3.8.3"
@@ -68,15 +69,13 @@
 	"resolutions": {
 		"@types/react": "^16"
 	},
-	"jest": {
-		"preset": "react-native",
-		"moduleFileExtensions": [
-			"ts",
-			"tsx",
-			"js",
-			"jsx",
-			"json",
-			"node"
+	"lint-staged": {
+		"*.{js,jsx,json,ts,tsx}": [
+			"prettier --write",
+			"eslint --fix"
+		],
+		"*.{js,jsx,ts,tsx}": [
+			"npm run test:commit"
 		]
 	}
 }
