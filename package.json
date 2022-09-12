@@ -8,13 +8,13 @@
 		"ios": "react-native run-ios",
 		"start": "react-native start",
 		"test": "jest",
-		"lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+		"lint": "lint-staged",
 		"prepare": "husky install",
 		"release:minor": "standard-version --release-as minor",
 		"release:patch": "standard-version --release-as patch",
 		"release:major": "standard-version --release-as major",
 		"validate:code": "npm run lint -- --fix  && jest --collectCoverage",
-		"test:commit": "jest --colors --c jest.config.json --bail --findRelatedTests",
+		"test:commit": "jest --colors --bail --findRelatedTests",
 		"test:coverage": "jest --collectCoverage"
 	},
 	"repository": {
@@ -70,7 +70,7 @@
 		"@types/react": "^16"
 	},
 	"lint-staged": {
-		"*.{js,jsx,json,ts,tsx}": [
+		"*{js,jsx,ts,tsx}": [
 			"prettier --write",
 			"eslint --fix"
 		],
