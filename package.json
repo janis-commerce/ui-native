@@ -2,7 +2,11 @@
 	"name": "ui-native",
 	"version": "0.0.1",
 	"description": "components library for Janis app",
-	"main": "index.js",
+	"main": "lib/index.js",
+	"types": "lib/index.d.ts",
+	"files": [
+		"lib/**/*"
+	],
 	"scripts": {
 		"android": "react-native run-android",
 		"ios": "react-native run-ios",
@@ -13,7 +17,7 @@
 		"release:minor": "standard-version --release-as minor",
 		"release:patch": "standard-version --release-as patch",
 		"release:major": "standard-version --release-as major",
-		"validate:code": "npm run lint -- --fix  && jest --collectCoverage",
+		"validate-code": "npm run lint --fix  && jest --collectCoverage",
 		"test:commit": "jest --colors --bail --findRelatedTests",
 		"test:coverage": "jest --collectCoverage"
 	},
