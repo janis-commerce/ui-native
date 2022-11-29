@@ -2,7 +2,11 @@
 	"name": "ui-native",
 	"version": "0.0.1",
 	"description": "components library for Janis app",
-	"main": "index.js",
+	"main": "lib/index.js",
+	"types": "lib/index.d.ts",
+	"files": [
+		"lib/**/*"
+	],
 	"scripts": {
 		"android": "react-native run-android",
 		"ios": "react-native run-ios",

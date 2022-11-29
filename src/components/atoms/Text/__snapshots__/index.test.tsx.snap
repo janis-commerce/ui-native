@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Text component render correct match snapshot 1`] = `
+<Text
+  style={
+    Object {
+      "fontFamily": "Roboto",
+      "fontSize": 16,
+    }
+  }
+>
+  Janis Picking
+</Text>
+`;
