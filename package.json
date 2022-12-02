@@ -5,7 +5,7 @@
 	"main": "lib/index.js",
 	"types": "lib/index.d.ts",
 	"files": [
-		"lib/**/*"
+		"lib"
 	],
 	"scripts": {
 		"android": "react-native run-android",
@@ -16,7 +16,8 @@
 		"prepare": "husky install",
 		"validate:code": "npm run lint -- --fix  && jest --collectCoverage",
 		"test:commit": "jest --colors --bail --findRelatedTests",
-		"test:coverage": "jest --collectCoverage"
+		"test:coverage": "jest --collectCoverage",
+		"build": "tsc"
 	},
 	"repository": {
 		"type": "git",
