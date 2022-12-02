@@ -3,9 +3,9 @@
 	"version": "0.0.1",
 	"description": "components library for Janis app",
 	"main": "dist/index.js",
-	"types": "dist/index.d.ts",
+	"typings": "dist/index.d.ts",
 	"files": [
-		"/dist"
+		"dist"
 	],
 	"scripts": {
 		"android": "react-native run-android",
