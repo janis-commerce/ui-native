@@ -1,6 +1,5 @@
 import React, {ReactElement} from 'react';
 import {StyleSheet, Text as TextComponent} from 'react-native';
-import {node, arrayOf, oneOfType} from 'prop-types';
 
 type TextProps = {
 	children?: ReactElement | string;
@@ -24,9 +23,5 @@ const styles = StyleSheet.create({
 		fontFamily: 'Roboto',
 	},
 });
-
-Text.propTypes = {
-	children: oneOfType([node, arrayOf(node)]).isRequired,
-};
 
 export default Text;
