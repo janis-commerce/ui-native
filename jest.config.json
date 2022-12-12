@@ -11,7 +11,7 @@
 		"**/__tests__/**/*.ts?(x)",
 		"**/?(*.)+(spec|test).ts?(x)"
 	],
-	"coverageReporters": ["html", "text"],
+	"coverageReporters": ["html", "text", "lcov"],
 	"coverageDirectory": "coverage",
 	"collectCoverageFrom": [
 		"src/**/*.{js,jsx,ts,tsx}",
