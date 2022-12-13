@@ -63,7 +63,7 @@
 		"lint-staged": "^13.0.3",
 		"metro-react-native-babel-preset": "^0.59.0",
 		"react": "16.13.1",
-		"react-native": "0.63.4",
+		"react-native": "0.63.5",
 		"react-test-renderer": "16.13.1",
 		"typescript": "^3.8.3"
 	},
