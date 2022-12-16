@@ -1,82 +1,93 @@
 {
-	"name": "@janiscommerce/ui-native",
-	"version": "0.0.1",
-	"description": "components library for Janis app",
-	"main": "dist/index.js",
-	"typings": "dist/index.d.ts",
-	"files": [
-		"dist"
-	],
-	"scripts": {
-		"android": "react-native run-android",
-		"ios": "react-native run-ios",
-		"start": "react-native start",
-		"test": "jest",
-		"lint": "lint-staged",
-		"prepare": "husky install",
-		"validate:code": "npm run lint -- --fix  && jest --collectCoverage",
-		"test:commit": "jest --colors --bail --findRelatedTests",
-		"test:coverage": "jest --collectCoverage",
-		"build": "rm -rf dist && tsc"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/janis-commerce/ui-native.git"
-	},
-	"keywords": [
-		"janis",
-		"app",
-		"ui"
-	],
-	"author": "",
-	"license": "ISC",
-	"bugs": {
-		"url": "https://github.com/janis-commerce/ui-native/issues"
-	},
-	"homepage": "https://github.com/janis-commerce/ui-native#readme",
-	"peerDependencies": {
-		"react": "16.13.1",
-		"react-native": "0.63.5"
-	},
-	"devDependencies": {
-		"@babel/core": "^7.8.4",
-		"@babel/runtime": "^7.8.4",
-		"@react-native-community/eslint-config": "^1.1.0",
-		"@testing-library/react-native": "^7.2.0",
-		"@types/jest": "^25.2.3",
-		"@types/react-native": "^0.63.2",
-		"@types/react-test-renderer": "^16.9.2",
-		"@typescript-eslint/eslint-plugin": "^5.45.0",
-		"@typescript-eslint/parser": "^5.32.0",
-		"babel-jest": "^25.1.0",
-		"eslint": "^7.21.0",
-		"eslint-config-airbnb": "^18.2.1",
-		"eslint-config-airbnb-typescript": "^17.0.0",
-		"eslint-config-prettier": "^8.1.0",
-		"eslint-import-resolver-babel-module": "^5.2.0",
-		"eslint-plugin-react": "^7.30.1",
-		"eslint-plugin-react-hooks": "^4.6.0",
-		"eslint-plugin-react-native": "^4.0.0",
-		"husky": "^8.0.0",
-		"jest": "^25.1.0",
-		"jest-expo": "^41.0.0",
-		"lint-staged": "^13.0.3",
-		"metro-react-native-babel-preset": "^0.59.0",
-		"react": "16.13.1",
-		"react-native": "0.63.5",
-		"react-test-renderer": "16.13.1",
-		"typescript": "^3.8.3"
-	},
-	"resolutions": {
-		"@types/react": "^16"
-	},
-	"lint-staged": {
-		"*{js,jsx,ts,tsx}": [
-			"prettier --write",
-			"eslint --fix"
-		],
-		"*.{js,jsx,ts,tsx}": [
-			"npm run test:commit"
-		]
-	}
+  "name": "@janiscommerce/ui-native",
+  "version": "0.0.1",
+  "description": "components library for Janis app",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "start": "react-native start",
+    "test": "jest",
+    "lint": "lint-staged",
+    "prepare": "husky install",
+    "validate:code": "npm run lint -- --fix  && jest --collectCoverage",
+    "test:commit": "jest --colors --bail --findRelatedTests",
+    "test:coverage": "jest --collectCoverage",
+    "build": "rm -rf dist && tsc",
+    "storybook": "start-storybook -p 7007",
+    "build-storybook": "build-storybook"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/janis-commerce/ui-native.git"
+  },
+  "keywords": [
+    "janis",
+    "app",
+    "ui"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/janis-commerce/ui-native/issues"
+  },
+  "homepage": "https://github.com/janis-commerce/ui-native#readme",
+  "peerDependencies": {
+    "react": "16.13.1",
+    "react-native": "0.63.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/runtime": "^7.8.4",
+    "@react-native-community/eslint-config": "^1.1.0",
+    "@storybook/addon-actions": "^5.3.21",
+    "@storybook/addon-knobs": "^5.3.21",
+    "@storybook/addon-links": "^5.3.21",
+    "@storybook/addon-ondevice-actions": "^5.3.23",
+    "@storybook/addon-ondevice-knobs": "^5.3.26",
+    "@storybook/react-native": "^5.3.27",
+    "@storybook/react-native-server": "^5.3.23",
+    "@testing-library/react-native": "^7.2.0",
+    "@types/jest": "^25.2.3",
+    "@types/react-native": "^0.63.2",
+    "@types/react-test-renderer": "^16.9.2",
+    "@typescript-eslint/eslint-plugin": "^5.45.0",
+    "@typescript-eslint/parser": "^5.32.0",
+    "babel-jest": "^25.1.0",
+    "babel-loader": "^8.3.0",
+    "eslint": "^7.21.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-import-resolver-babel-module": "^5.2.0",
+    "eslint-plugin-react": "^7.30.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-native": "^4.0.0",
+    "husky": "^8.0.0",
+    "jest": "^25.1.0",
+    "jest-expo": "^41.0.0",
+    "lint-staged": "^13.0.3",
+    "metro-react-native-babel-preset": "^0.59.0",
+    "react": "16.13.1",
+    "react-native": "0.63.5",
+    "react-test-renderer": "16.13.1",
+    "typescript": "^3.8.3"
+  },
+  "resolutions": {
+    "@types/react": "^16"
+  },
+  "lint-staged": {
+    "*{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.{js,jsx,ts,tsx}": [
+      "npm run test:commit"
+    ]
+  },
+  "dependencies": {}
 }
