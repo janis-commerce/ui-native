@@ -14,7 +14,7 @@
 		"test": "jest",
 		"lint": "lint-staged",
 		"prepare": "husky install",
-		"validate:code": "npm run lint -- --fix  && jest --collectCoverage",
+		"validate:code": "npm run lint -- --fix && npm t",
 		"test:commit": "jest --colors --bail --findRelatedTests",
 		"test:coverage": "jest --collectCoverage",
 		"build": "rm -rf dist && tsc",

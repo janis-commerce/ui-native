@@ -1,9 +1,10 @@
 
-name: Coverage Status
+name: Build Status
 
 on: ["push"]
 
 jobs:
+
   build:
     name: Build
     runs-on: ubuntu-latest
@@ -21,11 +22,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    - name: npm install, make test-coverage
+    - name: npm install, run test
       run: |
         npm install
-        npm run test:coverage
-    - name: Coveralls
-      uses: coverallsapp/github-action@master
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+        npm t
