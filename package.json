@@ -12,7 +12,7 @@
 		"ios": "react-native run-ios",
 		"start": "react-native start",
 		"test": "jest",
-		"lint": "lint-staged",
+		"lint": "eslint .",
 		"prepare": "husky install",
 		"validate:code": "npm run lint -- --fix && npm t",
 		"test:commit": "jest --colors --bail --findRelatedTests",
