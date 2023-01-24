@@ -13,6 +13,7 @@ export type sizeKeys = keyof sizeType;
 
 export interface AvatarProps {
 	placeholder: string;
+	textColor?: string;
 	bgColor?: string;
 	size?: sizeKeys;
 	customSize?: number;
@@ -26,7 +27,6 @@ const styles = StyleSheet.create({
 		overflow: 'hidden',
 	},
 	text: {
-		color: '#FFFFFF',
 		textAlign: 'center',
 		textTransform: 'uppercase',
 	},
@@ -37,6 +37,7 @@ export const getSize = (size: sizeKeys, customSize?: number): number =>
 
 const Avatar = ({
 	size = 'sm',
+	textColor = '#FFFFFF',
 	bgColor = '#E8EAF6',
 	imageUrl = '',
 	placeholder,
@@ -88,7 +89,8 @@ const Avatar = ({
 				<Text
 					style={{
 						...styles.text,
-						fontSize: sizeValues[size] * 0.4,
+						color: textColor,
+						fontSize: getSize(size, customSize) * 0.4,
 					}}>
 					{initials}
 				</Text>
