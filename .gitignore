@@ -63,4 +63,4 @@ coverage
 .vscode
 
 #build
-dist
+dist/
