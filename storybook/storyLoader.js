@@ -5,7 +5,7 @@
 
 function loadStories() {
 	require('./stories/Avatar/Avatar.stories');
-	require('./stories/Button/Button.stories');
+	require('./stories/Image/Image.stories');
 }
 
 const stories = ['./stories/Avatar/Avatar.stories', './stories/Button/Button.stories'];

@@ -1,7 +1,8 @@
 import React from 'react';
 import Avatar from './index';
 import {create} from 'react-test-renderer';
-import {Image, Text} from 'react-native';
+import {Text} from 'react-native';
+import Image from '../Image';
 
 const useStateSpy = jest.spyOn(React, 'useState');
 

@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
+import Image from '../Image';
 import {formatPlaceholder} from './utils/formatPlaceholder/index';
 
 export const sizeValues = {
@@ -75,9 +76,7 @@ const Avatar = ({
 					accessibilityRole="image"
 					onError={handleOnErrorImage}
 					onLoad={() => setShowInitials(false)}
-					source={{
-						uri: imageUrl,
-					}}
+					source={imageUrl}
 					style={{
 						height: getSize(size, customSize),
 						width: getSize(size, customSize),
