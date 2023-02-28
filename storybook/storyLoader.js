@@ -8,7 +8,7 @@ function loadStories() {
 	require('./stories/Image/Image.stories');
 }
 
-const stories = ['./stories/Avatar/Avatar.stories', './stories/Button/Button.stories'];
+const stories = ['./stories/Avatar/Avatar.stories', './stories/Image/Image.stories'];
 
 module.exports = {
 	loadStories,

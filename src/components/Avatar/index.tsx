@@ -76,7 +76,9 @@ const Avatar = ({
 					accessibilityRole="image"
 					onError={handleOnErrorImage}
 					onLoad={() => setShowInitials(false)}
-					source={imageUrl}
+					source={{
+						uri: imageUrl,
+					}}
 					style={{
 						height: getSize(size, customSize),
 						width: getSize(size, customSize),
