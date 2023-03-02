@@ -76,6 +76,7 @@
 		"react": "16.13.1",
 		"react-native": "0.63.5",
 		"react-native-storybook-loader": "^2.0.5",
+		"react-native-svg-transformer": "^1.0.0",
 		"react-test-renderer": "16.13.1",
 		"typescript": "^3.8.3"
 	},
@@ -91,7 +92,9 @@
 			"npm run test:commit"
 		]
 	},
-	"dependencies": {},
+	"dependencies": {
+		"react-native-svg": "12.1.1"
+	},
 	"config": {
 		"react-native-storybook-loader": {
 			"searchDir": [
