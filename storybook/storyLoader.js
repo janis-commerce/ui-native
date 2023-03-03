@@ -12,7 +12,7 @@ function loadStories() {
 const stories = [
 	'./stories/Avatar/Avatar.stories',
 	'./stories/Button/Button.stories',
-	'./stories/CheckBox/CheckBox.stories.js',
+	'./stories/CheckBox/CheckBox.stories',
 ];
 
 module.exports = {
