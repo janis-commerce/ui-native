@@ -3,7 +3,7 @@ import {View, TouchableOpacity, StyleSheet} from 'react-native';
 import Icon from './icon/CheckedIcon';
 
 interface CheckBoxProps {
-	value: boolean;
+	checked: boolean;
 	onValueChange?: () => void;
 	customSize?: number;
 	checkOnColor?: string;
@@ -15,7 +15,7 @@ interface CheckBoxProps {
 export const getCheckBoxScale = (size: number): number => size / 9;
 
 const CheckBox = ({
-	value,
+	checked,
 	onValueChange = () => {},
 	customSize = 18,
 	checkOnColor = '#2979FF',
@@ -47,12 +47,12 @@ const CheckBox = ({
 		},
 	});
 
-	const isChecked = value ? styles.checkOn : styles.checkOff;
+	const isChecked = checked ? styles.checkOn : styles.checkOff;
 
 	return (
 		<TouchableOpacity onPress={() => onValueChange()} disabled={disabled} activeOpacity={0.6}>
 			<View style={isChecked} {...props}>
-				{value && <Icon color={iconCheckColor} size={customSize} />}
+				{checked && <Icon color={iconCheckColor} size={customSize} />}
 			</View>
 		</TouchableOpacity>
 	);

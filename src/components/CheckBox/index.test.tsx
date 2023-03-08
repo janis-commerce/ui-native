@@ -5,14 +5,14 @@ import {TouchableOpacity} from 'react-native';
 
 describe('CheckBox component', () => {
 	it('render correctly', () => {
-		const {toJSON} = create(<CheckBox value={false} />);
+		const {toJSON} = create(<CheckBox checked={false} />);
 
 		expect(toJSON()).toBeTruthy();
 	});
 
 	describe('value', () => {
 		it('when is true, backgroundColor is #2979FF', () => {
-			const {root} = create(<CheckBox value={true} />);
+			const {root} = create(<CheckBox checked={true} />);
 			const ViewComponent = root.findByType(TouchableOpacity);
 			const {style} = ViewComponent.props.children.props;
 
@@ -21,7 +21,7 @@ describe('CheckBox component', () => {
 		});
 
 		it('when is false, borderColor is #939598', () => {
-			const {root} = create(<CheckBox value={false} />);
+			const {root} = create(<CheckBox checked={false} />);
 			const ViewComponent = root.findByType(TouchableOpacity);
 			const {style} = ViewComponent.props.children.props;
 
@@ -32,7 +32,7 @@ describe('CheckBox component', () => {
 
 	describe('disabled', () => {
 		it('when is true, opacity is 0.6', () => {
-			const {root} = create(<CheckBox value={false} disabled={true} />);
+			const {root} = create(<CheckBox checked={false} disabled={true} />);
 			const ViewComponent = root.findByType(TouchableOpacity);
 			const {style} = ViewComponent.props.children.props;
 
@@ -40,7 +40,7 @@ describe('CheckBox component', () => {
 		});
 
 		it('when is false, opacity is 1', () => {
-			const {root} = create(<CheckBox value={false} disabled={false} />);
+			const {root} = create(<CheckBox checked={false} disabled={false} />);
 			const ViewComponent = root.findByType(TouchableOpacity);
 			const {style} = ViewComponent.props.children.props;
 
@@ -52,7 +52,7 @@ describe('CheckBox component', () => {
 		it('when is called', () => {
 			const valueChangeFn = jest.fn();
 
-			const {root} = create(<CheckBox value={false} onValueChange={valueChangeFn} />);
+			const {root} = create(<CheckBox checked={false} onValueChange={valueChangeFn} />);
 			const ViewComponent = root.findByType(TouchableOpacity);
 			ViewComponent.props.onPress();
 
@@ -61,7 +61,7 @@ describe('CheckBox component', () => {
 		});
 
 		it('when is an anonymous function and is called when ViewComponent is pressed', () => {
-			const {root} = create(<CheckBox value={false} />);
+			const {root} = create(<CheckBox checked={false} />);
 			const ViewComponent = root.findByType(TouchableOpacity);
 			ViewComponent.props.onPress();
 

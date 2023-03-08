@@ -9,7 +9,7 @@ storiesOf('CheckBox', module)
 	.addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
 	.add('default props', () => (
 		<CheckBox
-			value={boolean('value', true)}
+			checked={boolean('checked', true)}
 			onValueChange={action('onValueChange')}
 			customSize={number('customSize', 18)}
 			checkOnColor={color('checkOnColor', '#2979FF')}
