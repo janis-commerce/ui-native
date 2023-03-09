@@ -15,6 +15,7 @@ storiesOf('CheckBox', module)
 			checkOnColor={color('checkOnColor', '#2979FF')}
 			checkOffColor={color('checkOffColor', '#939598')}
 			iconCheckColor={color('iconCheckColor', '#FFF')}
+			borderRadius={number('borderRadius', 2)}
 			disabled={boolean('disabld', false)}
 		/>
 	));
