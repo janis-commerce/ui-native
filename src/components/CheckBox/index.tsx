@@ -9,6 +9,7 @@ interface CheckBoxProps {
 	checkOnColor?: string;
 	checkOffColor?: string;
 	iconCheckColor?: string;
+	borderRadius?: number;
 	disabled?: boolean;
 }
 
@@ -21,12 +22,19 @@ const CheckBox = ({
 	checkOnColor = '#2979FF',
 	checkOffColor = '#939598',
 	iconCheckColor = '#FFF',
+	borderRadius,
 	disabled = false,
 	...props
 }: CheckBoxProps) => {
 	const isDisabled = disabled ? 0.6 : 1;
+	const hasBorderRadius = borderRadius ? borderRadius : getCheckBoxScale(customSize);
 
 	const styles = StyleSheet.create({
+		touchableOpacity: {
+			width: customSize,
+			height: customSize,
+			borderRadius: hasBorderRadius,
+		},
 		checkOn: {
 			display: 'flex',
 			justifyContent: 'center',
@@ -34,7 +42,7 @@ const CheckBox = ({
 			backgroundColor: checkOnColor,
 			width: customSize,
 			height: customSize,
-			borderRadius: getCheckBoxScale(customSize),
+			borderRadius: hasBorderRadius,
 			opacity: isDisabled,
 		},
 		checkOff: {
@@ -42,7 +50,7 @@ const CheckBox = ({
 			borderColor: checkOffColor,
 			width: customSize,
 			height: customSize,
-			borderRadius: getCheckBoxScale(customSize),
+			borderRadius: hasBorderRadius,
 			opacity: isDisabled,
 		},
 	});
@@ -50,7 +58,11 @@ const CheckBox = ({
 	const isChecked = checked ? styles.checkOn : styles.checkOff;
 
 	return (
-		<TouchableOpacity onPress={() => onValueChange()} disabled={disabled} activeOpacity={0.6}>
+		<TouchableOpacity
+			onPress={() => onValueChange()}
+			disabled={disabled}
+			activeOpacity={0.6}
+			style={styles.touchableOpacity}>
 			<View style={isChecked} {...props}>
 				{checked && <Icon color={iconCheckColor} size={customSize} />}
 			</View>

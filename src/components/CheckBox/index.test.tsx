@@ -68,4 +68,17 @@ describe('CheckBox component', () => {
 			expect(root).toBeTruthy();
 		});
 	});
+
+	describe('has border radius', () => {
+		const valueChangeFn = jest.fn();
+		const borderRadiusMock = 30;
+
+		const {root} = create(
+			<CheckBox checked={false} onValueChange={valueChangeFn} borderRadius={borderRadiusMock} />
+		);
+		const ViewComponent = root.findByType(TouchableOpacity);
+		const {borderRadius} = ViewComponent.props.children.props.style;
+
+		expect(borderRadius).toBe(borderRadiusMock);
+	});
 });
