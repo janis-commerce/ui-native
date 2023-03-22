@@ -1,10 +1,10 @@
 import React from 'react';
 import {View, TouchableOpacity, StyleSheet} from 'react-native';
+import {base, grey, primary} from '../../theme/palette';
 import Icon from './icon/CheckedIcon';
 
 interface CheckBoxProps {
 	checked: boolean;
-	onValueChange?: () => void;
 	customSize?: number;
 	checkOnColor?: string;
 	checkOffColor?: string;
@@ -13,21 +13,19 @@ interface CheckBoxProps {
 	disabled?: boolean;
 }
 
-export const getCheckBoxScale = (size: number): number => size / 9;
+const getCheckBoxScale = (size: number, divisor: number): number => size / divisor;
 
 const CheckBox = ({
 	checked,
-	onValueChange = () => {},
-	customSize = 18,
-	checkOnColor = '#2979FF',
-	checkOffColor = '#939598',
-	iconCheckColor = '#FFF',
+	customSize = 16,
+	checkOnColor = primary.main,
+	checkOffColor = grey[500],
+	iconCheckColor = base.white,
 	borderRadius,
 	disabled = false,
 	...props
 }: CheckBoxProps) => {
-	const isDisabled = disabled ? 0.6 : 1;
-	const hasBorderRadius = borderRadius ? borderRadius : getCheckBoxScale(customSize);
+	const hasBorderRadius = !borderRadius ? getCheckBoxScale(customSize, 4) : borderRadius;
 
 	const styles = StyleSheet.create({
 		touchableOpacity: {
@@ -39,19 +37,17 @@ const CheckBox = ({
 			display: 'flex',
 			justifyContent: 'center',
 			alignItems: 'center',
-			backgroundColor: checkOnColor,
+			backgroundColor: !disabled ? checkOnColor : grey[200],
 			width: customSize,
 			height: customSize,
 			borderRadius: hasBorderRadius,
-			opacity: isDisabled,
 		},
 		checkOff: {
-			borderWidth: getCheckBoxScale(customSize),
-			borderColor: checkOffColor,
+			borderWidth: getCheckBoxScale(customSize, 16),
+			borderColor: !disabled ? checkOffColor : grey[200],
 			width: customSize,
 			height: customSize,
 			borderRadius: hasBorderRadius,
-			opacity: isDisabled,
 		},
 	});
 
@@ -59,7 +55,6 @@ const CheckBox = ({
 
 	return (
 		<TouchableOpacity
-			onPress={() => onValueChange()}
 			disabled={disabled}
 			activeOpacity={0.6}
 			style={styles.touchableOpacity}

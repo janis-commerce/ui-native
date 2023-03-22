@@ -11,11 +11,11 @@ storiesOf('CheckBox', module)
 		<CheckBox
 			checked={boolean('checked', true)}
 			onValueChange={action('onValueChange')}
-			customSize={number('customSize', 18)}
+			customSize={number('customSize', 16)}
 			checkOnColor={color('checkOnColor', '#2979FF')}
 			checkOffColor={color('checkOffColor', '#939598')}
 			iconCheckColor={color('iconCheckColor', '#FFF')}
-			borderRadius={number('borderRadius', 2)}
+			borderRadius={number('borderRadius', 4)}
 			disabled={boolean('disabld', false)}
 		/>
 	));

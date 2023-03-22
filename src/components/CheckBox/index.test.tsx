@@ -17,7 +17,7 @@ describe('CheckBox component', () => {
 			const {style} = ViewComponent.props.children.props;
 
 			expect(style.backgroundColor).toBe('#2979FF');
-			expect(style.width).toBe(18);
+			expect(style.width).toBe(16);
 		});
 
 		it('when is false, borderColor is #939598', () => {
@@ -26,59 +26,43 @@ describe('CheckBox component', () => {
 			const {style} = ViewComponent.props.children.props;
 
 			expect(style.borderColor).toBe('#939598');
-			expect(style.width).toBe(18);
+			expect(style.width).toBe(16);
 		});
 	});
 
 	describe('disabled', () => {
-		it('when is true, opacity is 0.6', () => {
+		it('when is checked is false color is grey[200] (#D5D7DB)', () => {
 			const {root} = create(<CheckBox checked={false} disabled={true} />);
 			const ViewComponent = root.findByType(TouchableOpacity);
 			const {style} = ViewComponent.props.children.props;
 
-			expect(style.opacity).toBe(0.6);
+			expect(style.borderColor).toBe('#D5D7DB');
 		});
 
-		it('when is false, opacity is 1', () => {
-			const {root} = create(<CheckBox checked={false} disabled={false} />);
+		it('when is checked is true color is grey[200] (#D5D7DB)', () => {
+			const {root} = create(<CheckBox checked disabled={true} />);
 			const ViewComponent = root.findByType(TouchableOpacity);
 			const {style} = ViewComponent.props.children.props;
 
-			expect(style.opacity).toBe(1);
-		});
-	});
-
-	describe('onValueChange', () => {
-		it('when is called', () => {
-			const valueChangeFn = jest.fn();
-
-			const {root} = create(<CheckBox checked={false} onValueChange={valueChangeFn} />);
-			const ViewComponent = root.findByType(TouchableOpacity);
-			ViewComponent.props.onPress();
-
-			expect(valueChangeFn).toHaveBeenCalledTimes(1);
-			expect(valueChangeFn).toBeCalled();
-		});
-
-		it('when is an anonymous function and is called when ViewComponent is pressed', () => {
-			const {root} = create(<CheckBox checked={false} />);
-			const ViewComponent = root.findByType(TouchableOpacity);
-			ViewComponent.props.onPress();
-
-			expect(root).toBeTruthy();
+			expect(style.backgroundColor).toBe('#D5D7DB');
 		});
 	});
 
 	describe('has border radius', () => {
-		const valueChangeFn = jest.fn();
 		const borderRadiusMock = 30;
 
-		const {root} = create(
-			<CheckBox checked={false} onValueChange={valueChangeFn} borderRadius={borderRadiusMock} />
-		);
+		const {root} = create(<CheckBox checked={false} borderRadius={borderRadiusMock} />);
 		const ViewComponent = root.findByType(TouchableOpacity);
 		const {borderRadius} = ViewComponent.props.children.props.style;
 
 		expect(borderRadius).toBe(borderRadiusMock);
+	});
+
+	describe('hasnt border radius', () => {
+		const {root} = create(<CheckBox checked={false} />);
+		const ViewComponent = root.findByType(TouchableOpacity);
+		const {borderRadius} = ViewComponent.props.children.props.style;
+
+		expect(borderRadius).toBe(4);
 	});
 });
