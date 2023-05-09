@@ -20,7 +20,8 @@
 		"build": "rm -rf dist && tsc",
 		"prestorybook": "rnstl",
 		"storybook": "start-storybook -p 7007",
-		"build-storybook": "npm run prestorybook && build-storybook"
+		"build-storybook": "npm run prestorybook && build-storybook",
+		"storybook:web": "ln -s ../@storybook/react/bin/index.js storybookweb && mv storybookweb node_modules/.bin && storybookweb -p 6006 --config-dir storybook-web"
 	},
 	"repository": {
 		"type": "git",
@@ -51,6 +52,7 @@
 		"@storybook/addon-ondevice-actions": "^5.3.23",
 		"@storybook/addon-ondevice-knobs": "^5.3.26",
 		"@storybook/addon-react-native-web": "0.0.20",
+		"@storybook/react": "^5.3.21",
 		"@storybook/react-native": "^5.3.27",
 		"@storybook/react-native-server": "^5.3.23",
 		"@testing-library/react-native": "^7.2.0",
