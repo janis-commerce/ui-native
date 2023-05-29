@@ -1,8 +1,17 @@
 import React from 'react';
-import {Image as ImageComp, ImageProps} from 'react-native';
+import {Image as ImageComp, ImageProps as ImageRNProps, ImageSourcePropType} from 'react-native';
+
+interface ImageProps extends ImageRNProps {
+	source: ImageSourcePropType;
+}
 
 const Image = ({source, ...props}: ImageProps) => {
-	if (!source || !Object.keys(source).length) {
+	if (!source || typeof source !== 'object' || !Object.keys(source).length) {
+		return null;
+	}
+
+	const sourceKeys = Object.keys(source);
+	if (!sourceKeys.includes('uri')) {
 		return null;
 	}
 
