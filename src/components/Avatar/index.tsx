@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, View} from 'react-native';
+import Text from '../Text';
 import {formatPlaceholder} from './utils/formatPlaceholder/index';
 
 export const sizeValues = {
