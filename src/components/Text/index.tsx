@@ -1,20 +1,17 @@
 import React, {ReactElement} from 'react';
-import {StyleSheet, Text as TextComponent, TextStyle} from 'react-native';
+import {StyleSheet, Text as TextComponent, TextProps as TextComponentProps} from 'react-native';
 
-type TextProps = {
+interface TextProps extends TextComponentProps {
 	children?: ReactElement | string;
-	style?: TextStyle | TextStyle[];
-};
+}
 
-const Text = ({children, style, ...props}: TextProps) => {
+const Text = ({children, ...props}: TextProps) => {
 	if (!children) {
 		return null;
 	}
 
-	const validStyles = style ? StyleSheet.flatten([styles.TextStyles, style]) : styles.TextStyles;
-
 	return (
-		<TextComponent style={validStyles} {...props}>
+		<TextComponent style={styles.TextStyles} {...props}>
 			{children}
 		</TextComponent>
 	);
