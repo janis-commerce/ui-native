@@ -49,8 +49,7 @@ storiesOf('Text', module)
 				'textTransform',
 				['none', 'uppercase', 'lowercase', 'capitalize'],
 				'none'
-			)}
-			>
+			)}>
 			{text('text', 'Example Text')}
 		</Text>
 	));
