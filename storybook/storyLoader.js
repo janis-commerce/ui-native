@@ -5,15 +5,17 @@
 
 function loadStories() {
 	require('./stories/Avatar/Avatar.stories');
-	require('./stories/Button/Button.stories');
 	require('./stories/CheckBox/CheckBox.stories');
+	require('./stories/Image/Image.stories');
+	require('./stories/Text/Text.stories');
 	require('./stories/Input/Input.stories');
 }
 
 const stories = [
 	'./stories/Avatar/Avatar.stories',
-	'./stories/Button/Button.stories',
 	'./stories/CheckBox/CheckBox.stories',
+	'./stories/Image/Image.stories',
+	'./stories/Text/Text.stories',
 	'./stories/Input/Input.stories',
 ];
 
