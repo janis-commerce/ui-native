@@ -1,4 +1,4 @@
-import './Button/Button.stories';
 import './Avatar/Avatar.stories';
 import './CheckBox/CheckBox.stories';
-import './Text/Text.stories'
+import './Image/Image.stories';
+import './Text/Text.stories';
