@@ -13,7 +13,7 @@ storiesOf('Avatar', module)
 			bgColor={color('bgColor', '#E8EAF6')}
 			imageUrl={text('imageUrl', 'https://avatars.githubusercontent.com/u/49998302?s=200&v=4')}
 			placeholder={text('placeholder', 'Janis Commerce')}
-			customSize={number('customSize', '')}
+			customSize={number('customSize', 0)}
 		/>
 	))
 	.add('with only placeholder', () => (
@@ -22,6 +22,6 @@ storiesOf('Avatar', module)
 			textColor={color('textColor', '#FFFFFF')}
 			bgColor={color('bgColor', '#E8EAF6')}
 			placeholder={text('placeholder', 'Janis Commerce')}
-			customSize={number('customSize', '')}
+			customSize={number('customSize', 0)}
 		/>
 	));
