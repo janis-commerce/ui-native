@@ -15,6 +15,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added component Image
 - Added component Text
 
+### Changed
+
+- Changed version from react to 17.0.2 and react native to 0.67 and made compatibility for react 18 and react native 0.71
+
 ### Fixed
 
 - Fixed export components
