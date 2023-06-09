@@ -1,9 +1,9 @@
 import React, {ReactElement} from 'react';
-import {StyleSheet, Text as TextComponent} from 'react-native';
+import {StyleSheet, Text as TextComponent, TextProps as TextComponentProps} from 'react-native';
 
-type TextProps = {
+interface TextProps extends TextComponentProps {
 	children?: ReactElement | string;
-};
+}
 
 const Text = ({children, ...props}: TextProps) => {
 	if (!children) {
