@@ -7,19 +7,14 @@ const useStateSpy = jest.spyOn(React, 'useState');
 
 describe('Input', () => {
 	describe('it should not render', () => {
-		it('as it is not readOnly and there is no placeholder', () => {
+		it('as there is no placeholder', () => {
 			const InputComp = create(<Input label="Test" />).toJSON();
 			expect(InputComp).toBeFalsy();
 		});
 	});
 
 	describe('it should render', () => {
-		it('as it is readOnly', () => {
-			const InputComp = create(<Input readOnly />).toJSON();
-
-			expect(InputComp).toBeTruthy();
-		});
-		it('as it is not readOnly and it has valid label and placeholder', () => {
+		it('as it has valid label and placeholder', () => {
 			const InputComp = create(<Input label="Test" placeholder="Test" />).toJSON();
 
 			expect(InputComp).toBeTruthy();
