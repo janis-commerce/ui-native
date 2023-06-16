@@ -17,15 +17,16 @@ export enum keyboardTypes {
 	numberPad = 'number-pad',
 	decimalPad = 'decimal-pad',
 	numeric = 'numeric',
-	emailAdress = 'email-adress',
+	emailAddress = 'email-address',
 	phonePad = 'phone-pad',
 	url = 'url',
 }
 
-interface CommonProps<T extends boolean> {
+interface InputProps {
 	disabled?: boolean;
-	label?: T extends false ? string : string | undefined;
-	placeholder?: T extends false ? string : string | undefined;
+	readOnly?: boolean; 
+	label: string;
+	placeholder: string;
 	value?: number | string;
 	inputColor?: string;
 	valueColor?: string;
@@ -36,22 +37,9 @@ interface CommonProps<T extends boolean> {
 	onSubmitEditing?: () => void;
 	onFocus?: () => void;
 	onBlur?: () => void;
-	props?: any;
 }
 
-export interface EditableProps extends CommonProps<false> {
-	readOnly?: false;
-	label: string;
-	placeholder: string;
-}
-
-export interface ReadOnlyProps extends CommonProps<true> {
-	readOnly?: true;
-	label?: string | undefined;
-	placeholder?: string | undefined;
-}
-
-const Input = React.forwardRef<TextInput, EditableProps | ReadOnlyProps>(
+const Input = React.forwardRef<TextInput, InputProps>(
 	(
 		{
 			disabled = false,
@@ -69,7 +57,7 @@ const Input = React.forwardRef<TextInput, EditableProps | ReadOnlyProps>(
 			onFocus = () => {},
 			onBlur = () => {},
 			...props
-		}: EditableProps | ReadOnlyProps,
+		}: InputProps,
 		ref: LegacyRef<TextInput>
 	) => {
 		const [inputState, setInputState] = useState('incomplete');
@@ -78,7 +66,7 @@ const Input = React.forwardRef<TextInput, EditableProps | ReadOnlyProps>(
 			setInputState(getInputInitialState(value.toString()));
 		}, [value]);
 
-		if (!readOnly && (!label || !placeholder)) {
+		if (!label || !placeholder) {
 			return null;
 		}
 
