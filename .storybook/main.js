@@ -2,6 +2,7 @@ module.exports = {
     stories: ['../storybook/stories/**/*.stories.?(ts|tsx|js|jsx)'],
     addons: [
       '@storybook/addon-actions',
+      '@storybook/addon-controls',
       '@storybook/addon-links',
       '@storybook/addon-essentials',
       '@storybook/addon-react-native-web',

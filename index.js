@@ -3,7 +3,7 @@
 import {AppRegistry} from 'react-native';
 import App from './App';
 import {name as appName} from './app.json';
-import Storybook from './storybook';
+import Storybook from './storybook/Storybook';
 
 const Component = __DEV__ ? Storybook : App;
 AppRegistry.registerComponent(appName, () => Component);
