@@ -29,7 +29,7 @@ exports[`StatusChip component render correct a valid component is passed 1`] = `
 </View>
 `;
 
-exports[`StatusChip component render correct if a color is passed 1`] = `
+exports[`StatusChip component render correct if a background is passed 1`] = `
 <View
   style={
     Object {

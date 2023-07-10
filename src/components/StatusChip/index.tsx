@@ -4,10 +4,10 @@ import {base, grey, primary} from '../../theme/palette';
 
 interface StatusChipProps extends ViewProps {
 	children?: ReactElement | string;
-	color?: string;
+	background?: string;
 }
 
-const StatusChip = ({children, color, ...props}: StatusChipProps) => {
+const StatusChip = ({children, background, ...props}: StatusChipProps) => {
 	const isString = typeof children === 'string';
 	const isCustomComponent = isValidElement(children);
 
@@ -23,9 +23,9 @@ const StatusChip = ({children, color, ...props}: StatusChipProps) => {
 			paddingLeft: 12,
 			paddingRight: 12,
 			borderRadius: 12,
-			backgroundColor: color ?? base.white,
+			backgroundColor: background ?? base.white,
 			borderWidth: 1,
-			borderColor: color ?? grey['300'],
+			borderColor: background ?? grey['300'],
 		},
 		TextStyles: {
 			fontSize: 15,
@@ -33,7 +33,7 @@ const StatusChip = ({children, color, ...props}: StatusChipProps) => {
 			fontFamily: 'Roboto',
 			fontWeight: '900',
 			textAlign: 'center',
-			color: color ? base.white : primary.main,
+			color: background ? base.white : primary.main,
 		},
 	});
 

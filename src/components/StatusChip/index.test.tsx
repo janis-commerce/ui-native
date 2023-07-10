@@ -19,8 +19,8 @@ describe('StatusChip component', () => {
 			expect(toJSON()).toMatchSnapshot();
 		});
 
-		it('if a color is passed', () => {
-			const {toJSON} = create(<StatusChip color={primary.main}>Delivered</StatusChip>);
+		it('if a background is passed', () => {
+			const {toJSON} = create(<StatusChip background={primary.main}>Delivered</StatusChip>);
 			expect(toJSON()).toMatchSnapshot();
 		});
 
