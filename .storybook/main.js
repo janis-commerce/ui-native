@@ -1,11 +1,14 @@
-module.exports = {
-    stories: ['../storybook/stories/**/*.stories.?(ts|tsx|js|jsx)'],
-    addons: [
-      '@storybook/addon-actions',
-      '@storybook/addon-controls',
-      '@storybook/addon-links',
-      '@storybook/addon-essentials',
-      '@storybook/addon-react-native-web',
-    ],
-    framework: '@storybook/react',
-  };
+const config = {
+	framework: '@storybook/react-webpack5',
+	stories: ['../storybook/stories/**/*.mdx', '../storybook/stories/**/*.stories.@(js|jsx|ts|tsx)'],
+	addons: [
+		// '@storybook/addon-actions',
+		'@storybook/addon-controls',
+		'@storybook/addon-react-native-web',
+	],
+	docs: {
+		autodocs: 'tag',
+	},
+	staticDirs: ['../storybook-static'],
+};
+export default config;

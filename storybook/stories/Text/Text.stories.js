@@ -1,6 +1,4 @@
-import React, {JSX} from 'react';
-import CenterView from '../../decorators/CenterView';
-import {ComponentMeta, ComponentStory} from '@storybook/react';
+import React from 'react';
 import Text from './index';
 
 const fontFamilies = [
@@ -31,13 +29,6 @@ const fontWeights = [
 
 export default {
 	title: 'Text',
-	decorators: [
-		(Story): JSX.Element => (
-			<CenterView>
-				<Story />
-			</CenterView>
-		),
-	],
 	argTypes: {
 		fontFamily: {
 			options: fontFamilies,
@@ -58,11 +49,11 @@ export default {
 		textTransform: {
 			options: ['none', 'uppercase', 'lowercase', 'capitalize'],
 			control: {type: 'select'},
-		}
+		},
 	},
-} as ComponentMeta<typeof Text>;
+};
 
-export const DefaultProps: ComponentStory<typeof Text> = ({
+export const DefaultProps = ({
 	textToDisplay,
 	fontSize,
 	color,
@@ -86,9 +77,7 @@ export const DefaultProps: ComponentStory<typeof Text> = ({
 	</Text>
 );
 
-DefaultProps.story = {
-	name: 'default props',
-};
+DefaultProps.storyName = 'default props';
 
 DefaultProps.args = {
 	textToDisplay: 'Hola',

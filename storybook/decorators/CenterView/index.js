@@ -1,11 +1,7 @@
-import React, {ReactNode} from 'react';
+import React from 'react';
 import {StyleSheet, View} from 'react-native';
 
-interface Props {
-	children: ReactNode;
-}
-
-const CenterView = ({children}: Props): JSX.Element => {
+const CenterView = ({children}) => {
 	return <View style={styles.main}>{children}</View>;
 };
 
