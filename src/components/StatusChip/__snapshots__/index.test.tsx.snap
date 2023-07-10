@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StatusChip component render correct a valid component is passed 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#fff",
+      "borderColor": "#C4C6CC",
+      "borderRadius": 12,
+      "borderWidth": 1,
+      "flexDirection": "row",
+      "height": 24,
+      "paddingLeft": 12,
+      "paddingRight": 12,
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "fontFamily": "Roboto",
+        "fontSize": 16,
+      }
+    }
+  >
+    Custom component
+  </Text>
+</View>
+`;
+
+exports[`StatusChip component render correct if a color is passed 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#2979FF",
+      "borderColor": "#2979FF",
+      "borderRadius": 12,
+      "borderWidth": 1,
+      "flexDirection": "row",
+      "height": 24,
+      "paddingLeft": 12,
+      "paddingRight": 12,
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "#fff",
+        "fontFamily": "Roboto",
+        "fontSize": 15,
+        "fontWeight": "900",
+        "lineHeight": 18,
+        "textAlign": "center",
+      }
+    }
+  >
+    Delivered
+  </Text>
+</View>
+`;
+
+exports[`StatusChip component render correct text is passed 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#fff",
+      "borderColor": "#C4C6CC",
+      "borderRadius": 12,
+      "borderWidth": 1,
+      "flexDirection": "row",
+      "height": 24,
+      "paddingLeft": 12,
+      "paddingRight": 12,
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "#2979FF",
+        "fontFamily": "Roboto",
+        "fontSize": 15,
+        "fontWeight": "900",
+        "lineHeight": 18,
+        "textAlign": "center",
+      }
+    }
+  >
+    Partially delivered
+  </Text>
+</View>
+`;
