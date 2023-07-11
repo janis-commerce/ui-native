@@ -7,6 +7,8 @@ import '../.ondevice/storybook.requires';
 const StorybookUIRoot = getStorybookUI({
 	asyncStorage: null,
 	host: Platform.OS === 'android' ? '10.0.2.2' : '0.0.0.0',
+	enableWebsockets: true,
+	onDeviceUI: false,
 });
 
 export default StorybookUIRoot;
