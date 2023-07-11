@@ -20,11 +20,8 @@
     "prestart": "yarn update-stories",
     "storybook-watcher": "sb-rn-watcher --config-path .ondevice",
     "update-stories": "sb-rn-get-stories --config-path .ondevice",
-    "build-storybook": "storybook build",
-    "storybook:web": "storybook dev -p 6006",
-    "storybook": "echo \"STORYBOOK=true\" > .env && yarn rnuc .env && yarn ios && echo \"STORYBOOK=false\" > .env && yarn rnuc .env",
     "storybook-web": "storybook dev -p 6006 --config-dir ./.storybook",
-    "storybook-web-build": "storybook build --config-dir ./.storybook --output-dir dist-storybook-website"
+    "storybook-web-build": "storybook build --config-dir ./.storybook --output-dir ./.storybook_static"
   },
   "repository": {
     "type": "git",
@@ -50,12 +47,12 @@
     "@babel/preset-env": "^7.22.7",
     "@babel/runtime": "^7.22.6",
     "@react-native-community/eslint-config": "^2.0.0",
-    "@storybook/addon-actions": "^6.5.4",
-    "@storybook/addon-controls": "^6.5.4",
+    "@storybook/addon-actions": "^7.0.26",
+    "@storybook/addon-controls": "^7.0.26",
     "@storybook/addon-ondevice-actions": "^6.5.4",
     "@storybook/addon-ondevice-controls": "^6.5.4",
     "@storybook/addon-react-native-web": "0.0.20",
-    "@storybook/react": "^6.5.4",
+    "@storybook/react": "^7.0.26",
     "@storybook/react-native": "^6.5.4",
     "@storybook/react-webpack5": "7.0.26",
     "@testing-library/react-native": "^7.2.0",
@@ -106,7 +103,6 @@
     "@react-native-async-storage/async-storage": "^1.19.0",
     "@react-native-community/datetimepicker": "^7.4.0",
     "@react-native-community/slider": "^4.4.2",
-    "@storybook/addon-backgrounds": "^7.0.26",
     "react-native-safe-area-context": "^4.6.4",
     "react-native-svg": "12.1.1",
     "react-native-web": "^0.15.0"

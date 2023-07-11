@@ -11,16 +11,7 @@ export default {
 	},
 };
 
-export const WithImage = ({size, textColor, bgColor, imageUrl, placeholder, customSize}) => (
-	<Avatar
-		size={size}
-		textColor={textColor}
-		bgColor={bgColor}
-		imageUrl={imageUrl}
-		placeholder={placeholder}
-		customSize={customSize}
-	/>
-);
+export const WithImage = (props) => <Avatar {...props} />;
 
 WithImage.storyName = 'with image';
 
@@ -33,16 +24,7 @@ WithImage.args = {
 	customSize: 0,
 };
 
-export const OnlyPlaceholder = ({size, textColor, bgColor, imageUrl, placeholder, customSize}) => (
-	<Avatar
-		size={size}
-		textColor={textColor}
-		bgColor={bgColor}
-		imageUrl={imageUrl}
-		placeholder={placeholder}
-		customSize={customSize}
-	/>
-);
+export const OnlyPlaceholder = (props) => <Avatar {...props} />;
 
 OnlyPlaceholder.storyName = 'only with placeholder';
 
