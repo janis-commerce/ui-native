@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "android": "sb-rn-get-stories --config-path .ondevice && react-native run-android",
-    "ios": "react-native run-ios",
+    "ios": "sb-rn-get-stories --config-path .ondevice && react-native run-ios",
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint .",
