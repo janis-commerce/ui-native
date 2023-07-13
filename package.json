@@ -84,6 +84,7 @@
     "react-native-svg-transformer": "^1.0.0",
     "react-test-renderer": "17.0.2",
     "setup-env": "^2.0.0",
+    "storybook": "7.0.26",
     "typescript": "^3.8.3"
   },
   "resolutions": {
