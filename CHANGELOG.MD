@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added component Checkbox
 - Added component Image
 - Added component Text
+- Added slack notification on each release
 
 ### Changed
 
