@@ -1,7 +1,4 @@
 import React from 'react';
-import {storiesOf} from '@storybook/react-native';
-import {number, color, text, select} from '@storybook/addon-knobs';
-import CenterView from '../CenterView';
 import Text from './index';
 
 const fontFamilies = [
@@ -16,7 +13,7 @@ const fontFamilies = [
 	'Roboto',
 	'monospace',
 ];
-const fontWeight = [
+const fontWeights = [
 	'normal',
 	'bold',
 	'100',
@@ -30,26 +27,66 @@ const fontWeight = [
 	'900',
 ];
 
-storiesOf('Text', module)
-	.addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
-	.add('default props', () => (
-		<Text
-			fontSize={number('fontSize', 16)}
-			color={color('color', '#000000')}
-			fontFamily={select('fontFamily', fontFamilies, 'Roboto')}
-			fontStyle={select('fontStyle', ['normal', 'italic'], 'normal')}
-			fontWeight={select('fontWeight', fontWeight, 'normal')}
-			letterSpacing={number('letterSpacing', 0)}
-			textDecorationLine={select(
-				'textDecorationLine',
-				['none', 'underline', 'line-through', 'underline line-through'],
-				'none'
-			)}
-			textTransform={select(
-				'textTransform',
-				['none', 'uppercase', 'lowercase', 'capitalize'],
-				'none'
-			)}>
-			{text('text', 'Example Text')}
-		</Text>
-	));
+export default {
+	title: 'Text',
+	argTypes: {
+		fontFamily: {
+			options: fontFamilies,
+			control: {type: 'select'},
+		},
+		fontStyle: {
+			options: ['normal', 'italic'],
+			control: {type: 'select'},
+		},
+		fontWeight: {
+			options: fontWeights,
+			control: {type: 'select'},
+		},
+		textDecorationLine: {
+			options: ['none', 'underline', 'line-through', 'underline line-through'],
+			control: {type: 'select'},
+		},
+		textTransform: {
+			options: ['none', 'uppercase', 'lowercase', 'capitalize'],
+			control: {type: 'select'},
+		},
+	},
+};
+
+export const DefaultProps = ({
+	textToDisplay,
+	fontSize,
+	color,
+	fontFamily,
+	fontStyle,
+	fontWeight,
+	letterSpacing,
+	textDecorationLine,
+	textTransform,
+}) => (
+	<Text
+		fontSize={fontSize}
+		color={color}
+		fontFamily={fontFamily}
+		fontStyle={fontStyle}
+		fontWeight={fontWeight}
+		letterSpacing={letterSpacing}
+		textDecorationLine={textDecorationLine}
+		textTransform={textTransform}>
+		{textToDisplay}
+	</Text>
+);
+
+DefaultProps.storyName = 'default props';
+
+DefaultProps.args = {
+	textToDisplay: 'Hola',
+	fontSize: 24,
+	color: '#000000',
+	fontFamily: 'Roboto',
+	fontStyle: 'normal',
+	fontWeight: 'normal',
+	letterSpacing: 0,
+	textDecorationLine: 'none',
+	textTransform: 'none',
+};
