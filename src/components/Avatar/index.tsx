@@ -64,13 +64,15 @@ const Avatar = ({
 
 	return (
 		<View
-			style={{
-				...styles.container,
-				backgroundColor: bgColor,
-				borderRadius: getSize(size, customSize) / 2,
-				height: getSize(size, customSize),
-				width: getSize(size, customSize),
-			}}
+			style={[
+				styles.container,
+				{
+					backgroundColor: bgColor,
+					borderRadius: getSize(size, customSize) / 2,
+					height: getSize(size, customSize),
+					width: getSize(size, customSize),
+				},
+			]}
 			{...props}>
 			{!!imageUrl && !showInitials && (
 				<Image
@@ -88,12 +90,7 @@ const Avatar = ({
 			)}
 
 			{(showInitials || !imageUrl) && !!initials.length && (
-				<Text
-					style={{
-						...styles.text,
-						color: textColor,
-						fontSize: getSize(size, customSize) * 0.4,
-					}}>
+				<Text style={[styles.text, {color: textColor, fontSize: getSize(size, customSize) * 0.4}]}>
 					{initials}
 				</Text>
 			)}
