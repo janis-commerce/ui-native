@@ -15,6 +15,15 @@ export default {
 			options: [true, false],
 			control: {type: 'radio'},
 		},
+		checkOnColor: {
+			control: {type: 'color'},
+		},
+		checkOffColor: {
+			control: {type: 'color'},
+		},
+		iconCheckColor: {
+			control: {type: 'color'},
+		},
 	},
 };
 
