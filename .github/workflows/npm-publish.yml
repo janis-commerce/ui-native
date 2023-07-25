@@ -2,7 +2,7 @@ name: NPM Publish
 
 on:
   push:
-    tags: [ '*' ]
+    tags: ['*']
 
 jobs:
   build:
@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
-          node-version: 14.x
+          node-version: 16.x
       - run: npm install
       - run: npm test
 
@@ -23,22 +23,22 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
-          node-version: 14.x
+          node-version: 16.x
           registry-url: https://registry.npmjs.org/
       - run: npm install
       - run: npm run build
       - run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
-          
+
   send-slack-message:
-      needs: publish-npm
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v2
-        - uses: actions/setup-node@v1
-          with:
-            node-version: 14
-        - run: bash ./scripts/release-notes.sh
-          env:
-            RELEASE_SLACK_WEBHOOK_URL: ${{secrets.RELEASE_SLACK_WEBHOOK_URL}}
+    needs: publish-npm
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      - run: bash ./scripts/release-notes.sh
+        env:
+          RELEASE_SLACK_WEBHOOK_URL: ${{secrets.RELEASE_SLACK_WEBHOOK_URL}}
