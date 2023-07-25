@@ -24,7 +24,7 @@ export enum keyboardTypes {
 
 interface InputProps {
 	disabled?: boolean;
-	readOnly?: boolean; 
+	readOnly?: boolean;
 	label: string;
 	placeholder: string;
 	value?: number | string;

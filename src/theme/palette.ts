@@ -59,7 +59,6 @@ const environment: Env = {
 	beta: '#F13B70',
 };
 
-
 const palette = {
 	primary,
 	black,
