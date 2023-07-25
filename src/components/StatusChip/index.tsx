@@ -7,7 +7,7 @@ interface StatusChipProps extends ViewProps {
 	background?: string;
 }
 
-const StatusChip = ({children, background, ...props}: StatusChipProps) => {
+const StatusChip = ({children, ...props}: StatusChipProps) => {
 	const isString = typeof children === 'string';
 	const isCustomComponent = isValidElement(children);
 
@@ -15,7 +15,15 @@ const StatusChip = ({children, background, ...props}: StatusChipProps) => {
 		return null;
 	}
 
-	const styles = StyleSheet.create({
+	return (
+		<View style={styles(props).ViewStyles} {...props}>
+			{isCustomComponent ? children : <Text style={styles(props).TextStyles}>{children}</Text>}
+		</View>
+	);
+};
+
+const styles = ({background}: StatusChipProps) =>
+	StyleSheet.create({
 		ViewStyles: {
 			height: 24,
 			flexDirection: 'row',
@@ -36,12 +44,5 @@ const StatusChip = ({children, background, ...props}: StatusChipProps) => {
 			color: background ? base.white : primary.main,
 		},
 	});
-
-	return (
-		<View style={styles.ViewStyles} {...props}>
-			{isCustomComponent ? children : <Text style={styles.TextStyles}>{children}</Text>}
-		</View>
-	);
-};
 
 export default StatusChip;

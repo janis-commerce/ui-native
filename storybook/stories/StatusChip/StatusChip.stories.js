@@ -12,16 +12,12 @@ export default {
 	},
 };
 
-export const PassingItText = (props) => (
-	<StatusChip {...props}>
-		Partially delivered
-	</StatusChip>
-);
+export const PassingItText = (props) => <StatusChip {...props}>Partially delivered</StatusChip>;
 
 PassingItText.storyName = 'passing it text';
 
 PassingItText.args = {
-	background: ''
+	background: '',
 };
 
 export const PassingItComponent = (props) => (
@@ -44,5 +40,5 @@ export const PassingItComponent = (props) => (
 PassingItComponent.storyName = 'passing it a custom component';
 
 PassingItComponent.args = {
-	background: ''
+	background: '',
 };
