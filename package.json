@@ -22,7 +22,7 @@
 		"storybook-watcher": "sb-rn-watcher --config-path .ondevice",
 		"update-stories": "sb-rn-get-stories --config-path .ondevice",
 		"storybook-web": " npm run storybook-web-build && start-storybook -p 6006 --config-dir ./.storybook",
-		"storybook-web-build": "build-storybook --config-dir ./.storybook --output-dir ./docs"
+		"storybook-web-build": "build-storybook --config-dir ./.storybook --output-dir ./.storybook_static"
 	},
 	"repository": {
 		"type": "git",
