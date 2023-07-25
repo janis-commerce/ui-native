@@ -37,6 +37,7 @@
 	},
 	"moduleNameMapper": {
 		".+\\.(css|style|less|sass|scss|png|jpg|ttf|woff|woff2)$": "jest-transform-stub",
-		"\\.(css|less)$": "identity-obj-proxy"
+		"\\.(css|less)$": "identity-obj-proxy",
+		"\\.svg": "<rootDir>/__mocks__/svgMock.js"
 	}
 }
