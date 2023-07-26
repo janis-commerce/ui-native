@@ -1,28 +1,25 @@
-
 name: Coverage Status
 
-on: ["push"]
+on: ['push']
 
 jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
 
-
     steps:
+      - uses: actions/checkout@v1
 
-    - uses: actions/checkout@v1
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16.x
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: 14.x
-
-    - name: npm install, make test-coverage
-      run: |
-        npm install
-        npm run test:coverage
-    - name: Coveralls
-      uses: coverallsapp/github-action@master
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: npm install, make test-coverage
+        run: |
+          npm install
+          npm run test:coverage
+      - name: Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}

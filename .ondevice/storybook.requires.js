@@ -14,9 +14,14 @@ global.STORIES = [
     directory: "./storybook/stories",
     files: "**/*.stories.?(ts|tsx|js|jsx)",
     importPathMatcher:
-      "^\\.[\\\\/](?:storybook\\/stories(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.stories\\.(?:ts|tsx|js|jsx)?)$",
+      "^\\.[\\\\/](?:storybook[\\\\/]stories(?:[\\\\/](?!\\.)(?:(?:(?!(?:^|[\\\\/])\\.).)*?)[\\\\/]|[\\\\/]|$)(?!\\.)(?=.)[^\\\\/]*?\\.stories\\.(?:ts|tsx|js|jsx)?)$",
   },
 ];
+
+import "@storybook/addon-ondevice-actions/register";
+import "@storybook/addon-ondevice-controls/register";
+
+import { argsEnhancers } from "@storybook/addon-actions/dist/modern/preset/addArgs";
 
 import { decorators, parameters } from "./preview";
 
@@ -35,6 +40,10 @@ if (decorators) {
 if (parameters) {
   addParameters(parameters);
 }
+
+try {
+  argsEnhancers.forEach((enhancer) => addArgsEnhancer(enhancer));
+} catch {}
 
 const getStories = () => {
   return {
