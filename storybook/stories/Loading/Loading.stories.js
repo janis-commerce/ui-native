@@ -4,14 +4,16 @@ import Loading from '../../../src/components/Loading/';
 
 export default {
 	title: 'Loading',
-	argTypes: {},
+	argTypes: {
+		color: {
+			control: {type: 'color'},
+		},
+	},
 };
 
-export const DefaultProps = ({isLoading, color, duration}) => (
-	<Loading isLoading={isLoading} color={color} duration={duration} />
-);
+export const DefaultProps = (props) => <Loading {...props} />;
 
-DefaultProps.storyName = 'default props';
+DefaultProps.storyName = 'with text children';
 
 DefaultProps.args = {
 	isLoading: true,
