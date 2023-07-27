@@ -1,12 +1,9 @@
 import React from 'react';
-import * as startRotationAnimation from './utils/startRotationAnimation';
 import {create} from 'react-test-renderer';
 import {Animated, Text, View} from 'react-native';
 import Loading from './';
 
-const startRotationAnimationSpy = jest
-	.spyOn(startRotationAnimation, 'default')
-	.mockReturnValueOnce();
+jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
 jest.spyOn(React, 'useEffect').mockImplementation((f) => f());
 
 const validProps = {
@@ -22,9 +19,6 @@ const defaultProps = {
 };
 
 describe('Loading component', () => {
-	beforeEach(() => {
-		jest.useFakeTimers();
-	});
 	describe('render correctly', () => {
 		it('when is loading is true', () => {
 			const {toJSON} = create(
@@ -76,7 +70,6 @@ describe('Loading component', () => {
 				<Loading isLoading={validProps.isLoading} children={validProps.children} />
 			);
 			expect(toJSON()).toBeTruthy();
-			expect(startRotationAnimationSpy).toBeCalled();
 		});
 
 		it('children when it is not exist', () => {

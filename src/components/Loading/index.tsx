@@ -1,14 +1,28 @@
 import React, {useEffect, useRef} from 'react';
 import {StyleSheet, View, Animated, Easing, ColorValue} from 'react-native';
-import startRotationAnimation from './utils/startRotationAnimation';
 import {primary, white} from '../../theme/palette';
 
+interface Params {
+	duration: number;
+	rotationDegree: Animated.Value;
+	timingAnimation: (value: number) => number;
+}
 interface Props {
 	isLoading: boolean;
 	color?: ColorValue;
 	duration?: number;
 	children?: React.ReactNode | null;
 }
+
+const startRotationAnimation = ({duration, rotationDegree, timingAnimation}: Params): void =>
+	Animated.loop(
+		Animated.timing(rotationDegree, {
+			duration,
+			toValue: 360,
+			easing: timingAnimation,
+			useNativeDriver: true,
+		})
+	).start();
 
 const Loading = ({
 	isLoading,
