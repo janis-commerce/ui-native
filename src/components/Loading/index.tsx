@@ -55,7 +55,7 @@ const Loading: FC<Props> = ({
 			borderWidth: 3.5,
 		},
 	});
-	const AnimationSpinnerStyle = {
+	const animationSpinnerStyle = {
 		transform: [
 			{
 				rotateZ: rotationDegree.interpolate({
@@ -82,7 +82,7 @@ const Loading: FC<Props> = ({
 
 	return (
 		<View style={styles.container} {...props}>
-			<Animated.View style={{...styles.spinner, ...AnimationSpinnerStyle}} />
+			<Animated.View style={{...styles.spinner, ...animationSpinnerStyle}} />
 			{children}
 		</View>
 	);
