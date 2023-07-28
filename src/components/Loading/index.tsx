@@ -10,6 +10,7 @@ interface Params {
 interface Props {
 	isLoading: boolean;
 	color?: ColorValue;
+	size?: number;
 	duration?: number;
 	children?: React.ReactNode | null;
 }
@@ -27,17 +28,34 @@ const startRotationAnimation = ({duration, rotationDegree, timingAnimation}: Par
 const Loading: FC<Props> = ({
 	isLoading,
 	color = primary.main,
+	size = 64,
 	duration = 1000,
 	children = null,
 	...props
 }) => {
 	const rotationDegree = useRef(new Animated.Value(0)).current;
 
-	const {container, spinner} = styles;
-	const dynamicSpinnerStyles = {
-		borderLeftColor: color,
-		borderRightColor: color,
-		borderBottomColor: color,
+	const styles = StyleSheet.create({
+		container: {
+			position: 'relative',
+			justifyContent: 'center',
+			alignItems: 'center',
+			width: size,
+			height: size,
+		},
+		spinner: {
+			position: 'absolute',
+			width: size,
+			height: size,
+			borderTopColor: white.dark,
+			borderLeftColor: color,
+			borderRightColor: color,
+			borderBottomColor: color,
+			borderRadius: size / 2,
+			borderWidth: 3.5,
+		},
+	});
+	const AnimationSpinnerStyle = {
 		transform: [
 			{
 				rotateZ: rotationDegree.interpolate({
@@ -63,34 +81,11 @@ const Loading: FC<Props> = ({
 	}
 
 	return (
-		<View style={container} {...props}>
-			<Animated.View style={{...spinner, ...dynamicSpinnerStyles}} />
+		<View style={styles.container} {...props}>
+			<Animated.View style={{...styles.spinner, ...AnimationSpinnerStyle}} />
 			{children}
 		</View>
 	);
 };
-
-const dimensions = {
-	width: 64,
-	borderWidth: 3.5,
-};
-
-const styles = StyleSheet.create({
-	container: {
-		width: dimensions.width,
-		height: dimensions.width,
-		justifyContent: 'center',
-		alignItems: 'center',
-		position: 'relative',
-	},
-	spinner: {
-		width: dimensions.width,
-		height: dimensions.width,
-		borderRadius: dimensions.width / 2,
-		borderTopColor: white.dark,
-		borderWidth: dimensions.borderWidth,
-		position: 'absolute',
-	},
-});
 
 export default Loading;

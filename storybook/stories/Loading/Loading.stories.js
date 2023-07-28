@@ -18,6 +18,7 @@ DefaultProps.storyName = 'with text children';
 DefaultProps.args = {
 	isLoading: true,
 	color: '#2979FF',
+	size: 64,
 	duration: 1000,
 	children: <Text>Loading</Text>,
 };
