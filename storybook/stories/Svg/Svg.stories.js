@@ -8,6 +8,7 @@ export default {
 			options: [
 				'empty-illustration',
 				'empty-list-illustration',
+				'janis-logo',
 				'janis-logo-color',
 				'login-illustration',
 				'no-notifications',
