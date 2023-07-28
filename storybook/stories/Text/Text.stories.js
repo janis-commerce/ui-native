@@ -50,6 +50,9 @@ export default {
 			options: ['none', 'uppercase', 'lowercase', 'capitalize'],
 			control: {type: 'select'},
 		},
+		color: {
+			control: {type: 'color'},
+		},
 	},
 };
 

@@ -8,6 +8,12 @@ export default {
 			options: ['sm', 'md', 'lg'],
 			control: {type: 'select'},
 		},
+		textColor: {
+			control: {type: 'color'},
+		},
+		bgColor: {
+			control: {type: 'color'},
+		},
 	},
 };
 
