@@ -1,11 +1,6 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useRef, FC} from 'react';
 import {StyleSheet, View, Animated, Easing, ColorValue} from 'react-native';
 import {primary, white} from '../../theme/palette';
-
-const dimensions = {
-	width: 64,
-	borderWidth: 3.5,
-};
 
 interface Params {
 	duration: number;
@@ -29,36 +24,20 @@ const startRotationAnimation = ({duration, rotationDegree, timingAnimation}: Par
 		})
 	).start();
 
-const Loading = ({
+const Loading: FC<Props> = ({
 	isLoading,
 	color = primary.main,
 	duration = 1000,
 	children = null,
 	...props
-}: Props) => {
+}) => {
 	const rotationDegree = useRef(new Animated.Value(0)).current;
 
-	const styles = StyleSheet.create({
-		container: {
-			width: dimensions.width,
-			height: dimensions.width,
-			justifyContent: 'center',
-			alignItems: 'center',
-			position: 'relative',
-		},
-		spinner: {
-			width: dimensions.width,
-			height: dimensions.width,
-			borderRadius: dimensions.width / 2,
-			borderTopColor: white.dark,
-			borderWidth: dimensions.borderWidth,
-			position: 'absolute',
-			borderLeftColor: color,
-			borderRightColor: color,
-			borderBottomColor: color,
-		},
-	});
-	const spinnerAnimation = {
+	const {container, spinner} = styles;
+	const dynamicSpinnerStyles = {
+		borderLeftColor: color,
+		borderRightColor: color,
+		borderBottomColor: color,
 		transform: [
 			{
 				rotateZ: rotationDegree.interpolate({
@@ -80,15 +59,38 @@ const Loading = ({
 	}, [isLoading, duration, rotationDegree]);
 
 	if (!isLoading) {
-		return null;
+		return <></>;
 	}
 
 	return (
-		<View style={styles.container} {...props}>
-			<Animated.View style={{...styles.spinner, ...spinnerAnimation}} />
+		<View style={container} {...props}>
+			<Animated.View style={{...spinner, ...dynamicSpinnerStyles}} />
 			{children}
 		</View>
 	);
 };
+
+const dimensions = {
+	width: 64,
+	borderWidth: 3.5,
+};
+
+const styles = StyleSheet.create({
+	container: {
+		width: dimensions.width,
+		height: dimensions.width,
+		justifyContent: 'center',
+		alignItems: 'center',
+		position: 'relative',
+	},
+	spinner: {
+		width: dimensions.width,
+		height: dimensions.width,
+		borderRadius: dimensions.width / 2,
+		borderTopColor: white.dark,
+		borderWidth: dimensions.borderWidth,
+		position: 'absolute',
+	},
+});
 
 export default Loading;
