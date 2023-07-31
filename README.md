@@ -91,14 +91,35 @@ import {CheckBox} from '@janiscommerce/ui-native';
 
 ![checkbox](https://lh3.googleusercontent.com/pw/AIL4fc_2djGV2DMo1RUgbipQUh5p6rpHx3YV64ZvU2LFzhMcflypnyh3fzEZQu66ITWvwfHH1gThkCpNFI6dqASNMmIDzdWst1y85Pj8Om1VWTEh8kZjz_xDfwbqwDeIThlc8G9TcAbEdqvGMwVQdqLxofFibQuBFjLcf2PsV9w2-NnlpDvHnQcqTEBC4Zr2-X0Zh-_4zb3M_k8fH7s_L43kF46VSRrxYfCTSMAh8a4T79p5aA5Qmzyd3zKFpf2I9zjmptQJDQh7sDLbBRjA2y8rb2H6lWUucMRxdP8ENnB_T63zP-RMlGT2bNylhmVDZqFe2L0YmfGuaMsbLJM1-kAZwQ2-8L3ZleXZ9M6vJw_RySiZz_xehtL5S4U2GSA_P9ELt2q0Tvhsvil4MoBXhLrSetcTWfeMx7xoupkME1CCEaRrsxtpC8T65GCRXPH-wsKKy6d69tz766qQSBX_eAKMXo7cowazzWQGGQ_540Pumyg--dsI9xBOJjuQWgUFuY3sRGqmnP33eTvnVI_L4vMkAPetcdWIhMhm451VWOHNNsKK37Lv3fZkRxxdYYNkLVqHYBjtqmUarjxej9PGe4qZlrpUeiwiPXYqg9pusJ99GjYmoSeMtz3OHzY3mNXmlE4WHdxM73rhX9FTd9_nhFZBuftrmKrq6OAnXh5FmJILEtJR1oEH53pLoNCCWCaigBIK-fJGfeiHSmuP_EAe4KqWUOEr59WmMpqROl6tX_p6yCkop8cEWqQe4XzHGeppONLbcT_4A580OirQ2AMigT8eLT4cza8dQS6wQ_kcOHdVNDv67laTp5-tB8nzx5SmUOCPoql02d7lpWDqZ7tfI8UfIdXPquMCnLqAoq7N_DddiVdRWWS_90oWLSH5uCs4ss0OyuAVB4lhp-ZP1FIy4v4ZCw=w173-h178-s-no?authuser=0)
 
+### Status Chip
+
+Prop | Valor Default | Requerido | Tipo
+-- | -- | -- | --
+background | #2979FF | no | string
+children | - | si | string / component
+</br>
+
+**Ejemplos de uso:**
+
+```
+import {StatusChip} from '@janiscommerce/ui-native';
+
+...
+<StatusChip>Default Chip</StatusChip>
+<StatusChip background="#1DB779">Success Chip</StatusChip>
+<StatusChip background="#FF4343">Error Chip</StatusChip>
+```
+
+![chip](https://lh3.googleusercontent.com/pw/AIL4fc-BmEOF5g8_EhRfVjp8Obv_1n7xaFwhChA1Afv3Xv2YE-keWm1SgYItQC93Vmyhqynd_pVgJHznbMtBJsEzN7dBiuZd0mWKkVnNejrtXVqwYCoZBbYD3cizWeHtQ2hCaptYghSsvh-3S0Svevu0hML5lg4VuV_y3g1Uut7rGdiyrbm3y_KZEWbxp96yMc7crKCD2GOpI96IhZX_tFzbOwong8TT3AOQ8m5__vIgLsEr_jqnaS2Jmd7qhweJmuAL42kMIGg0xcOVPNMdqQ-VuJQ39t_UT488_gcb9OfaWO5LV9iE5Viw1xwyg1AsBi_sgNQFyGEAk9T3r0UK_Tib-UJpzJLR5vKhAIXgFeMrChLGLyK5lXWteWQLjAmlek3YKKEhc_tyrZc2ATNUFk9t0pgyYseC2A5ISDbge2Oxm7gwH-IQ707qU3ry7vfUlIBSvCPJykIq1wTffYzG8nbHrvfzC-MVXOZ0z8ofCJqNo74A7fwTEi0Oz3GaG1YjMykvZjNHhyqNfxlimQvBRR20aMj8vClxzmOBhQiqZyxOmZp517CgZOWUL3IFlfkqAPbaHZBhRfhdeSjF_TYmxfbclV9Z0mYi7B7bCRxt_HoM2JPupKtQKdJ3-C414so5lUGgQoNcqEjtq_VaTnMwfos4gTM4dF8HKDlOZ3XpDw_JAX-lcCuUAwZl31mgC-mVxEDv6by0BkhWpdmrLSlpiOq_pZJvUp62FFbvtMPYhqNIbIJOJ0Llk13pg8hqiSjrT1pEJkxCwkGVceYW8O3YQSVybfAeWF2fqZLe_pi-wR5qA-QeVQhISLuLdYfaDndPMmEraMuIdrOMsbuzn1TPGrYneLRMw9F_S_5oRu4_cYgXf7B-9zvdshB4UE93uotIfDIFH_Hl4f5kNgWXKc5zM8BwXw=w285-h154-s-no?authuser=0)
+
 ### Image
 
 Prop | Valor Default | Requerido | Tipo | Observaciones
--- | -- | -- | -- | -- 
+-- | -- | -- | -- | --
 source | - | si | string | -
 
 * Hereda todas las props de [Image](https://reactnative.dev/docs/image)
-  
+
 </br>
 
 **Ejemplos de uso:**
