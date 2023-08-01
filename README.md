@@ -95,7 +95,7 @@ import {CheckBox} from '@janiscommerce/ui-native';
 
 Prop | Valor Default | Requerido | Tipo | Observaciones
 -- | -- | -- | -- | --
-source | - | si | string | -
+source | - | si | object | Si no recibe la prop el componente no se renderiza
 
 * Hereda todas las props de [Image](https://reactnative.dev/docs/image)
 
