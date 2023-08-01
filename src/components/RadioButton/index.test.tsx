@@ -12,7 +12,7 @@ describe('radioButton component', () => {
 	});
 
 	it('should render correctly when receives a valid text as child', () => {
-		const {toJSON} = create(<RadioButton direction="row-reverse">Example text</RadioButton>);
+		const {toJSON} = create(<RadioButton checkPosition="right">Example text</RadioButton>);
 		expect(toJSON()).toBeTruthy();
 	});
 

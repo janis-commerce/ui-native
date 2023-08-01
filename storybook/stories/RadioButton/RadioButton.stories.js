@@ -9,8 +9,8 @@ export default {
 			options: ['sm', 'md', 'lg'],
 			control: {type: 'select'},
 		},
-		direction: {
-			options: ['row', 'row-reverse'],
+		checkPosition: {
+			options: ['left', 'right'],
 			control: {type: 'select'},
 		},
 		selected: {
@@ -30,7 +30,7 @@ WithTextChild.storyName = 'with text child';
 
 WithTextChild.args = {
 	checkSize: 'sm',
-	direction: 'row',
+	checkPosition: 'left',
 	selected: true,
 	disabled: false,
 };
@@ -51,7 +51,7 @@ WithChildComponent.storyName = 'with child component';
 
 WithChildComponent.args = {
 	checkSize: 'lg',
-	direction: 'row-reverse',
+	checkPosition: 'right',
 	selected: false,
 	disabled: false,
 };

@@ -11,6 +11,7 @@ interface CheckBoxProps {
 	iconCheckColor?: string;
 	borderRadius?: number;
 	disabled?: boolean;
+	onPress?: () => {};
 }
 
 const getCheckBoxScale = (size: number, divisor: number): number => size / divisor;

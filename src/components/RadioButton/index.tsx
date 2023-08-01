@@ -3,9 +3,9 @@ import {View, TouchableOpacity, StyleSheet} from 'react-native';
 import Text from '../Text';
 import CheckBox from '../CheckBox';
 
-const directions = ['row', 'row-reverse'] as const;
+const checkPosition = ['left', 'right'] as const;
 
-type directionType = (typeof directions)[number];
+type positions = (typeof checkPosition)[number];
 
 const CheckSizeValues = {
 	sm: 16,
@@ -20,7 +20,7 @@ interface RadioButtonProps {
 	children: React.ReactNode | string;
 	selected?: boolean;
 	onPress?: () => {};
-	direction?: directionType;
+	checkPosition?: positions;
 	disabled?: boolean;
 	checkSize?: sizeKeys;
 }
@@ -29,7 +29,7 @@ const RadioButton = ({
 	children,
 	onPress,
 	selected = false,
-	direction = 'row',
+	checkPosition = 'left',
 	checkSize = 'sm',
 	disabled = false,
 	...props
@@ -38,25 +38,26 @@ const RadioButton = ({
 		return null;
 	}
 
-	const {container, row, reverseRow, checkToLeft} = styles;
+	const {container, row, reverseRow, checkToLeft, checkToRight} = styles;
 	const isStringChild = typeof children === 'string';
-	const reverseDirection = direction === 'row-reverse';
+	const rowDirection = checkPosition === 'left';
 	const customSize = CheckSizeValues[checkSize];
 
 	return (
-		<View style={[container, reverseDirection ? {...reverseRow} : {...row}]} {...props}>
-			<TouchableOpacity
-				onPress={onPress}
-				disabled={disabled}
-				style={reverseDirection && checkToLeft}>
-				{isStringChild ? <Text>{children}</Text> : children}
-			</TouchableOpacity>
+		<View style={[container, rowDirection ? row : reverseRow]} {...props}>
 			<CheckBox
 				checked={selected}
 				disabled={disabled}
 				customSize={customSize}
 				borderRadius={customSize / 2}
+				onPress={onPress}
 			/>
+			<TouchableOpacity
+				onPress={onPress}
+				disabled={disabled}
+				style={rowDirection ? checkToLeft : checkToRight}>
+				{isStringChild ? <Text>{children}</Text> : children}
+			</TouchableOpacity>
 		</View>
 	);
 };
@@ -71,14 +72,17 @@ const styles = StyleSheet.create({
 
 	row: {
 		flexDirection: 'row',
-		justifyContent: 'space-between',
+		justifyContent: 'flex-start',
 	},
 	reverseRow: {
 		flexDirection: 'row-reverse',
-		justifyContent: 'flex-end',
+		justifyContent: 'space-between',
 	},
 	checkToLeft: {
 		marginLeft: 15,
+	},
+	checkToRight: {
+		marginRight: 15,
 	},
 });
 
