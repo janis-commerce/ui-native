@@ -1,6 +1,7 @@
-![<img src="brand-logo.png" width="250"/>]
 
 # @janiscommerce/ui-native
+
+![janis-logo](brand-logo.png)
 
 Library components for Janis Apps
 
