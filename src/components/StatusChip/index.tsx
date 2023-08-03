@@ -8,10 +8,12 @@ interface StatusChipProps extends ViewProps {
 }
 
 const StatusChip = ({children, ...props}: StatusChipProps) => {
-	const isString = typeof children === 'string';
+	const isChildrenAString = typeof children === 'string';
 	const isCustomComponent = isValidElement(children);
 
-	if (!children || (!isString && !isCustomComponent)) {
+	const hasToRenderStatusChip = !children || (!isChildrenAString && !isCustomComponent);
+
+	if (hasToRenderStatusChip) {
 		return null;
 	}
 

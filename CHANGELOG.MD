@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added component Text
 - Added slack notification on each release
 - Added storybook web
+- Added component Loading
 
 ### Changed
 
@@ -25,6 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Fixed export components
+- Fixed an error when localy linking the package with a react native app
 
 ### Removed
 
