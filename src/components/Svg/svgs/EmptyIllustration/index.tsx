@@ -10,7 +10,8 @@ const EmptyIllustration = ({...props}: Isvg) => (
 			width="110"
 			height="114"
 			viewBox="0 0 110 114"
-			{...props}>
+			{...props}
+		>
 			<G fill="none" fillRule="evenodd" stroke="none" strokeWidth="1">
 				<G transform="translate(-6 -6)">
 					<Ellipse cx="46" cy="109.5" fill="#D0D3E3" rx="34" ry="4.5" />

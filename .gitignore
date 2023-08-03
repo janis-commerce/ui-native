@@ -67,6 +67,4 @@ coverage
 dist/
 
 # Static storybook page
-.storybook_static/*
-!.storybook_static/.gitkeep
 .storybook_static

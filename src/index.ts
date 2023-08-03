@@ -3,5 +3,6 @@ import Avatar from './components/Avatar';
 import CheckBox from './components/CheckBox';
 import Image from './components/Image';
 import Svg from './components/Svg';
+import Loading from './components/Loading';
 
-export {Text, Avatar, CheckBox, Image, Svg};
+export {Text, Avatar, CheckBox, Image, Loading, Svg};
