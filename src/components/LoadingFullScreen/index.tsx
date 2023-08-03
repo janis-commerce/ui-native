@@ -1,23 +1,31 @@
-import React, {ReactElement} from 'react';
-import {StyleSheet, Text as TextComponent, TextProps as TextComponentProps} from 'react-native';
+import React from 'react';
+import {StyleSheet, Modal, ModalProps, Text} from 'react-native';
 
-interface TextProps extends TextComponentProps {
-	children?: ReactElement | string;
+interface ILoadingFullScreen extends ModalProps {
+	text?: string;
 }
 
-const LoadingFullScreen = ({children, ...props}: TextProps) => {
-	if (!children) {
-		return null;
-	}
-
+const LoadingFullScreen = ({text, ...props}: ILoadingFullScreen) => {
 	return (
-		<TextComponent style={styles.TextStyles} {...props}>
-			{children}
-		</TextComponent>
+		<Modal
+			visible={true}
+			transparent
+			animationType="fade"
+			testID="loading modal"
+			style={styles.ModalStyles}
+			{...props}>
+			<Text style={styles.TextStyles}>{text}</Text>
+		</Modal>
 	);
 };
 
 const styles = StyleSheet.create({
+	ModalStyles: {
+		width: 100,
+		height: 100,
+		display: 'flex',
+		flexDirection: 'row',
+	},
 	TextStyles: {
 		fontSize: 16,
 		fontFamily: 'Roboto',
