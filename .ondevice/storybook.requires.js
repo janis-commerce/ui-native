@@ -14,7 +14,7 @@ global.STORIES = [
     directory: "./storybook/stories",
     files: "**/*.stories.?(ts|tsx|js|jsx)",
     importPathMatcher:
-      "^\\.[\\\\/](?:storybook[\\\\/]stories(?:[\\\\/](?!\\.)(?:(?:(?!(?:^|[\\\\/])\\.).)*?)[\\\\/]|[\\\\/]|$)(?!\\.)(?=.)[^\\\\/]*?\\.stories\\.(?:ts|tsx|js|jsx)?)$",
+      "^\\.[\\\\/](?:storybook\\/stories(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.stories\\.(?:ts|tsx|js|jsx)?)$",
   },
 ];
 
@@ -50,6 +50,8 @@ const getStories = () => {
     "./storybook/stories/Avatar/Avatar.stories.js": require("../storybook/stories/Avatar/Avatar.stories.js"),
     "./storybook/stories/CheckBox/CheckBox.stories.js": require("../storybook/stories/CheckBox/CheckBox.stories.js"),
     "./storybook/stories/Image/Image.stories.js": require("../storybook/stories/Image/Image.stories.js"),
+    "./storybook/stories/Loading/Loading.stories.js": require("../storybook/stories/Loading/Loading.stories.js"),
+    "./storybook/stories/Svg/Svg.stories.js": require("../storybook/stories/Svg/Svg.stories.js"),
     "./storybook/stories/Text/Text.stories.js": require("../storybook/stories/Text/Text.stories.js"),
   };
 };
