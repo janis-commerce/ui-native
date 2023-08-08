@@ -17,6 +17,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added slack notification on each release
 - Added storybook web
 - Added component Loading
+- Added component Svg
+- Added component Status Chip
+- Added component Input
 
 ### Changed
 
