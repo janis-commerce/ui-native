@@ -1,20 +1,29 @@
-// import 'react-native';
-// import React from 'react';
-// import {create} from 'react-test-renderer';
-// import Text from './index';
+import 'react-native';
+import React from 'react';
+import {create} from 'react-test-renderer';
+import LoadingFullScreen from './index';
 
-// describe('Text component', () => {
-// 	describe('return error because children is undefined', () => {
-// 		it('undefined children', () => {
-// 			const {toJSON} = create(<Text />);
-// 			expect(toJSON()).toBeNull();
-// 		});
-// 	});
+jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
+jest.spyOn(React, 'useEffect').mockImplementation((f) => f());
 
-// 	describe('render correct', () => {
-// 		it('match snapshot', () => {
-// 			const {toJSON} = create(<Text>Janis Picking</Text>);
-// 			expect(toJSON()).toMatchSnapshot();
-// 		});
-// 	});
-// });
+describe('LoadingFullScreen component', () => {
+	describe('returns null', () => {
+		it('when is visible is false', () => {
+			const component = create(<LoadingFullScreen visible={false} />);
+			const {visible} = component.root.props;
+			expect(visible).toBe(false);
+		});
+	});
+
+	describe('render correct', () => {
+		it('render only the loading', () => {
+			const {toJSON} = create(<LoadingFullScreen visible />);
+			expect(toJSON()).toMatchSnapshot();
+		});
+
+		it('renders well the loading next to the passed text', () => {
+			const {toJSON} = create(<LoadingFullScreen visible text="Lorem ipsum" />);
+			expect(toJSON()).toMatchSnapshot();
+		});
+	});
+});

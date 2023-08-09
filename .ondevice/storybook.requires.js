@@ -51,6 +51,7 @@ const getStories = () => {
     "./storybook/stories/CheckBox/CheckBox.stories.js": require("../storybook/stories/CheckBox/CheckBox.stories.js"),
     "./storybook/stories/Image/Image.stories.js": require("../storybook/stories/Image/Image.stories.js"),
     "./storybook/stories/Loading/Loading.stories.js": require("../storybook/stories/Loading/Loading.stories.js"),
+    "./storybook/stories/LoadingFullScreen/LoadingFullScreen.stories.js": require("../storybook/stories/LoadingFullScreen/LoadingFullScreen.stories.js"),
     "./storybook/stories/Svg/Svg.stories.js": require("../storybook/stories/Svg/Svg.stories.js"),
     "./storybook/stories/Text/Text.stories.js": require("../storybook/stories/Text/Text.stories.js"),
   };
