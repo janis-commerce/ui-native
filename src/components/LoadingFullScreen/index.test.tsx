@@ -7,7 +7,7 @@ jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
 jest.spyOn(React, 'useEffect').mockImplementation((f) => f());
 
 describe('LoadingFullScreen component', () => {
-	describe('returns null', () => {
+	describe('Modal is not visible', () => {
 		it('when is visible is false', () => {
 			const component = create(<LoadingFullScreen visible={false} />);
 			const {visible} = component.root.props;

@@ -8,7 +8,10 @@ export default {
 	argTypes: {
 		text: {
 			options: ['Aguarde mientras procesamos los datos...', ''],
-			control: {type: 'select'},
+			control: {
+				type: 'select',
+				labels: {'': 'Sin texto'},
+			},
 		},
 	},
 };
