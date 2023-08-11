@@ -9,20 +9,20 @@ jest.spyOn(React, 'useEffect').mockImplementation((f) => f());
 describe('LoadingFullScreen component', () => {
 	describe('Modal is not visible', () => {
 		it('when is visible is false', () => {
-			const component = create(<LoadingFullScreen visible={false} />);
-			const {visible} = component.root.props;
-			expect(visible).toBe(false);
+			const component = create(<LoadingFullScreen isLoading={false} />);
+			const {isLoading} = component.root.props;
+			expect(isLoading).toBe(false);
 		});
 	});
 
 	describe('render correct', () => {
 		it('render only the loading', () => {
-			const {toJSON} = create(<LoadingFullScreen visible />);
+			const {toJSON} = create(<LoadingFullScreen isLoading />);
 			expect(toJSON()).toMatchSnapshot();
 		});
 
 		it('renders well the loading next to the passed text', () => {
-			const {toJSON} = create(<LoadingFullScreen visible text="Lorem ipsum" />);
+			const {toJSON} = create(<LoadingFullScreen isLoading text="Lorem ipsum" />);
 			expect(toJSON()).toMatchSnapshot();
 		});
 	});
