@@ -1,4 +1,3 @@
-
 # @janiscommerce/ui-native
 
 ![janis-logo](brand-logo.png)
@@ -10,7 +9,7 @@ Library components for Janis Apps
 
 ## Installation
 
-The minimum required versions for using the package are **react: ">=17.0.2 <=18.2.0"** and **react-native: ">=0.67.5 <=0.71.5"**.
+The minimum required versions for using the package are **react: 17.0.2** and **react-native: 0.67.5**.
 
 ```sh
 npm install @janiscommerce/ui-native
