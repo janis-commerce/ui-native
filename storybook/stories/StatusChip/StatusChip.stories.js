@@ -6,8 +6,7 @@ export default {
 	title: 'StatusChip',
 	argTypes: {
 		background: {
-			options: ['#2979FF', '#1DB779', ''],
-			control: {type: 'select'},
+			control: {type: 'color'},
 		},
 	},
 };
@@ -32,7 +31,7 @@ export const PassingItComponent = (props) => (
 			letterSpacing={0}
 			textDecorationLine={'none'}
 			textTransform={'none'}>
-			Custom component
+			Delivered
 		</Text>
 	</StatusChip>
 );
@@ -40,5 +39,5 @@ export const PassingItComponent = (props) => (
 PassingItComponent.storyName = 'passing it a custom component';
 
 PassingItComponent.args = {
-	background: '',
+	background: '#2979FF',
 };
