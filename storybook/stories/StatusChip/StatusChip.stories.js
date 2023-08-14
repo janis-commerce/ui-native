@@ -24,14 +24,14 @@ export const PassingItComponent = (props) => (
 		<Text
 			fontSize={15}
 			lineHeight={18}
-			color={'#000000'}
+			color={'#fff'}
 			fontFamily={'Roboto'}
 			fontStyle={'normal'}
 			fontWeight={'bold'}
 			letterSpacing={0}
 			textDecorationLine={'none'}
 			textTransform={'none'}>
-			notdelivered
+			Delivered
 		</Text>
 	</StatusChip>
 );
