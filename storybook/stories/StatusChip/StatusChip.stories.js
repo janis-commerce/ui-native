@@ -31,7 +31,7 @@ export const PassingItComponent = (props) => (
 			letterSpacing={0}
 			textDecorationLine={'none'}
 			textTransform={'none'}>
-			Delivered
+			in progress
 		</Text>
 	</StatusChip>
 );
