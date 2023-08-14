@@ -15,8 +15,8 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: '14'
-          
+          node-version: '16'
+
       - run: npm install
       - run: npm run storybook-web-docs
 
