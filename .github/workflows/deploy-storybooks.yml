@@ -1,8 +1,6 @@
 name: Deploy Storybooks
 
-on:
-  push:
-    paths: ["storybook/**"]
+on: [push]
 
 permissions:
   contents: read
