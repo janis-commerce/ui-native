@@ -25,10 +25,10 @@ jobs:
         with:
           node-version: '16'
 
-      - name: Build docs Storybooks
-        run: | 
-          npm install
-          npm run storybook-web-docs
+      # Build docs from storybooks
+      
+      - run: npm install
+      - run: npm run storybook-web-docs
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
