@@ -68,3 +68,4 @@ dist/
 
 # Static storybook page
 .storybook_static
+.docs
