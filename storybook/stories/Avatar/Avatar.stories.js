@@ -2,7 +2,7 @@ import React from 'react';
 import Avatar from '../../../src/components/Avatar';
 
 export default {
-	title: 'Avatar',
+	title: 'Components/Avatar',
 	argTypes: {
 		size: {
 			options: ['sm', 'md', 'lg'],
