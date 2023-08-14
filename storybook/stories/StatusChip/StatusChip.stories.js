@@ -1,5 +1,5 @@
 import StatusChip from '../../../src/components/StatusChip';
-import Text from '../Text';
+import Text from '../../../src/components/Text';
 import React from 'react';
 
 export default {

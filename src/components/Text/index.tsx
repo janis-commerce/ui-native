@@ -10,18 +10,15 @@ const Text = ({children, ...props}: TextProps) => {
 		return null;
 	}
 
-	return (
-		<TextComponent style={styles.TextStyles} {...props}>
-			{children}
-		</TextComponent>
-	);
-};
+	const styles = StyleSheet.create({
+		TextStyles: {
+			fontSize: 16,
+			fontFamily: 'Roboto',
+			...props,
+		},
+	});
 
-const styles = StyleSheet.create({
-	TextStyles: {
-		fontSize: 16,
-		fontFamily: 'Roboto',
-	},
-});
+	return <TextComponent style={styles.TextStyles}>{children}</TextComponent>;
+};
 
 export default Text;
