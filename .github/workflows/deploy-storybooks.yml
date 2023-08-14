@@ -4,11 +4,21 @@ on:
   push:
     paths: ["storybook/**"]
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+
 jobs:
   build-and-deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
     runs-on: ubuntu-22.04
-    permissions:
-      contents: write
     steps:
       - uses: actions/checkout@v3   # Fetch all history for .GitInfo and .Lastmod
 
@@ -20,10 +30,16 @@ jobs:
       - run: npm install
       - run: npm run storybook-web-docs
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs
-          publish_branch: test-storybooks-build
+          # Upload entire repository
+          path: './docs'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
+        with:
+          # Upload entire repository
+          artifact_name: './docs'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
