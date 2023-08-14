@@ -41,7 +41,7 @@ interface SelectProps {
 const Select: FC<SelectProps> = ({
 	options,
 	label,
-	placeholder,
+	placeholder = '',
 	optionStyles = {},
 	inputProps = {},
 	isSearchable = false,
