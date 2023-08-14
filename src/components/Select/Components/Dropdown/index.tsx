@@ -7,9 +7,9 @@ interface DropdownProps {
 	isShowedDropdown: boolean;
 	filteredOptions: Option[];
 	selectedOptions: Option[];
-	callbackOption: (option: Option) => void;
 	noOptionsMessage: string;
-	optionStyles: {};
+	optionStyles?: {};
+	callbackOption: (option: Option) => void;
 }
 
 const Dropdown: FC<DropdownProps> = ({
@@ -24,12 +24,7 @@ const Dropdown: FC<DropdownProps> = ({
 		return null;
 	}
 
-	const handleSelectedOption = (option: Option) => {
-		if (!filteredOptions.length) {
-			return null;
-		}
-		return callbackOption(option);
-	};
+	const handleSelectedOption = (option: Option) => callbackOption(option);
 
 	const styles = StyleSheet.create({
 		container: {
@@ -70,7 +65,7 @@ const Dropdown: FC<DropdownProps> = ({
 	const renderOptions =
 		filteredOptions?.length &&
 		filteredOptions.map((option) => {
-			const isSelectedOption = selectedOptions.includes(option);
+			const isSelectedOption = selectedOptions.some((selected) => selected.label === option.label);
 			const styleText = {...styles.optionText, ...(isSelectedOption && {color: primary.main})};
 			const styleOption = {
 				...styles.option,
@@ -95,7 +90,7 @@ const Dropdown: FC<DropdownProps> = ({
 
 	return (
 		<ScrollView style={styles.optionWrapper} contentContainerStyle={styles.container}>
-			{filteredOptions.length ? renderOptions : noRenderOptions}
+			{filteredOptions?.length ? renderOptions : noRenderOptions}
 		</ScrollView>
 	);
 };

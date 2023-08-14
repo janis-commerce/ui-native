@@ -31,6 +31,7 @@ const Delete = ({style, color, size, onPress, ...props}: IconProps) => {
 Delete.defaultProps = {
 	color: black.main,
 	size: 21,
+	onPress: () => {},
 };
 
 export default Delete;

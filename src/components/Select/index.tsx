@@ -25,7 +25,7 @@ export interface Option {
 interface SelectProps {
 	options: Option[];
 	label: string;
-	optionStyles: {};
+	optionStyles?: {};
 	placeholder?: string;
 	inputProps?: TextInput;
 	isSearchable?: boolean;
@@ -34,15 +34,15 @@ interface SelectProps {
 	noOptionsMessage?: string;
 	multiOptionsText?: string;
 	keyboardType?: KeyboardTypes;
-	onSelectOption: (options: Option[]) => void;
 	onFocus?: () => void;
+	onSelectOption: (options: Option[]) => void;
 }
 
 const Select: FC<SelectProps> = ({
 	options,
 	label,
 	placeholder,
-	optionStyles,
+	optionStyles = {},
 	inputProps = {},
 	isSearchable = false,
 	isMulti = false,
@@ -50,8 +50,8 @@ const Select: FC<SelectProps> = ({
 	noOptionsMessage = 'no options',
 	multiOptionsText = '',
 	keyboardType = KeyboardTypes.Default,
-	onSelectOption = () => {},
 	onFocus = () => {},
+	onSelectOption,
 	...props
 }) => {
 	const [inputValue, setInputValue] = useState('');
@@ -83,9 +83,7 @@ const Select: FC<SelectProps> = ({
 		if (!isSearchable || isMulti) {
 			Keyboard.dismiss();
 		}
-		if (onFocus) {
-			onFocus();
-		}
+		onFocus();
 		setIsShowedDropdown(true);
 	};
 
