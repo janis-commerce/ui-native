@@ -1,9 +1,6 @@
 name: Build and Publish storybook to GitHub Pages
 
-on:
-  push:
-    branches:
-      - 'master'
+on: ['push']
 jobs:
   deploy:
     environment:
