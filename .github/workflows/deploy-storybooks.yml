@@ -1,15 +1,21 @@
-name: Build and Publish storybook to GitHub Pages
+name: Deploy Storybooks
 
 on: ['push']
+
 jobs:
   deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.build-publish.outputs.page_url }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
     steps:
-      - id: build-publish
-        uses: bitovi/github-actions-storybook-to-github-pages@v1.0.0
+      - uses: actions/checkout@v3   # Fetch all history for .GitInfo and .Lastmod
+
+      - name: Build
+        run: npm run storybook-web-docs
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+
         with:
-          path: docs
-          build_command: npm run storybook-web-docs
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
