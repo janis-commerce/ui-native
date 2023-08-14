@@ -31,7 +31,7 @@ export const DefaultProps = (props) => {
 			<TouchableHighlight style={styles.ButtonStyle} onPress={Toogle}>
 				<Text style={styles.TextStyles}>Open Modal</Text>
 			</TouchableHighlight>
-			<LoadingFullScreen {...props} visible={isloading} />
+			<LoadingFullScreen {...props} isLoading={isloading} />
 		</>
 	);
 };
