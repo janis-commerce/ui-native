@@ -20,7 +20,7 @@ const StatusChip = ({children, ...props}: StatusChipProps) => {
 
 	return (
 		<View style={styles(props).ViewStyles} {...props}>
-			{isCustomComponent ? children : <Text style={[styles(props).TextStyles]}>{children}</Text>}
+			{isCustomComponent ? children : <Text style={styles(props).TextStyles}>{children}</Text>}
 		</View>
 	);
 };

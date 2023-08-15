@@ -8,10 +8,10 @@ import {
 
 interface TextProps extends TextComponentProps {
 	children?: ReactElement | string;
-	style?: TextStyle[];
+	style?: TextStyle;
 }
 
-const Text = ({children, style = [], ...props}: TextProps) => {
+const Text = ({children, style, ...props}: TextProps) => {
 	if (!children) {
 		return null;
 	}
@@ -24,7 +24,7 @@ const Text = ({children, style = [], ...props}: TextProps) => {
 	});
 
 	return (
-		<TextComponent style={[styles.TextStyles, ...style]} {...props}>
+		<TextComponent style={[styles.TextStyles, style]} {...props}>
 			{children}
 		</TextComponent>
 	);

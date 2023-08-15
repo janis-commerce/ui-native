@@ -23,6 +23,7 @@ exports[`StatusChip component render correct a valid component is passed 1`] = `
           "fontFamily": "Roboto",
           "fontSize": 16,
         },
+        undefined,
       ]
     }
   >
