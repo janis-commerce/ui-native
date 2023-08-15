@@ -1,6 +1,7 @@
 import React, {ReactElement, isValidElement} from 'react';
-import {StyleSheet, Text, ViewProps, View} from 'react-native';
+import {StyleSheet, ViewProps, View} from 'react-native';
 import {base, grey, primary} from '../../theme/palette';
+import Text from '../Text';
 
 interface StatusChipProps extends ViewProps {
 	children?: ReactElement | string;
@@ -19,7 +20,7 @@ const StatusChip = ({children, ...props}: StatusChipProps) => {
 
 	return (
 		<View style={styles(props).ViewStyles} {...props}>
-			{isCustomComponent ? children : <Text style={styles(props).TextStyles}>{children}</Text>}
+			{isCustomComponent ? children : <Text style={[styles(props).TextStyles]}>{children}</Text>}
 		</View>
 	);
 };

@@ -1,11 +1,17 @@
 import React, {ReactElement} from 'react';
-import {StyleSheet, Text as TextComponent, TextProps as TextComponentProps} from 'react-native';
+import {
+	StyleSheet,
+	Text as TextComponent,
+	TextProps as TextComponentProps,
+	TextStyle,
+} from 'react-native';
 
 interface TextProps extends TextComponentProps {
 	children?: ReactElement | string;
+	style?: TextStyle[];
 }
 
-const Text = ({children, ...props}: TextProps) => {
+const Text = ({children, style = [], ...props}: TextProps) => {
 	if (!children) {
 		return null;
 	}
@@ -14,11 +20,14 @@ const Text = ({children, ...props}: TextProps) => {
 		TextStyles: {
 			fontSize: 16,
 			fontFamily: 'Roboto',
-			...props,
 		},
 	});
 
-	return <TextComponent style={styles.TextStyles}>{children}</TextComponent>;
+	return (
+		<TextComponent style={[styles.TextStyles, ...style]} {...props}>
+			{children}
+		</TextComponent>
+	);
 };
 
 export default Text;
