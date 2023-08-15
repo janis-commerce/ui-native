@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Modal, ModalProps, Text, View} from 'react-native';
+import {StyleSheet, Modal, ModalProps, Text, View, ViewStyle} from 'react-native';
 import Loading from '../Loading';
 import Svg from '../Svg';
 import {grey, white} from '../../theme/palette';
@@ -10,6 +10,7 @@ interface ILoadingFullScreen extends ModalProps {
 	text?: string;
 	svgName?: Names;
 	spinnerDuration?: number;
+	style?: ViewStyle;
 }
 
 const styles = StyleSheet.create({
@@ -36,12 +37,13 @@ const LoadingFullScreen = ({
 	isLoading,
 	svgName = 'janis-logo',
 	spinnerDuration = 2000,
+	style,
 	...props
 }: ILoadingFullScreen) => {
 	const hasTextPassed = Boolean(text);
 	return (
 		<Modal visible={isLoading} transparent animationType="fade" testID="loading modal" {...props}>
-			<View style={styles.ContainerStyles}>
+			<View style={[styles.ContainerStyles, style]}>
 				<Loading isLoading={isLoading} duration={spinnerDuration}>
 					<Svg name={svgName} width={36} height={25} />
 				</Loading>
