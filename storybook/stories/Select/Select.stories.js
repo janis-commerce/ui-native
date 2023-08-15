@@ -4,6 +4,20 @@ import {View} from 'react-native';
 
 export default {
 	title: 'Select',
+	argTypes: {
+		keyboardType: {
+			options: [
+				'default',
+				'number-pad',
+				'decimal-pad',
+				'numeric',
+				'email-address',
+				'phone-pad',
+				'url',
+			],
+			control: {type: 'select'},
+		},
+	},
 };
 
 const listaPaises = [
@@ -23,6 +37,7 @@ export const DisabledSelect = (props) => (
 DisabledSelect.storyName = 'disabled';
 
 DisabledSelect.args = {
+	value: 'Argentina',
 	options: listaPaises,
 	label: 'Paises',
 	optionStyles: () => {},
@@ -31,6 +46,7 @@ DisabledSelect.args = {
 	isDisabled: true,
 	isMulti: false,
 	isSearchable: false,
+	keyboardType: 'default',
 	onSelectOption: (option) => option,
 };
 
@@ -43,6 +59,7 @@ export const SingleProps = (props) => (
 SingleProps.storyName = 'single select';
 
 SingleProps.args = {
+	value: 'Argentina',
 	options: listaPaises,
 	label: 'Paises',
 	optionStyles: () => {},
@@ -51,6 +68,7 @@ SingleProps.args = {
 	isDisabled: false,
 	isMulti: false,
 	isSearchable: false,
+	keyboardType: 'default',
 	onSelectOption: (option) => option,
 };
 
@@ -63,6 +81,7 @@ export const MultiProps = (props) => (
 MultiProps.storyName = 'multi select';
 
 MultiProps.args = {
+	value: null,
 	options: listaPaises,
 	label: 'Paises',
 	optionStyles: () => {},
@@ -71,6 +90,7 @@ MultiProps.args = {
 	isDisabled: false,
 	isMulti: true,
 	isSearchable: false,
+	keyboardType: 'default',
 	onSelectOption: (option) => option,
 };
 
@@ -83,6 +103,7 @@ export const SearcherProps = (props) => (
 SearcherProps.storyName = 'with search';
 
 SearcherProps.args = {
+	value: null,
 	options: listaPaises,
 	label: 'Paises',
 	optionStyles: () => {},
@@ -91,5 +112,6 @@ SearcherProps.args = {
 	isDisabled: false,
 	isMulti: false,
 	isSearchable: true,
+	keyboardType: 'default',
 	onSelectOption: (option) => option,
 };

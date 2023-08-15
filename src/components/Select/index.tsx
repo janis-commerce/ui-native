@@ -1,5 +1,5 @@
 import React, {FC, useState, useEffect, useRef, useCallback} from 'react';
-import {Keyboard, StyleSheet, Text, TextInput, View} from 'react-native';
+import {Keyboard, StyleProp, StyleSheet, Text, TextInput, View, ViewStyle} from 'react-native';
 import {black, grey, primary} from '../../theme/palette';
 import {formatPlaceholderMulti} from './utils';
 import ChevronIcon from './Components/Icons/Chevron';
@@ -25,7 +25,8 @@ export interface Option {
 interface SelectProps {
 	options: Option[];
 	label: string;
-	optionStyles?: {};
+	value?: string;
+	optionStyles?: StyleProp<ViewStyle>[];
 	placeholder?: string;
 	inputProps?: TextInput;
 	isSearchable?: boolean;
@@ -35,14 +36,15 @@ interface SelectProps {
 	multiOptionsText?: string;
 	keyboardType?: KeyboardTypes;
 	onFocus?: () => void;
-	onSelectOption: (options: Option[]) => void;
+	onSelectOption?: (selectedOptions: Option[]) => void;
 }
 
 const Select: FC<SelectProps> = ({
 	options,
 	label,
+	value = null,
 	placeholder = '',
-	optionStyles = {},
+	optionStyles = [],
 	inputProps = {},
 	isSearchable = false,
 	isMulti = false,
@@ -51,7 +53,7 @@ const Select: FC<SelectProps> = ({
 	multiOptionsText = '',
 	keyboardType = KeyboardTypes.Default,
 	onFocus = () => {},
-	onSelectOption,
+	onSelectOption = () => {},
 	...props
 }) => {
 	const [inputValue, setInputValue] = useState('');
@@ -60,8 +62,10 @@ const Select: FC<SelectProps> = ({
 	const [isShowedDropdown, setIsShowedDropdown] = useState(false);
 
 	const inputRef = useRef<TextInput>(null);
+	const hasDefaultValue = value && options?.find((option) => option.label === value);
 	const isMoveLabel = isShowedDropdown || inputValue;
-	const showDeleteIcon = !!inputValue && !!selectedOptions?.length;
+	const showDeleteIcon = isDisabled ? false : !!inputValue && !!selectedOptions?.length;
+	const isArrowRotated = isShowedDropdown ? '180deg' : '0deg';
 
 	const filterOptions = (textValue: string) => {
 		if (typeof textValue !== 'string' || !textValue.length) {
@@ -127,7 +131,14 @@ const Select: FC<SelectProps> = ({
 
 	useEffect(() => {
 		memoizedSelectedOptions();
-	}, [selectedOptions, memoizedSelectedOptions]);
+	}, [selectedOptions, inputValue, memoizedSelectedOptions]);
+
+	useEffect(() => {
+		if (hasDefaultValue) {
+			setSelectedOptions([hasDefaultValue]);
+			setInputValue(value);
+		}
+	}, [hasDefaultValue, value]);
 
 	const styles = StyleSheet.create({
 		wrapper: {
@@ -144,7 +155,7 @@ const Select: FC<SelectProps> = ({
 		},
 		label: {
 			position: 'absolute',
-			color: isMoveLabel ? primary.main : black.main,
+			color: isMoveLabel && !isDisabled ? primary.main : black.main,
 			fontSize: 16,
 			lineHeight: 19,
 			letterSpacing: 0,
@@ -169,6 +180,7 @@ const Select: FC<SelectProps> = ({
 			right: 0,
 			bottom: 0,
 			zIndex: 1,
+			transform: [{rotate: isArrowRotated}],
 		},
 		deleteIcon: {
 			position: 'absolute',

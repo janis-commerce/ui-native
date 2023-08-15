@@ -6,6 +6,8 @@ import Dropdown from './Components/Dropdown';
 import Select from './';
 import {TextInput} from 'react-native';
 
+jest.spyOn(React, 'useEffect').mockImplementation((f) => f());
+
 const useStateSpy = jest.spyOn(React, 'useState');
 const setInputValueSpy = jest.fn();
 const setSelectedOptions = jest.fn();
@@ -19,22 +21,17 @@ const validOptions = [
 ];
 
 const validProps = {
+	value: 'Argentina',
 	options: validOptions,
 	label: 'Paises',
-	onSelectOptionSpy: jest.fn(),
+	onSelectOption: jest.fn(),
 	onFocusSpy: jest.fn(),
 };
 
 describe('Select component', () => {
 	describe('render correctly', () => {
 		it('when has minimum props needed', () => {
-			const {toJSON} = create(
-				<Select
-					options={validProps.options}
-					label={validProps.label}
-					onSelectOption={validProps.onSelectOptionSpy}
-				/>
-			);
+			const {toJSON} = create(<Select options={validProps.options} label={validProps.label} />);
 			expect(toJSON()).toBeTruthy();
 		});
 
@@ -45,12 +42,7 @@ describe('Select component', () => {
 				.mockReturnValueOnce([validOptions, setFilteredOptionsSpy])
 				.mockReturnValueOnce([false, setIsShowedDropdownSpy]);
 			const {root} = create(
-				<Select
-					options={validProps.options}
-					label={validProps.label}
-					onSelectOption={validProps.onSelectOptionSpy}
-					isDisabled={true}
-				/>
+				<Select options={validProps.options} label={validProps.label} isDisabled={true} />
 			);
 			const ChevronComponent = root.findByType(ChevronIcon);
 			ChevronComponent.props.onPress();
@@ -67,13 +59,7 @@ describe('Select component', () => {
 				.mockReturnValueOnce([validOptions, setFilteredOptionsSpy])
 				.mockReturnValueOnce([true, setIsShowedDropdownSpy]);
 
-			const {root} = create(
-				<Select
-					options={validProps.options}
-					label={validProps.label}
-					onSelectOption={validProps.onSelectOptionSpy}
-				/>
-			);
+			const {root} = create(<Select options={validProps.options} label={validProps.label} />);
 			const DeleteComponent = root.findByType(DeleteIcon);
 			DeleteComponent.props.onPress();
 
@@ -91,13 +77,7 @@ describe('Select component', () => {
 				.mockReturnValueOnce([validOptions, setFilteredOptionsSpy])
 				.mockReturnValueOnce([true, setIsShowedDropdownSpy]);
 
-			const {root} = create(
-				<Select
-					options={validProps.options}
-					label={validProps.label}
-					onSelectOption={validProps.onSelectOptionSpy}
-				/>
-			);
+			const {root} = create(<Select options={validProps.options} label={validProps.label} />);
 			const InputComponent = root.findByType(TextInput);
 			const DropdownComponent = root.findByType(Dropdown);
 			InputComponent.props.onFocus();
@@ -117,12 +97,7 @@ describe('Select component', () => {
 				.mockReturnValueOnce([true, setIsShowedDropdownSpy]);
 
 			const {root} = create(
-				<Select
-					options={validProps.options}
-					label={validProps.label}
-					onSelectOption={validProps.onSelectOptionSpy}
-					isSearchable
-				/>
+				<Select options={validProps.options} label={validProps.label} isSearchable />
 			);
 			const InputComponent = root.findByType(TextInput);
 			InputComponent.props.onFocus();
@@ -140,12 +115,7 @@ describe('Select component', () => {
 				.mockReturnValueOnce([true, setIsShowedDropdownSpy]);
 
 			const {root} = create(
-				<Select
-					options={validProps.options}
-					label={validProps.label}
-					onSelectOption={validProps.onSelectOptionSpy}
-					isSearchable
-				/>
+				<Select options={validProps.options} label={validProps.label} isSearchable />
 			);
 			const InputComponent = root.findByType(TextInput);
 			InputComponent.props.onFocus();
@@ -168,7 +138,6 @@ describe('Select component', () => {
 					label={validProps.label}
 					isSearchable
 					onFocus={validProps.onFocusSpy}
-					onSelectOption={validProps.onSelectOptionSpy}
 				/>
 			);
 			const InputComponent = root.findByType(TextInput);
@@ -176,7 +145,7 @@ describe('Select component', () => {
 			InputComponent.props.onChangeText('arg');
 
 			expect(setInputValueSpy).toBeCalledWith('arg');
-			expect(validProps.onFocusSpy).toBeCalledWith();
+			expect(validProps.onFocusSpy).toBeCalled();
 		});
 	});
 
@@ -189,12 +158,7 @@ describe('Select component', () => {
 				.mockReturnValueOnce([true, setIsShowedDropdownSpy]);
 
 			const {root} = create(
-				<Select
-					options={validProps.options}
-					label={validProps.label}
-					onSelectOption={validProps.onSelectOptionSpy}
-					isMulti
-				/>
+				<Select options={validProps.options} label={validProps.label} isMulti />
 			);
 			const DropdownComponent = root.findByType(Dropdown);
 			const ChevronComponent = root.findByType(ChevronIcon);
@@ -214,10 +178,32 @@ describe('Select component', () => {
 				.mockReturnValueOnce([true, setIsShowedDropdownSpy]);
 
 			const {root} = create(
+				<Select options={validProps.options} label={validProps.label} isMulti />
+			);
+			const DropdownComponent = root.findByType(Dropdown);
+			const ChevronComponent = root.findByType(ChevronIcon);
+			DropdownComponent.props.callbackOption(validOptions[0]);
+			ChevronComponent.props.onPress();
+
+			expect(setSelectedOptions).toBeCalledWith([]);
+			expect(setInputValueSpy).toBeCalledWith('');
+			expect(setIsShowedDropdownSpy).toBeCalledWith(false);
+		});
+	});
+
+	describe('prop value', () => {
+		it('is set when it is found within the options', () => {
+			useStateSpy
+				.mockReturnValueOnce(['', setInputValueSpy])
+				.mockReturnValueOnce([[validOptions[0]], setSelectedOptions])
+				.mockReturnValueOnce([validOptions, setFilteredOptionsSpy])
+				.mockReturnValueOnce([true, setIsShowedDropdownSpy]);
+
+			const {root} = create(
 				<Select
+					value={validProps.value}
 					options={validProps.options}
 					label={validProps.label}
-					onSelectOption={validProps.onSelectOptionSpy}
 					isMulti
 				/>
 			);
