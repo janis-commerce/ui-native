@@ -24,6 +24,7 @@ const white: White = {
 	main: '#E8EAF6',
 	dark: '#D0D3E3',
 	light: '#F4F5FB',
+	semiTransparent: 'rgba(255, 255, 255, 0.75)',
 };
 const grey: GreyScale = {
 	100: '#DDDFE2',

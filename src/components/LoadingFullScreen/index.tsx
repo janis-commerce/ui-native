@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, Modal, ModalProps, Text, View} from 'react-native';
 import Loading from '../Loading';
 import Svg from '../Svg';
-import {grey} from '../../theme/palette';
+import {grey, white} from '../../theme/palette';
 import {Names} from '../../ts/interfaces/svgs';
 
 interface ILoadingFullScreen extends ModalProps {
@@ -11,6 +11,25 @@ interface ILoadingFullScreen extends ModalProps {
 	svgName?: Names;
 	spinnerDuration?: number;
 }
+
+const styles = StyleSheet.create({
+	ContainerStyles: {
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center',
+		backgroundColor: white.semiTransparent,
+	},
+	TextStyles: {
+		fontSize: 16,
+		lineHeight: 24,
+		fontFamily: 'Roboto',
+		color: grey[700],
+		textAlign: 'center',
+		fontWeight: '500',
+		width: '50%',
+		marginTop: 25,
+	},
+});
 
 const LoadingFullScreen = ({
 	text,
@@ -31,24 +50,5 @@ const LoadingFullScreen = ({
 		</Modal>
 	);
 };
-
-const styles = StyleSheet.create({
-	ContainerStyles: {
-		flex: 1,
-		justifyContent: 'center',
-		alignItems: 'center',
-		backgroundColor: 'rgba(255, 255, 255, 0.75)',
-	},
-	TextStyles: {
-		fontSize: 16,
-		lineHeight: 24,
-		fontFamily: 'Roboto',
-		color: grey[700],
-		textAlign: 'center',
-		fontWeight: '500',
-		width: '50%',
-		marginTop: 25,
-	},
-});
 
 export default LoadingFullScreen;
