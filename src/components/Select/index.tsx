@@ -1,5 +1,5 @@
 import React, {FC, useState, useEffect, useRef, useCallback} from 'react';
-import {Keyboard, StyleProp, StyleSheet, Text, TextInput, View, ViewStyle} from 'react-native';
+import {Keyboard, StyleSheet, Text, TextInput, View} from 'react-native';
 import {black, grey, primary} from '../../theme/palette';
 import {formatPlaceholderMulti} from './utils';
 import ChevronIcon from './Components/Icons/Chevron';
@@ -26,7 +26,7 @@ interface SelectProps {
 	options: Option[];
 	label: string;
 	value?: string;
-	optionStyles?: StyleProp<ViewStyle>[];
+	optionStyles?: {};
 	placeholder?: string;
 	inputProps?: TextInput;
 	isSearchable?: boolean;
@@ -44,7 +44,7 @@ const Select: FC<SelectProps> = ({
 	label,
 	value = null,
 	placeholder = '',
-	optionStyles = [],
+	optionStyles = {},
 	inputProps = {},
 	isSearchable = false,
 	isMulti = false,
