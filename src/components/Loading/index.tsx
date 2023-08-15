@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, FC} from 'react';
-import {StyleSheet, View, Animated, Easing, ColorValue} from 'react-native';
+import {StyleSheet, View, Animated, Easing, ColorValue, ViewStyle} from 'react-native';
 import {primary, white} from '../../theme/palette';
 
 interface Params {
@@ -13,6 +13,7 @@ interface Props {
 	size?: number;
 	duration?: number;
 	children?: React.ReactNode | null;
+	style?: ViewStyle[];
 }
 
 const startRotationAnimation = ({duration, rotationDegree, timingAnimation}: Params): void =>
@@ -31,6 +32,7 @@ const Loading: FC<Props> = ({
 	size = 64,
 	duration = 1000,
 	children = null,
+	style = [],
 	...props
 }) => {
 	const rotationDegree = useRef(new Animated.Value(0)).current;
@@ -81,7 +83,7 @@ const Loading: FC<Props> = ({
 	}
 
 	return (
-		<View style={styles.container} {...props}>
+		<View style={[styles.container, ...style]} {...props}>
 			<Animated.View style={{...styles.spinner, ...animationSpinnerStyle}} />
 			{children}
 		</View>
