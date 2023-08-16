@@ -1,5 +1,5 @@
 import React, {LegacyRef, useEffect, useState} from 'react';
-import {TextInput, StyleSheet, View, Text, KeyboardType, StyleProp, TextStyle} from 'react-native';
+import {TextInput, StyleSheet, View, Text, KeyboardType, TextStyle} from 'react-native';
 import {
 	Status,
 	getBorderColor,
