@@ -72,7 +72,9 @@ export const Colors = () => (
 			return (
 				<View key={title}>
 					<Text style={[styles.TitleWrapper, styles.Base]}>{title}</Text>
-					<View style={styles.ColorWrapper}> {renderColor(title)}</View>
+					<View style={styles.ColorWrapper}>
+						<>{renderColor(title)}</>
+					</View>
 				</View>
 			);
 		})}
