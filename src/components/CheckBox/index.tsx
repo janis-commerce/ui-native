@@ -58,8 +58,7 @@ const CheckBox = ({
 			disabled={disabled}
 			activeOpacity={0.6}
 			style={styles.touchableOpacity}
-			{...props}
-		>
+			{...props}>
 			<View style={isChecked}>{checked && <Icon color={iconCheckColor} size={customSize} />}</View>
 		</TouchableOpacity>
 	);

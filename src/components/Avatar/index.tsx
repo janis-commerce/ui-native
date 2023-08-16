@@ -73,8 +73,7 @@ const Avatar = ({
 					width: getSize(size, customSize),
 				},
 			]}
-			{...props}
-		>
+			{...props}>
 			{!!imageUrl && !showInitials && (
 				<Image
 					accessibilityRole="image"

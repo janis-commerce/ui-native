@@ -16,26 +16,6 @@ export default {
 	},
 };
 
-export const DefaultProps = (props) => {
-	const [isloading, setisloading] = useState(false);
-
-	const Toogle = () => {
-		setisloading(true);
-		setTimeout(() => {
-			setisloading(false);
-		}, 3000);
-	};
-
-	return (
-		<>
-			<TouchableHighlight style={styles.ButtonStyle} onPress={Toogle}>
-				<Text style={styles.TextStyles}>Open Modal</Text>
-			</TouchableHighlight>
-			<LoadingFullScreen {...props} isLoading={isloading} />
-		</>
-	);
-};
-
 const styles = StyleSheet.create({
 	ButtonStyle: {
 		width: 200,
@@ -50,6 +30,26 @@ const styles = StyleSheet.create({
 		fontSize: 24,
 	},
 });
+
+export const DefaultProps = (props) => {
+	const [isloading, setisloading] = useState(false);
+
+	const Toogle = () => {
+		setisloading(true);
+		setTimeout(() => {
+			setisloading(false);
+		}, 3000);
+	};
+
+	return (
+		<>
+			<TouchableHighlight style={styles.ButtonStyle} onPress={Toogle}>
+				<Text style={styles.TextStyles}>Preview loading screen</Text>
+			</TouchableHighlight>
+			<LoadingFullScreen {...props} isLoading={isloading} />
+		</>
+	);
+};
 
 DefaultProps.storyName = 'default props';
 
