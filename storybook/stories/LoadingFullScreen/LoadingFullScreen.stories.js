@@ -4,7 +4,7 @@ import LoadingFullScreen from '../../../src/components/LoadingFullScreen';
 import {primary} from '../../../src/theme/palette';
 
 export default {
-	title: 'LoadingFullScreen',
+	title: 'Components/LoadingFullScreen',
 	argTypes: {
 		text: {
 			options: ['Aguarde mientras procesamos los datos...', ''],
@@ -18,7 +18,8 @@ export default {
 
 const styles = StyleSheet.create({
 	ButtonStyle: {
-		width: 200,
+		paddingLeft: 15,
+		paddingRight: 15,
 		height: 50,
 		borderRadius: 25,
 		backgroundColor: primary.main,
