@@ -21,7 +21,7 @@ export interface AvatarProps {
 	customSize?: number;
 	imageUrl?: string;
 	onErrorImg?: () => void;
-	style?: ViewStyle[];
+	style?: ViewStyle;
 }
 
 const styles = StyleSheet.create({
@@ -46,7 +46,7 @@ const Avatar = ({
 	placeholder,
 	customSize,
 	onErrorImg,
-	style = [],
+	style,
 	...props
 }: AvatarProps) => {
 	const [showInitials, setShowInitials] = useState(false);
@@ -74,7 +74,7 @@ const Avatar = ({
 					height: getSize(size, customSize),
 					width: getSize(size, customSize),
 				},
-				...style,
+				style,
 			]}
 			{...props}>
 			{!!imageUrl && !showInitials && (

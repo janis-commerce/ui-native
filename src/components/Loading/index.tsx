@@ -13,7 +13,7 @@ interface Props {
 	size?: number;
 	duration?: number;
 	children?: React.ReactNode | null;
-	style?: ViewStyle[];
+	style?: ViewStyle;
 }
 
 const startRotationAnimation = ({duration, rotationDegree, timingAnimation}: Params): void =>
@@ -32,7 +32,7 @@ const Loading: FC<Props> = ({
 	size = 64,
 	duration = 1000,
 	children = null,
-	style = [],
+	style,
 	...props
 }) => {
 	const rotationDegree = useRef(new Animated.Value(0)).current;
@@ -83,7 +83,7 @@ const Loading: FC<Props> = ({
 	}
 
 	return (
-		<View style={[styles.container, ...style]} {...props}>
+		<View style={[styles.container, style]} {...props}>
 			<Animated.View style={{...styles.spinner, ...animationSpinnerStyle}} />
 			{children}
 		</View>
