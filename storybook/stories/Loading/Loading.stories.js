@@ -3,7 +3,7 @@ import {Text} from 'react-native';
 import Loading from '../../../src/components/Loading/';
 
 export default {
-	title: 'Loading',
+	title: 'Components/Loading',
 	argTypes: {
 		color: {
 			control: {type: 'color'},

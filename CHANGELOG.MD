@@ -18,6 +18,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added storybook web
 - Added component Loading
 - Added component Svg
+- Added component Status Chip
+- Added component Input
+- Added readme
+- Added github action to deploy storybooks docs
 
 ### Changed
 
@@ -27,7 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Fixed export components
-- Fixed an error when localy linking the package with a react native app
+- Fixed an error when locally linking the package with a react native app
 
 ### Removed
 

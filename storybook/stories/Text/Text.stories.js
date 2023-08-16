@@ -28,7 +28,7 @@ const fontWeights = [
 ];
 
 export default {
-	title: 'Text',
+	title: 'Components/Text',
 	argTypes: {
 		fontFamily: {
 			options: fontFamilies,

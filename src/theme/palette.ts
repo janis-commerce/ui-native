@@ -60,4 +60,17 @@ const environment: Env = {
 	beta: '#F13B70',
 };
 
-export {primary, black, white, grey, base, success, error, warning, alert, environment};
+const palette = {
+	primary,
+	black,
+	white,
+	grey,
+	base,
+	success,
+	error,
+	warning,
+	alert,
+	environment,
+};
+
+export {primary, black, white, grey, base, success, error, warning, alert, environment, palette};

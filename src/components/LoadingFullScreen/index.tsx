@@ -40,7 +40,7 @@ const LoadingFullScreen = ({
 	style,
 	...props
 }: ILoadingFullScreen) => {
-	const hasTextPassed = Boolean(text);
+	const hasTextPassed = typeof text === 'string' && Boolean(text);
 	return (
 		<Modal visible={isLoading} transparent animationType="fade" testID="loading modal" {...props}>
 			<View style={[styles.ContainerStyles, style]}>
