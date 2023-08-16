@@ -23,13 +23,16 @@ exports[`LoadingFullScreen component render correct render only the loading 1`] 
   >
     <View
       style={
-        Object {
-          "alignItems": "center",
-          "height": 64,
-          "justifyContent": "center",
-          "position": "relative",
-          "width": 64,
-        }
+        Array [
+          Object {
+            "alignItems": "center",
+            "height": 64,
+            "justifyContent": "center",
+            "position": "relative",
+            "width": 64,
+          },
+          undefined,
+        ]
       }
     >
       <View
@@ -135,13 +138,16 @@ exports[`LoadingFullScreen component render correct renders well the loading nex
   >
     <View
       style={
-        Object {
-          "alignItems": "center",
-          "height": 64,
-          "justifyContent": "center",
-          "position": "relative",
-          "width": 64,
-        }
+        Array [
+          Object {
+            "alignItems": "center",
+            "height": 64,
+            "justifyContent": "center",
+            "position": "relative",
+            "width": 64,
+          },
+          undefined,
+        ]
       }
     >
       <View

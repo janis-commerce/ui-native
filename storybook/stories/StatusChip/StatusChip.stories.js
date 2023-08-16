@@ -30,7 +30,8 @@ export const PassingItComponent = (props) => (
 			fontWeight={'bold'}
 			letterSpacing={0}
 			textDecorationLine={'none'}
-			textTransform={'none'}>
+			textTransform={'none'}
+		>
 			Delivered
 		</Text>
 	</StatusChip>

@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added component Input
 - Added readme
 - Added github action to deploy storybooks docs
+- Added component LoadingFullScreen
 
 ### Changed
 
@@ -32,6 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fixed export components
 - Fixed an error when locally linking the package with a react native app
+- Fixed the error when components are styled using styled-components
 
 ### Removed
 

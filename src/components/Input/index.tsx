@@ -1,5 +1,5 @@
 import React, {LegacyRef, useEffect, useState} from 'react';
-import {TextInput, StyleSheet, View, Text, KeyboardType} from 'react-native';
+import {TextInput, StyleSheet, View, Text, KeyboardType, TextStyle} from 'react-native';
 import {
 	Status,
 	getBorderColor,
@@ -37,6 +37,7 @@ interface InputProps {
 	onSubmitEditing?: () => void;
 	onFocus?: () => void;
 	onBlur?: () => void;
+	style?: TextStyle;
 }
 
 const Input = React.forwardRef<TextInput, InputProps>(
@@ -56,6 +57,7 @@ const Input = React.forwardRef<TextInput, InputProps>(
 			onSubmitEditing = () => {},
 			onFocus = () => {},
 			onBlur = () => {},
+			style,
 			...props
 		}: InputProps,
 		ref: LegacyRef<TextInput>
@@ -135,7 +137,7 @@ const Input = React.forwardRef<TextInput, InputProps>(
 				<View style={styles.inputWrapper}>
 					{isLabelVisible && <Text style={styles.label}>{label}</Text>}
 					<TextInput
-						style={styles.input}
+						style={[styles.input, style]}
 						ref={ref}
 						onFocus={onFocusHandler}
 						onBlur={onBlurHandler}

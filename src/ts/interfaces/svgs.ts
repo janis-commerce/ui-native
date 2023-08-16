@@ -10,7 +10,7 @@ export const svgsNames = [
 	'no-notifications',
 ] as const;
 
-export type Names = (typeof svgsNames)[number];
+export type Names = typeof svgsNames[number];
 
 export interface Isvg extends SvgProps, ViewProps {
 	name?: Names;
