@@ -1,5 +1,5 @@
 import React from 'react';
-import {View} from 'react-native';
+import {View, ScrollView, SafeAreaView} from 'react-native';
 import Text from '../../../src/components/Text';
 import {palette} from '../../../src/theme/palette';
 
@@ -18,6 +18,8 @@ const styles = {
 	Base: {fontFamily: 'Roboto'},
 	Container: {
 		width: '100%',
+		paddingLeft: 10,
+		paddingRight: 10,
 	},
 	ColorWrapper: {
 		display: 'flex',
@@ -67,16 +69,20 @@ const renderColor = (colorData) => {
 };
 
 export const Colors = () => (
-	<View style={styles.Container}>
-		{colorsKeys.map((title) => {
-			return (
-				<View key={title}>
-					<Text style={[styles.TitleWrapper, styles.Base]}>{title}</Text>
-					<View style={styles.ColorWrapper}>
-						<>{renderColor(title)}</>
-					</View>
-				</View>
-			);
-		})}
-	</View>
+	<SafeAreaView>
+		<View style={styles.Container}>
+			<ScrollView>
+				{colorsKeys.map((title) => {
+					return (
+						<View key={title}>
+							<Text style={[styles.TitleWrapper, styles.Base]}>{title}</Text>
+							<View style={styles.ColorWrapper}>
+								<>{renderColor(title)}</>
+							</View>
+						</View>
+					);
+				})}
+			</ScrollView>
+		</View>
+	</SafeAreaView>
 );
