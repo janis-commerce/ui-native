@@ -1,5 +1,5 @@
 import React, {LegacyRef, useEffect, useState} from 'react';
-import {TextInput, StyleSheet, View, Text, KeyboardType, ViewStyle} from 'react-native';
+import {TextInput, StyleSheet, View, Text, KeyboardType, StyleProp, TextStyle} from 'react-native';
 import {
 	Status,
 	getBorderColor,
@@ -37,7 +37,7 @@ interface InputProps {
 	onSubmitEditing?: () => void;
 	onFocus?: () => void;
 	onBlur?: () => void;
-	style?: ViewStyle;
+	style?: StyleProp<TextStyle>;
 }
 
 const Input = React.forwardRef<TextInput, InputProps>(
