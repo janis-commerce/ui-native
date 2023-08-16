@@ -86,7 +86,7 @@ const Input = React.forwardRef<TextInput, InputProps>(
 		};
 
 		const hasMessage = !!statusMessage;
-		const isLabelVisible = inputState === 'focus' && !value;
+		const isLabelVisible = !disabled && !readOnly && inputState === 'focus' && !value;
 
 		const validBorderColor = getBorderColor({inputState, hasMessage, status, inputColor});
 		const validLabelColor = getLabelColor({
@@ -115,7 +115,7 @@ const Input = React.forwardRef<TextInput, InputProps>(
 				letterSpacing: 0,
 				lineHeight: 19,
 				position: 'absolute',
-				bottom: raiseLabel({disabled, hasMessage, inputState}) ? 25 : 5,
+				bottom: raiseLabel({disabled, hasMessage, inputState}) ? 25 : 0,
 			},
 			input: {
 				color: validInputTextColor,
