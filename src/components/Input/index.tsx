@@ -37,7 +37,7 @@ interface InputProps {
 	onSubmitEditing?: () => void;
 	onFocus?: () => void;
 	onBlur?: () => void;
-	style?: StyleProp<TextStyle>;
+	style?: TextStyle;
 }
 
 const Input = React.forwardRef<TextInput, InputProps>(
