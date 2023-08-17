@@ -22,7 +22,8 @@
 		"storybook-watcher": "sb-rn-watcher --config-path .ondevice",
 		"update-stories": "sb-rn-get-stories --config-path .ondevice",
 		"storybook-web": " npm run storybook-web-build && start-storybook -p 6006 --config-dir ./.storybook",
-		"storybook-web-build": "build-storybook --config-dir ./.storybook --output-dir ./.storybook_static"
+		"storybook-web-build": "build-storybook --config-dir ./.storybook --output-dir ./.storybook_static",
+		"storybook-web-docs": "build-storybook --config-dir ./.storybook --output-dir ./docs"
 	},
 	"repository": {
 		"type": "git",
@@ -89,8 +90,8 @@
 		"react-test-renderer": "17.0.2",
 		"setup-env": "^2.0.0",
 		"storybook": "^6.5.4",
-		"webpack": "^5.52.0",
-		"typescript": "^5.1.6"
+		"typescript": "^5.1.6",
+		"webpack": "^5.52.0"
 	},
 	"resolutions": {
 		"@types/react": "^16"

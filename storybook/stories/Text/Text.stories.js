@@ -28,7 +28,7 @@ const fontWeights = [
 ];
 
 export default {
-	title: 'Text',
+	title: 'Components/Text',
 	argTypes: {
 		fontFamily: {
 			options: fontFamilies,
@@ -75,7 +75,8 @@ export const DefaultProps = ({
 		fontWeight={fontWeight}
 		letterSpacing={letterSpacing}
 		textDecorationLine={textDecorationLine}
-		textTransform={textTransform}>
+		textTransform={textTransform}
+	>
 		{textToDisplay}
 	</Text>
 );

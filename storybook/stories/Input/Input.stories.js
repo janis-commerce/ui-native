@@ -2,7 +2,7 @@ import React from 'react';
 import Input from '../../../src/components/Input';
 
 export default {
-	title: 'Input',
+	title: 'Components/Input',
 	argTypes: {
 		keyboardType: {
 			options: [

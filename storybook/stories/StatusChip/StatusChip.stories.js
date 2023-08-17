@@ -3,11 +3,10 @@ import Text from '../../../src/components/Text';
 import React from 'react';
 
 export default {
-	title: 'StatusChip',
+	title: 'Components/StatusChip',
 	argTypes: {
 		background: {
-			options: ['#2979FF', '#1DB779', ''],
-			control: {type: 'select'},
+			control: {type: 'color'},
 		},
 	},
 };
@@ -25,14 +24,15 @@ export const PassingItComponent = (props) => (
 		<Text
 			fontSize={15}
 			lineHeight={18}
-			color={'#000000'}
+			color={'#fff'}
 			fontFamily={'Roboto'}
 			fontStyle={'normal'}
 			fontWeight={'bold'}
 			letterSpacing={0}
 			textDecorationLine={'none'}
-			textTransform={'none'}>
-			Custom component
+			textTransform={'none'}
+		>
+			Delivered
 		</Text>
 	</StatusChip>
 );
@@ -40,5 +40,5 @@ export const PassingItComponent = (props) => (
 PassingItComponent.storyName = 'passing it a custom component';
 
 PassingItComponent.args = {
-	background: '',
+	background: '#2979FF',
 };
