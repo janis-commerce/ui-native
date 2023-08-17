@@ -88,12 +88,12 @@ describe('getLabelColor', () => {
 		expect(result).toBe(inputColor);
 	});
 
-	it('should return palette.primary.main when statusMessage is not empty', () => {
+	it('should return palette.error.main when statusMessage is not empty', () => {
 		const disabled = false;
 		const readOnly = false;
 		const inputState = 'notFocus';
 		const result = getLabelColor({disabled, readOnly, inputColor, inputState, statusMessage});
-		expect(result).toBe(palette.primary.main);
+		expect(result).toBe(palette.error.main);
 	});
 
 	it('should return palette.grey[500] when statusMessage is empty', () => {

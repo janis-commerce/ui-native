@@ -73,7 +73,7 @@ export const getLabelColor = ({
 	}
 
 	if (statusMessage) {
-		return palette.primary.main;
+		return palette.error.main;
 	}
 
 	return palette.grey[500];

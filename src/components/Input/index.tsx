@@ -1,5 +1,13 @@
 import React, {LegacyRef, useEffect, useState} from 'react';
-import {TextInput, StyleSheet, View, Text, KeyboardType} from 'react-native';
+import {
+	TextInput,
+	StyleSheet,
+	View,
+	Text,
+	KeyboardType,
+	NativeSyntheticEvent,
+	TextInputEndEditingEventData,
+} from 'react-native';
 import {
 	Status,
 	getBorderColor,
@@ -75,8 +83,12 @@ const Input = React.forwardRef<TextInput, InputProps>(
 			return onFocus();
 		};
 
-		const onBlurHandler = () => {
-			if (value) {
+		const onEndEditingHandler = ({
+			nativeEvent,
+		}: NativeSyntheticEvent<TextInputEndEditingEventData>) => {
+			const {text = ''} = nativeEvent;
+
+			if (text) {
 				setInputState('complete');
 				return onBlur();
 			}
@@ -86,7 +98,7 @@ const Input = React.forwardRef<TextInput, InputProps>(
 		};
 
 		const hasMessage = !!statusMessage;
-		const isLabelVisible = !disabled && !readOnly && inputState === 'focus' && !value;
+		const isLabelVisible = !disabled && !readOnly && (inputState !== 'incomplete' || hasMessage);
 
 		const validBorderColor = getBorderColor({inputState, hasMessage, status, inputColor});
 		const validLabelColor = getLabelColor({
@@ -138,7 +150,7 @@ const Input = React.forwardRef<TextInput, InputProps>(
 						style={styles.input}
 						ref={ref}
 						onFocus={onFocusHandler}
-						onBlur={onBlurHandler}
+						onEndEditing={onEndEditingHandler}
 						onChange={onChange}
 						onSubmitEditing={onSubmitEditing}
 						placeholder={placeholder}
