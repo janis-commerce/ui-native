@@ -1,5 +1,5 @@
 import React from 'react';
-import Text from './index';
+import Text from '../../../src/components/Text';
 
 const fontFamilies = [
 	'normal',
@@ -75,7 +75,8 @@ export const DefaultProps = ({
 		fontWeight={fontWeight}
 		letterSpacing={letterSpacing}
 		textDecorationLine={textDecorationLine}
-		textTransform={textTransform}>
+		textTransform={textTransform}
+	>
 		{textToDisplay}
 	</Text>
 );

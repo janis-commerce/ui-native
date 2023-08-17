@@ -1,27 +1,33 @@
 import React, {ReactElement} from 'react';
-import {StyleSheet, Text as TextComponent, TextProps as TextComponentProps} from 'react-native';
+import {
+	StyleSheet,
+	Text as TextComponent,
+	TextProps as TextComponentProps,
+	TextStyle,
+} from 'react-native';
 
 interface TextProps extends TextComponentProps {
 	children?: ReactElement | string;
+	style?: TextStyle;
 }
 
-const Text = ({children, ...props}: TextProps) => {
+const Text = ({children, style, ...props}: TextProps) => {
 	if (!children) {
 		return null;
 	}
 
+	const styles = StyleSheet.create({
+		TextStyles: {
+			fontSize: 16,
+			fontFamily: 'Roboto',
+		},
+	});
+
 	return (
-		<TextComponent style={styles.TextStyles} {...props}>
+		<TextComponent style={[styles.TextStyles, style]} {...props}>
 			{children}
 		</TextComponent>
 	);
 };
-
-const styles = StyleSheet.create({
-	TextStyles: {
-		fontSize: 16,
-		fontFamily: 'Roboto',
-	},
-});
 
 export default Text;

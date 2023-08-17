@@ -11,7 +11,8 @@ const EmptyListIllustration = ({...props}: Isvg) => (
 			viewBox="0 0 213 162"
 			fill="none"
 			xmlns="http://www.w3.org/2000/svg"
-			{...props}>
+			{...props}
+		>
 			<Defs>
 				<LinearGradient
 					id="paint0_linear_10149_116403"
@@ -19,7 +20,8 @@ const EmptyListIllustration = ({...props}: Isvg) => (
 					y1={153.5}
 					x2={170.993}
 					y2={153.5}
-					gradientUnits="userSpaceOnUse">
+					gradientUnits="userSpaceOnUse"
+				>
 					<Stop stopColor="white" stopOpacity={0} />
 					<Stop offset={0.05} stopColor="#EFF2FE" stopOpacity={0.19} />
 					<Stop offset={0.09} stopColor="#E1E7FD" stopOpacity={0.35} />
@@ -50,7 +52,8 @@ const EmptyListIllustration = ({...props}: Isvg) => (
 					y1={38.1773}
 					x2={146.841}
 					y2={38.1773}
-					gradientUnits="userSpaceOnUse">
+					gradientUnits="userSpaceOnUse"
+				>
 					<Stop stopColor="#F7C6A4" />
 					<Stop offset={0.39} stopColor="#F5C09A" />
 					<Stop offset={0.99} stopColor="#F2B483" />
@@ -61,7 +64,8 @@ const EmptyListIllustration = ({...props}: Isvg) => (
 					y1={32.0986}
 					x2={148.204}
 					y2={32.0986}
-					gradientUnits="userSpaceOnUse">
+					gradientUnits="userSpaceOnUse"
+				>
 					<Stop stopColor="#305069" />
 					<Stop offset={1} stopColor="#273947" />
 				</LinearGradient>
@@ -71,7 +75,8 @@ const EmptyListIllustration = ({...props}: Isvg) => (
 					y1={89.985}
 					x2={163.468}
 					y2={89.985}
-					gradientUnits="userSpaceOnUse">
+					gradientUnits="userSpaceOnUse"
+				>
 					<Stop stopColor="#305069" />
 					<Stop offset={1} stopColor="#273947" />
 				</LinearGradient>

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, ViewStyle} from 'react-native';
 import Image from '../Image';
 import Text from '../Text';
 import {formatPlaceholder} from './utils/formatPlaceholder/index';
@@ -21,6 +21,7 @@ export interface AvatarProps {
 	customSize?: number;
 	imageUrl?: string;
 	onErrorImg?: () => void;
+	style?: ViewStyle;
 }
 
 const styles = StyleSheet.create({
@@ -45,6 +46,7 @@ const Avatar = ({
 	placeholder,
 	customSize,
 	onErrorImg,
+	style,
 	...props
 }: AvatarProps) => {
 	const [showInitials, setShowInitials] = useState(false);
@@ -72,8 +74,10 @@ const Avatar = ({
 					height: getSize(size, customSize),
 					width: getSize(size, customSize),
 				},
+				style,
 			]}
-			{...props}>
+			{...props}
+		>
 			{!!imageUrl && !showInitials && (
 				<Image
 					accessibilityRole="image"
