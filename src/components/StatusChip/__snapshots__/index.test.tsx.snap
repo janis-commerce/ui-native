@@ -18,10 +18,13 @@ exports[`StatusChip component render correct a valid component is passed 1`] = `
 >
   <Text
     style={
-      Object {
-        "fontFamily": "Roboto",
-        "fontSize": 16,
-      }
+      Array [
+        Object {
+          "fontFamily": "Roboto",
+          "fontSize": 16,
+        },
+        undefined,
+      ]
     }
   >
     Custom component
@@ -48,14 +51,20 @@ exports[`StatusChip component render correct if a background is passed 1`] = `
 >
   <Text
     style={
-      Object {
-        "color": "#fff",
-        "fontFamily": "Roboto",
-        "fontSize": 15,
-        "fontWeight": "900",
-        "lineHeight": 18,
-        "textAlign": "center",
-      }
+      Array [
+        Object {
+          "fontFamily": "Roboto",
+          "fontSize": 16,
+        },
+        Object {
+          "color": "#fff",
+          "fontFamily": "Roboto",
+          "fontSize": 15,
+          "fontWeight": "900",
+          "lineHeight": 18,
+          "textAlign": "center",
+        },
+      ]
     }
   >
     Delivered
@@ -81,14 +90,20 @@ exports[`StatusChip component render correct text is passed 1`] = `
 >
   <Text
     style={
-      Object {
-        "color": "#2979FF",
-        "fontFamily": "Roboto",
-        "fontSize": 15,
-        "fontWeight": "900",
-        "lineHeight": 18,
-        "textAlign": "center",
-      }
+      Array [
+        Object {
+          "fontFamily": "Roboto",
+          "fontSize": 16,
+        },
+        Object {
+          "color": "#2979FF",
+          "fontFamily": "Roboto",
+          "fontSize": 15,
+          "fontWeight": "900",
+          "lineHeight": 18,
+          "textAlign": "center",
+        },
+      ]
     }
   >
     Partially delivered
