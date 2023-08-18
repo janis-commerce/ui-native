@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Input from '../../../src/components/Input';
 
 export default {
@@ -30,9 +30,19 @@ ReadOnly.args = {
 	label: 'Document',
 };
 
-export const Editable = ({label, placeholder, keyboardType}) => (
-	<Input label={label} placeholder={placeholder} keyboardType={keyboardType} />
-);
+export const Editable = ({label, placeholder, keyboardType}) => {
+	const [value, setValue] = useState('');
+
+	return (
+		<Input
+			label={label}
+			placeholder={placeholder}
+			keyboardType={keyboardType}
+			value={value}
+			onChangeText={(userInput) => setValue(userInput)}
+		/>
+	);
+};
 
 Editable.storyName = 'editable';
 
@@ -53,9 +63,31 @@ Disabled.args = {
 	label: 'First name',
 };
 
-export const WithError = ({placeholder, label, statusMessage}) => (
-	<Input placeholder={placeholder} label={label} statusMessage={statusMessage} />
+export const DisabledWithValue = ({placeholder, label, value}) => (
+	<Input disabled placeholder={placeholder} label={label} value={value} />
 );
+
+DisabledWithValue.storyName = 'disabled with value';
+
+DisabledWithValue.args = {
+	placeholder: 'First name',
+	label: 'First name',
+	value: 'Joe',
+};
+
+export const WithError = ({placeholder, label, statusMessage}) => {
+	const [value, setValue] = useState('');
+
+	return (
+		<Input
+			placeholder={placeholder}
+			label={label}
+			statusMessage={statusMessage}
+			value={value}
+			onChangeText={(userInput) => setValue(userInput)}
+		/>
+	);
+};
 
 WithError.storyName = 'with an error';
 

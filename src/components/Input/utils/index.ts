@@ -15,13 +15,7 @@ interface getLabelColorProps {
 	inputColor: string;
 	inputState: string;
 	statusMessage: string;
-}
-
-interface getInputColorProps {
-	hasMessage: boolean;
-	inputState: string;
 	status: Status;
-	valueColor: string;
 }
 
 interface raiseLabelProps {
@@ -63,6 +57,7 @@ export const getLabelColor = ({
 	inputColor,
 	inputState,
 	statusMessage,
+	status,
 }: getLabelColorProps) => {
 	if (disabled || readOnly) {
 		return palette.grey[500];
@@ -73,22 +68,13 @@ export const getLabelColor = ({
 	}
 
 	if (statusMessage) {
-		return palette.error.main;
-	}
-
-	return palette.grey[500];
-};
-
-export const getInputColor = ({hasMessage, inputState, status, valueColor}: getInputColorProps) => {
-	if (hasMessage && inputState !== 'focus') {
 		const colorPalette = palette[status];
 		if ('main' in colorPalette) {
 			return colorPalette.main;
 		}
-		return palette.error.main;
 	}
 
-	return valueColor;
+	return palette.grey[500];
 };
 
 export const raiseLabel = ({disabled, hasMessage, inputState}: raiseLabelProps) =>

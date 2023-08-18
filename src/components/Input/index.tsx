@@ -11,7 +11,6 @@ import {
 import {
 	Status,
 	getBorderColor,
-	getInputColor,
 	getInputInitialState,
 	getLabelColor,
 	getStatusMessageColor,
@@ -107,8 +106,8 @@ const Input = React.forwardRef<TextInput, InputProps>(
 			inputColor,
 			inputState,
 			statusMessage,
+			status,
 		});
-		const validInputTextColor = getInputColor({hasMessage, inputState, status, valueColor});
 		const validStatusMessageColor = getStatusMessageColor(status);
 
 		const styles = StyleSheet.create({
@@ -130,7 +129,7 @@ const Input = React.forwardRef<TextInput, InputProps>(
 				bottom: raiseLabel({disabled, hasMessage, inputState}) ? 25 : 0,
 			},
 			input: {
-				color: validInputTextColor,
+				color: valueColor,
 				fontSize: 16,
 				letterSpacing: 0,
 				lineHeight: 19,
@@ -157,6 +156,7 @@ const Input = React.forwardRef<TextInput, InputProps>(
 						editable={!(readOnly || disabled)}
 						selectionColor={inputColor}
 						keyboardType={keyboardType}
+						value={value.toString()}
 						{...props}
 					/>
 				</View>
