@@ -1,6 +1,6 @@
 {
 	"name": "@janiscommerce/ui-native",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "components library for Janis app",
 	"main": "dist/index.js",
 	"typings": "dist/index.d.ts",
