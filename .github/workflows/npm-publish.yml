@@ -13,7 +13,7 @@ jobs:
         with:
           node-version: 16.x
       - run: npm install
-      - run: npm lint
+      - run: npm run lint
       - run: npm run test:coverage
 
   publish-npm:
@@ -39,7 +39,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
-          node-version: 14
+          node-version: 16.x
       - run: bash ./scripts/release-notes.sh
         env:
           RELEASE_SLACK_WEBHOOK_URL: ${{secrets.RELEASE_SLACK_WEBHOOK_URL}}

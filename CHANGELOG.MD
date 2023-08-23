@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.1] - 2023-08-23
+
+### Fixed
+
+- Fixed command lint in github action
+
+## [1.0.0] - 2023-08-23
+
 ### Added
 
 - Added config for typescript
