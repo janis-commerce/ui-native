@@ -19,7 +19,7 @@ const Text = ({children, style, ...props}: TextProps) => {
 
 	const styles = StyleSheet.create({
 		TextStyles: {
-			fontSize: 16,
+			fontSize: 13,
 			fontFamily: 'Roboto',
 		},
 	});
