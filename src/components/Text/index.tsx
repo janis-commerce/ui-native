@@ -11,14 +11,14 @@ interface TextProps extends TextComponentProps {
 	style?: TextStyle;
 }
 
-const Text = ({children, style, ...props}: TextProps) => {
+const Text = ({children, style = {}, ...props}: TextProps) => {
 	if (!children) {
 		return null;
 	}
 
 	const styles = StyleSheet.create({
 		TextStyles: {
-			fontSize: 16,
+			fontSize: 13,
 			fontFamily: 'Roboto',
 		},
 	});
