@@ -75,7 +75,7 @@ const Input = React.forwardRef<TextInput, InputProps>(
 		const [inputState, setInputState] = useState<InputState>('incomplete');
 
 		useEffect(() => {
-			setInputState(getInputInitialState(value.toString()));
+			setInputState(getInputInitialState(value?.toString()));
 		}, [value]);
 
 		if (!label || !placeholder) {
@@ -161,7 +161,7 @@ const Input = React.forwardRef<TextInput, InputProps>(
 						editable={!(readOnly || disabled)}
 						selectionColor={inputColor}
 						keyboardType={keyboardType}
-						value={value.toString()}
+						value={value?.toString()}
 						{...props}
 					/>
 				</View>
