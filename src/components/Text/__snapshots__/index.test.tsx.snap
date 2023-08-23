@@ -8,7 +8,7 @@ exports[`Text component render correct match snapshot 1`] = `
         "fontFamily": "Roboto",
         "fontSize": 13,
       },
-      Object {},
+      undefined,
     ]
   }
 >

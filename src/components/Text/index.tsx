@@ -11,7 +11,7 @@ interface TextProps extends TextComponentProps {
 	style?: TextStyle;
 }
 
-const Text = ({children, style = {}, ...props}: TextProps) => {
+const Text = ({children, style, ...props}: TextProps) => {
 	if (!children) {
 		return null;
 	}
