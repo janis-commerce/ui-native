@@ -48,6 +48,8 @@ interface InputProps {
 	style?: TextStyle;
 }
 
+type InputState = 'incomplete' | 'complete' | 'focus';
+
 const Input = React.forwardRef<TextInput, InputProps>(
 	(
 		{
@@ -70,7 +72,7 @@ const Input = React.forwardRef<TextInput, InputProps>(
 		}: InputProps,
 		ref: LegacyRef<TextInput>
 	) => {
-		const [inputState, setInputState] = useState('incomplete');
+		const [inputState, setInputState] = useState<InputState>('incomplete');
 
 		useEffect(() => {
 			setInputState(getInputInitialState(value.toString()));

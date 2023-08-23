@@ -1,5 +1,6 @@
 import React, {ReactElement} from 'react';
 import {
+	StyleProp,
 	StyleSheet,
 	Text as TextComponent,
 	TextProps as TextComponentProps,
@@ -8,7 +9,7 @@ import {
 
 interface TextProps extends TextComponentProps {
 	children?: ReactElement | string;
-	style?: TextStyle;
+	style?: StyleProp<TextStyle>;
 }
 
 const Text = ({children, style, ...props}: TextProps) => {
