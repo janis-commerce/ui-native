@@ -75,8 +75,7 @@ export const DefaultProps = ({
 		fontWeight={fontWeight}
 		letterSpacing={letterSpacing}
 		textDecorationLine={textDecorationLine}
-		textTransform={textTransform}
-	>
+		textTransform={textTransform}>
 		{textToDisplay}
 	</Text>
 );

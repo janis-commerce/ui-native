@@ -76,8 +76,7 @@ const Avatar = ({
 				},
 				style,
 			]}
-			{...props}
-		>
+			{...props}>
 			{!!imageUrl && !showInitials && (
 				<Image
 					accessibilityRole="image"
