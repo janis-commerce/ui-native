@@ -13,7 +13,8 @@ jobs:
         with:
           node-version: 16.x
       - run: npm install
-      - run: npm test
+      - run: npm lint
+      - run: npm run test:coverage
 
   publish-npm:
     needs: build
