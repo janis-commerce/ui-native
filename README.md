@@ -22,7 +22,7 @@ A quick example of how to import a component and start using **@janiscommerce/ui
 ```sh
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Avatar from '@janiscommerce/ui-native/Avatar';
+import {Avatar} from '@janiscommerce/ui-native';
 
 function App() {
   return <Avatar size="sm" placeholder="Janis" bgColor="#2979FF" />;
