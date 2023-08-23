@@ -18,4 +18,5 @@ jobs:
       - name: npm install, run test
         run: |
           npm install
-          npm t
+          npm run lint
+          npm run test:coverage
