@@ -6,6 +6,7 @@ import iconsSelection from '../../../src/components/Icon/assets/fonts/selection.
 
 export default {
 	title: 'Design system/Icons',
+	argTypes: {color: {control: {type: 'color'}}},
 };
 
 export const DefaultProps = ({color, size, ...props}) => {

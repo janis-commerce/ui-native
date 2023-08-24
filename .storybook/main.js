@@ -13,4 +13,5 @@ module.exports = {
 		autodocs: 'tag',
 	},
 	typescript: {reactDocgen: false},
+	staticDirs: ['../src/fonts/'],
 };
