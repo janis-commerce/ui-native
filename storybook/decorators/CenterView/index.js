@@ -1,16 +1,27 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 
 const CenterView = ({children}) => {
-	return <View style={styles.main}>{children}</View>;
+	return (
+		<ScrollView contentContainerStyle={styles.scrollView}>
+			<View style={styles.main}>{children}</View>
+		</ScrollView>
+	);
 };
 
 const styles = StyleSheet.create({
+	scrollView: {
+		paddingVertical: 25,
+		paddingHorizontal: 10,
+		backgroundColor: '#F5FCFF',
+	},
 	main: {
 		flex: 1,
+		display: 'flex',
+		flexWrap: 'wrap',
+		flexDirection: 'row',
 		justifyContent: 'center',
 		alignItems: 'center',
-		backgroundColor: '#F5FCFF',
 	},
 });
 
