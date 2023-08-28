@@ -22,6 +22,7 @@ const validProp = {
 	noOptionsMessage: 'no options test',
 	optionStyles: validStyles,
 	callbackOption: jest.fn(),
+	customOptionComponent: jest.fn(),
 };
 
 describe('Dropdown component', () => {
@@ -111,6 +112,23 @@ describe('Dropdown component', () => {
 			onPress();
 
 			expect(validProp.callbackOption).toBeCalledWith(selectValidOptions[0]);
+		});
+	});
+
+	describe('when has custom option component', () => {
+		it('it should render correctly', () => {
+			const {toJSON} = create(
+				<Dropdown
+					isShowedDropdown={validProp.isShowedDropdown}
+					filteredOptions={validProp.filteredOptions}
+					selectedOptions={validProp.selectedOptions}
+					noOptionsMessage={validProp.noOptionsMessage}
+					callbackOption={validProp.callbackOption}
+					customOptionComponent={validProp.customOptionComponent}
+				/>
+			);
+
+			expect(toJSON()).toBeTruthy();
 		});
 	});
 });

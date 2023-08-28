@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import {View, StyleSheet, TouchableOpacity, ScrollView, Text} from 'react-native';
 import {base, black, grey, primary, white} from '../../../../theme/palette';
-import {Option} from '../..';
+import {CustomOptionComponent, Option} from '../..';
 
 interface DropdownProps {
 	isShowedDropdown: boolean;
@@ -10,16 +10,20 @@ interface DropdownProps {
 	noOptionsMessage: string;
 	optionStyles?: {};
 	callbackOption: (option: Option) => void;
+	customOptionComponent?: CustomOptionComponent | null;
 }
 
-const Dropdown: FC<DropdownProps> = ({
-	isShowedDropdown,
-	filteredOptions,
-	callbackOption,
-	selectedOptions,
-	noOptionsMessage,
-	optionStyles,
-}) => {
+const Dropdown: FC<DropdownProps> = (props) => {
+	const {
+		isShowedDropdown,
+		filteredOptions,
+		callbackOption,
+		selectedOptions,
+		noOptionsMessage,
+		optionStyles,
+		customOptionComponent = null,
+	} = props;
+
 	if (!isShowedDropdown) {
 		return null;
 	}
@@ -71,6 +75,17 @@ const Dropdown: FC<DropdownProps> = ({
 				...styles.option,
 				...(isSelectedOption && {backgroundColor: white.light}),
 			};
+
+			const customProps = {
+				renderedOption: option,
+				filteredOptions,
+				selectedOptions,
+				callbackOptionSelected: callbackOption,
+			};
+
+			if (customOptionComponent) {
+				return customOptionComponent(customProps);
+			}
 
 			return (
 				<TouchableOpacity

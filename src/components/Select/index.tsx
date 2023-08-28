@@ -22,6 +22,15 @@ export interface Option {
 	value: string | number;
 }
 
+interface CustomOptionComponentProps {
+	renderedOption: Option;
+	filteredOptions: Option[];
+	selectedOptions: Option[];
+	callbackOptionSelected: (option: Option) => void;
+}
+
+export type CustomOptionComponent = (props: CustomOptionComponentProps) => React.Component;
+
 interface SelectProps {
 	options: Option[];
 	label: string;
@@ -37,6 +46,7 @@ interface SelectProps {
 	keyboardType?: KeyboardTypes;
 	onFocus?: () => void;
 	onSelectOption?: (selectedOptions: Option[]) => void;
+	customOptionComponent?: CustomOptionComponent | null;
 }
 
 const Select: FC<SelectProps> = ({
@@ -54,6 +64,7 @@ const Select: FC<SelectProps> = ({
 	keyboardType = KeyboardTypes.Default,
 	onFocus = () => {},
 	onSelectOption = () => {},
+	customOptionComponent = null,
 	...props
 }) => {
 	const [inputValue, setInputValue] = useState('');
@@ -224,6 +235,7 @@ const Select: FC<SelectProps> = ({
 				noOptionsMessage={noOptionsMessage}
 				optionStyles={optionStyles}
 				callbackOption={handleSelectedOption}
+				customOptionComponent={customOptionComponent}
 			/>
 		</View>
 	);
