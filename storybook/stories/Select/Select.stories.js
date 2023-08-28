@@ -2,7 +2,7 @@ import React from 'react';
 import Select from '../../../src/components/Select';
 import {View, Text, StyleSheet} from 'react-native';
 import {TouchableOpacity} from 'react-native';
-import {grey, primary, white} from '../../../src/theme/palette';
+import {primary, white} from '../../../src/theme/palette';
 
 export default {
 	title: 'Select',
