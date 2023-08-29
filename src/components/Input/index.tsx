@@ -1,9 +1,17 @@
 import React, {LegacyRef, useEffect, useState} from 'react';
-import {TextInput, StyleSheet, View, Text, KeyboardType} from 'react-native';
+import {
+	TextInput,
+	StyleSheet,
+	View,
+	Text,
+	KeyboardType,
+	TextStyle,
+	NativeSyntheticEvent,
+	TextInputEndEditingEventData,
+} from 'react-native';
 import {
 	Status,
 	getBorderColor,
-	getInputColor,
 	getInputInitialState,
 	getLabelColor,
 	getStatusMessageColor,
@@ -37,7 +45,10 @@ interface InputProps {
 	onSubmitEditing?: () => void;
 	onFocus?: () => void;
 	onBlur?: () => void;
+	style?: TextStyle;
 }
+
+type InputState = 'incomplete' | 'complete' | 'focus';
 
 const Input = React.forwardRef<TextInput, InputProps>(
 	(
@@ -56,14 +67,15 @@ const Input = React.forwardRef<TextInput, InputProps>(
 			onSubmitEditing = () => {},
 			onFocus = () => {},
 			onBlur = () => {},
+			style,
 			...props
 		}: InputProps,
 		ref: LegacyRef<TextInput>
 	) => {
-		const [inputState, setInputState] = useState('incomplete');
+		const [inputState, setInputState] = useState<InputState>('incomplete');
 
 		useEffect(() => {
-			setInputState(getInputInitialState(value.toString()));
+			setInputState(getInputInitialState(value?.toString()));
 		}, [value]);
 
 		if (!label || !placeholder) {
@@ -75,8 +87,12 @@ const Input = React.forwardRef<TextInput, InputProps>(
 			return onFocus();
 		};
 
-		const onBlurHandler = () => {
-			if (value) {
+		const onEndEditingHandler = ({
+			nativeEvent,
+		}: NativeSyntheticEvent<TextInputEndEditingEventData>) => {
+			const {text = ''} = nativeEvent;
+
+			if (text) {
 				setInputState('complete');
 				return onBlur();
 			}
@@ -86,7 +102,7 @@ const Input = React.forwardRef<TextInput, InputProps>(
 		};
 
 		const hasMessage = !!statusMessage;
-		const isLabelVisible = !disabled && !readOnly && inputState === 'focus' && !value;
+		const isLabelVisible = !disabled && !readOnly && (inputState !== 'incomplete' || hasMessage);
 
 		const validBorderColor = getBorderColor({inputState, hasMessage, status, inputColor});
 		const validLabelColor = getLabelColor({
@@ -95,8 +111,8 @@ const Input = React.forwardRef<TextInput, InputProps>(
 			inputColor,
 			inputState,
 			statusMessage,
+			status,
 		});
-		const validInputTextColor = getInputColor({hasMessage, inputState, status, valueColor});
 		const validStatusMessageColor = getStatusMessageColor(status);
 
 		const styles = StyleSheet.create({
@@ -118,7 +134,7 @@ const Input = React.forwardRef<TextInput, InputProps>(
 				bottom: raiseLabel({disabled, hasMessage, inputState}) ? 25 : 0,
 			},
 			input: {
-				color: validInputTextColor,
+				color: valueColor,
 				fontSize: 16,
 				letterSpacing: 0,
 				lineHeight: 19,
@@ -135,16 +151,17 @@ const Input = React.forwardRef<TextInput, InputProps>(
 				<View style={styles.inputWrapper}>
 					{isLabelVisible && <Text style={styles.label}>{label}</Text>}
 					<TextInput
-						style={styles.input}
+						style={[styles.input, style]}
 						ref={ref}
 						onFocus={onFocusHandler}
-						onBlur={onBlurHandler}
+						onEndEditing={onEndEditingHandler}
 						onChange={onChange}
 						onSubmitEditing={onSubmitEditing}
 						placeholder={placeholder}
 						editable={!(readOnly || disabled)}
 						selectionColor={inputColor}
 						keyboardType={keyboardType}
+						value={value?.toString()}
 						{...props}
 					/>
 				</View>

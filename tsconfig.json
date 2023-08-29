@@ -15,7 +15,10 @@
 		"allowSyntheticDefaultImports": true,
 		"esModuleInterop": true,
 		"skipLibCheck": true,
-		"types": ["react", "react-native"]
+		"types": ["react", "react-native"],
+		"paths": {
+			"react": ["./node_modules/@types/react"]
+		}
 	},
 	"exclude": [
 		"node_modules",

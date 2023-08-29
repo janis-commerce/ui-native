@@ -27,4 +27,6 @@ export interface Alert extends gamaColor {}
 export interface Primary extends gamaColor {
 	light: string;
 }
-export interface White extends Primary {}
+export interface White extends Primary {
+	semiTransparent: string;
+}

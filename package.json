@@ -1,6 +1,6 @@
 {
 	"name": "@janiscommerce/ui-native",
-	"version": "0.0.1",
+	"version": "1.0.3",
 	"description": "components library for Janis app",
 	"main": "dist/index.js",
 	"typings": "dist/index.d.ts",
@@ -14,9 +14,9 @@
 		"test": "jest",
 		"lint": "eslint .",
 		"prepare": "husky install",
-		"validate:code": "npm run lint -- --fix && npm t",
+		"validate:code": "npm run lint -- --fix && tsc --noEmit && npm t",
 		"test:commit": "jest --colors --bail --findRelatedTests",
-		"test:coverage": "jest --collectCoverage",
+		"test:coverage": "tsc --noEmit && jest --collectCoverage",
 		"build": "rm -rf dist && tsc",
 		"storybook": "react-native-storybook-server",
 		"storybook-watcher": "sb-rn-watcher --config-path .ondevice",
@@ -62,6 +62,7 @@
 		"@storybook/react-native-server": "^6.5.4",
 		"@testing-library/react-native": "^7.2.0",
 		"@types/jest": "^25.2.3",
+		"@types/react": "^17.0.2",
 		"@types/react-native": "^0.63.2",
 		"@types/react-native-vector-icons": "^6.4.14",
 		"@types/react-test-renderer": "^16.9.2",
@@ -104,6 +105,9 @@
 		],
 		"*.{js,jsx,ts,tsx}": [
 			"npm run test:commit"
+		],
+		"*.{ts,tsx}": [
+			"tsc --noEmit"
 		]
 	},
 	"dependencies": {

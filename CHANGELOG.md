@@ -7,6 +7,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.3] - 2023-08-24
+
+### Fixed
+
+- Fixed script to publish slack message
+
+## [1.0.2] - 2023-08-23
+
+### Fixed
+
+- Fixed action publish for npm
+- Fixed import example of component in the readme file
+
+## [1.0.1] - 2023-08-23
+
+### Fixed
+
+- Fixed command lint in github action
+
+## [1.0.0] - 2023-08-23
+
 ### Added
 
 - Added config for typescript
@@ -22,17 +43,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added component Input
 - Added readme
 - Added github action to deploy storybooks docs
-
-### Changed
-
-- Changed version from react to 17.0.2 and react native to 0.67 and made compatibility for react 18 and react native 0.71
-- Changed version of storybook
-
-### Fixed
-
-- Fixed export components
-- Fixed an error when locally linking the package with a react native app
-
-### Removed
-
-- Removed standard version package and setup
+- Added component LoadingFullScreen

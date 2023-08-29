@@ -50,29 +50,29 @@ describe('Input', () => {
 
 			expect(mockSetInputState).toHaveBeenCalledWith('focus');
 		});
-		it('as it has valid label, placeholder and user focuses out of the input without value', () => {
+		it('as it has valid label, placeholder and user finishes typing on input without value', () => {
 			const mockSetInputState = jest.fn();
 			useStateSpy.mockReturnValueOnce(['', mockSetInputState]);
 
 			const InputComp = create(<Input label="Test" placeholder="Test" />).root;
 
 			const TextInputComp = InputComp.findByType(TextInput);
-			const {onBlur} = TextInputComp.props;
+			const {onEndEditing} = TextInputComp.props;
 
-			onBlur();
+			onEndEditing({nativeEvent: {}});
 
 			expect(mockSetInputState).toHaveBeenCalledWith('incomplete');
 		});
-		it('as it has valid label, placeholder and user focuses out of the input with value', () => {
+		it('as it has valid label, placeholder and user finishes typing on input with value', () => {
 			const mockSetInputState = jest.fn();
 			useStateSpy.mockReturnValueOnce(['', mockSetInputState]);
 
 			const InputComp = create(<Input label="Test" placeholder="Test" value="Test" />).root;
 
 			const TextInputComp = InputComp.findByType(TextInput);
-			const {onBlur} = TextInputComp.props;
+			const {onEndEditing} = TextInputComp.props;
 
-			onBlur();
+			onEndEditing({nativeEvent: {text: 'valid value'}});
 
 			expect(mockSetInputState).toHaveBeenCalledWith('complete');
 		});
@@ -83,11 +83,12 @@ describe('Input', () => {
 			const InputComp = create(<Input label="Test" placeholder="Test" />).root;
 
 			const TextInputComp = InputComp.findByType(TextInput);
-			const {onChange} = TextInputComp.props;
+			const {onChange, onEndEditing} = TextInputComp.props;
 
+			onEndEditing({nativeEvent: {text: 'valid value'}});
 			onChange();
 
-			expect(mockSetInputState).toBeCalledTimes(0);
+			expect(mockSetInputState).toBeCalledTimes(1);
 		});
 		it('as it has valid label, placeholder and user submits', () => {
 			const mockSetInputState = jest.fn();
@@ -96,11 +97,12 @@ describe('Input', () => {
 			const InputComp = create(<Input label="Test" placeholder="Test" />).root;
 
 			const TextInputComp = InputComp.findByType(TextInput);
-			const {onSubmitEditing} = TextInputComp.props;
+			const {onSubmitEditing, onEndEditing} = TextInputComp.props;
 
+			onEndEditing({nativeEvent: {text: 'valid value'}});
 			onSubmitEditing();
 
-			expect(mockSetInputState).toBeCalledTimes(0);
+			expect(mockSetInputState).toBeCalledTimes(1);
 		});
 	});
 });
