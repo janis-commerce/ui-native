@@ -4,7 +4,6 @@ import {
 	getInputInitialState,
 	getBorderColor,
 	getLabelColor,
-	getInputColor,
 	raiseLabel,
 	showStatusMessage,
 	getStatusMessageColor,
@@ -68,7 +67,15 @@ describe('getLabelColor', () => {
 		const disabled = true;
 		const readOnly = false;
 		const inputState = 'inputState';
-		const result = getLabelColor({disabled, readOnly, inputColor, inputState, statusMessage});
+		const status = 'success';
+		const result = getLabelColor({
+			disabled,
+			readOnly,
+			inputColor,
+			inputState,
+			statusMessage,
+			status,
+		});
 		expect(result).toBe(palette.grey[500]);
 	});
 
@@ -76,7 +83,15 @@ describe('getLabelColor', () => {
 		const disabled = false;
 		const readOnly = true;
 		const inputState = 'inputState';
-		const result = getLabelColor({disabled, readOnly, inputColor, inputState, statusMessage});
+		const status = 'success';
+		const result = getLabelColor({
+			disabled,
+			readOnly,
+			inputColor,
+			inputState,
+			statusMessage,
+			status,
+		});
 		expect(result).toBe(palette.grey[500]);
 	});
 
@@ -84,16 +99,48 @@ describe('getLabelColor', () => {
 		const disabled = false;
 		const readOnly = false;
 		const inputState = 'focus';
-		const result = getLabelColor({disabled, readOnly, inputColor, inputState, statusMessage});
+		const status = 'success';
+		const result = getLabelColor({
+			disabled,
+			readOnly,
+			inputColor,
+			inputState,
+			statusMessage,
+			status,
+		});
 		expect(result).toBe(inputColor);
 	});
 
-	it('should return palette.primary.main when statusMessage is not empty', () => {
+	it('should return palette.status.main when statusMessage is not empty', () => {
 		const disabled = false;
 		const readOnly = false;
 		const inputState = 'notFocus';
-		const result = getLabelColor({disabled, readOnly, inputColor, inputState, statusMessage});
-		expect(result).toBe(palette.primary.main);
+		const status = 'success';
+		const result = getLabelColor({
+			disabled,
+			readOnly,
+			inputColor,
+			inputState,
+			statusMessage,
+			status,
+		});
+		expect(result).toBe(palette[status].main);
+	});
+
+	it('should return palette.grey[500] when statusMessage is not empty but there is no main on palette', () => {
+		const disabled = false;
+		const readOnly = false;
+		const inputState = 'notFocus';
+		const status = 'environment';
+		const result = getLabelColor({
+			disabled,
+			readOnly,
+			inputColor,
+			inputState,
+			statusMessage,
+			status,
+		});
+		expect(result).toBe(palette.grey[500]);
 	});
 
 	it('should return palette.grey[500] when statusMessage is empty', () => {
@@ -101,44 +148,16 @@ describe('getLabelColor', () => {
 		const readOnly = false;
 		const inputState = 'notFocus';
 		const emptyStatusMessage = '';
+		const status = 'success';
 		const result = getLabelColor({
 			disabled,
 			readOnly,
 			inputColor,
 			inputState,
 			statusMessage: emptyStatusMessage,
+			status,
 		});
 		expect(result).toBe(palette.grey[500]);
-	});
-});
-
-describe('getInputColor', () => {
-	const valueColor = 'valueColor';
-
-	it('should return colorPalette.main when hasMessage is true and inputState is not "focus" and "main" property exists in colorPalette', () => {
-		const hasMessage = true;
-		const inputState = 'notFocus';
-		const status: Status = 'error';
-		const result = getInputColor({hasMessage, inputState, status, valueColor});
-		expect(result).toBe(palette.error.main);
-	});
-
-	it('should return palette.error.main when hasMessage is true and inputState is not "focus" and "main" property does not exist in colorPalette', () => {
-		const hasMessage = true;
-		const inputState = 'notFocus';
-		const status: Status = 'grey';
-		const result = getInputColor({hasMessage, inputState, status, valueColor});
-		expect(result).toBe(palette.error.main);
-	});
-
-	it('should return valueColor when hasMessage is false or inputState is "focus"', () => {
-		const hasMessage = false;
-		const inputState = 'focus';
-		const status: Status = 'error';
-		const result1 = getInputColor({hasMessage, inputState, status, valueColor});
-		const result2 = getInputColor({hasMessage: true, inputState: 'notFocus', status, valueColor});
-		expect(result1).toBe(valueColor);
-		expect(result2).toBe(palette.error.main);
 	});
 });
 

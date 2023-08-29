@@ -5,7 +5,7 @@ import {TouchableOpacity} from 'react-native';
 import {primary, white} from '../../../src/theme/palette';
 
 export default {
-	title: 'Select',
+	title: 'Components/Select',
 	argTypes: {
 		keyboardType: {
 			options: [

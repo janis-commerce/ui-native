@@ -1,5 +1,5 @@
 import React from 'react';
-import Text from './index';
+import Text from '../../../src/components/Text';
 
 const fontFamilies = [
 	'normal',
@@ -28,7 +28,7 @@ const fontWeights = [
 ];
 
 export default {
-	title: 'Text',
+	title: 'Components/Text',
 	argTypes: {
 		fontFamily: {
 			options: fontFamilies,

@@ -2,7 +2,7 @@ import React from 'react';
 import Image from '../../../src/components/Image';
 
 export default {
-	title: 'Image',
+	title: 'Components/Image',
 	argTypes: {
 		resizeMode: {
 			options: ['cover', 'contain', 'stretch', 'repeat', 'center'],

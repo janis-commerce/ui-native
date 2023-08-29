@@ -2,7 +2,7 @@ import React from 'react';
 import Svg from '../../../src/components/Svg';
 
 export default {
-	title: 'Svg',
+	title: 'Components/Svg',
 	argTypes: {
 		name: {
 			options: [

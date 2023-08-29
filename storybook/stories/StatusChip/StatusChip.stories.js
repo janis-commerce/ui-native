@@ -1,44 +1,40 @@
 import StatusChip from '../../../src/components/StatusChip';
-import Text from '../Text';
+import Text from '../../../src/components/Text';
 import React from 'react';
 
 export default {
-	title: 'StatusChip',
+	title: 'Components/StatusChip',
 	argTypes: {
 		background: {
-			options: ['#2979FF', '#1DB779', ''],
-			control: {type: 'select'},
+			control: {type: 'color'},
 		},
 	},
 };
 
-export const PassingItText = (props) => <StatusChip {...props}>Partially delivered</StatusChip>;
+export const WithText = (props) => <StatusChip {...props}>Partially delivered</StatusChip>;
 
-PassingItText.storyName = 'passing it text';
+WithText.storyName = 'With text';
 
-PassingItText.args = {
-	background: '',
+WithText.args = {
+	background: '#2979FF',
+};
+const TextStyles = {
+	color: '#fff',
+	fontSize: 13,
+	lineHeight: 18,
+	fontFamily: 'Roboto',
+	fontWeight: '900',
+	textAlign: 'center',
 };
 
-export const PassingItComponent = (props) => (
+export const WithCustomComponent = (props) => (
 	<StatusChip {...props}>
-		<Text
-			fontSize={15}
-			lineHeight={18}
-			color={'#000000'}
-			fontFamily={'Roboto'}
-			fontStyle={'normal'}
-			fontWeight={'bold'}
-			letterSpacing={0}
-			textDecorationLine={'none'}
-			textTransform={'none'}>
-			Custom component
-		</Text>
+		<Text style={TextStyles}>Delivered</Text>
 	</StatusChip>
 );
 
-PassingItComponent.storyName = 'passing it a custom component';
+WithCustomComponent.storyName = 'With custom component';
 
-PassingItComponent.args = {
-	background: '',
+WithCustomComponent.args = {
+	background: '#2979FF',
 };
