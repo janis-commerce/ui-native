@@ -104,6 +104,9 @@
 		],
 		"*.{js,jsx,ts,tsx}": [
 			"npm run test:commit"
+		],
+		"*.{ts,tsx}": [
+			"tsc --noEmit"
 		]
 	},
 	"dependencies": {
