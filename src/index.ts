@@ -10,4 +10,16 @@ import LoadingFullScreen from './components/LoadingFullScreen';
 import Icon from './components/Icon';
 import {palette} from './theme/palette';
 
-export {Text, Avatar, CheckBox, Icon, Image, Loading, Svg, StatusChip, Input, palette, LoadingFullScreen};
+export {
+	Text,
+	Avatar,
+	CheckBox,
+	Icon,
+	Image,
+	Loading,
+	Svg,
+	StatusChip,
+	Input,
+	palette,
+	LoadingFullScreen,
+};
