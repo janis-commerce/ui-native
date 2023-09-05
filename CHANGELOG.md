@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Fixed lint staged command in order to check typescript errors on commits
+
 ## [1.0.3] - 2023-08-24
 
 ### Fixed
