@@ -2,7 +2,7 @@ import React from 'react';
 import CheckBox from '../../../src/components/CheckBox';
 
 export default {
-	title: 'CheckBox',
+	title: 'Components/CheckBox',
 	argTypes: {
 		checked: {
 			options: [true, false],

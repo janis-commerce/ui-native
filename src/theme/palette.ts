@@ -24,6 +24,7 @@ const white: White = {
 	main: '#E8EAF6',
 	dark: '#D0D3E3',
 	light: '#F4F5FB',
+	semiTransparent: 'rgba(255, 255, 255, 0.75)',
 };
 const grey: GreyScale = {
 	100: '#DDDFE2',
@@ -59,4 +60,17 @@ const environment: Env = {
 	beta: '#F13B70',
 };
 
-export {primary, black, white, grey, base, success, error, warning, alert, environment};
+const palette = {
+	primary,
+	black,
+	white,
+	grey,
+	base,
+	success,
+	error,
+	warning,
+	alert,
+	environment,
+};
+
+export {primary, black, white, grey, base, success, error, warning, alert, environment, palette};

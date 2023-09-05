@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, TouchableOpacity, StyleSheet} from 'react-native';
+import {View, TouchableOpacity, StyleSheet, ViewStyle} from 'react-native';
 import Text from '../Text';
 import CheckBox from '../CheckBox';
 
@@ -23,6 +23,7 @@ interface RadioButtonProps {
 	checkPosition?: positions;
 	disabled?: boolean;
 	checkSize?: sizeKeys;
+	style?: ViewStyle;
 }
 
 const RadioButton = ({
@@ -32,6 +33,7 @@ const RadioButton = ({
 	checkPosition = 'left',
 	checkSize = 'sm',
 	disabled = false,
+	style,
 	...props
 }: RadioButtonProps) => {
 	if (!children) {
@@ -44,21 +46,21 @@ const RadioButton = ({
 	const customSize = CheckSizeValues[checkSize];
 
 	return (
-		<View style={[container, checkLeft ? row : reverseRow]} {...props}>
+		<TouchableOpacity
+			style={[container, checkLeft ? row : reverseRow, style]}
+			disabled={disabled}
+			onPress={onPress}
+			{...props}>
 			<CheckBox
 				checked={selected}
 				disabled={disabled}
 				customSize={customSize}
 				borderRadius={customSize / 2}
-				onPress={onPress}
 			/>
-			<TouchableOpacity
-				onPress={onPress}
-				disabled={disabled}
-				style={checkLeft ? checkToLeft : checkToRight}>
+			<View style={checkLeft ? checkToLeft : checkToRight}>
 				{isStringChild ? <Text>{children}</Text> : children}
-			</TouchableOpacity>
-		</View>
+			</View>
+		</TouchableOpacity>
 	);
 };
 

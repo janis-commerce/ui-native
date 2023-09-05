@@ -3,7 +3,7 @@ import RadioButton from '../../../src/components/RadioButton';
 import Image from '../../../src/components/Image';
 
 export default {
-	title: 'RadioButton',
+	title: 'Components/RadioButton',
 	argTypes: {
 		checkSize: {
 			options: ['sm', 'md', 'lg'],
