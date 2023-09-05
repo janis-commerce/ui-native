@@ -106,7 +106,7 @@
 			"npm run test:commit"
 		],
 		"*.{ts,tsx}": [
-			"tsc --noEmit"
+			"bash -c tsc --noEmit"
 		]
 	},
 	"dependencies": {
