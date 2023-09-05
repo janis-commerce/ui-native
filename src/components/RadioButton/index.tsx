@@ -57,6 +57,7 @@ const RadioButton = ({
 				customSize={customSize}
 				borderRadius={customSize / 2}
 			/>
+			<View />
 			<View style={checkLeft ? checkToLeft : checkToRight}>
 				{isStringChild ? <Text>{children}</Text> : children}
 			</View>
