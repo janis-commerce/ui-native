@@ -26,6 +26,30 @@ interface RadioButtonProps {
 	style?: ViewStyle;
 }
 
+const styles = StyleSheet.create({
+	container: {
+		alignItems: 'center',
+		paddingHorizontal: 16,
+		marginVertical: 10,
+		height: 'auto',
+	},
+
+	row: {
+		flexDirection: 'row',
+		justifyContent: 'flex-start',
+	},
+	reverseRow: {
+		flexDirection: 'row-reverse',
+		justifyContent: 'space-between',
+	},
+	checkToLeft: {
+		marginLeft: 15,
+	},
+	checkToRight: {
+		marginRight: 15,
+	},
+});
+
 const RadioButton = ({
 	children,
 	onPress,
@@ -63,29 +87,5 @@ const RadioButton = ({
 		</TouchableOpacity>
 	);
 };
-
-const styles = StyleSheet.create({
-	container: {
-		alignItems: 'center',
-		paddingHorizontal: 16,
-		marginVertical: 10,
-		height: 'auto',
-	},
-
-	row: {
-		flexDirection: 'row',
-		justifyContent: 'flex-start',
-	},
-	reverseRow: {
-		flexDirection: 'row-reverse',
-		justifyContent: 'space-between',
-	},
-	checkToLeft: {
-		marginLeft: 15,
-	},
-	checkToRight: {
-		marginRight: 15,
-	},
-});
 
 export default RadioButton;
