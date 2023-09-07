@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Added radio button component
+
 ### Fixed
 
 - Fixed lint staged command in order to check typescript errors on commits

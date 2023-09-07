@@ -8,5 +8,18 @@ import StatusChip from './components/StatusChip';
 import Input from './components/Input';
 import LoadingFullScreen from './components/LoadingFullScreen';
 import {palette} from './theme/palette';
+import RadioButton from './components/RadioButton';
 
-export {Text, Avatar, CheckBox, Image, Loading, Svg, StatusChip, Input, palette, LoadingFullScreen};
+export {
+	Text,
+	Avatar,
+	CheckBox,
+	Image,
+	Loading,
+	Svg,
+	StatusChip,
+	Input,
+	palette,
+	LoadingFullScreen,
+	RadioButton,
+};
