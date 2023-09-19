@@ -58,16 +58,10 @@ describe('Loading component', () => {
 					children={validProps.children}
 				/>
 			);
-			// const ViewComponent = root.findByType(Animated.View);
 			const PathComponent = root.findAllByType(Path);
-			// console.log('PathComponent :', PathComponent[1].props.stroke);
-			// const {borderBottomColor, borderLeftColor, borderRightColor} = ViewComponent.props.style;
 			const {stroke} = PathComponent[1].props;
 
 			expect(stroke).toBe(defaultProps.color);
-			// expect(borderBottomColor).toBe(defaultProps.color);
-			// expect(borderLeftColor).toBe(defaultProps.color);
-			// expect(borderRightColor).toBe(defaultProps.color);
 		});
 
 		it('duration when it is not exist', () => {
