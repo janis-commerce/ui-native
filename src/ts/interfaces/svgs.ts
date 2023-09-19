@@ -1,5 +1,5 @@
 import type {SvgProps} from 'react-native-svg';
-import {ViewProps} from 'react-native';
+import {ViewProps, Animated} from 'react-native';
 
 export const svgsNames = [
 	'empty-illustration',
@@ -18,4 +18,9 @@ export interface Isvg extends SvgProps, ViewProps {
 	height?: number;
 	size?: number;
 	xmlns?: string;
+}
+
+export interface IanimatedView extends Animated.AnimatedProps<ViewProps> {
+	size?: number;
+	color?: string;
 }
