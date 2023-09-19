@@ -1,8 +1,12 @@
 import Svg, {Path} from 'react-native-svg';
 import React from 'react';
-import {Animated} from 'react-native';
+import {Animated, ViewProps} from 'react-native';
 import {white} from '../../../theme/palette';
-import type {IanimatedView} from '../../../ts/interfaces/svgs';
+
+interface IanimatedView extends Animated.AnimatedProps<ViewProps> {
+	size?: number;
+	color?: string;
+}
 
 const LoadingSvg = ({size, color, ...props}: IanimatedView) => {
 	return (
