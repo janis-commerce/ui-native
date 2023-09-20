@@ -81,7 +81,7 @@ const Loading: FC<Props> = ({
 
 	return (
 		<View style={[styles.container, style]} {...props}>
-			<LoadingSvg style={{...styles.spinner, ...animationSpinnerStyle}} size={size} color={color} />
+			<LoadingSvg style={[styles.spinner, {...animationSpinnerStyle}]} size={size} color={color} />
 			{children}
 		</View>
 	);
