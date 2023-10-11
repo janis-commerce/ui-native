@@ -15,6 +15,24 @@ The minimum required versions for using the package are **react: 17.0.2** and **
 npm install @janiscommerce/ui-native
 ```
 
+## Icons Installation
+
+You will need to add the following lines in the **android/app/build.gradle** file:
+
+```sh
+  android {
+    ...
+    sourceSets {
+      main {
+        assets.srcDirs += [
+          'src/main/assets',
+          '../../node_modules/@janiscommerce/ui-native/dist/android/app/src/main/assets'
+        ]
+      }
+    }  
+  }
+```
+
 ## Usage Example
 
 A quick example of how to import a component and start using **@janiscommerce/ui-native**:
