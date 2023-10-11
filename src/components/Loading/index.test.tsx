@@ -1,7 +1,8 @@
 import React from 'react';
 import {create} from 'react-test-renderer';
-import {Animated, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
 import Loading from './';
+import {Path} from 'react-native-svg';
 
 jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
 jest.spyOn(React, 'useEffect').mockImplementation((f) => f());
@@ -57,12 +58,10 @@ describe('Loading component', () => {
 					children={validProps.children}
 				/>
 			);
-			const ViewComponent = root.findByType(Animated.View);
-			const {borderBottomColor, borderLeftColor, borderRightColor} = ViewComponent.props.style;
+			const PathComponent = root.findAllByType(Path);
+			const {stroke} = PathComponent[1].props;
 
-			expect(borderBottomColor).toBe(defaultProps.color);
-			expect(borderLeftColor).toBe(defaultProps.color);
-			expect(borderRightColor).toBe(defaultProps.color);
+			expect(stroke).toBe(defaultProps.color);
 		});
 
 		it('duration when it is not exist', () => {

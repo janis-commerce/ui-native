@@ -1,6 +1,7 @@
 import React, {useEffect, useRef, FC} from 'react';
-import {StyleSheet, View, Animated, Easing, ColorValue, ViewStyle} from 'react-native';
-import {primary, white} from '../../theme/palette';
+import {StyleSheet, View, Animated, Easing, ViewStyle} from 'react-native';
+import LoadingSvg from './LoadingSvg';
+import {primary} from '../../theme/palette';
 
 interface Params {
 	duration: number;
@@ -9,7 +10,7 @@ interface Params {
 }
 interface Props {
 	isLoading: boolean;
-	color?: ColorValue;
+	color?: string;
 	size?: number;
 	duration?: number;
 	children?: React.ReactNode | null;
@@ -49,12 +50,8 @@ const Loading: FC<Props> = ({
 			position: 'absolute',
 			width: size,
 			height: size,
-			borderTopColor: white.dark,
-			borderLeftColor: color,
-			borderRightColor: color,
-			borderBottomColor: color,
-			borderRadius: size / 2,
-			borderWidth: 3.5,
+			justifyContent: 'center',
+			alignItems: 'center',
 		},
 	});
 	const animationSpinnerStyle = {
@@ -84,7 +81,7 @@ const Loading: FC<Props> = ({
 
 	return (
 		<View style={[styles.container, style]} {...props}>
-			<Animated.View style={{...styles.spinner, ...animationSpinnerStyle}} />
+			<LoadingSvg style={[styles.spinner, {...animationSpinnerStyle}]} size={size} color={color} />
 			{children}
 		</View>
 	);

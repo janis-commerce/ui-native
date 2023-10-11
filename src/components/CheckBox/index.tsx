@@ -12,6 +12,7 @@ interface CheckBoxProps {
 	borderRadius?: number;
 	disabled?: boolean;
 	style?: ViewStyle;
+	onPress?: () => {};
 }
 
 const getCheckBoxScale = (size: number, divisor: number): number => size / divisor;

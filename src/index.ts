@@ -9,6 +9,7 @@ import Input from './components/Input';
 import LoadingFullScreen from './components/LoadingFullScreen';
 import Icon from './components/Icon';
 import {palette} from './theme/palette';
+import RadioButton from './components/RadioButton';
 
 export {
 	Text,
@@ -22,4 +23,5 @@ export {
 	Input,
 	palette,
 	LoadingFullScreen,
+	RadioButton,
 };
