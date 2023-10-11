@@ -58,6 +58,7 @@ const getStories = () => {
 		'./storybook/stories/StatusChip/StatusChip.stories.js': require('../storybook/stories/StatusChip/StatusChip.stories.js'),
 		'./storybook/stories/Svg/Svg.stories.js': require('../storybook/stories/Svg/Svg.stories.js'),
 		'./storybook/stories/Text/Text.stories.js': require('../storybook/stories/Text/Text.stories.js'),
+		'./storybook/stories/RadioButton/RadioButton.stories.js': require('../storybook/stories/RadioButton/RadioButton.stories.js'),
 	};
 };
 
