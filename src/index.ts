@@ -9,6 +9,7 @@ import Input from './components/Input';
 import LoadingFullScreen from './components/LoadingFullScreen';
 import {palette} from './theme/palette';
 import RadioButton from './components/RadioButton';
+import {BottomDrawer,BottomDrawerFlatList} from './components/BottomDrawer';
 
 export {
 	Text,
@@ -22,4 +23,6 @@ export {
 	palette,
 	LoadingFullScreen,
 	RadioButton,
+	BottomDrawer,
+	BottomDrawerFlatList
 };
