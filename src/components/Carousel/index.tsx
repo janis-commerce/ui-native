@@ -51,43 +51,41 @@ const Carousel: FC<CarouselProps> = ({
 		}
 	};
 
-	const goPrev = useCallback(() => {
-		if (isLoop && activePage === 0) {
-			slider?.current?.scrollTo({
-				x: (activePage + pages.length - 1) * width,
+	const goNext = useCallback(() => {
+		if (isLoop && activePage === pages.length - 1) {
+			slider.current?.scrollTo({
+				x: (activePage - pages.length - 1) * width,
 				animated: true,
 			});
 		} else {
-			slider?.current?.scrollTo({
-				x: (activePage - 1) * width,
+			slider.current?.scrollTo({
+				x: (activePage + 1) * width,
 				animated: true,
 			});
 		}
-
-		if (!isLoop) {
-			slider?.current?.scrollTo({
-				x: (activePage - 1) * width,
+		if (!isLoop && activePage !== pages.length - 1) {
+			slider.current?.scrollTo({
+				x: (activePage + 1) * width,
 				animated: true,
 			});
 		}
 	}, [activePage, isLoop, width, pages.length]);
 
-	const goNext = useCallback(() => {
-		if (isLoop && activePage === pages.length - 1) {
-			slider?.current?.scrollTo({
-				x: (activePage - pages.length - 1) * width,
+	const goPrev = useCallback(() => {
+		if (isLoop && activePage === 0) {
+			slider.current?.scrollTo({
+				x: (activePage + pages.length - 1) * width,
 				animated: true,
 			});
 		} else {
-			slider?.current?.scrollTo({
-				x: (activePage + 1) * width,
+			slider.current?.scrollTo({
+				x: (activePage - 1) * width,
 				animated: true,
 			});
 		}
-
-		if (!isLoop && activePage !== pages.length - 1) {
-			slider?.current?.scrollTo({
-				x: (activePage + 1) * width,
+		if (!isLoop) {
+			slider.current?.scrollTo({
+				x: (activePage - 1) * width,
 				animated: true,
 			});
 		}
@@ -95,7 +93,7 @@ const Carousel: FC<CarouselProps> = ({
 
 	const initAutoPlay = useCallback(() => {
 		/* istanbul ignore next */
-		setInterval(() => {
+		return setInterval(() => {
 			if (autoplay && !autoPlayReverse) {
 				goNext();
 			}
@@ -116,10 +114,10 @@ const Carousel: FC<CarouselProps> = ({
 	}, [pages, activePage, goPrev, goNext, callback]);
 
 	useEffect(() => {
-		if (autoplay || autoPlayReverse) {
-			initAutoPlay();
-		}
-	}, [autoPlayReverse, autoplay, initAutoPlay]);
+		const intervalId = initAutoPlay();
+		/* istanbul ignore next */
+		return () => clearInterval(intervalId);
+	}, [initAutoPlay]);
 
 	useEffect(() => {
 		if (callback) {
