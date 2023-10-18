@@ -15,7 +15,7 @@
 		"lint": "eslint .",
 		"prepare": "husky install",
 		"validate:code": "npm run lint -- --fix && tsc --noEmit && npm t",
-		"test:commit": "jest --colors --bail --findRelatedTests --forceExit",
+		"test:commit": "jest --colors --bail --findRelatedTests --detectOpenHandles",
 		"test:coverage": "tsc --noEmit && jest --collectCoverage",
 		"build": "rm -rf dist && tsc",
 		"storybook": "react-native-storybook-server",
