@@ -1,9 +1,10 @@
 import * as React from 'react';
 import {create} from 'react-test-renderer';
+import {ScrollView} from 'react-native';
 import Text from '../Text';
 import Carousel from './';
 
-const validPages = [<Text>Page</Text>, <Text>Page</Text>];
+const validPages = [<Text>Page</Text>, <Text>Page</Text>, <Text>Page</Text>];
 const validProps = {
 	pages: validPages,
 	isLoop: true,
@@ -13,6 +14,7 @@ const validProps = {
 	callback: {},
 };
 
+const scrollTo = jest.fn();
 const setActivePage = jest.fn();
 const spyUseEffect = jest.spyOn(React, 'useEffect');
 const spyUseState = jest.spyOn(React, 'useState');
@@ -21,55 +23,42 @@ const spyUseRef = jest.spyOn(React, 'useRef');
 describe('Carousel component', () => {
 	it('it is rendered correctly', async () => {
 		spyUseState.mockReturnValueOnce([0, setActivePage]);
-		spyUseRef.mockReturnValueOnce({
-			current: {
-				scrollTo: jest.fn((f) => f()),
-			},
-		});
+		spyUseRef.mockReturnValueOnce({current: {scrollTo}});
 		spyUseEffect.mockImplementation((f) => f());
 
 		const CarouselComp = create(<Carousel pages={validProps.pages} />).toJSON();
 		await expect(CarouselComp).toBeTruthy();
 	});
 
-	// describe('ScrollTo', () => {
-	// 	it('left', () => {
-	// 		spyUseEffect.mockImplementation((f) => f());
-	// 		spyUseRef.mockReturnValueOnce({
-	// 			current: {
-	// 				scrollTo: {
-	// 					x: 360,
-	// 					animated: true,
-	// 				},
-	// 			},
-	// 		});
-	// 		const {root} = create(<Carousel pages={validProps.pages} />);
+	describe('chage page when', () => {
+		it('scroll it', () => {
+			spyUseState.mockReturnValueOnce([0, setActivePage]);
+			spyUseRef.mockReturnValueOnce({current: {scrollTo}});
+			spyUseEffect.mockImplementation((f) => f());
 
-	// 		const ScrollComp = root.findAllByType(ScrollView);
-	// 		ScrollComp[0].props.onScroll();
-	// 		console.log(ScrollComp[0].props);
+			const {root} = create(<Carousel pages={validProps.pages} />);
 
-	// 		expect(root).toBeTruthy();
-	// 	});
-	// });
+			const [ScrollComp] = root.findAllByType(ScrollView);
+			ScrollComp.props.onScroll({
+				nativeEvent: {contentOffset: {x: 360, layoutMeasurement: {width: 360}}},
+			});
+
+			expect(root).toBeTruthy();
+		});
+	});
 
 	describe('go preview page', () => {
 		it('using goPrev option on callback without isLoop', () => {
 			spyUseState.mockReturnValueOnce([0, setActivePage]);
-			spyUseRef.mockReturnValueOnce({
-				current: {
-					scrollTo: jest.fn((f) => f()),
-				},
-			});
+			spyUseRef.mockReturnValueOnce({current: {scrollTo}});
 			spyUseEffect.mockImplementation((f) => f());
 
 			const CarouselComp = create(
 				<Carousel
 					pages={validProps.pages}
 					callback={(params) => {
-						params.goNext();
-						params.goNext();
-						params.goNext();
+						params.goPrev();
+						params.goPrev();
 					}}
 				/>
 			).toJSON();
@@ -78,21 +67,32 @@ describe('Carousel component', () => {
 
 		it('using goPrev option on callback with isLoop', () => {
 			spyUseState.mockReturnValueOnce([0, setActivePage]);
+			spyUseRef.mockReturnValueOnce({current: {scrollTo}});
 			spyUseEffect.mockImplementation((f) => f());
-			spyUseRef.mockReturnValueOnce({
-				current: {
-					scrollTo: {
-						x: 360,
-						animated: true,
-					},
-				},
-			});
+
 			const {root} = create(
 				<Carousel
 					pages={validProps.pages}
 					isLoop={validProps.isLoop}
 					callback={(params) => {
 						params.goPrev();
+						params.goPrev();
+					}}
+				/>
+			);
+			expect(root).toBeTruthy();
+		});
+
+		it('using goPrev option on callback with isLoop & active page is not zero', () => {
+			spyUseState.mockReturnValueOnce([1, setActivePage]);
+			spyUseRef.mockReturnValueOnce({current: {scrollTo}});
+			spyUseEffect.mockImplementation((f) => f());
+
+			const {root} = create(
+				<Carousel
+					pages={validProps.pages}
+					isLoop={validProps.isLoop}
+					callback={(params) => {
 						params.goPrev();
 						params.goPrev();
 					}}
@@ -103,23 +103,15 @@ describe('Carousel component', () => {
 	});
 
 	describe('go next page', () => {
-		it('using goPrev option on callback without isLoop', () => {
+		it('using goNext option on callback without isLoop  & active page is not last page', () => {
 			spyUseState.mockReturnValueOnce([0, setActivePage]);
+			spyUseRef.mockReturnValueOnce({current: {scrollTo}});
 			spyUseEffect.mockImplementation((f) => f());
-			spyUseRef.mockReturnValueOnce({
-				current: {
-					scrollTo: {
-						x: 360,
-						animated: true,
-					},
-				},
-			});
+
 			const {root} = create(
 				<Carousel
 					pages={validProps.pages}
 					callback={(params) => {
-						params.goNext();
-						params.goNext();
 						params.goNext();
 					}}
 				/>
@@ -127,24 +119,33 @@ describe('Carousel component', () => {
 			expect(root).toBeTruthy();
 		});
 
-		it('using goPrev option on callback with isLoop', () => {
-			spyUseState.mockReturnValueOnce([0, setActivePage]);
+		it('using goNext option on callback with isLoop & active page is last page', () => {
+			spyUseState.mockReturnValueOnce([2, setActivePage]);
+			spyUseRef.mockReturnValueOnce({current: {scrollTo}});
 			spyUseEffect.mockImplementation((f) => f());
-			spyUseRef.mockReturnValueOnce({
-				current: {
-					scrollTo: {
-						x: 360,
-						animated: true,
-					},
-				},
-			});
+
 			const {root} = create(
 				<Carousel
 					pages={validProps.pages}
 					isLoop={validProps.isLoop}
 					callback={(params) => {
 						params.goNext();
-						params.goNext();
+					}}
+				/>
+			);
+			expect(root).toBeTruthy();
+		});
+
+		it('using goNext option on callback with isLoop & active page is not last page', () => {
+			spyUseState.mockReturnValueOnce([0, setActivePage]);
+			spyUseRef.mockReturnValueOnce({current: {scrollTo}});
+			spyUseEffect.mockImplementation((f) => f());
+
+			const {root} = create(
+				<Carousel
+					pages={validProps.pages}
+					isLoop={validProps.isLoop}
+					callback={(params) => {
 						params.goNext();
 					}}
 				/>
@@ -153,56 +154,42 @@ describe('Carousel component', () => {
 		});
 	});
 
-	it('autoplay', () => {
-		spyUseState.mockReturnValueOnce([0, setActivePage]);
-		spyUseEffect.mockImplementation((f) => f());
-		spyUseRef.mockReturnValueOnce({
-			current: {
-				scrollTo: {
-					x: 360,
-					animated: true,
-				},
-			},
-		});
-		const {root} = create(
-			<Carousel
-				pages={validProps.pages}
-				isLoop={validProps.isLoop}
-				autoplay={validProps.autoplay}
-				callback={(params) => {
-					params.goNext();
-					params.goNext();
-					params.goNext();
-				}}
-			/>
-		);
-		expect(root).toBeTruthy();
-	});
+	describe('autoplay when', () => {
+		it('is autoplay', () => {
+			spyUseState.mockReturnValueOnce([0, setActivePage]);
+			spyUseRef.mockReturnValueOnce({current: {scrollTo}});
+			spyUseEffect.mockImplementation((f) => f());
 
-	it('autoplay in reverse', () => {
-		spyUseState.mockReturnValueOnce([0, setActivePage]);
-		spyUseEffect.mockImplementation((f) => f());
-		spyUseRef.mockReturnValueOnce({
-			current: {
-				scrollTo: {
-					x: 360,
-					animated: true,
-				},
-			},
+			const {root} = create(
+				<Carousel
+					pages={validProps.pages}
+					isLoop={validProps.isLoop}
+					autoplay={validProps.autoplay}
+					autoPlayReverse={false}
+				/>
+			);
+			// jest.advanceTimersByTime(4000);
+
+			expect(root).toBeTruthy();
 		});
-		const {root} = create(
-			<Carousel
-				pages={validProps.pages}
-				isLoop={validProps.isLoop}
-				autoPlayReverse={validProps.autoplay}
-				callback={(params) => {
-					params.goNext();
-					params.goNext();
-					params.goNext();
-				}}
-				customWidth={200}
-			/>
-		);
-		expect(root).toBeTruthy();
+
+		it('is autoplay in reverse', () => {
+			spyUseState.mockReturnValueOnce([0, setActivePage]);
+			spyUseRef.mockReturnValueOnce({current: {scrollTo}});
+			spyUseEffect.mockImplementation((f) => f());
+
+			const {root} = create(
+				<Carousel
+					pages={validProps.pages}
+					isLoop={validProps.isLoop}
+					autoplay={false}
+					autoPlayReverse={validProps.autoplay}
+					customWidth={200}
+				/>
+			);
+			// jest.advanceTimersByTime(4000);
+
+			expect(root).toBeTruthy();
+		});
 	});
 });

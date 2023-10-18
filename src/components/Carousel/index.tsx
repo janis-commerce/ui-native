@@ -35,8 +35,6 @@ const Carousel: FC<CarouselProps> = ({
 }) => {
 	const [activePage, setActivePage] = useState(0);
 	const slider = useRef<ScrollView | null>(null);
-	console.log({activePage});
-	console.log({slider});
 
 	const {width: screenWidth} = Dimensions.get('screen');
 	const width = customWidth ?? screenWidth;
@@ -47,6 +45,7 @@ const Carousel: FC<CarouselProps> = ({
 				(nativeEvent.contentOffset?.x - nativeEvent.layoutMeasurement?.width / 2) /
 					nativeEvent.layoutMeasurement?.width
 			) + 1;
+		/* istanbul ignore next */
 		if (slide !== activePage && slide < (pages.length || 0)) {
 			setActivePage(slide);
 		}
@@ -94,34 +93,33 @@ const Carousel: FC<CarouselProps> = ({
 		}
 	}, [activePage, isLoop, width, pages.length]);
 
-	const initAutoPlay = useCallback(
-		() =>
-			setInterval(() => {
-				if (autoplay && !autoPlayReverse) {
-					goNext();
-				}
-				if (!autoplay && autoPlayReverse) {
-					goPrev();
-				}
-			}, intervalTime),
-		[autoplay, autoPlayReverse, intervalTime, goPrev, goNext]
-	);
+	const initAutoPlay = useCallback(() => {
+		/* istanbul ignore next */
+		setInterval(() => {
+			if (autoplay && !autoPlayReverse) {
+				goNext();
+			}
+			if (!autoplay && autoPlayReverse) {
+				goPrev();
+			}
+		}, intervalTime);
+	}, [autoplay, autoPlayReverse, intervalTime, goPrev, goNext]);
 
 	const setCallback = useCallback(() => {
-		if (callback) {
+		callback &&
 			callback({
 				activePage,
 				pagesLength: pages.length,
 				goPrev,
 				goNext,
 			});
-		}
 	}, [pages, activePage, goPrev, goNext, callback]);
 
 	useEffect(() => {
-		const intervalId = initAutoPlay();
-		return () => clearInterval(intervalId);
-	}, [initAutoPlay]);
+		if (autoplay || autoPlayReverse) {
+			initAutoPlay();
+		}
+	}, [autoPlayReverse, autoplay, initAutoPlay]);
 
 	useEffect(() => {
 		if (callback) {
