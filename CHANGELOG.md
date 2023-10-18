@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Added icon component with Janis fonts
+- Added select component
 
 ## [1.0.4] - 2023-09-29
 
