@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useRef, useState} from 'react';
+import React, {FC, useCallback, useEffect, useRef, useState} from 'react';
 import {
 	Dimensions,
 	NativeScrollEvent,
@@ -14,76 +14,81 @@ interface CarouselProps {
 	autoplay?: boolean;
 	autoPlayReverse?: boolean;
 	intervalTime?: number;
+	customWidth?: number;
 	callback?: (params: {
 		activePage: number;
 		pagesLength: number;
-		goToPage: (pageNumber: number) => void;
 		goPrev: () => void;
 		goNext: () => void;
 	}) => void | null;
 }
 
-const Carousel = ({
-	pages = [],
-	isLoop = true,
+const Carousel: FC<CarouselProps> = ({
+	pages,
+	isLoop = false,
 	autoplay = false,
 	autoPlayReverse = false,
-	intervalTime = 300,
+	intervalTime = 4000,
+	customWidth,
 	callback,
 	...props
-}: CarouselProps) => {
+}) => {
 	const [activePage, setActivePage] = useState(0);
 	const slider = useRef<ScrollView | null>(null);
-	const {width} = Dimensions.get('window');
+	console.log({activePage});
+	console.log({slider});
+
+	const {width: screenWidth} = Dimensions.get('screen');
+	const width = customWidth ?? screenWidth;
 
 	const onPageChange = ({nativeEvent}: NativeSyntheticEvent<NativeScrollEvent>) => {
 		const slide =
 			Math.floor(
-				(nativeEvent.contentOffset.x - nativeEvent.layoutMeasurement.width / 2) /
-					nativeEvent.layoutMeasurement.width
+				(nativeEvent.contentOffset?.x - nativeEvent.layoutMeasurement?.width / 2) /
+					nativeEvent.layoutMeasurement?.width
 			) + 1;
-		if (slide !== activePage && slide < (pages?.length || 0)) {
+		if (slide !== activePage && slide < (pages.length || 0)) {
 			setActivePage(slide);
 		}
 	};
 
-	const goNext = useCallback(() => {
-		if (isLoop && activePage === pages.length - 1) {
-			slider.current?.scrollTo({
-				x: (activePage - pages.length - 1) * width,
-				animated: true,
-			});
-		} else {
-			slider.current?.scrollTo({
-				x: (activePage + 1) * width,
-				animated: true,
-			});
-		}
-
-		if (!isLoop && activePage !== pages.length - 1) {
-			slider.current?.scrollTo({
-				x: (activePage + 1) * width,
-				animated: true,
-			});
-		}
-	}, [activePage, isLoop, width, pages.length]);
-
 	const goPrev = useCallback(() => {
 		if (isLoop && activePage === 0) {
-			slider.current?.scrollTo({
+			slider?.current?.scrollTo({
 				x: (activePage + pages.length - 1) * width,
 				animated: true,
 			});
 		} else {
-			slider.current?.scrollTo({
+			slider?.current?.scrollTo({
 				x: (activePage - 1) * width,
 				animated: true,
 			});
 		}
 
 		if (!isLoop) {
-			slider.current?.scrollTo({
+			slider?.current?.scrollTo({
 				x: (activePage - 1) * width,
+				animated: true,
+			});
+		}
+	}, [activePage, isLoop, width, pages.length]);
+
+	const goNext = useCallback(() => {
+		if (isLoop && activePage === pages.length - 1) {
+			slider?.current?.scrollTo({
+				x: (activePage - pages.length - 1) * width,
+				animated: true,
+			});
+		} else {
+			slider?.current?.scrollTo({
+				x: (activePage + 1) * width,
+				animated: true,
+			});
+		}
+
+		if (!isLoop && activePage !== pages.length - 1) {
+			slider?.current?.scrollTo({
+				x: (activePage + 1) * width,
 				animated: true,
 			});
 		}
@@ -107,12 +112,11 @@ const Carousel = ({
 			callback({
 				activePage,
 				pagesLength: pages.length,
-				goToPage: (pageNumber) => setActivePage(pageNumber),
 				goPrev,
 				goNext,
 			});
 		}
-	}, [pages, activePage, setActivePage, goPrev, goNext, callback]);
+	}, [pages, activePage, goPrev, goNext, callback]);
 
 	useEffect(() => {
 		const intervalId = initAutoPlay();
@@ -126,18 +130,14 @@ const Carousel = ({
 	}, [callback, setCallback]);
 
 	const styles = StyleSheet.create({
-		container: {
-			flex: 1,
-			width: '100%',
-		},
-		item: {
+		page: {
 			width,
 			alignItems: 'center',
 		},
 	});
 
 	return (
-		<View style={styles.container} {...props}>
+		<View>
 			<ScrollView
 				ref={slider}
 				snapToInterval={width}
@@ -146,12 +146,14 @@ const Carousel = ({
 				onScroll={onPageChange}
 				scrollEventThrottle={16}
 				horizontal
-				showsHorizontalScrollIndicator={false}>
-				{pages.map((page, index) => (
-					<View key={`${index}`} style={styles.item}>
-						{page}
-					</View>
-				))}
+				showsHorizontalScrollIndicator={false}
+				{...props}>
+				{pages.length &&
+					pages.map((page, index) => (
+						<View key={`${index}`} style={styles.page}>
+							{page}
+						</View>
+					))}
 			</ScrollView>
 		</View>
 	);
