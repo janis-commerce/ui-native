@@ -7,3 +7,18 @@ jest.mock('react', () => {
 		useEffect: jest.fn(react.useEffect),
 	};
 });
+
+jest.mock('react-native-reanimated', () =>
+	jest.requireActual('../node_modules/react-native-reanimated/mock')
+);
+
+jest.mock('@gorhom/bottom-sheet', () => {
+	const react = require('react-native');
+	return {
+		__esModule: true,
+		default: react.View,
+		BottomSheetScrollView: react.ScrollView,
+		BottomSheetFlatList: react.FlatList,
+		BottomSheetView: react.View,
+	};
+});

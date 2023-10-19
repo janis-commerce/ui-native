@@ -10,7 +10,11 @@ import LoadingFullScreen from './components/LoadingFullScreen';
 import {palette} from './theme/palette';
 import RadioButton from './components/RadioButton';
 import SwipeUp from './components/SwipeUp';
-import { SwipeUpFlatList, SwipeUpScrollView, SwipeUpView } from './components/SwipeUp/childComponents'; 
+import {
+	SwipeUpFlatList,
+	SwipeUpScrollView,
+	SwipeUpView,
+} from './components/SwipeUp/childComponents';
 
 export {
 	Text,
@@ -27,5 +31,5 @@ export {
 	SwipeUp,
 	SwipeUpFlatList,
 	SwipeUpScrollView,
-	SwipeUpView
+	SwipeUpView,
 };
