@@ -9,7 +9,8 @@ import Input from './components/Input';
 import LoadingFullScreen from './components/LoadingFullScreen';
 import {palette} from './theme/palette';
 import RadioButton from './components/RadioButton';
-import BottomDrawer from './components/BottomDrawer';
+import SwipeUp from './components/SwipeUp';
+import { SwipeUpFlatList, SwipeUpScrollView, SwipeUpView } from './components/SwipeUp/childComponents'; 
 
 export {
 	Text,
@@ -23,5 +24,8 @@ export {
 	palette,
 	LoadingFullScreen,
 	RadioButton,
-	BottomDrawer
+	SwipeUp,
+	SwipeUpFlatList,
+	SwipeUpScrollView,
+	SwipeUpView
 };
