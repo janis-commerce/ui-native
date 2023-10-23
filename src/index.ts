@@ -7,6 +7,8 @@ import Loading from './components/Loading';
 import StatusChip from './components/StatusChip';
 import Input from './components/Input';
 import LoadingFullScreen from './components/LoadingFullScreen';
+import Icon from './components/Icon';
+import Select from './components/Select';
 import {palette} from './theme/palette';
 import RadioButton from './components/RadioButton';
 import SwipeUp from './components/SwipeUp';
@@ -20,6 +22,7 @@ export {
 	Text,
 	Avatar,
 	CheckBox,
+	Icon,
 	Image,
 	Loading,
 	Svg,
@@ -28,6 +31,7 @@ export {
 	palette,
 	LoadingFullScreen,
 	RadioButton,
+	Select,
 	SwipeUp,
 	SwipeUpFlatList,
 	SwipeUpScrollView,

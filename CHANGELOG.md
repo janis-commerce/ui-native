@@ -9,11 +9,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Added icon component with Janis fonts
+- Added select component
+
+## [1.0.4] - 2023-09-29
+
+### Changed
+
+- Updated lockfileVersion to 2
+
+### Added
+
 - Added radio button component
 
 ### Fixed
 
 - Fixed lint staged command in order to check typescript errors on commits
+- Fixed Loading component in order to work with android 7 devices
 
 ## [1.0.3] - 2023-08-24
 

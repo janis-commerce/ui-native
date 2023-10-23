@@ -25,8 +25,8 @@ export default {
 
 const styles = StyleSheet.create({
 	screenStyle: {
-		height: '100%',
-		width: '100%',
+		flex: 1,
+		height: 400,
 	},
 	wrapperStyle: {
 		backgroundColor: 'rgb(122, 193, 224)',
@@ -36,7 +36,6 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 		backgroundColor: 'rgb(122, 193, 224)',
-		zIndex: 10,
 	},
 });
 
@@ -45,7 +44,7 @@ export const WithSwipeUpViewComponent = (props) => {
 		<GestureHandlerRootView style={styles.screenStyle}>
 			<SwipeUp swipeWrapperStyle={styles.wrapperStyle} {...props}>
 				<SwipeUpView style={styles.contentStyle}>
-					<Svg name="empty-list-illustration" size={250} />
+					<Svg name="no-notifications" size={250} />
 				</SwipeUpView>
 			</SwipeUp>
 		</GestureHandlerRootView>
