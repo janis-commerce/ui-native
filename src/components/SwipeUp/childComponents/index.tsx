@@ -1,7 +1,9 @@
-import React, {EffectCallback, DependencyList, JSX} from 'react';
+import React, {EffectCallback, DependencyList, JSX, Ref} from 'react';
 import {
 	BottomSheetFlatList,
+	BottomSheetFlatListMethods,
 	BottomSheetScrollView,
+	BottomSheetScrollViewMethods,
 	BottomSheetScrollableProps,
 	BottomSheetView,
 } from '@gorhom/bottom-sheet';
@@ -15,28 +17,35 @@ type SwipeUpFlatListProps<T> = FlatListProps<T> & BottomSheetScrollableProps;
 type SwipeUpScrollViewProps = ScrollViewProps & BottomSheetScrollableProps;
 type SwipeUpViewProps = ViewProps & BottomSheetFocusProps;
 
-export const SwipeUpFlatList = <T,>({
-	data,
-	renderItem,
-	...props
-}: SwipeUpFlatListProps<T>): JSX.Element | null => {
-	if (!data || !data.length || !renderItem) {
-		return null;
+export const SwipeUpFlatList = React.forwardRef(
+	<T,>(
+		{data, renderItem, ...props}: SwipeUpFlatListProps<T>,
+		ref: Ref<BottomSheetFlatListMethods>
+	): JSX.Element | null => {
+		if (!data || !data.length || !renderItem) {
+			return null;
+		}
+
+		return <BottomSheetFlatList ref={ref} data={data} renderItem={renderItem} {...props} />;
 	}
+);
 
-	return <BottomSheetFlatList data={data} renderItem={renderItem} {...props} />;
-};
+export const SwipeUpScrollView = React.forwardRef(
+	(
+		{children, ...props}: SwipeUpScrollViewProps,
+		ref: Ref<BottomSheetScrollViewMethods>
+	): JSX.Element | null => {
+		if (!children) {
+			return null;
+		}
 
-export const SwipeUpScrollView = ({
-	children,
-	...props
-}: SwipeUpScrollViewProps): JSX.Element | null => {
-	if (!children) {
-		return null;
+		return (
+			<BottomSheetScrollView ref={ref} {...props}>
+				{children}
+			</BottomSheetScrollView>
+		);
 	}
-
-	return <BottomSheetScrollView {...props}>{children}</BottomSheetScrollView>;
-};
+);
 
 export const SwipeUpView = ({children, ...props}: SwipeUpViewProps): JSX.Element | null => {
 	if (!children) {
