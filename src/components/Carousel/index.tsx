@@ -14,7 +14,7 @@ export interface CarouselProps {
 }
 
 const Carousel: FC<CarouselProps> = ({
-	pages,
+	pages = [],
 	isLoop = false,
 	autoplay = false,
 	autoPlayReverse = false,
