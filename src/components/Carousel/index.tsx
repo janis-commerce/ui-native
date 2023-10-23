@@ -1,26 +1,16 @@
-import React, {FC, useCallback, useEffect, useRef, useState} from 'react';
-import {
-	Dimensions,
-	NativeScrollEvent,
-	NativeSyntheticEvent,
-	ScrollView,
-	StyleSheet,
-	View,
-} from 'react-native';
+import React, {FC} from 'react';
+import {ScrollView, StyleSheet, View} from 'react-native';
+import useCarouselControls from './utils';
 
-interface CarouselProps {
+export interface CarouselProps {
 	pages: React.ReactNode[];
 	isLoop?: boolean;
 	autoplay?: boolean;
 	autoPlayReverse?: boolean;
 	intervalTime?: number;
 	customWidth?: number;
-	callback?: (params: {
-		activePage: number;
-		pagesLength: number;
-		goPrev: () => void;
-		goNext: () => void;
-	}) => void | null;
+	buttonsCallback?: (params: {goPrev: () => void; goNext: () => void}) => void | null;
+	pagesCallback?: (params: {activePage: number; pagesLength: number}) => void | null;
 }
 
 const Carousel: FC<CarouselProps> = ({
@@ -30,100 +20,21 @@ const Carousel: FC<CarouselProps> = ({
 	autoPlayReverse = false,
 	intervalTime = 4000,
 	customWidth,
-	callback,
+	buttonsCallback,
+	pagesCallback,
 	...props
 }) => {
-	const [activePage, setActivePage] = useState(0);
-	const slider = useRef<ScrollView | null>(null);
-
-	const {width: screenWidth} = Dimensions.get('screen');
-	const width = customWidth ?? screenWidth;
-
-	const onPageChange = ({nativeEvent}: NativeSyntheticEvent<NativeScrollEvent>) => {
-		const slide =
-			Math.floor(
-				(nativeEvent.contentOffset?.x - nativeEvent.layoutMeasurement?.width / 2) /
-					nativeEvent.layoutMeasurement?.width
-			) + 1;
-		/* istanbul ignore next */
-		if (slide !== activePage && slide < (pages.length || 0)) {
-			setActivePage(slide);
-		}
+	const carouselParams = {
+		pages,
+		isLoop,
+		autoplay,
+		autoPlayReverse,
+		intervalTime,
+		customWidth,
+		buttonsCallback,
+		pagesCallback,
 	};
-
-	const goNext = useCallback(() => {
-		if (isLoop && activePage === pages.length - 1) {
-			slider.current?.scrollTo({
-				x: (activePage - pages.length - 1) * width,
-				animated: true,
-			});
-		} else {
-			slider.current?.scrollTo({
-				x: (activePage + 1) * width,
-				animated: true,
-			});
-		}
-		if (!isLoop && activePage !== pages.length - 1) {
-			slider.current?.scrollTo({
-				x: (activePage + 1) * width,
-				animated: true,
-			});
-		}
-	}, [activePage, isLoop, width, pages.length]);
-
-	const goPrev = useCallback(() => {
-		if (isLoop && activePage === 0) {
-			slider.current?.scrollTo({
-				x: (activePage + pages.length - 1) * width,
-				animated: true,
-			});
-		} else {
-			slider.current?.scrollTo({
-				x: (activePage - 1) * width,
-				animated: true,
-			});
-		}
-		if (!isLoop) {
-			slider.current?.scrollTo({
-				x: (activePage - 1) * width,
-				animated: true,
-			});
-		}
-	}, [activePage, isLoop, width, pages.length]);
-
-	const initAutoPlay = useCallback(() => {
-		/* istanbul ignore next */
-		return setInterval(() => {
-			if (autoplay && !autoPlayReverse) {
-				goNext();
-			}
-			if (!autoplay && autoPlayReverse) {
-				goPrev();
-			}
-		}, intervalTime);
-	}, [autoplay, autoPlayReverse, intervalTime, goPrev, goNext]);
-
-	const setCallback = useCallback(() => {
-		callback &&
-			callback({
-				activePage,
-				pagesLength: pages.length,
-				goPrev,
-				goNext,
-			});
-	}, [pages, activePage, goPrev, goNext, callback]);
-
-	useEffect(() => {
-		const intervalId = initAutoPlay();
-		/* istanbul ignore next */
-		return () => clearInterval(intervalId);
-	}, [initAutoPlay]);
-
-	useEffect(() => {
-		if (callback) {
-			setCallback();
-		}
-	}, [callback, setCallback]);
+	const {slider, width, onPageChange} = useCarouselControls(carouselParams);
 
 	const styles = StyleSheet.create({
 		page: {

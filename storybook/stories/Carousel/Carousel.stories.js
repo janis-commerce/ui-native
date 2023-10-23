@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import {Button, Image, View} from 'react-native';
 import Text from '../../../src/components/Text';
 import Carousel from '../../../src/components/Carousel';
@@ -45,16 +45,27 @@ export default {
 };
 
 export const DefaultProps = (props) => {
-	const carouselRef = useRef({});
+	const [{activePage = 0, pagesLength = 0}, setPages] = useState({});
+	const previewPage = activePage + 1;
+	const totalPages = pagesLength + 1;
+
+	const buttonsRef = useRef({});
 
 	return (
 		<>
 			<View style={styles.container}>
-				<Carousel callback={(params) => (carouselRef.current = params)} {...props} />
+				<Carousel
+					buttonsCallback={(params) => (buttonsRef.current = params)}
+					pagesCallback={(params) => setPages(params)}
+					{...props}
+				/>
 			</View>
 			<View style={styles.containerButtons}>
-				<Button onPress={() => carouselRef.current.goPrev()} title=" <  prev " />
-				<Button onPress={() => carouselRef.current.goNext()} title=" next  > " />
+				<Button onPress={() => buttonsRef.current.goPrev()} title=" <  prev " />
+				<Text style={styles.pages}>
+					{previewPage} / {totalPages}
+				</Text>
+				<Button onPress={() => buttonsRef.current.goNext()} title=" next  > " />
 			</View>
 		</>
 	);
@@ -93,6 +104,9 @@ const styles = StyleSheet.create({
 		paddingVertical: 10,
 		flexDirection: 'row',
 		justifyContent: 'center',
-		gap: '10px',
+		alignItems: 'center',
+	},
+	pages: {
+		padding: 5,
 	},
 });

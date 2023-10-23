@@ -4,7 +4,7 @@ import {ScrollView} from 'react-native';
 import Text from '../Text';
 import Carousel from './';
 
-const validPages = [<Text>Page</Text>, <Text>Page</Text>, <Text>Page</Text>];
+const validPages = [<Text>Page1</Text>, <Text>Page2</Text>, <Text>Page3</Text>];
 const validProps = {
 	pages: validPages,
 	isLoop: true,
@@ -56,7 +56,7 @@ describe('Carousel component', () => {
 			const CarouselComp = create(
 				<Carousel
 					pages={validProps.pages}
-					callback={(params) => {
+					buttonsCallback={(params) => {
 						params.goPrev();
 						params.goPrev();
 					}}
@@ -74,7 +74,7 @@ describe('Carousel component', () => {
 				<Carousel
 					pages={validProps.pages}
 					isLoop={validProps.isLoop}
-					callback={(params) => {
+					buttonsCallback={(params) => {
 						params.goPrev();
 						params.goPrev();
 					}}
@@ -92,7 +92,7 @@ describe('Carousel component', () => {
 				<Carousel
 					pages={validProps.pages}
 					isLoop={validProps.isLoop}
-					callback={(params) => {
+					buttonsCallback={(params) => {
 						params.goPrev();
 						params.goPrev();
 					}}
@@ -111,7 +111,7 @@ describe('Carousel component', () => {
 			const {root} = create(
 				<Carousel
 					pages={validProps.pages}
-					callback={(params) => {
+					buttonsCallback={(params) => {
 						params.goNext();
 					}}
 				/>
@@ -128,7 +128,7 @@ describe('Carousel component', () => {
 				<Carousel
 					pages={validProps.pages}
 					isLoop={validProps.isLoop}
-					callback={(params) => {
+					buttonsCallback={(params) => {
 						params.goNext();
 					}}
 				/>
@@ -145,50 +145,11 @@ describe('Carousel component', () => {
 				<Carousel
 					pages={validProps.pages}
 					isLoop={validProps.isLoop}
-					callback={(params) => {
+					buttonsCallback={(params) => {
 						params.goNext();
 					}}
 				/>
 			);
-			expect(root).toBeTruthy();
-		});
-	});
-
-	describe('autoplay when', () => {
-		it('is autoplay', () => {
-			spyUseState.mockReturnValueOnce([0, setActivePage]);
-			spyUseRef.mockReturnValueOnce({current: {scrollTo}});
-			spyUseEffect.mockImplementation((f) => f());
-
-			const {root} = create(
-				<Carousel
-					pages={validProps.pages}
-					isLoop={validProps.isLoop}
-					autoplay={validProps.autoplay}
-					autoPlayReverse={false}
-				/>
-			);
-			// jest.advanceTimersByTime(4000);
-
-			expect(root).toBeTruthy();
-		});
-
-		it('is autoplay in reverse', () => {
-			spyUseState.mockReturnValueOnce([0, setActivePage]);
-			spyUseRef.mockReturnValueOnce({current: {scrollTo}});
-			spyUseEffect.mockImplementation((f) => f());
-
-			const {root} = create(
-				<Carousel
-					pages={validProps.pages}
-					isLoop={validProps.isLoop}
-					autoplay={false}
-					autoPlayReverse={validProps.autoplay}
-					customWidth={200}
-				/>
-			);
-			// jest.advanceTimersByTime(4000);
-
 			expect(root).toBeTruthy();
 		});
 	});
