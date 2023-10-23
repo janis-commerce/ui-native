@@ -30,6 +30,15 @@ describe('Carousel component', () => {
 		await expect(CarouselComp).toBeTruthy();
 	});
 
+	it('it returns null when page is not comming', async () => {
+		spyUseState.mockReturnValueOnce([0, setActivePage]);
+		spyUseRef.mockReturnValueOnce({current: {scrollTo}});
+		spyUseEffect.mockImplementation((f) => f());
+
+		const CarouselComp = create(<Carousel pages={[]} />).toJSON();
+		await expect(CarouselComp).toBe(null);
+	});
+
 	describe('chage page when', () => {
 		it('scroll it', () => {
 			spyUseState.mockReturnValueOnce([0, setActivePage]);

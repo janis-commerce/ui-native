@@ -14,7 +14,7 @@ export interface CarouselProps {
 }
 
 const Carousel: FC<CarouselProps> = ({
-	pages = [],
+	pages,
 	isLoop = false,
 	autoplay = false,
 	autoPlayReverse = false,
@@ -24,6 +24,10 @@ const Carousel: FC<CarouselProps> = ({
 	pagesCallback,
 	...props
 }) => {
+	if (!pages || !pages?.length) {
+		return null;
+	}
+
 	const carouselParams = {
 		pages,
 		isLoop,
@@ -34,6 +38,7 @@ const Carousel: FC<CarouselProps> = ({
 		buttonsCallback,
 		pagesCallback,
 	};
+	// eslint-disable-next-line react-hooks/rules-of-hooks
 	const {slider, width, onPageChange} = useCarouselControls(carouselParams);
 
 	const styles = StyleSheet.create({
