@@ -7,10 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2023-10-25
 ### Added
 
 - Added icon component with Janis fonts
 - Added select component
+- Added swipe up component and its children components
+- Added carousel component
 
 ## [1.0.4] - 2023-09-29
 
