@@ -17,6 +17,7 @@ import {
 	SwipeUpScrollView,
 	SwipeUpView,
 } from './components/SwipeUp/childComponents';
+import Carousel from './components/Carousel';
 
 export {
 	Text,
@@ -36,4 +37,5 @@ export {
 	SwipeUpFlatList,
 	SwipeUpScrollView,
 	SwipeUpView,
+	Carousel,
 };

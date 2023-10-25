@@ -5,6 +5,7 @@ jest.mock('react', () => {
 		...react,
 		useState: jest.fn(react.useState),
 		useEffect: jest.fn(react.useEffect),
+		useRef: jest.fn(react.useRef),
 	};
 });
 

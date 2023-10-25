@@ -8,7 +8,7 @@ const useStateSpy = jest.spyOn(React, 'useState');
 describe('Input', () => {
 	describe('it should not render', () => {
 		it('as there is no placeholder', () => {
-			const InputComp = create(<Input label="Test" />).toJSON();
+			const InputComp = create(<Input label="Test" placeholder={''} />).toJSON();
 			expect(InputComp).toBeFalsy();
 		});
 	});
