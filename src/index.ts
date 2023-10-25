@@ -11,6 +11,12 @@ import Icon from './components/Icon';
 import Select from './components/Select';
 import {palette} from './theme/palette';
 import RadioButton from './components/RadioButton';
+import SwipeUp from './components/SwipeUp';
+import {
+	SwipeUpFlatList,
+	SwipeUpScrollView,
+	SwipeUpView,
+} from './components/SwipeUp/childComponents';
 
 export {
 	Text,
@@ -26,4 +32,8 @@ export {
 	LoadingFullScreen,
 	RadioButton,
 	Select,
+	SwipeUp,
+	SwipeUpFlatList,
+	SwipeUpScrollView,
+	SwipeUpView,
 };

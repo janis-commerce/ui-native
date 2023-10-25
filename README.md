@@ -33,6 +33,23 @@ You will need to add the following lines in the **android/app/build.gradle** fil
   }
 ```
 
+## SwipeUp component dependencies
+
+You will need to have the following dependencies pre-installed:
+
+- **"@gorhom/bottom-sheet"** 
+- **"react-native-reanimated"** 
+- **"react-native-gesture-handler"**
+
+```sh
+ npm i react-native-reanimated react-native-gesture-handler @gorhom/bottom-sheet
+```
+
+- gesture-handler will allow you to recognize the actions performed by the user.
+
+- reanimated is responsible for displaying the animations in the bottom drawer.
+
+- Bottom-sheet is the one that provides the base components for our swipe
 ## Usage Example
 
 A quick example of how to import a component and start using **@janiscommerce/ui-native**:

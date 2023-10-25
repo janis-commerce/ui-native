@@ -4,7 +4,13 @@ module.exports = {
 		'@storybook/addon-actions',
 		'@storybook/addon-controls',
 		'@storybook/addon-essentials',
-		'@storybook/addon-react-native-web',
+		{
+			name: '@storybook/addon-react-native-web',
+			options: {
+				modulesToTranspile: ['react-native-reanimated', '@gorhom/bottom-sheet'],
+				babelPlugins: ['react-native-reanimated/plugin'],
+			},
+		},
 	],
 	core: {
 		builder: '@storybook/builder-webpack5',

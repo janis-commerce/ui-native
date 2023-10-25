@@ -54,12 +54,13 @@ const getStories = () => {
 		'./storybook/stories/Image/Image.stories.js': require('../storybook/stories/Image/Image.stories.js'),
 		'./storybook/stories/Input/Input.stories.js': require('../storybook/stories/Input/Input.stories.js'),
 		'./storybook/stories/Loading/Loading.stories.js': require('../storybook/stories/Loading/Loading.stories.js'),
-		'./storybook/stories/Select/Select.stories.js': require('../storybook/stories/Select/Select.stories.js'),
 		'./storybook/stories/LoadingFullScreen/LoadingFullScreen.stories.js': require('../storybook/stories/LoadingFullScreen/LoadingFullScreen.stories.js'),
+		'./storybook/stories/RadioButton/RadioButton.stories.js': require('../storybook/stories/RadioButton/RadioButton.stories.js'),
+		'./storybook/stories/Select/Select.stories.js': require('../storybook/stories/Select/Select.stories.js'),
 		'./storybook/stories/StatusChip/StatusChip.stories.js': require('../storybook/stories/StatusChip/StatusChip.stories.js'),
 		'./storybook/stories/Svg/Svg.stories.js': require('../storybook/stories/Svg/Svg.stories.js'),
+		'./storybook/stories/SwipeUp/SwipeUp.stories.js': require('../storybook/stories/SwipeUp/SwipeUp.stories.js'),
 		'./storybook/stories/Text/Text.stories.js': require('../storybook/stories/Text/Text.stories.js'),
-		'./storybook/stories/RadioButton/RadioButton.stories.js': require('../storybook/stories/RadioButton/RadioButton.stories.js'),
 	};
 };
 
