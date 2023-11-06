@@ -22,7 +22,7 @@ export const getPercentage = (value: number, totalValue: number): number => {
 		return 0;
 	}
 
-	if (value > totalValue) {
+	if (value >= totalValue) {
 		return totalValue;
 	}
 
