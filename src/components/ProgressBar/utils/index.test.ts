@@ -30,6 +30,11 @@ describe('getPercentage method', () => {
 			const response = getPercentage(10, 8);
 			expect(response).toBe(8);
 		});
+
+		it('when value is equals to totalValue', () => {
+			const response = getPercentage(8, 8);
+			expect(response).toBe(8);
+		});
 	});
 
 	describe('return a number when', () => {
