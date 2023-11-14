@@ -19,6 +19,7 @@ import {
 } from './components/SwipeUp/childComponents';
 import Carousel from './components/Carousel';
 import ProgressBar from './components/ProgressBar';
+import BaseButton from './components/BaseButton';
 
 export {
 	Text,
@@ -40,4 +41,5 @@ export {
 	SwipeUpView,
 	Carousel,
 	ProgressBar,
+	BaseButton,
 };
