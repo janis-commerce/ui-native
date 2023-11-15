@@ -1,41 +1,79 @@
-import React from 'react';
+import React, {useState} from 'react';
 import BaseButton from '../../../src/components/BaseButton';
+import CheckBox from '../../../src/components/CheckBox';
 import {StyleSheet, View, Text} from 'react-native';
 import {palette} from '../../../src/theme/palette';
 
 export default {
 	title: 'Components/BaseButton',
-	argTypes: {},
+	argTypes: {
+		icon: {
+			options: {None: null, 'Plus Circle': 'plus_circle'},
+			control: {type: 'select'},
+		},
+		borderRadius: {control: 'number', min: 0},
+	},
 };
-
-const styles = StyleSheet.create({
-	container: {
-		backgroundColor: palette.primary.dark,
-		marginVertical: 4,
-		borderRadius: 20,
-		padding: 5,
-		width: '100%',
-	},
-	text: {
-		color: palette.base.white,
-		fontWeight: 'bold',
-		textAlign: 'center',
-	},
-});
-
-const ChildrenComponents = (
-	<View style={styles.container}>
-		<Text style={styles.text}>Custom Children</Text>
-	</View>
-);
 
 export const DefaultProps = (props) => <BaseButton {...props} />;
 
+DefaultProps.storyName = 'Default props';
+
 DefaultProps.args = {
-	title: 'Aplicar',
+	title: 'Button',
+	icon: null,
 	disabled: false,
-	icon: 'plus_circle',
 	iconRight: false,
-	children: ChildrenComponents,
-	style: {width: '100%'},
+	borderRadius: 25,
+};
+
+export const WithChildren = (props) => {
+	const [isChecked, setIsChecked] = useState(false);
+
+	const styles = StyleSheet.create({
+		container: {
+			display: 'flex',
+			flexDirection: 'row',
+			justifyContent: 'center',
+			alignItems: 'center',
+			marginVertical: 4,
+			borderRadius: 20,
+			padding: 5,
+			width: '100%',
+		},
+		text: {
+			color: isChecked ? palette.primary.dark : palette.grey[600],
+			paddingHorizontal: 10,
+			fontWeight: 'bold',
+			textAlign: 'center',
+		},
+	});
+
+	return (
+		<BaseButton
+			android_ripple={{color: palette.primary.main}}
+			onPress={() => setIsChecked(!isChecked)}
+			{...props}>
+			<View style={styles.container}>
+				<CheckBox style={styles.check} checked={isChecked} />
+				<Text style={styles.text}>Custom Children</Text>
+			</View>
+		</BaseButton>
+	);
+};
+
+WithChildren.storyName = 'With Children Components';
+
+WithChildren.args = {
+	title: 'Button',
+	disabled: false,
+	iconRight: false,
+	borderRadius: 4,
+	style: {
+		width: 200,
+		backgroundColor: palette.white.main,
+		borderColor: palette.grey[400],
+		borderWidth: 1,
+	},
+	pressedColor: palette.white.dark,
 };

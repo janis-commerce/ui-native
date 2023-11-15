@@ -4,54 +4,48 @@ import {palette} from '../../theme/palette';
 import Text from '../Text';
 import Icon from '../Icon';
 
-export type CustomComponent = (props: any) => React.Component;
+interface PressableStyleProp {
+	pressed: boolean;
+}
 
 interface BaseButtonProps extends PressableProps {
 	title?: string | null;
 	icon?: string;
 	iconRight?: boolean;
-	children?: CustomComponent;
-	borderRadius?: number;
 	disabled?: boolean;
-	pressedStyle?: ViewStyle;
+	borderRadius?: number;
+	pressedColor?: string;
 	style?: ViewStyle;
+	children?: React.Component;
 }
 
 const BaseButton: FC<BaseButtonProps> = ({
 	title = null,
 	icon = null,
 	iconRight = false,
-	children = null,
-	borderRadius = 30,
 	disabled = false,
-	pressedStyle,
+	borderRadius = 0,
+	pressedColor,
 	style,
+	children = null,
 	...props
 }) => {
-	const defaultPressedStyle = {backgroundColor: palette.primary.dark};
-	const hasPressedStyle = pressedStyle ? pressedStyle : defaultPressedStyle;
-
-	const iconMarginLeft = iconRight && title ? 8 : 0;
-	const iconMarginRight = !iconRight && title ? 8 : 0;
-
-	const disabledColor = disabled ? palette.grey[200] : palette.primary.main;
-
+	const iconPaddingLeft = iconRight && title ? 8 : 0;
+	const iconPaddingRight = !iconRight && title ? 8 : 0;
 	const styles = StyleSheet.create({
 		container: {
 			display: 'flex',
 			flexDirection: 'row',
-			justifyContent: 'center',
 			alignItems: 'center',
+			justifyContent: 'center',
 			paddingHorizontal: 16,
 			paddingVertical: 10,
-			backgroundColor: disabledColor,
-			overflow: 'hidden',
 			borderRadius,
 		},
 		icon: {
 			color: palette.base.white,
-			marginRight: iconMarginRight,
-			marginLeft: iconMarginLeft,
+			paddingRight: iconPaddingRight,
+			paddingLeft: iconPaddingLeft,
 		},
 		title: {
 			fontSize: 14,
@@ -61,16 +55,22 @@ const BaseButton: FC<BaseButtonProps> = ({
 		},
 	});
 
+	const PressableStyle = ({pressed}: PressableStyleProp) => {
+		const selectBgColor = style?.backgroundColor ?? palette.primary.main;
+		const activeBgColor = !disabled ? selectBgColor : palette.grey[200];
+		const pressedBgColor = pressedColor ?? palette.primary.dark;
+		const backgroundColor = pressed ? pressedBgColor : activeBgColor;
+
+		return [styles.container, style, {backgroundColor}];
+	};
+
 	return (
-		<Pressable
-			style={({pressed}) => [[styles.container, pressed && hasPressedStyle], style]}
-			disabled={disabled}
-			{...props}>
+		<Pressable style={PressableStyle} disabled={disabled} {...props}>
 			{children ?? (
 				<>
-					{icon && !iconRight && <Icon name={icon} style={[styles.icon, style]} size={24} />}
-					{title && <Text style={[styles.title, style]}>{title}</Text>}
-					{icon && iconRight && <Icon name={icon} style={[styles.icon, style]} size={24} />}
+					{icon && !iconRight && <Icon name={icon} style={styles.icon} size={24} />}
+					{title && <Text style={styles.title}>{title}</Text>}
+					{icon && iconRight && <Icon name={icon} style={styles.icon} size={24} />}
 				</>
 			)}
 		</Pressable>
