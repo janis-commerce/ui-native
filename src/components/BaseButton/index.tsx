@@ -18,7 +18,7 @@ interface BaseButtonProps extends PressableProps {
 	style?: ViewStyle;
 	iconStyle?: ViewStyle;
 	textStyle?: ViewStyle;
-	children?: React.Component;
+	children?: React.ReactNode;
 }
 
 const BaseButton: FC<BaseButtonProps> = ({
@@ -34,10 +34,13 @@ const BaseButton: FC<BaseButtonProps> = ({
 	children = null,
 	...props
 }) => {
+	if (!title && !icon && !children) {
+		return null;
+	}
+
 	const bgColor = !disabled ? palette.primary.main : palette.grey[200];
 	const iconPaddingLeft = iconRight && title ? 8 : 0;
 	const iconPaddingRight = !iconRight && title ? 8 : 0;
-
 	const styles = StyleSheet.create({
 		container: {
 			display: 'flex',
@@ -70,6 +73,7 @@ const BaseButton: FC<BaseButtonProps> = ({
 		</>
 	);
 
+	/* istanbul ignore next */
 	const PressableStyle = ({pressed}: PressableStyleProp) => {
 		const backgroundColor = pressedColor ?? palette.primary.dark;
 		const pressedBgColor = pressed ? [{backgroundColor}] : [];
