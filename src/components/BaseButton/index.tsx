@@ -16,6 +16,8 @@ interface BaseButtonProps extends PressableProps {
 	borderRadius?: number;
 	pressedColor?: string;
 	style?: ViewStyle;
+	iconStyle?: ViewStyle;
+	textStyle?: ViewStyle;
 	children?: React.Component;
 }
 
@@ -27,11 +29,15 @@ const BaseButton: FC<BaseButtonProps> = ({
 	borderRadius = 0,
 	pressedColor,
 	style,
+	iconStyle,
+	textStyle,
 	children = null,
 	...props
 }) => {
+	const bgColor = !disabled ? palette.primary.main : palette.grey[200];
 	const iconPaddingLeft = iconRight && title ? 8 : 0;
 	const iconPaddingRight = !iconRight && title ? 8 : 0;
+
 	const styles = StyleSheet.create({
 		container: {
 			display: 'flex',
@@ -41,6 +47,7 @@ const BaseButton: FC<BaseButtonProps> = ({
 			paddingHorizontal: 16,
 			paddingVertical: 10,
 			borderRadius,
+			backgroundColor: bgColor,
 		},
 		icon: {
 			color: palette.base.white,
@@ -55,24 +62,24 @@ const BaseButton: FC<BaseButtonProps> = ({
 		},
 	});
 
-	const PressableStyle = ({pressed}: PressableStyleProp) => {
-		const selectBgColor = style?.backgroundColor ?? palette.primary.main;
-		const activeBgColor = !disabled ? selectBgColor : palette.grey[200];
-		const pressedBgColor = pressedColor ?? palette.primary.dark;
-		const backgroundColor = pressed ? pressedBgColor : activeBgColor;
+	const noChildren = () => (
+		<>
+			{icon && !iconRight && <Icon name={icon} style={[styles.icon, iconStyle]} size={24} />}
+			{title && <Text style={[styles.title, textStyle]}>{title}</Text>}
+			{icon && iconRight && <Icon name={icon} style={[styles.icon, iconStyle]} size={24} />}
+		</>
+	);
 
-		return [styles.container, style, {backgroundColor}];
+	const PressableStyle = ({pressed}: PressableStyleProp) => {
+		const backgroundColor = pressedColor ?? palette.primary.dark;
+		const pressedBgColor = pressed ? [{backgroundColor}] : [];
+
+		return [styles.container, style, ...pressedBgColor];
 	};
 
 	return (
 		<Pressable style={PressableStyle} disabled={disabled} {...props}>
-			{children ?? (
-				<>
-					{icon && !iconRight && <Icon name={icon} style={styles.icon} size={24} />}
-					{title && <Text style={styles.title}>{title}</Text>}
-					{icon && iconRight && <Icon name={icon} style={styles.icon} size={24} />}
-				</>
-			)}
+			{children ?? noChildren}
 		</Pressable>
 	);
 };

@@ -21,7 +21,7 @@ DefaultProps.storyName = 'Default props';
 
 DefaultProps.args = {
 	title: 'Button',
-	icon: null,
+	icon: 'plus_circle',
 	disabled: false,
 	iconRight: false,
 	borderRadius: 25,
@@ -65,7 +65,8 @@ export const WithChildren = (props) => {
 WithChildren.storyName = 'With Children Components';
 
 WithChildren.args = {
-	title: 'Button',
+	title: '',
+	icon: null,
 	disabled: false,
 	iconRight: false,
 	borderRadius: 4,
