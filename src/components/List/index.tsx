@@ -11,6 +11,7 @@ export enum TypeList {
 	FlatList = 'flatList',
 	ScrollView = 'scrollView',
 }
+
 interface ListProps {
 	data: TypeData[] | undefined;
 	renderComponent: TypeRenderComponent;
