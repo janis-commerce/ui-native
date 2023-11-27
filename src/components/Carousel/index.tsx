@@ -1,6 +1,7 @@
 import React, {FC} from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
 import useCarouselControls from './utils';
+import {horizontalScale} from '../../utils';
 
 export interface CarouselProps {
 	pages: React.ReactNode[];
@@ -43,7 +44,7 @@ const Carousel: FC<CarouselProps> = ({
 
 	const styles = StyleSheet.create({
 		page: {
-			width,
+			width: horizontalScale(width),
 			alignItems: 'center',
 		},
 	});

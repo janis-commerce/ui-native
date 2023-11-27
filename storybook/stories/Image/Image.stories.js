@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from '../../../src/components/Image';
+import {moderateScale} from '../../../src/utils';
 
 export default {
 	title: 'Components/Image',
@@ -19,7 +20,7 @@ DefaultProps.storyName = 'only displayed if the image source url is passed';
 
 DefaultProps.args = {
 	uri: 'https://avatars.githubusercontent.com/u/49998302?s=200&v=4',
-	width: 80,
-	height: 80,
+	width: moderateScale(80),
+	height: moderateScale(80),
 	resizeMode: 'cover',
 };
