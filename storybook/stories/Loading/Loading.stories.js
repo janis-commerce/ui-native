@@ -1,6 +1,7 @@
 import React from 'react';
 import {Text} from 'react-native';
 import Loading from '../../../src/components/Loading/';
+import {moderateScale} from '../../../src/utils';
 
 export default {
 	title: 'Components/Loading',
@@ -20,5 +21,5 @@ DefaultProps.args = {
 	color: '#2979FF',
 	size: 64,
 	duration: 1000,
-	children: <Text>Loading</Text>,
+	children: <Text style={{fontSize: moderateScale(14)}}>Loading</Text>,
 };

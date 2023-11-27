@@ -1,5 +1,6 @@
 import React from 'react';
 import Text from '../../../src/components/Text';
+import {moderateScale} from '../../../src/utils';
 
 const fontFamilies = [
 	'normal',
@@ -84,7 +85,7 @@ DefaultProps.storyName = 'default props';
 
 DefaultProps.args = {
 	textToDisplay: 'Hola',
-	fontSize: 24,
+	fontSize: moderateScale(24),
 	color: '#000000',
 	fontFamily: 'Roboto',
 	fontStyle: 'normal',

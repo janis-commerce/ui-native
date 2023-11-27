@@ -18,6 +18,7 @@ import {
 	raiseLabel,
 	showStatusMessage,
 } from './utils';
+import {moderateScale} from '../../scale';
 
 // eslint-disable-next-line no-shadow
 export enum keyboardTypes {
@@ -120,29 +121,29 @@ const Input = React.forwardRef<TextInput, InputProps>(
 				width: '100%',
 			},
 			inputWrapper: {
-				height: 50,
+				height: moderateScale(50),
 				borderBottomColor: validBorderColor,
-				borderBottomWidth: 1,
+				borderBottomWidth: moderateScale(1),
 				justifyContent: 'flex-end',
 			},
 			label: {
 				color: validLabelColor,
-				fontSize: 16,
-				letterSpacing: 0,
-				lineHeight: 19,
+				fontSize: moderateScale(16),
+				letterSpacing: moderateScale(0),
+				lineHeight: moderateScale(19),
 				position: 'absolute',
-				bottom: raiseLabel({disabled, hasMessage, inputState}) ? 25 : 0,
+				bottom: raiseLabel({disabled, hasMessage, inputState}) ? moderateScale(25) : 0,
 			},
 			input: {
 				color: valueColor,
-				fontSize: 16,
-				letterSpacing: 0,
-				lineHeight: 19,
-				padding: 0,
+				fontSize: moderateScale(16),
+				letterSpacing: moderateScale(0),
+				lineHeight: moderateScale(19),
+				padding: moderateScale(0),
 			},
 			statusMessage: {
 				color: validStatusMessageColor,
-				marginTop: 5,
+				marginTop: moderateScale(5),
 			},
 		});
 

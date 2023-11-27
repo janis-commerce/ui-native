@@ -5,6 +5,7 @@ import {formatPlaceholderMulti} from './utils';
 import ChevronIcon from './Components/Icons/Chevron';
 import DeleteIcon from './Components/Icons/Delete';
 import Dropdown from './Components/Dropdown';
+import {moderateScale} from '../../scale';
 
 // eslint-disable-next-line no-shadow
 enum KeyboardTypes {
@@ -154,7 +155,7 @@ const Select: FC<SelectProps> = ({
 	const styles = StyleSheet.create({
 		wrapper: {
 			width: '100%',
-			marginBottom: 10,
+			marginBottom: moderateScale(10),
 			position: 'relative',
 			zIndex: isShowedDropdown ? 10 : 0,
 		},
@@ -162,32 +163,32 @@ const Select: FC<SelectProps> = ({
 			position: 'relative',
 			width: '100%',
 			marginBottom: 0,
-			marginTop: 18,
+			marginTop: moderateScale(18),
 		},
 		label: {
 			position: 'absolute',
 			color: isMoveLabel && !isDisabled ? primary.main : black.main,
-			fontSize: 16,
-			lineHeight: 19,
+			fontSize: moderateScale(16),
+			lineHeight: moderateScale(19),
 			letterSpacing: 0,
 			left: 0,
 			fontWeight: isMoveLabel ? '600' : '400',
-			bottom: isMoveLabel ? 38 : 10,
+			bottom: moderateScale(isMoveLabel ? 38 : 10),
 		},
 		input: {
 			width: '100%',
-			height: 38,
+			height: moderateScale(38),
 			padding: 0,
-			fontSize: 16,
-			lineHeight: 19,
+			fontSize: moderateScale(16),
+			lineHeight: moderateScale(19),
 			letterSpacing: 0,
-			borderBottomWidth: 1,
+			borderBottomWidth: moderateScale(1),
 			color: black.main,
 			borderBottomColor: isShowedDropdown ? primary.main : grey[200],
 		},
 		arrowIcon: {
 			position: 'absolute',
-			padding: 8,
+			padding: moderateScale(8),
 			right: 0,
 			bottom: 0,
 			zIndex: 1,
@@ -195,8 +196,8 @@ const Select: FC<SelectProps> = ({
 		},
 		deleteIcon: {
 			position: 'absolute',
-			padding: 8,
-			right: 30,
+			padding: moderateScale(8),
+			right: moderateScale(30),
 			bottom: 0,
 			zIndex: 1,
 		},

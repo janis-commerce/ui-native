@@ -2,6 +2,7 @@ import React, {useEffect, useRef, FC} from 'react';
 import {StyleSheet, View, Animated, Easing, ViewStyle} from 'react-native';
 import LoadingSvg from './LoadingSvg';
 import {primary} from '../../theme/palette';
+import {moderateScale} from '../../scale';
 
 interface Params {
 	duration: number;
@@ -43,8 +44,8 @@ const Loading: FC<Props> = ({
 			position: 'relative',
 			justifyContent: 'center',
 			alignItems: 'center',
-			width: size,
-			height: size,
+			width: moderateScale(size),
+			height: moderateScale(size),
 		},
 		spinner: {
 			position: 'absolute',
@@ -81,7 +82,11 @@ const Loading: FC<Props> = ({
 
 	return (
 		<View style={[styles.container, style]} {...props}>
-			<LoadingSvg style={[styles.spinner, {...animationSpinnerStyle}]} size={size} color={color} />
+			<LoadingSvg
+				style={[styles.spinner, {...animationSpinnerStyle}]}
+				size={moderateScale(size)}
+				color={color}
+			/>
 			{children}
 		</View>
 	);

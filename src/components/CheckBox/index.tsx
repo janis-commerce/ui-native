@@ -2,6 +2,7 @@ import React from 'react';
 import {View, TouchableOpacity, StyleSheet, ViewStyle} from 'react-native';
 import {base, grey, primary} from '../../theme/palette';
 import Icon from './icon/CheckedIcon';
+import {moderateScale} from '../../scale';
 
 interface CheckBoxProps {
 	checked: boolean;
@@ -29,27 +30,28 @@ const CheckBox = ({
 	...props
 }: CheckBoxProps) => {
 	const hasBorderRadius = !borderRadius ? getCheckBoxScale(customSize, 4) : borderRadius;
+	const iconSize = moderateScale(customSize);
 
 	const styles = StyleSheet.create({
 		touchableOpacity: {
-			width: customSize,
-			height: customSize,
-			borderRadius: hasBorderRadius,
+			width: moderateScale(customSize),
+			height: moderateScale(customSize),
+			borderRadius: moderateScale(hasBorderRadius),
 		},
 		checkOn: {
 			display: 'flex',
 			justifyContent: 'center',
 			alignItems: 'center',
 			backgroundColor: !disabled ? checkOnColor : grey[200],
-			width: customSize,
-			height: customSize,
-			borderRadius: hasBorderRadius,
+			width: moderateScale(customSize),
+			height: moderateScale(customSize),
+			borderRadius: moderateScale(hasBorderRadius),
 		},
 		checkOff: {
 			borderWidth: getCheckBoxScale(customSize, 16),
 			borderColor: !disabled ? checkOffColor : grey[200],
-			width: customSize,
-			height: customSize,
+			width: moderateScale(customSize),
+			height: moderateScale(customSize),
 			borderRadius: hasBorderRadius,
 		},
 	});
@@ -62,7 +64,7 @@ const CheckBox = ({
 			activeOpacity={0.6}
 			style={[styles.touchableOpacity, style]}
 			{...props}>
-			<View style={isChecked}>{checked && <Icon color={iconCheckColor} size={customSize} />}</View>
+			<View style={isChecked}>{checked && <Icon color={iconCheckColor} size={iconSize} />}</View>
 		</TouchableOpacity>
 	);
 };

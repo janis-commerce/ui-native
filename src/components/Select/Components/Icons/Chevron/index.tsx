@@ -2,6 +2,7 @@ import React from 'react';
 import {Pressable, View, ViewStyle} from 'react-native';
 import {primary} from '../../../../../theme/palette';
 import Svg, {Path} from 'react-native-svg';
+import {moderateScale} from '../../../../../scale';
 
 interface IconProps {
 	color?: string;
@@ -28,7 +29,7 @@ const Chevron = ({style, color, size, onPress, ...props}: IconProps) => {
 
 Chevron.defaultProps = {
 	color: primary.main,
-	size: 21,
+	size: moderateScale(21),
 	onPress: () => {},
 };
 

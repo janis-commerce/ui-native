@@ -2,6 +2,7 @@ import React, {FC, useEffect, useRef} from 'react';
 import {View, StyleSheet, Animated, Easing, ViewStyle} from 'react-native';
 import {palette} from '../../theme/palette';
 import {getBarColor, getPercentage} from './utils';
+import {moderateScale} from '../../scale';
 
 interface ProgressBarProps {
 	value: number;
@@ -46,17 +47,17 @@ const ProgressBar: FC<ProgressBarProps> = ({
 		container: {
 			position: 'relative',
 			width: '100%',
-			height: 4,
-			marginTop: 12,
-			borderRadius: 2,
+			height: moderateScale(4),
+			marginTop: moderateScale(12),
+			borderRadius: moderateScale(2),
 			backgroundColor: white.main,
 		},
 		fill: {
 			position: 'absolute',
 			left: 0,
-			height: 4,
-			borderRadius: 2,
-			zIndex: 10,
+			height: moderateScale(4),
+			borderRadius: moderateScale(2),
+			zIndex: moderateScale(10),
 			backgroundColor: colorValue,
 		},
 	});

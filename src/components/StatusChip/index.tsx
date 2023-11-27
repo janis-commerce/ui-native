@@ -2,6 +2,7 @@ import React, {ReactElement, isValidElement} from 'react';
 import {StyleSheet, ViewProps, View} from 'react-native';
 import {base, grey, primary} from '../../theme/palette';
 import Text from '../Text';
+import {moderateScale} from '../../scale';
 
 interface StatusChipProps extends ViewProps {
 	children?: ReactElement | string;
@@ -11,19 +12,19 @@ interface StatusChipProps extends ViewProps {
 const styles = ({background}: StatusChipProps) =>
 	StyleSheet.create({
 		ViewStyles: {
-			height: 24,
+			height: moderateScale(24),
 			flexDirection: 'row',
 			alignItems: 'center',
-			paddingLeft: 12,
-			paddingRight: 12,
-			borderRadius: 12,
+			paddingLeft: moderateScale(12),
+			paddingRight: moderateScale(12),
+			borderRadius: moderateScale(12),
 			backgroundColor: background ?? base.white,
-			borderWidth: 1,
+			borderWidth: moderateScale(1),
 			borderColor: background ?? grey['300'],
 		},
 		TextStyles: {
-			fontSize: 13,
-			lineHeight: 18,
+			fontSize: moderateScale(13),
+			lineHeight: moderateScale(18),
 			fontFamily: 'Roboto',
 			fontWeight: '900',
 			textAlign: 'center',

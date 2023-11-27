@@ -2,6 +2,7 @@ import React from 'react';
 import {Pressable, View, ViewStyle} from 'react-native';
 import {black} from '../../../../../theme/palette';
 import Svg, {Path} from 'react-native-svg';
+import {moderateScale} from '../../../../../scale';
 
 interface IconProps {
 	color?: string;
@@ -30,7 +31,7 @@ const Delete = ({style, color, size, onPress, ...props}: IconProps) => {
 
 Delete.defaultProps = {
 	color: black.main,
-	size: 21,
+	size: moderateScale(21),
 	onPress: () => {},
 };
 

@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
 import useCarouselControls from './utils';
-import {horizontalScale} from '../../utils';
+import {horizontalScale} from '../../scale';
 
 export interface CarouselProps {
 	pages: React.ReactNode[];

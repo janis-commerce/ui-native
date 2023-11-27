@@ -7,6 +7,7 @@ import JanisLogo from './svgs/JanisLogo';
 import JanisLogoColor from './svgs/JanisLogoColor';
 import LoginIllustration from './svgs/LoginIllustration';
 import NoNotifications from './svgs/NoNotifications';
+import {moderateScale} from '../../scale';
 
 const svgs = {
 	'empty-illustration': EmptyIllustration,
@@ -22,9 +23,16 @@ const Svg = ({name, width, height, size, ...props}: Isvg) => {
 		return null;
 	}
 	const SvgSelected = svgs[name];
+	const selectedWidth = size ?? width;
+	const selectedHeight = size ?? height;
+
 	return (
 		<View {...props}>
-			<SvgSelected width={size ?? width} height={size ?? height} {...props} />
+			<SvgSelected
+				width={moderateScale(selectedWidth || 0)}
+				height={moderateScale(selectedHeight || 0)}
+				{...props}
+			/>
 		</View>
 	);
 };
