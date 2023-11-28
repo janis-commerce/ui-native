@@ -10,10 +10,10 @@ const {width: viewportWidth, height: viewportHeight} = Dimensions.get('window');
 const isSmallDevice = viewportWidth <= 365;
 
 const horizontalScale = (size: number) =>
-	PixelRatio.roundToNearestPixel((viewportWidth / guidelineBaseWidth) * (size ?? 1));
+	PixelRatio.roundToNearestPixel((viewportWidth / guidelineBaseWidth) * size);
 
 const verticalScale = (size: number) =>
-	PixelRatio.roundToNearestPixel((viewportHeight / guidelineBaseHeight) * (size ?? 1));
+	PixelRatio.roundToNearestPixel((viewportHeight / guidelineBaseHeight) * size);
 
 const moderateScale = (size: number, factor: number = 1) =>
 	size + (horizontalScale(size) - size) * factor;
