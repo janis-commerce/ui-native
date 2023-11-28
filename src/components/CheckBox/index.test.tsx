@@ -17,7 +17,7 @@ describe('CheckBox component', () => {
 			const {style} = ViewComponent.props.children.props;
 
 			expect(style.backgroundColor).toBe('#2979FF');
-			expect(style.width).toBe(16);
+			expect(style.width).toBe(33.5);
 		});
 
 		it('when is false, borderColor is #939598', () => {
@@ -26,7 +26,7 @@ describe('CheckBox component', () => {
 			const {style} = ViewComponent.props.children.props;
 
 			expect(style.borderColor).toBe('#939598');
-			expect(style.width).toBe(16);
+			expect(style.width).toBe(33.5);
 		});
 	});
 

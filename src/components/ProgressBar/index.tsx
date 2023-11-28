@@ -61,7 +61,6 @@ const ProgressBar: FC<ProgressBarProps> = ({
 			backgroundColor: colorValue,
 		},
 	});
-
 	const animationProgress = {
 		width: widthAnimation.interpolate({
 			inputRange: [0, 100],
