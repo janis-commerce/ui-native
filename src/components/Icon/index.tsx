@@ -14,6 +14,7 @@ interface Props {
 	name: string;
 	color?: string;
 	size?: number;
+	style?: any;
 }
 
 const Icon: FC<Props> = ({name, color = primary.main, size = 16, ...props}) => {
