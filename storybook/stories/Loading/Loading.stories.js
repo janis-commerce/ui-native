@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text} from 'react-native';
 import Loading from '../../../src/components/Loading/';
-import {moderateScale} from '../../../src/utils';
+import {moderateScale} from '../../../src/scale';
 
 export default {
 	title: 'Components/Loading',

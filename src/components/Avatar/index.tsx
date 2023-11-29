@@ -3,6 +3,7 @@ import {StyleSheet, View, ViewStyle} from 'react-native';
 import Image from '../Image';
 import Text from '../Text';
 import {formatPlaceholder} from './utils/formatPlaceholder/index';
+import {horizontalScale, moderateScale} from '../../scale';
 
 export const sizeValues = {
 	sm: 24,
@@ -70,9 +71,9 @@ const Avatar = ({
 				styles.container,
 				{
 					backgroundColor: bgColor,
-					borderRadius: getSize(size, customSize) / 2,
-					height: getSize(size, customSize),
-					width: getSize(size, customSize),
+					borderRadius: moderateScale(getSize(size, customSize) / 2),
+					height: moderateScale(getSize(size, customSize)),
+					width: horizontalScale(getSize(size, customSize)),
 				},
 				style,
 			]}
@@ -86,14 +87,18 @@ const Avatar = ({
 						uri: imageUrl,
 					}}
 					style={{
-						height: getSize(size, customSize),
-						width: getSize(size, customSize),
+						height: moderateScale(getSize(size, customSize)),
+						width: horizontalScale(getSize(size, customSize)),
 					}}
 				/>
 			)}
 
 			{(showInitials || !imageUrl) && !!initials.length && (
-				<Text style={[styles.text, {color: textColor, fontSize: getSize(size, customSize) * 0.4}]}>
+				<Text
+					style={[
+						styles.text,
+						{color: textColor, fontSize: moderateScale(getSize(size, customSize) * 0.4)},
+					]}>
 					{initials}
 				</Text>
 			)}

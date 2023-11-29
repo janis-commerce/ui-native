@@ -1,7 +1,7 @@
 import StatusChip from '../../../src/components/StatusChip';
 import Text from '../../../src/components/Text';
 import React from 'react';
-import {moderateScale} from '../../../src/utils';
+import {moderateScale} from '../../../src/scale';
 
 export default {
 	title: 'Components/StatusChip',

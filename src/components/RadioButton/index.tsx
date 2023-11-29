@@ -2,7 +2,7 @@ import React from 'react';
 import {View, TouchableOpacity, StyleSheet, ViewStyle} from 'react-native';
 import Text from '../Text';
 import CheckBox from '../CheckBox';
-import {moderateScale} from '../../scale';
+import {horizontalScale, moderateScale} from '../../scale';
 
 const checkLocation = ['left', 'right'] as const;
 
@@ -30,7 +30,7 @@ interface RadioButtonProps {
 const styles = StyleSheet.create({
 	container: {
 		alignItems: 'center',
-		paddingHorizontal: moderateScale(16),
+		paddingHorizontal: horizontalScale(16),
 		marginVertical: moderateScale(10),
 		height: 'auto',
 	},
@@ -44,10 +44,10 @@ const styles = StyleSheet.create({
 		justifyContent: 'space-between',
 	},
 	checkToLeft: {
-		marginLeft: moderateScale(15),
+		marginLeft: horizontalScale(15),
 	},
 	checkToRight: {
-		marginRight: moderateScale(15),
+		marginRight: horizontalScale(15),
 	},
 });
 

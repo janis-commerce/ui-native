@@ -2,7 +2,7 @@ import React, {ReactElement, isValidElement} from 'react';
 import {StyleSheet, ViewProps, View} from 'react-native';
 import {base, grey, primary} from '../../theme/palette';
 import Text from '../Text';
-import {moderateScale} from '../../scale';
+import {horizontalScale, moderateScale} from '../../scale';
 
 interface StatusChipProps extends ViewProps {
 	children?: ReactElement | string;
@@ -15,8 +15,8 @@ const styles = ({background}: StatusChipProps) =>
 			height: moderateScale(24),
 			flexDirection: 'row',
 			alignItems: 'center',
-			paddingLeft: moderateScale(12),
-			paddingRight: moderateScale(12),
+			paddingLeft: horizontalScale(12),
+			paddingRight: horizontalScale(12),
 			borderRadius: moderateScale(12),
 			backgroundColor: background ?? base.white,
 			borderWidth: moderateScale(1),

@@ -1,6 +1,6 @@
 import React from 'react';
 import Text from '../../../src/components/Text';
-import {moderateScale} from '../../../src/utils';
+import {moderateScale} from '../../../src/scale';
 
 const fontFamilies = [
 	'normal',

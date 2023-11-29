@@ -7,7 +7,7 @@ const isIOS = Platform.OS === 'ios';
 
 const {width: viewportWidth, height: viewportHeight} = Dimensions.get('window');
 
-const isSmallDevice = viewportWidth <= 365;
+const isSmallDevice = (minWidth: number = 365) => viewportWidth <= minWidth;
 
 const horizontalScale = (size: number) =>
 	PixelRatio.roundToNearestPixel((viewportWidth / guidelineBaseWidth) * size);

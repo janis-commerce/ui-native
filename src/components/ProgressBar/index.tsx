@@ -57,7 +57,7 @@ const ProgressBar: FC<ProgressBarProps> = ({
 			left: 0,
 			height: moderateScale(4),
 			borderRadius: moderateScale(2),
-			zIndex: moderateScale(10),
+			zIndex: 10,
 			backgroundColor: colorValue,
 		},
 	});

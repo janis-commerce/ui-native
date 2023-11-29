@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {TouchableHighlight, Text, StyleSheet} from 'react-native';
 import LoadingFullScreen from '../../../src/components/LoadingFullScreen';
 import {primary} from '../../../src/theme/palette';
-import {moderateScale} from '../../../src/utils';
+import {moderateScale, horizontalScale} from '../../../src/scale';
 
 export default {
 	title: 'Components/LoadingFullScreen',
@@ -19,8 +19,8 @@ export default {
 
 const styles = StyleSheet.create({
 	ButtonStyle: {
-		paddingLeft: moderateScale(15),
-		paddingRight: moderateScale(15),
+		paddingLeft: horizontalScale(15),
+		paddingRight: horizontalScale(15),
 		height: moderateScale(50),
 		borderRadius: moderateScale(25),
 		backgroundColor: primary.main,

@@ -1,5 +1,6 @@
 import React, {FC} from 'react';
 import {Pressable, PressableProps, ViewStyle, StyleSheet} from 'react-native';
+import {moderateScale, horizontalScale} from '../../scale';
 import {palette} from '../../theme/palette';
 import Text from '../Text';
 import Icon from '../Icon';
@@ -47,18 +48,18 @@ const BaseButton: FC<BaseButtonProps> = ({
 			flexDirection: 'row',
 			alignItems: 'center',
 			justifyContent: 'center',
-			paddingHorizontal: 16,
-			paddingVertical: 10,
-			borderRadius,
+			paddingHorizontal: horizontalScale(16),
+			paddingVertical: moderateScale(10),
+			borderRadius: moderateScale(borderRadius),
 			backgroundColor: bgColor,
 		},
 		icon: {
 			color: palette.base.white,
-			paddingRight: iconPaddingRight,
-			paddingLeft: iconPaddingLeft,
+			paddingRight: horizontalScale(iconPaddingRight),
+			paddingLeft: horizontalScale(iconPaddingLeft),
 		},
 		title: {
-			fontSize: 14,
+			fontSize: moderateScale(14),
 			fontWeight: '500',
 			textAlign: 'center',
 			color: palette.base.white,

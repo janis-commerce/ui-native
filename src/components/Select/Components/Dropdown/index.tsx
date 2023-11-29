@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import {View, StyleSheet, TouchableOpacity, ScrollView, Text} from 'react-native';
 import {base, black, grey, primary, white} from '../../../../theme/palette';
 import {CustomOptionComponent, Option} from '../..';
-import {moderateScale} from '../../../../scale';
+import {horizontalScale, moderateScale} from '../../../../scale';
 
 interface DropdownProps {
 	isShowedDropdown: boolean;
@@ -53,7 +53,7 @@ const Dropdown: FC<DropdownProps> = (props) => {
 			height: moderateScale(42),
 			justifyContent: 'center',
 			alignItems: 'stretch',
-			paddingLeft: moderateScale(8),
+			paddingLeft: horizontalScale(8),
 		},
 		optionText: {
 			fontSize: moderateScale(14),
@@ -64,7 +64,7 @@ const Dropdown: FC<DropdownProps> = (props) => {
 			fontSize: moderateScale(14),
 			color: grey[500],
 			fontWeight: '400',
-			paddingLeft: moderateScale(8),
+			paddingLeft: horizontalScale(8),
 			paddingVertical: moderateScale(10),
 		},
 	});

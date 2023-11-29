@@ -1,11 +1,11 @@
 import React from 'react';
-import {/*ScrollView,*/ StyleSheet, View} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 
 const CenterView = ({children}) => {
 	return (
-		// <ScrollView contentContainerStyle={styles.scrollView}>
-		<View style={styles.main}>{children}</View>
-		// </ScrollView>
+		<ScrollView contentContainerStyle={styles.scrollView}>
+			<View style={styles.main}>{children}</View>
+		</ScrollView>
 	);
 };
 

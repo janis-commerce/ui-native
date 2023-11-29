@@ -5,7 +5,7 @@ import {formatPlaceholderMulti} from './utils';
 import ChevronIcon from './Components/Icons/Chevron';
 import DeleteIcon from './Components/Icons/Delete';
 import Dropdown from './Components/Dropdown';
-import {moderateScale} from '../../scale';
+import {horizontalScale, moderateScale} from '../../scale';
 
 // eslint-disable-next-line no-shadow
 enum KeyboardTypes {
@@ -197,7 +197,7 @@ const Select: FC<SelectProps> = ({
 		deleteIcon: {
 			position: 'absolute',
 			padding: moderateScale(8),
-			right: moderateScale(30),
+			right: horizontalScale(30),
 			bottom: 0,
 			zIndex: 1,
 		},

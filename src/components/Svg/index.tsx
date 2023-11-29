@@ -7,7 +7,7 @@ import JanisLogo from './svgs/JanisLogo';
 import JanisLogoColor from './svgs/JanisLogoColor';
 import LoginIllustration from './svgs/LoginIllustration';
 import NoNotifications from './svgs/NoNotifications';
-import {moderateScale} from '../../scale';
+import {horizontalScale, moderateScale} from '../../scale';
 
 const svgs = {
 	'empty-illustration': EmptyIllustration,
@@ -29,7 +29,7 @@ const Svg = ({name, width, height, size, ...props}: Isvg) => {
 	return (
 		<View {...props}>
 			<SvgSelected
-				width={moderateScale(selectedWidth || 0)}
+				width={horizontalScale(selectedWidth || 0)}
 				height={moderateScale(selectedHeight || 0)}
 				{...props}
 			/>

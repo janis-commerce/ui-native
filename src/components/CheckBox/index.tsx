@@ -1,8 +1,8 @@
 import React from 'react';
 import {View, TouchableOpacity, StyleSheet, ViewStyle} from 'react-native';
 import {base, grey, primary} from '../../theme/palette';
+import {moderateScale, horizontalScale} from '../../scale';
 import Icon from './icon/CheckedIcon';
-import {moderateScale} from '../../scale';
 
 interface CheckBoxProps {
 	checked: boolean;
@@ -34,7 +34,7 @@ const CheckBox = ({
 
 	const styles = StyleSheet.create({
 		touchableOpacity: {
-			width: moderateScale(customSize),
+			width: horizontalScale(customSize),
 			height: moderateScale(customSize),
 			borderRadius: moderateScale(hasBorderRadius),
 		},
@@ -43,14 +43,14 @@ const CheckBox = ({
 			justifyContent: 'center',
 			alignItems: 'center',
 			backgroundColor: !disabled ? checkOnColor : grey[200],
-			width: moderateScale(customSize),
+			width: horizontalScale(customSize),
 			height: moderateScale(customSize),
 			borderRadius: moderateScale(hasBorderRadius),
 		},
 		checkOff: {
 			borderWidth: getCheckBoxScale(customSize, 16),
 			borderColor: !disabled ? checkOffColor : grey[200],
-			width: moderateScale(customSize),
+			width: horizontalScale(customSize),
 			height: moderateScale(customSize),
 			borderRadius: hasBorderRadius,
 		},

@@ -3,7 +3,7 @@ import Select from '../../../src/components/Select';
 import {View, Text, StyleSheet} from 'react-native';
 import {TouchableOpacity} from 'react-native';
 import {primary, white} from '../../../src/theme/palette';
-import {moderateScale} from '../../../src/utils';
+import {moderateScale, horizontalScale} from '../../../src/scale';
 
 export default {
 	title: 'Components/Select',
@@ -133,16 +133,16 @@ const customOption = ({renderedOption, callbackOptionSelected, ...rest}) => {
 			flexDirection: 'row',
 			justifyContent: 'flex-start',
 			alignItems: 'center',
-			paddingLeft: moderateScale(8),
+			paddingLeft: horizontalScale(8),
 		},
 		chip: {
 			textAlign: 'center',
 			backgroundColor: primary.main,
 			color: white.light,
 			fontSize: moderateScale(10),
-			width: moderateScale(30),
+			width: horizontalScale(30),
 			paddingVertical: moderateScale(2),
-			marginRight: moderateScale(10),
+			marginRight: horizontalScale(10),
 			borderRadius: moderateScale(12),
 			textTransform: 'uppercase',
 		},
