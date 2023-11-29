@@ -20,6 +20,7 @@ import {
 import Carousel from './components/Carousel';
 import ProgressBar from './components/ProgressBar';
 import List from './components/List';
+import BaseButton from './components/BaseButton';
 
 export {
 	Text,
@@ -42,4 +43,5 @@ export {
 	Carousel,
 	ProgressBar,
 	List,
+	BaseButton,
 };

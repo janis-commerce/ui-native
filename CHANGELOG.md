@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Added progress bar component
+- Added base button component
+- Added list component
 
 ## [1.1.1] - 2023-10-31
 
