@@ -70,5 +70,5 @@ dist/
 .storybook_static
 .docs
 
-# .env
-.env
+# env.json
+env.json

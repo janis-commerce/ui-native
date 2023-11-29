@@ -7,4 +7,4 @@ const modes = {
 	storybook: 1,
 };
 
-fs.writeFileSync('.env', `LOAD_STORYBOOK=${!!modes[mode]}`);
+fs.writeFileSync('env.json', `{LOAD_STORYBOOK:${!!modes[mode]}}`);
