@@ -49,7 +49,7 @@ describe('Scale Utils', () => {
 	describe('isSmallDevice', () => {
 		it('should return false for larger devices', () => {
 			mockDimensions.window.width = 500;
-			expect(isSmallDevice).toBe(false);
+			expect(isSmallDevice()).toBe(false);
 		});
 	});
 
