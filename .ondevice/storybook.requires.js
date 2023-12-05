@@ -48,12 +48,14 @@ try {
 const getStories = () => {
 	return {
 		'./storybook/stories/Avatar/Avatar.stories.js': require('../storybook/stories/Avatar/Avatar.stories.js'),
+		'./storybook/stories/BaseButton/BaseButton.stories.js': require('../storybook/stories/BaseButton/BaseButton.stories.js'),
 		'./storybook/stories/Carousel/Carousel.stories.js': require('../storybook/stories/Carousel/Carousel.stories.js'),
 		'./storybook/stories/CheckBox/CheckBox.stories.js': require('../storybook/stories/CheckBox/CheckBox.stories.js'),
 		'./storybook/stories/DesignStystem/Colors.stories.js': require('../storybook/stories/DesignStystem/Colors.stories.js'),
 		'./storybook/stories/DesignStystem/Icons.stories.js': require('../storybook/stories/DesignStystem/Icons.stories.js'),
 		'./storybook/stories/Image/Image.stories.js': require('../storybook/stories/Image/Image.stories.js'),
 		'./storybook/stories/Input/Input.stories.js': require('../storybook/stories/Input/Input.stories.js'),
+		'./storybook/stories/List/List.stories.js': require('../storybook/stories/List/List.stories.js'),
 		'./storybook/stories/Loading/Loading.stories.js': require('../storybook/stories/Loading/Loading.stories.js'),
 		'./storybook/stories/LoadingFullScreen/LoadingFullScreen.stories.js': require('../storybook/stories/LoadingFullScreen/LoadingFullScreen.stories.js'),
 		'./storybook/stories/ProgressBar/ProgressBar.stories.js': require('../storybook/stories/ProgressBar/ProgressBar.stories.js'),

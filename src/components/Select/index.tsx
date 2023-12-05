@@ -6,7 +6,6 @@ import ChevronIcon from './Components/Icons/Chevron';
 import DeleteIcon from './Components/Icons/Delete';
 import Dropdown from './Components/Dropdown';
 
-// eslint-disable-next-line no-shadow
 enum KeyboardTypes {
 	Default = 'default',
 	NumberPad = 'number-pad',
