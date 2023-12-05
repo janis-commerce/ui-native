@@ -19,7 +19,6 @@ import {
 	showStatusMessage,
 } from './utils';
 
-// eslint-disable-next-line no-shadow
 export enum keyboardTypes {
 	default = 'default',
 	numberPad = 'number-pad',
