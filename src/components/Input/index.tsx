@@ -20,7 +20,6 @@ import {
 } from './utils';
 import {moderateScale, horizontalScale} from '../../scale';
 
-// eslint-disable-next-line no-shadow
 export enum keyboardTypes {
 	default = 'default',
 	numberPad = 'number-pad',

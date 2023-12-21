@@ -1,6 +1,6 @@
 {
 	"name": "@janiscommerce/ui-native",
-	"version": "1.1.1",
+	"version": "1.2.0",
 	"description": "components library for Janis app",
 	"main": "dist/index.js",
 	"typings": "dist/index.d.ts",
@@ -8,8 +8,10 @@
 		"dist"
 	],
 	"scripts": {
-		"android": "sb-rn-get-stories --config-path .ondevice && react-native run-android",
-		"ios": "sb-rn-get-stories --config-path .ondevice && react-native run-ios",
+		"android": "node scripts/set-app-mode.js app && react-native run-android",
+		"ios": "node scripts/set-app-mode.js app && react-native run-ios",
+		"storybook:android": "node scripts/set-app-mode.js storybook && sb-rn-get-stories --config-path .ondevice && react-native run-android",
+		"storybook:ios": "node scripts/set-app-mode.js storybook && sb-rn-get-stories --config-path .ondevice && react-native run-ios",
 		"start": "react-native start",
 		"test": "jest",
 		"lint": "eslint .",
@@ -18,7 +20,7 @@
 		"test:commit": "jest --colors --bail --findRelatedTests",
 		"test:coverage": "tsc --noEmit && jest --collectCoverage --detectOpenHandles",
 		"build": "rm -rf dist && tsc && cp -r android ios dist",
-		"storybook": "react-native-storybook-server",
+		"storybook-server": "react-native-storybook-server",
 		"storybook-watcher": "sb-rn-watcher --config-path .ondevice",
 		"update-stories": "sb-rn-get-stories --config-path .ondevice",
 		"storybook-web": " npm run storybook-web-build && start-storybook -p 6006 --config-dir ./.storybook",

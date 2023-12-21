@@ -17,6 +17,7 @@ module.exports = {
 		'react/static-property-placement': 'off',
 		'react/jsx-props-no-spreading': 'off',
 		'no-param-reassign': 'off',
+		'no-shadow': 'off',
 		'no-console': 'error',
 	},
 };

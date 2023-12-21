@@ -7,7 +7,6 @@ import DeleteIcon from './Components/Icons/Delete';
 import Dropdown from './Components/Dropdown';
 import {horizontalScale, moderateScale} from '../../scale';
 
-// eslint-disable-next-line no-shadow
 enum KeyboardTypes {
 	Default = 'default',
 	NumberPad = 'number-pad',

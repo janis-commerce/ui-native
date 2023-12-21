@@ -19,6 +19,7 @@ import {
 } from './components/SwipeUp/childComponents';
 import Carousel from './components/Carousel';
 import ProgressBar from './components/ProgressBar';
+import List from './components/List';
 import BaseButton from './components/BaseButton';
 import * as getScale from './scale';
 
@@ -42,6 +43,7 @@ export {
 	SwipeUpView,
 	Carousel,
 	ProgressBar,
+	List,
 	BaseButton,
 	getScale,
 };

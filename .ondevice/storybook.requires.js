@@ -14,7 +14,7 @@ global.STORIES = [
 		directory: './storybook/stories',
 		files: '**/*.stories.?(ts|tsx|js|jsx)',
 		importPathMatcher:
-			'^\\.[\\\\/](?:storybook\\/stories(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.stories\\.(?:ts|tsx|js|jsx)?)$',
+			'^\\.[\\\\/](?:storybook[\\\\/]stories(?:[\\\\/](?!\\.)(?:(?:(?!(?:^|[\\\\/])\\.).)*?)[\\\\/]|[\\\\/]|$)(?!\\.)(?=.)[^\\\\/]*?\\.stories\\.(?:ts|tsx|js|jsx)?)$',
 	},
 ];
 
@@ -55,6 +55,7 @@ const getStories = () => {
 		'./storybook/stories/DesignStystem/Icons.stories.js': require('../storybook/stories/DesignStystem/Icons.stories.js'),
 		'./storybook/stories/Image/Image.stories.js': require('../storybook/stories/Image/Image.stories.js'),
 		'./storybook/stories/Input/Input.stories.js': require('../storybook/stories/Input/Input.stories.js'),
+		'./storybook/stories/List/List.stories.js': require('../storybook/stories/List/List.stories.js'),
 		'./storybook/stories/Loading/Loading.stories.js': require('../storybook/stories/Loading/Loading.stories.js'),
 		'./storybook/stories/LoadingFullScreen/LoadingFullScreen.stories.js': require('../storybook/stories/LoadingFullScreen/LoadingFullScreen.stories.js'),
 		'./storybook/stories/ProgressBar/ProgressBar.stories.js': require('../storybook/stories/ProgressBar/ProgressBar.stories.js'),
