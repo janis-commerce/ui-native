@@ -3,7 +3,6 @@ import Select from '../../../src/components/Select';
 import {View, Text, StyleSheet} from 'react-native';
 import {TouchableOpacity} from 'react-native';
 import {primary, white} from '../../../src/theme/palette';
-import {moderateScale, horizontalScale} from '../../../src/scale';
 
 export default {
 	title: 'Components/Select',
@@ -129,21 +128,21 @@ const customOption = ({renderedOption, callbackOptionSelected, ...rest}) => {
 	const styles = StyleSheet.create({
 		customOption: {
 			width: '100%',
-			height: moderateScale(42),
+			height: 42,
 			flexDirection: 'row',
 			justifyContent: 'flex-start',
 			alignItems: 'center',
-			paddingLeft: horizontalScale(8),
+			paddingLeft: 8,
 		},
 		chip: {
 			textAlign: 'center',
 			backgroundColor: primary.main,
 			color: white.light,
-			fontSize: moderateScale(10),
-			width: horizontalScale(30),
-			paddingVertical: moderateScale(2),
-			marginRight: horizontalScale(10),
-			borderRadius: moderateScale(12),
+			fontSize: 10,
+			width: 30,
+			paddingVertical: 2,
+			marginRight: 10,
+			borderRadius: 12,
 			textTransform: 'uppercase',
 		},
 	});

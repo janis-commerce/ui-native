@@ -1,7 +1,6 @@
 import StatusChip from '../../../src/components/StatusChip';
 import Text from '../../../src/components/Text';
 import React from 'react';
-import {moderateScale} from '../../../src/scale';
 
 export default {
 	title: 'Components/StatusChip',
@@ -21,8 +20,8 @@ WithText.args = {
 };
 const TextStyles = {
 	color: '#fff',
-	fontSize: moderateScale(13),
-	lineHeight: moderateScale(18),
+	fontSize: 13,
+	lineHeight: 18,
 	fontFamily: 'Roboto',
 	fontWeight: '900',
 	textAlign: 'center',

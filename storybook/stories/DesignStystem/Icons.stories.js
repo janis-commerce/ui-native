@@ -3,7 +3,6 @@ import {View, Text, StyleSheet, useWindowDimensions} from 'react-native';
 import Icon from '../../../src/components/Icon';
 import {primary} from '../../../src/theme/palette';
 import iconsSelection from '../../../src/components/Icon/assets/fonts/selection.json';
-import {moderateScale, horizontalScale} from '../../../src/scale';
 
 export default {
 	title: 'Design system/Icons',
@@ -25,11 +24,11 @@ export const DefaultProps = ({color, size, ...props}) => {
 			display: 'flex',
 			flexDirection: 'row',
 			alignItems: 'center',
-			padding: moderateScale(10),
+			padding: 10,
 			width: widthWrapper,
 		},
 		textIcon: {
-			marginRight: horizontalScale(10),
+			marginRight: 10,
 		},
 	});
 
