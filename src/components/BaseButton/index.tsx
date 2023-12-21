@@ -4,6 +4,7 @@ import {moderateScale, horizontalScale} from '../../scale';
 import {palette} from '../../theme/palette';
 import Text from '../Text';
 import Icon from '../Icon';
+import {LOAD_STORYBOOK} from '../../../env.json';
 
 interface PressableStyleProp {
 	pressed: boolean;
@@ -42,24 +43,36 @@ const BaseButton: FC<BaseButtonProps> = ({
 	const bgColor = !disabled ? palette.primary.main : palette.grey[200];
 	const iconPaddingLeft = iconRight && title ? 8 : 0;
 	const iconPaddingRight = !iconRight && title ? 8 : 0;
+
+	const validatePaddingVertical = !LOAD_STORYBOOK ? moderateScale(10) : 10;
+	const validatePaddingHorizontal = !LOAD_STORYBOOK ? horizontalScale(16) : 16;
+	const validateBorderRadius = !LOAD_STORYBOOK ? moderateScale(borderRadius) : borderRadius;
+	const validateFontSize = !LOAD_STORYBOOK ? moderateScale(14) : 14;
+	const validatePaddingRightIcon = !LOAD_STORYBOOK
+		? horizontalScale(iconPaddingRight)
+		: iconPaddingRight;
+	const validatePaddingLeftIcon = !LOAD_STORYBOOK
+		? horizontalScale(iconPaddingLeft)
+		: iconPaddingLeft;
+
 	const styles = StyleSheet.create({
 		container: {
 			display: 'flex',
 			flexDirection: 'row',
 			alignItems: 'center',
 			justifyContent: 'center',
-			paddingHorizontal: horizontalScale(16),
-			paddingVertical: moderateScale(10),
-			borderRadius: moderateScale(borderRadius),
+			paddingHorizontal: validatePaddingHorizontal,
+			paddingVertical: validatePaddingVertical,
+			borderRadius: validateBorderRadius,
 			backgroundColor: bgColor,
 		},
 		icon: {
 			color: palette.base.white,
-			paddingRight: horizontalScale(iconPaddingRight),
-			paddingLeft: horizontalScale(iconPaddingLeft),
+			paddingRight: validatePaddingRightIcon,
+			paddingLeft: validatePaddingLeftIcon,
 		},
 		title: {
-			fontSize: moderateScale(14),
+			fontSize: validateFontSize,
 			fontWeight: '500',
 			textAlign: 'center',
 			color: palette.base.white,

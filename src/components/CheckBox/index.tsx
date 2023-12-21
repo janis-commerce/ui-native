@@ -3,6 +3,7 @@ import {View, TouchableOpacity, StyleSheet, ViewStyle} from 'react-native';
 import {base, grey, primary} from '../../theme/palette';
 import {moderateScale, horizontalScale} from '../../scale';
 import Icon from './icon/CheckedIcon';
+import {LOAD_STORYBOOK} from '../../../env.json';
 
 interface CheckBoxProps {
 	checked: boolean;
@@ -30,28 +31,32 @@ const CheckBox = ({
 	...props
 }: CheckBoxProps) => {
 	const hasBorderRadius = !borderRadius ? getCheckBoxScale(customSize, 4) : borderRadius;
-	const iconSize = moderateScale(customSize);
+
+	const validateIconSize = !LOAD_STORYBOOK ? moderateScale(customSize) : customSize;
+	const validWidth = !LOAD_STORYBOOK ? horizontalScale(customSize) : customSize;
+	const validHeight = !LOAD_STORYBOOK ? moderateScale(customSize) : customSize;
+	const validBorderRadius = !LOAD_STORYBOOK ? moderateScale(hasBorderRadius) : hasBorderRadius;
 
 	const styles = StyleSheet.create({
 		touchableOpacity: {
-			width: horizontalScale(customSize),
-			height: moderateScale(customSize),
-			borderRadius: moderateScale(hasBorderRadius),
+			width: validWidth,
+			height: validHeight,
+			borderRadius: validBorderRadius,
 		},
 		checkOn: {
 			display: 'flex',
 			justifyContent: 'center',
 			alignItems: 'center',
 			backgroundColor: !disabled ? checkOnColor : grey[200],
-			width: horizontalScale(customSize),
-			height: moderateScale(customSize),
-			borderRadius: moderateScale(hasBorderRadius),
+			width: validWidth,
+			height: validHeight,
+			borderRadius: validBorderRadius,
 		},
 		checkOff: {
 			borderWidth: getCheckBoxScale(customSize, 16),
 			borderColor: !disabled ? checkOffColor : grey[200],
-			width: horizontalScale(customSize),
-			height: moderateScale(customSize),
+			width: validWidth,
+			height: validHeight,
 			borderRadius: hasBorderRadius,
 		},
 	});
@@ -64,7 +69,9 @@ const CheckBox = ({
 			activeOpacity={0.6}
 			style={[styles.touchableOpacity, style]}
 			{...props}>
-			<View style={isChecked}>{checked && <Icon color={iconCheckColor} size={iconSize} />}</View>
+			<View style={isChecked}>
+				{checked && <Icon color={iconCheckColor} size={validateIconSize} />}
+			</View>
 		</TouchableOpacity>
 	);
 };

@@ -3,6 +3,7 @@ import {Pressable, View, ViewStyle} from 'react-native';
 import {black} from '../../../../../theme/palette';
 import Svg, {Path} from 'react-native-svg';
 import {moderateScale} from '../../../../../scale';
+import {LOAD_STORYBOOK} from '../../../../../../env.json';
 
 interface IconProps {
 	color?: string;
@@ -12,11 +13,13 @@ interface IconProps {
 	onPress?: () => void;
 }
 
-const Delete = ({style, color, size, onPress, ...props}: IconProps) => {
+const Delete = ({style, color, size = 21, onPress, ...props}: IconProps) => {
+	const validSize = !LOAD_STORYBOOK ? moderateScale(size) : size;
+
 	return (
 		<Pressable onPress={onPress} style={style} {...props}>
 			<View>
-				<Svg width={size} height={size} viewBox="0 0 16 16">
+				<Svg width={validSize} height={validSize} viewBox="0 0 16 16">
 					<Path
 						fill-rule="evenodd"
 						clip-rule="evenodd"
@@ -31,7 +34,6 @@ const Delete = ({style, color, size, onPress, ...props}: IconProps) => {
 
 Delete.defaultProps = {
 	color: black.main,
-	size: moderateScale(21),
 	onPress: () => {},
 };
 

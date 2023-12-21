@@ -3,6 +3,7 @@ import {View, StyleSheet, Animated, Easing, ViewStyle} from 'react-native';
 import {palette} from '../../theme/palette';
 import {getBarColor, getPercentage} from './utils';
 import {moderateScale} from '../../scale';
+import {LOAD_STORYBOOK} from '../../../env.json';
 
 interface ProgressBarProps {
 	value: number;
@@ -43,20 +44,24 @@ const ProgressBar: FC<ProgressBarProps> = ({
 		}
 	}, [isAnimated, percentValue, timeDuration, widthAnimation]);
 
+	const validHeight = !LOAD_STORYBOOK ? moderateScale(4) : 4;
+	const validBorderRadius = !LOAD_STORYBOOK ? moderateScale(2) : 2;
+	const validMarginTop = !LOAD_STORYBOOK ? moderateScale(12) : 12;
+
 	const styles = StyleSheet.create({
 		container: {
 			position: 'relative',
 			width: '100%',
-			height: moderateScale(4),
-			marginTop: moderateScale(12),
-			borderRadius: moderateScale(2),
+			height: validHeight,
+			marginTop: validMarginTop,
+			borderRadius: validBorderRadius,
 			backgroundColor: white.main,
 		},
 		fill: {
 			position: 'absolute',
 			left: 0,
-			height: moderateScale(4),
-			borderRadius: moderateScale(2),
+			height: validHeight,
+			borderRadius: validBorderRadius,
 			zIndex: 10,
 			backgroundColor: colorValue,
 		},

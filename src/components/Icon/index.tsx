@@ -3,6 +3,7 @@ import {createIconSetFromIcoMoon} from 'react-native-vector-icons';
 import icoMoonConfig from './assets/fonts/selection.json';
 import {primary} from '../../theme/palette';
 import {moderateScale} from '../../scale';
+import {LOAD_STORYBOOK} from '../../../env.json';
 
 const IconComponent = createIconSetFromIcoMoon(
 	icoMoonConfig,
@@ -21,7 +22,9 @@ const Icon: FC<Props> = ({name, color = primary.main, size = 16, ...props}) => {
 	if (!name) {
 		return null;
 	}
-	return <IconComponent name={name} color={color} size={moderateScale(size)} {...props} />;
+	const validateSize = !LOAD_STORYBOOK ? moderateScale(size) : size;
+
+	return <IconComponent name={name} color={color} size={validateSize} {...props} />;
 };
 
 export default Icon;

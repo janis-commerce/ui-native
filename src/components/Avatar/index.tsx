@@ -4,6 +4,7 @@ import Image from '../Image';
 import Text from '../Text';
 import {formatPlaceholder} from './utils/formatPlaceholder/index';
 import {horizontalScale, moderateScale} from '../../scale';
+import {LOAD_STORYBOOK} from '../../../env.json';
 
 export const sizeValues = {
 	sm: 24,
@@ -57,6 +58,18 @@ const Avatar = ({
 	}
 
 	const initials = formatPlaceholder(String(placeholder));
+	const validBorderRadius = !LOAD_STORYBOOK
+		? moderateScale(getSize(size, customSize) / 2)
+		: getSize(size, customSize) / 2;
+	const validWidth = !LOAD_STORYBOOK
+		? horizontalScale(getSize(size, customSize))
+		: getSize(size, customSize);
+	const validHeight = !LOAD_STORYBOOK
+		? moderateScale(getSize(size, customSize))
+		: getSize(size, customSize);
+	const validModerateScale = LOAD_STORYBOOK
+		? getSize(size, customSize) * 0.4
+		: moderateScale(getSize(size, customSize) * 0.4);
 
 	const handleOnErrorImage = () => {
 		setShowInitials(true);
@@ -71,9 +84,9 @@ const Avatar = ({
 				styles.container,
 				{
 					backgroundColor: bgColor,
-					borderRadius: moderateScale(getSize(size, customSize) / 2),
-					height: moderateScale(getSize(size, customSize)),
-					width: horizontalScale(getSize(size, customSize)),
+					borderRadius: validBorderRadius,
+					height: validHeight,
+					width: validWidth,
 				},
 				style,
 			]}
@@ -87,18 +100,14 @@ const Avatar = ({
 						uri: imageUrl,
 					}}
 					style={{
-						height: moderateScale(getSize(size, customSize)),
-						width: horizontalScale(getSize(size, customSize)),
+						height: validHeight,
+						width: validWidth,
 					}}
 				/>
 			)}
 
 			{(showInitials || !imageUrl) && !!initials.length && (
-				<Text
-					style={[
-						styles.text,
-						{color: textColor, fontSize: moderateScale(getSize(size, customSize) * 0.4)},
-					]}>
+				<Text style={[styles.text, {color: textColor, fontSize: validModerateScale}]}>
 					{initials}
 				</Text>
 			)}

@@ -3,6 +3,7 @@ import {View, StyleSheet, TouchableOpacity, ScrollView, Text} from 'react-native
 import {base, black, grey, primary, white} from '../../../../theme/palette';
 import {CustomOptionComponent, Option} from '../..';
 import {horizontalScale, moderateScale} from '../../../../scale';
+import {LOAD_STORYBOOK} from '../../../../../env.json';
 
 interface DropdownProps {
 	isShowedDropdown: boolean;
@@ -31,41 +32,51 @@ const Dropdown: FC<DropdownProps> = (props) => {
 
 	const handleSelectedOption = (option: Option) => callbackOption(option);
 
+	const validPadding = !LOAD_STORYBOOK ? moderateScale(8) : 8;
+	const validMaxHeight = !LOAD_STORYBOOK ? moderateScale(168) : 168;
+	const validTop = !LOAD_STORYBOOK ? moderateScale(60) : 60;
+	const validMarginBottom = !LOAD_STORYBOOK ? moderateScale(20) : 20;
+	const validElevation = !LOAD_STORYBOOK ? moderateScale(5) : 5;
+	const validHeight = !LOAD_STORYBOOK ? moderateScale(42) : 42;
+	const validLeft = !LOAD_STORYBOOK ? horizontalScale(8) : 8;
+	const validFontSize = !LOAD_STORYBOOK ? moderateScale(14) : 14;
+	const validPaddingVertical = !LOAD_STORYBOOK ? moderateScale(10) : 10;
+
 	const styles = StyleSheet.create({
 		container: {
 			width: '100%',
-			padding: moderateScale(8),
+			padding: validPadding,
 		},
 		optionWrapper: {
 			position: 'absolute',
-			maxHeight: moderateScale(168),
+			maxHeight: validMaxHeight,
 			borderColor: grey[200],
 			backgroundColor: base.white,
 			width: '100%',
-			top: moderateScale(60),
-			marginBottom: moderateScale(20),
-			elevation: moderateScale(5),
+			top: validTop,
+			marginBottom: validMarginBottom,
+			elevation: validElevation,
 			zIndex: 10,
 			flex: 1,
 		},
 		option: {
 			width: '100%',
-			height: moderateScale(42),
+			height: validHeight,
 			justifyContent: 'center',
 			alignItems: 'stretch',
-			paddingLeft: horizontalScale(8),
+			paddingLeft: validLeft,
 		},
 		optionText: {
-			fontSize: moderateScale(14),
+			fontSize: validFontSize,
 			color: black.main,
 			fontWeight: '400',
 		},
 		noOptionText: {
-			fontSize: moderateScale(14),
+			fontSize: validFontSize,
 			color: grey[500],
 			fontWeight: '400',
-			paddingLeft: horizontalScale(8),
-			paddingVertical: moderateScale(10),
+			paddingLeft: validLeft,
+			paddingVertical: validPaddingVertical,
 		},
 	});
 

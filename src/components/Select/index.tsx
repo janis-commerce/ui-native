@@ -6,6 +6,7 @@ import ChevronIcon from './Components/Icons/Chevron';
 import DeleteIcon from './Components/Icons/Delete';
 import Dropdown from './Components/Dropdown';
 import {horizontalScale, moderateScale} from '../../scale';
+import {LOAD_STORYBOOK} from '../../../env.json';
 
 enum KeyboardTypes {
 	Default = 'default',
@@ -151,10 +152,22 @@ const Select: FC<SelectProps> = ({
 		}
 	}, [hasDefaultValue, value]);
 
+	const moveLabel = isMoveLabel ? 38 : 10;
+
+	const validFontSize = !LOAD_STORYBOOK ? moderateScale(16) : 16;
+	const validMarginBottom = !LOAD_STORYBOOK ? moderateScale(10) : 10;
+	const validMarginTop = !LOAD_STORYBOOK ? moderateScale(18) : 18;
+	const validHeightLabel = !LOAD_STORYBOOK ? moderateScale(19) : 19;
+	const validPadding = !LOAD_STORYBOOK ? moderateScale(8) : 8;
+	const validBottomLabel = !LOAD_STORYBOOK ? moderateScale(moveLabel) : moveLabel;
+	const validHeightInput = !LOAD_STORYBOOK ? moderateScale(38) : 38;
+	const validRight = !LOAD_STORYBOOK ? horizontalScale(30) : 30;
+	const validBorderBottomWidth = !LOAD_STORYBOOK ? moderateScale(1) : 1;
+
 	const styles = StyleSheet.create({
 		wrapper: {
 			width: '100%',
-			marginBottom: moderateScale(10),
+			marginBottom: validMarginBottom,
 			position: 'relative',
 			zIndex: isShowedDropdown ? 10 : 0,
 		},
@@ -162,32 +175,32 @@ const Select: FC<SelectProps> = ({
 			position: 'relative',
 			width: '100%',
 			marginBottom: 0,
-			marginTop: moderateScale(18),
+			marginTop: validMarginTop,
 		},
 		label: {
 			position: 'absolute',
 			color: isMoveLabel && !isDisabled ? primary.main : black.main,
-			fontSize: moderateScale(16),
-			lineHeight: moderateScale(19),
+			fontSize: validFontSize,
+			lineHeight: validHeightLabel,
 			letterSpacing: 0,
 			left: 0,
 			fontWeight: isMoveLabel ? '600' : '400',
-			bottom: moderateScale(isMoveLabel ? 38 : 10),
+			bottom: validBottomLabel,
 		},
 		input: {
 			width: '100%',
-			height: moderateScale(38),
+			height: validHeightInput,
 			padding: 0,
-			fontSize: moderateScale(16),
-			lineHeight: moderateScale(19),
+			fontSize: validFontSize,
+			lineHeight: validHeightLabel,
 			letterSpacing: 0,
-			borderBottomWidth: moderateScale(1),
+			borderBottomWidth: validBorderBottomWidth,
 			color: black.main,
 			borderBottomColor: isShowedDropdown ? primary.main : grey[200],
 		},
 		arrowIcon: {
 			position: 'absolute',
-			padding: moderateScale(8),
+			padding: validPadding,
 			right: 0,
 			bottom: 0,
 			zIndex: 1,
@@ -195,8 +208,8 @@ const Select: FC<SelectProps> = ({
 		},
 		deleteIcon: {
 			position: 'absolute',
-			padding: moderateScale(8),
-			right: horizontalScale(30),
+			padding: validPadding,
+			right: validRight,
 			bottom: 0,
 			zIndex: 1,
 		},

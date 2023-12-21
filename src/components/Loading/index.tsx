@@ -3,6 +3,7 @@ import {StyleSheet, View, Animated, Easing, ViewStyle} from 'react-native';
 import LoadingSvg from './LoadingSvg';
 import {primary} from '../../theme/palette';
 import {horizontalScale, moderateScale} from '../../scale';
+import {LOAD_STORYBOOK} from '../../../env.json';
 
 interface Params {
 	duration: number;
@@ -39,13 +40,17 @@ const Loading: FC<Props> = ({
 }) => {
 	const rotationDegree = useRef(new Animated.Value(0)).current;
 
+	const validWidth = !LOAD_STORYBOOK ? horizontalScale(size) : size;
+	const validHeight = !LOAD_STORYBOOK ? moderateScale(size) : size;
+	const validSize = !LOAD_STORYBOOK ? moderateScale(size) : size;
+
 	const styles = StyleSheet.create({
 		container: {
 			position: 'relative',
 			justifyContent: 'center',
 			alignItems: 'center',
-			width: horizontalScale(size),
-			height: moderateScale(size),
+			width: validWidth,
+			height: validHeight,
 		},
 		spinner: {
 			position: 'absolute',
@@ -84,7 +89,7 @@ const Loading: FC<Props> = ({
 		<View style={[styles.container, style]} {...props}>
 			<LoadingSvg
 				style={[styles.spinner, {...animationSpinnerStyle}]}
-				size={moderateScale(size)}
+				size={validSize}
 				color={color}
 			/>
 			{children}

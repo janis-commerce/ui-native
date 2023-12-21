@@ -3,28 +3,36 @@ import {StyleSheet, ViewProps, View} from 'react-native';
 import {base, grey, primary} from '../../theme/palette';
 import Text from '../Text';
 import {horizontalScale, moderateScale} from '../../scale';
+import {LOAD_STORYBOOK} from '../../../env.json';
 
 interface StatusChipProps extends ViewProps {
 	children?: ReactElement | string;
 	background?: string;
 }
 
+const validHeight = !LOAD_STORYBOOK ? moderateScale(24) : 24;
+const validPadding = !LOAD_STORYBOOK ? horizontalScale(12) : 12;
+const validBorderRadius = !LOAD_STORYBOOK ? moderateScale(12) : 12;
+const validBorderWidth = !LOAD_STORYBOOK ? moderateScale(1) : 1;
+const validFontSize = !LOAD_STORYBOOK ? moderateScale(13) : 13;
+const validLineHeight = !LOAD_STORYBOOK ? moderateScale(18) : 18;
+
 const styles = ({background}: StatusChipProps) =>
 	StyleSheet.create({
 		ViewStyles: {
-			height: moderateScale(24),
+			height: validHeight,
 			flexDirection: 'row',
 			alignItems: 'center',
-			paddingLeft: horizontalScale(12),
-			paddingRight: horizontalScale(12),
-			borderRadius: moderateScale(12),
+			paddingLeft: validPadding,
+			paddingRight: validPadding,
+			borderRadius: validBorderRadius,
 			backgroundColor: background ?? base.white,
-			borderWidth: moderateScale(1),
+			borderWidth: validBorderWidth,
 			borderColor: background ?? grey['300'],
 		},
 		TextStyles: {
-			fontSize: moderateScale(13),
-			lineHeight: moderateScale(18),
+			fontSize: validFontSize,
+			lineHeight: validLineHeight,
 			fontFamily: 'Roboto',
 			fontWeight: '900',
 			textAlign: 'center',

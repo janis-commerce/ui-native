@@ -19,6 +19,7 @@ import {
 	showStatusMessage,
 } from './utils';
 import {moderateScale, horizontalScale} from '../../scale';
+import {LOAD_STORYBOOK} from '../../../env.json';
 
 export enum keyboardTypes {
 	default = 'default',
@@ -114,35 +115,41 @@ const Input = React.forwardRef<TextInput, InputProps>(
 			status,
 		});
 		const validStatusMessageColor = getStatusMessageColor(status);
+		const validBottom = !LOAD_STORYBOOK ? moderateScale(25) : 25;
+		const validHeight = !LOAD_STORYBOOK ? moderateScale(50) : 50;
+		const validBorderBottomWidth = !LOAD_STORYBOOK ? horizontalScale(1) : 1;
+		const validLineHeight = !LOAD_STORYBOOK ? moderateScale(19) : 19;
+		const validFontSize = !LOAD_STORYBOOK ? moderateScale(16) : 16;
+		const validateMarginTop = !LOAD_STORYBOOK ? moderateScale(5) : 5;
 
 		const styles = StyleSheet.create({
 			container: {
 				width: '100%',
 			},
 			inputWrapper: {
-				height: moderateScale(50),
+				height: validHeight,
 				borderBottomColor: validBorderColor,
-				borderBottomWidth: horizontalScale(1),
+				borderBottomWidth: validBorderBottomWidth,
 				justifyContent: 'flex-end',
 			},
 			label: {
 				color: validLabelColor,
-				fontSize: moderateScale(16),
-				letterSpacing: moderateScale(0),
-				lineHeight: moderateScale(19),
+				fontSize: validFontSize,
+				letterSpacing: 0,
+				lineHeight: validLineHeight,
 				position: 'absolute',
-				bottom: raiseLabel({disabled, hasMessage, inputState}) ? moderateScale(25) : 0,
+				bottom: raiseLabel({disabled, hasMessage, inputState}) ? validBottom : 0,
 			},
 			input: {
 				color: valueColor,
-				fontSize: moderateScale(16),
-				letterSpacing: moderateScale(0),
-				lineHeight: moderateScale(19),
-				padding: moderateScale(0),
+				fontSize: validFontSize,
+				letterSpacing: 0,
+				lineHeight: validLineHeight,
+				padding: 0,
 			},
 			statusMessage: {
 				color: validStatusMessageColor,
-				marginTop: moderateScale(5),
+				marginTop: validateMarginTop,
 			},
 		});
 

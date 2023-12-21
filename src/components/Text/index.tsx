@@ -7,6 +7,7 @@ import {
 	TextStyle,
 } from 'react-native';
 import {moderateScale} from '../../scale';
+import {LOAD_STORYBOOK} from '../../../env.json';
 
 interface TextProps extends TextComponentProps {
 	children?: ReactElement | string;
@@ -18,9 +19,11 @@ const Text = ({children, style, ...props}: TextProps) => {
 		return null;
 	}
 
+	const validFontSize = !LOAD_STORYBOOK ? moderateScale(13) : 13;
+
 	const styles = StyleSheet.create({
 		TextStyles: {
-			fontSize: moderateScale(13),
+			fontSize: validFontSize,
 			fontFamily: 'Roboto',
 		},
 	});
