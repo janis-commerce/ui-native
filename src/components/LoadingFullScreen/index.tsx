@@ -4,8 +4,7 @@ import Loading from '../Loading';
 import Svg from '../Svg';
 import {grey, white} from '../../theme/palette';
 import {Names} from '../../ts/interfaces/svgs';
-import {moderateScale, horizontalScale} from '../../scale';
-import {LOAD_STORYBOOK} from '../../../env.json';
+import {moderateScale, horizontalScale, scaledForDevice} from '../../scale';
 
 interface ILoadingFullScreen extends ModalProps {
 	isLoading: boolean;
@@ -15,11 +14,11 @@ interface ILoadingFullScreen extends ModalProps {
 	style?: ViewStyle;
 }
 
-const validFontSize = !LOAD_STORYBOOK ? moderateScale(16) : 16;
-const validLineHeight = !LOAD_STORYBOOK ? moderateScale(24) : 24;
-const validMarginTop = !LOAD_STORYBOOK ? moderateScale(25) : 25;
-const validWidth = !LOAD_STORYBOOK ? horizontalScale(36) : 36;
-const validHeight = !LOAD_STORYBOOK ? moderateScale(25) : 25;
+const validFontSize = scaledForDevice(16, moderateScale);
+const validLineHeight = scaledForDevice(24, moderateScale);
+const validMarginTop = scaledForDevice(25, moderateScale);
+const validWidth = scaledForDevice(36, horizontalScale);
+const validHeight = scaledForDevice(25, moderateScale);
 
 const styles = StyleSheet.create({
 	ContainerStyles: {

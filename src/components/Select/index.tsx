@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import React, {FC, useState, useEffect, useRef, useCallback} from 'react';
 import {Keyboard, StyleSheet, Text, TextInput, View} from 'react-native';
 import {black, grey, primary} from '../../theme/palette';
@@ -5,8 +6,7 @@ import {formatPlaceholderMulti} from './utils';
 import ChevronIcon from './Components/Icons/Chevron';
 import DeleteIcon from './Components/Icons/Delete';
 import Dropdown from './Components/Dropdown';
-import {horizontalScale, moderateScale} from '../../scale';
-import {LOAD_STORYBOOK} from '../../../env.json';
+import {horizontalScale, moderateScale, scaledForDevice} from '../../scale';
 
 enum KeyboardTypes {
 	Default = 'default',
@@ -154,15 +154,15 @@ const Select: FC<SelectProps> = ({
 
 	const moveLabel = isMoveLabel ? 38 : 10;
 
-	const validFontSize = !LOAD_STORYBOOK ? moderateScale(16) : 16;
-	const validMarginBottom = !LOAD_STORYBOOK ? moderateScale(10) : 10;
-	const validMarginTop = !LOAD_STORYBOOK ? moderateScale(18) : 18;
-	const validHeightLabel = !LOAD_STORYBOOK ? moderateScale(19) : 19;
-	const validPadding = !LOAD_STORYBOOK ? moderateScale(8) : 8;
-	const validBottomLabel = !LOAD_STORYBOOK ? moderateScale(moveLabel) : moveLabel;
-	const validHeightInput = !LOAD_STORYBOOK ? moderateScale(38) : 38;
-	const validRight = !LOAD_STORYBOOK ? horizontalScale(30) : 30;
-	const validBorderBottomWidth = !LOAD_STORYBOOK ? moderateScale(1) : 1;
+	const validFontSize = scaledForDevice(16, moderateScale);
+	const validMarginBottom = scaledForDevice(10, moderateScale);
+	const validMarginTop = scaledForDevice(18, moderateScale);
+	const validHeightLabel = scaledForDevice(19, moderateScale);
+	const validPadding = scaledForDevice(8, moderateScale);
+	const validBottomLabel = scaledForDevice(moveLabel, moderateScale);
+	const validHeightInput = scaledForDevice(38, moderateScale);
+	const validRight = scaledForDevice(30, horizontalScale);
+	const validBorderBottomWidth = scaledForDevice(1, moderateScale);
 
 	const styles = StyleSheet.create({
 		wrapper: {

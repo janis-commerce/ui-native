@@ -7,8 +7,7 @@ import JanisLogo from './svgs/JanisLogo';
 import JanisLogoColor from './svgs/JanisLogoColor';
 import LoginIllustration from './svgs/LoginIllustration';
 import NoNotifications from './svgs/NoNotifications';
-import {horizontalScale, moderateScale} from '../../scale';
-import {LOAD_STORYBOOK} from '../../../env.json';
+import {horizontalScale, moderateScale, scaledForDevice} from '../../scale';
 
 const svgs = {
 	'empty-illustration': EmptyIllustration,
@@ -26,12 +25,11 @@ const Svg = ({name, width, height, size, ...props}: Isvg) => {
 	const SvgSelected = svgs[name];
 	const selectedWidth = size ?? width;
 	const selectedHeight = size ?? height;
-
 	const parseSelectedWidth = selectedWidth || 0;
 	const parseSelectedHeight = selectedHeight || 0;
 
-	const validateWidth = !LOAD_STORYBOOK ? horizontalScale(parseSelectedWidth) : parseSelectedWidth;
-	const validateHeight = !LOAD_STORYBOOK ? moderateScale(parseSelectedHeight) : parseSelectedHeight;
+	const validateWidth = scaledForDevice(parseSelectedWidth, horizontalScale);
+	const validateHeight = scaledForDevice(parseSelectedHeight, moderateScale);
 
 	return (
 		<View {...props}>

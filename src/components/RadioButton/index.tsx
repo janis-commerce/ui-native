@@ -2,8 +2,7 @@ import React from 'react';
 import {View, TouchableOpacity, StyleSheet, ViewStyle} from 'react-native';
 import Text from '../Text';
 import CheckBox from '../CheckBox';
-import {horizontalScale, moderateScale} from '../../scale';
-import {LOAD_STORYBOOK} from '../../../env.json';
+import {horizontalScale, moderateScale, scaledForDevice} from '../../scale';
 
 const checkLocation = ['left', 'right'] as const;
 
@@ -28,9 +27,9 @@ interface RadioButtonProps {
 	style?: ViewStyle;
 }
 
-const validPaddingHorizontal = !LOAD_STORYBOOK ? horizontalScale(16) : 16;
-const validMarginVertical = !LOAD_STORYBOOK ? moderateScale(10) : 10;
-const validMarginHorizontal = !LOAD_STORYBOOK ? horizontalScale(15) : 15;
+const validPaddingHorizontal = scaledForDevice(16, horizontalScale);
+const validMarginVertical = scaledForDevice(10, moderateScale);
+const validMarginHorizontal = scaledForDevice(15, horizontalScale);
 
 const styles = StyleSheet.create({
 	container: {

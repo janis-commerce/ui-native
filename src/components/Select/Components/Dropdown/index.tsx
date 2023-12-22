@@ -2,8 +2,7 @@ import React, {FC} from 'react';
 import {View, StyleSheet, TouchableOpacity, ScrollView, Text} from 'react-native';
 import {base, black, grey, primary, white} from '../../../../theme/palette';
 import {CustomOptionComponent, Option} from '../..';
-import {horizontalScale, moderateScale} from '../../../../scale';
-import {LOAD_STORYBOOK} from '../../../../../env.json';
+import {horizontalScale, moderateScale, scaledForDevice} from '../../../../scale';
 
 interface DropdownProps {
 	isShowedDropdown: boolean;
@@ -32,15 +31,15 @@ const Dropdown: FC<DropdownProps> = (props) => {
 
 	const handleSelectedOption = (option: Option) => callbackOption(option);
 
-	const validPadding = !LOAD_STORYBOOK ? moderateScale(8) : 8;
-	const validMaxHeight = !LOAD_STORYBOOK ? moderateScale(168) : 168;
-	const validTop = !LOAD_STORYBOOK ? moderateScale(60) : 60;
-	const validMarginBottom = !LOAD_STORYBOOK ? moderateScale(20) : 20;
-	const validElevation = !LOAD_STORYBOOK ? moderateScale(5) : 5;
-	const validHeight = !LOAD_STORYBOOK ? moderateScale(42) : 42;
-	const validLeft = !LOAD_STORYBOOK ? horizontalScale(8) : 8;
-	const validFontSize = !LOAD_STORYBOOK ? moderateScale(14) : 14;
-	const validPaddingVertical = !LOAD_STORYBOOK ? moderateScale(10) : 10;
+	const validPadding = scaledForDevice(8, moderateScale);
+	const validMaxHeight = scaledForDevice(168, moderateScale);
+	const validTop = scaledForDevice(60, moderateScale);
+	const validMarginBottom = scaledForDevice(20, moderateScale);
+	const validElevation = scaledForDevice(5, moderateScale);
+	const validHeight = scaledForDevice(42, moderateScale);
+	const validLeft = scaledForDevice(8, horizontalScale);
+	const validFontSize = scaledForDevice(14, moderateScale);
+	const validPaddingVertical = scaledForDevice(10, moderateScale);
 
 	const styles = StyleSheet.create({
 		container: {

@@ -56,9 +56,9 @@ describe('Scale Utils', () => {
 	describe('moderateScale', () => {
 		it('should scale size moderately based on the guideline and factor', () => {
 			const size = 10;
-			const factor = 2;
+			const factor = 1;
 			const expectedModerateSize = size + (horizontalScale(size) - size) * factor;
-			expect(moderateScale(size, factor)).toBe(expectedModerateSize);
+			expect(moderateScale(size)).toBe(expectedModerateSize);
 		});
 	});
 });

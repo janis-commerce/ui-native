@@ -26,10 +26,10 @@ exports[`LoadingFullScreen component render correct render only the loading 1`] 
         Array [
           Object {
             "alignItems": "center",
-            "height": 133.5,
+            "height": 64,
             "justifyContent": "center",
             "position": "relative",
-            "width": 133.5,
+            "width": 64,
           },
           undefined,
         ]
@@ -54,10 +54,10 @@ exports[`LoadingFullScreen component render correct render only the loading 1`] 
       >
         <RNSVGSvgView
           align="xMidYMid"
-          bbHeight={133.5}
-          bbWidth={133.5}
+          bbHeight={64}
+          bbWidth={64}
           focusable={false}
-          height={133.5}
+          height={64}
           meetOrSlice={0}
           minX={0}
           minY={0}
@@ -69,14 +69,14 @@ exports[`LoadingFullScreen component render correct render only the loading 1`] 
               },
               Object {
                 "flex": 0,
-                "height": 133,
-                "width": 133,
+                "height": 64,
+                "width": 64,
               },
             ]
           }
           vbHeight={163}
           vbWidth={163}
-          width={133.5}
+          width={64}
           x="0px"
           y="0px"
         >
@@ -121,16 +121,16 @@ exports[`LoadingFullScreen component render correct render only the loading 1`] 
       </View>
       <View>
         <View
-          height={108.5}
-          width={156.5}
+          height={25}
+          width={36}
         >
           <RNSVGSvgView
             align="xMidYMid"
-            bbHeight={108.5}
-            bbWidth={156.5}
+            bbHeight={25}
+            bbWidth={36}
             fill="none"
             focusable={false}
-            height={108.5}
+            height={25}
             meetOrSlice={0}
             minX={0}
             minY={0}
@@ -142,14 +142,14 @@ exports[`LoadingFullScreen component render correct render only the loading 1`] 
                 },
                 Object {
                   "flex": 0,
-                  "height": 108,
-                  "width": 156,
+                  "height": 25,
+                  "width": 36,
                 },
               ]
             }
             vbHeight={47}
             vbWidth={65}
-            width={156.5}
+            width={36}
             xmlns="http://www.w3.org/2000/svg"
           >
             <RNSVGGroup
@@ -204,10 +204,10 @@ exports[`LoadingFullScreen component render correct renders well the loading nex
         Array [
           Object {
             "alignItems": "center",
-            "height": 133.5,
+            "height": 64,
             "justifyContent": "center",
             "position": "relative",
-            "width": 133.5,
+            "width": 64,
           },
           undefined,
         ]
@@ -232,10 +232,10 @@ exports[`LoadingFullScreen component render correct renders well the loading nex
       >
         <RNSVGSvgView
           align="xMidYMid"
-          bbHeight={133.5}
-          bbWidth={133.5}
+          bbHeight={64}
+          bbWidth={64}
           focusable={false}
-          height={133.5}
+          height={64}
           meetOrSlice={0}
           minX={0}
           minY={0}
@@ -247,14 +247,14 @@ exports[`LoadingFullScreen component render correct renders well the loading nex
               },
               Object {
                 "flex": 0,
-                "height": 133,
-                "width": 133,
+                "height": 64,
+                "width": 64,
               },
             ]
           }
           vbHeight={163}
           vbWidth={163}
-          width={133.5}
+          width={64}
           x="0px"
           y="0px"
         >
@@ -299,16 +299,16 @@ exports[`LoadingFullScreen component render correct renders well the loading nex
       </View>
       <View>
         <View
-          height={108.5}
-          width={156.5}
+          height={25}
+          width={36}
         >
           <RNSVGSvgView
             align="xMidYMid"
-            bbHeight={108.5}
-            bbWidth={156.5}
+            bbHeight={25}
+            bbWidth={36}
             fill="none"
             focusable={false}
-            height={108.5}
+            height={25}
             meetOrSlice={0}
             minX={0}
             minY={0}
@@ -320,14 +320,14 @@ exports[`LoadingFullScreen component render correct renders well the loading nex
                 },
                 Object {
                   "flex": 0,
-                  "height": 108,
-                  "width": 156,
+                  "height": 25,
+                  "width": 36,
                 },
               ]
             }
             vbHeight={47}
             vbWidth={65}
-            width={156.5}
+            width={36}
             xmlns="http://www.w3.org/2000/svg"
           >
             <RNSVGGroup
@@ -357,10 +357,10 @@ exports[`LoadingFullScreen component render correct renders well the loading nex
         Object {
           "color": "#585858",
           "fontFamily": "Roboto",
-          "fontSize": 33.5,
+          "fontSize": 16,
           "fontWeight": "500",
-          "lineHeight": 50,
-          "marginTop": 52,
+          "lineHeight": 24,
+          "marginTop": 25,
           "textAlign": "center",
           "width": "50%",
         }

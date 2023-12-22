@@ -18,8 +18,7 @@ import {
 	raiseLabel,
 	showStatusMessage,
 } from './utils';
-import {moderateScale, horizontalScale} from '../../scale';
-import {LOAD_STORYBOOK} from '../../../env.json';
+import {moderateScale, horizontalScale, scaledForDevice} from '../../scale';
 
 export enum keyboardTypes {
 	default = 'default',
@@ -114,13 +113,14 @@ const Input = React.forwardRef<TextInput, InputProps>(
 			statusMessage,
 			status,
 		});
+
 		const validStatusMessageColor = getStatusMessageColor(status);
-		const validBottom = !LOAD_STORYBOOK ? moderateScale(25) : 25;
-		const validHeight = !LOAD_STORYBOOK ? moderateScale(50) : 50;
-		const validBorderBottomWidth = !LOAD_STORYBOOK ? horizontalScale(1) : 1;
-		const validLineHeight = !LOAD_STORYBOOK ? moderateScale(19) : 19;
-		const validFontSize = !LOAD_STORYBOOK ? moderateScale(16) : 16;
-		const validateMarginTop = !LOAD_STORYBOOK ? moderateScale(5) : 5;
+		const validBottom = scaledForDevice(25, moderateScale);
+		const validHeight = scaledForDevice(50, moderateScale);
+		const validBorderBottomWidth = scaledForDevice(1, horizontalScale);
+		const validLineHeight = scaledForDevice(19, moderateScale);
+		const validFontSize = scaledForDevice(16, moderateScale);
+		const validateMarginTop = scaledForDevice(5, moderateScale);
 
 		const styles = StyleSheet.create({
 			container: {

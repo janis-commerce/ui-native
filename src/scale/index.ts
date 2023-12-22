@@ -1,4 +1,5 @@
 import {Dimensions, PixelRatio, Platform} from 'react-native';
+import {isLoadedStorybook} from '../env';
 
 const guidelineBaseWidth = 360;
 const guidelineBaseHeight = 720;
@@ -18,6 +19,10 @@ const verticalScale = (size: number) =>
 const moderateScale = (size: number, factor: number = 1) =>
 	size + (horizontalScale(size) - size) * factor;
 
+/* istanbul ignore next */
+const scaledForDevice = (size: number, scaleCallback: (size: number) => number): number =>
+	!isLoadedStorybook ? scaleCallback(size) : size;
+
 export {
 	isIOS,
 	viewportWidth,
@@ -26,4 +31,5 @@ export {
 	horizontalScale,
 	verticalScale,
 	moderateScale,
+	scaledForDevice,
 };

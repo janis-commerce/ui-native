@@ -1,10 +1,9 @@
 import React, {FC} from 'react';
 import {Pressable, PressableProps, ViewStyle, StyleSheet} from 'react-native';
-import {moderateScale, horizontalScale} from '../../scale';
+import {moderateScale, horizontalScale, scaledForDevice} from '../../scale';
 import {palette} from '../../theme/palette';
 import Text from '../Text';
 import Icon from '../Icon';
-import {LOAD_STORYBOOK} from '../../../env.json';
 
 interface PressableStyleProp {
 	pressed: boolean;
@@ -44,16 +43,12 @@ const BaseButton: FC<BaseButtonProps> = ({
 	const iconPaddingLeft = iconRight && title ? 8 : 0;
 	const iconPaddingRight = !iconRight && title ? 8 : 0;
 
-	const validatePaddingVertical = !LOAD_STORYBOOK ? moderateScale(10) : 10;
-	const validatePaddingHorizontal = !LOAD_STORYBOOK ? horizontalScale(16) : 16;
-	const validateBorderRadius = !LOAD_STORYBOOK ? moderateScale(borderRadius) : borderRadius;
-	const validateFontSize = !LOAD_STORYBOOK ? moderateScale(14) : 14;
-	const validatePaddingRightIcon = !LOAD_STORYBOOK
-		? horizontalScale(iconPaddingRight)
-		: iconPaddingRight;
-	const validatePaddingLeftIcon = !LOAD_STORYBOOK
-		? horizontalScale(iconPaddingLeft)
-		: iconPaddingLeft;
+	const validatePaddingVertical = scaledForDevice(10, moderateScale);
+	const validatePaddingHorizontal = scaledForDevice(16, horizontalScale);
+	const validateFontSize = scaledForDevice(14, moderateScale);
+	const validateBorderRadius = scaledForDevice(borderRadius, moderateScale);
+	const validatePaddingRightIcon = scaledForDevice(iconPaddingRight, horizontalScale);
+	const validatePaddingLeftIcon = scaledForDevice(iconPaddingLeft, horizontalScale);
 
 	const styles = StyleSheet.create({
 		container: {

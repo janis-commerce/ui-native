@@ -2,20 +2,19 @@ import React, {ReactElement, isValidElement} from 'react';
 import {StyleSheet, ViewProps, View} from 'react-native';
 import {base, grey, primary} from '../../theme/palette';
 import Text from '../Text';
-import {horizontalScale, moderateScale} from '../../scale';
-import {LOAD_STORYBOOK} from '../../../env.json';
+import {horizontalScale, moderateScale, scaledForDevice} from '../../scale';
 
 interface StatusChipProps extends ViewProps {
 	children?: ReactElement | string;
 	background?: string;
 }
 
-const validHeight = !LOAD_STORYBOOK ? moderateScale(24) : 24;
-const validPadding = !LOAD_STORYBOOK ? horizontalScale(12) : 12;
-const validBorderRadius = !LOAD_STORYBOOK ? moderateScale(12) : 12;
-const validBorderWidth = !LOAD_STORYBOOK ? moderateScale(1) : 1;
-const validFontSize = !LOAD_STORYBOOK ? moderateScale(13) : 13;
-const validLineHeight = !LOAD_STORYBOOK ? moderateScale(18) : 18;
+const validHeight = scaledForDevice(24, moderateScale);
+const validPadding = scaledForDevice(12, horizontalScale);
+const validBorderRadius = scaledForDevice(12, moderateScale);
+const validBorderWidth = scaledForDevice(1, moderateScale);
+const validFontSize = scaledForDevice(13, moderateScale);
+const validLineHeight = scaledForDevice(18, moderateScale);
 
 const styles = ({background}: StatusChipProps) =>
 	StyleSheet.create({

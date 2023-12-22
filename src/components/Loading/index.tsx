@@ -2,8 +2,7 @@ import React, {useEffect, useRef, FC} from 'react';
 import {StyleSheet, View, Animated, Easing, ViewStyle} from 'react-native';
 import LoadingSvg from './LoadingSvg';
 import {primary} from '../../theme/palette';
-import {horizontalScale, moderateScale} from '../../scale';
-import {LOAD_STORYBOOK} from '../../../env.json';
+import {horizontalScale, moderateScale, scaledForDevice} from '../../scale';
 
 interface Params {
 	duration: number;
@@ -40,9 +39,9 @@ const Loading: FC<Props> = ({
 }) => {
 	const rotationDegree = useRef(new Animated.Value(0)).current;
 
-	const validWidth = !LOAD_STORYBOOK ? horizontalScale(size) : size;
-	const validHeight = !LOAD_STORYBOOK ? moderateScale(size) : size;
-	const validSize = !LOAD_STORYBOOK ? moderateScale(size) : size;
+	const validWidth = scaledForDevice(size, horizontalScale);
+	const validHeight = scaledForDevice(size, moderateScale);
+	const validSize = scaledForDevice(size, moderateScale);
 
 	const styles = StyleSheet.create({
 		container: {

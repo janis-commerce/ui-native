@@ -6,8 +6,7 @@ import {
 	TextProps as TextComponentProps,
 	TextStyle,
 } from 'react-native';
-import {moderateScale} from '../../scale';
-import {LOAD_STORYBOOK} from '../../../env.json';
+import {moderateScale, scaledForDevice} from '../../scale';
 
 interface TextProps extends TextComponentProps {
 	children?: ReactElement | string;
@@ -19,7 +18,7 @@ const Text = ({children, style, ...props}: TextProps) => {
 		return null;
 	}
 
-	const validFontSize = !LOAD_STORYBOOK ? moderateScale(13) : 13;
+	const validFontSize = scaledForDevice(13, moderateScale);
 
 	const styles = StyleSheet.create({
 		TextStyles: {

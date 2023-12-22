@@ -2,8 +2,7 @@ import React from 'react';
 import {Pressable, View, ViewStyle} from 'react-native';
 import {black} from '../../../../../theme/palette';
 import Svg, {Path} from 'react-native-svg';
-import {moderateScale} from '../../../../../scale';
-import {LOAD_STORYBOOK} from '../../../../../../env.json';
+import {moderateScale, scaledForDevice} from '../../../../../scale';
 
 interface IconProps {
 	color?: string;
@@ -14,7 +13,7 @@ interface IconProps {
 }
 
 const Delete = ({style, color, size = 21, onPress, ...props}: IconProps) => {
-	const validSize = !LOAD_STORYBOOK ? moderateScale(size) : size;
+	const validSize = scaledForDevice(size, moderateScale);
 
 	return (
 		<Pressable onPress={onPress} style={style} {...props}>

@@ -3,8 +3,7 @@ import {StyleSheet, View, ViewStyle} from 'react-native';
 import Image from '../Image';
 import Text from '../Text';
 import {formatPlaceholder} from './utils/formatPlaceholder/index';
-import {horizontalScale, moderateScale} from '../../scale';
-import {LOAD_STORYBOOK} from '../../../env.json';
+import {horizontalScale, moderateScale, scaledForDevice} from '../../scale';
 
 export const sizeValues = {
 	sm: 24,
@@ -58,18 +57,14 @@ const Avatar = ({
 	}
 
 	const initials = formatPlaceholder(String(placeholder));
-	const validBorderRadius = !LOAD_STORYBOOK
-		? moderateScale(getSize(size, customSize) / 2)
-		: getSize(size, customSize) / 2;
-	const validWidth = !LOAD_STORYBOOK
-		? horizontalScale(getSize(size, customSize))
-		: getSize(size, customSize);
-	const validHeight = !LOAD_STORYBOOK
-		? moderateScale(getSize(size, customSize))
-		: getSize(size, customSize);
-	const validModerateScale = LOAD_STORYBOOK
-		? getSize(size, customSize) * 0.4
-		: moderateScale(getSize(size, customSize) * 0.4);
+	const calculateBorderRadius = getSize(size, customSize) / 2;
+	const calculateSize = getSize(size, customSize);
+	const calculateFontSize = getSize(size, customSize) * 0.4;
+
+	const validBorderRadius = scaledForDevice(calculateBorderRadius, moderateScale);
+	const validWidth = scaledForDevice(calculateSize, horizontalScale);
+	const validHeight = scaledForDevice(calculateSize, moderateScale);
+	const validFontSize = scaledForDevice(calculateFontSize, moderateScale);
 
 	const handleOnErrorImage = () => {
 		setShowInitials(true);
@@ -107,9 +102,7 @@ const Avatar = ({
 			)}
 
 			{(showInitials || !imageUrl) && !!initials.length && (
-				<Text style={[styles.text, {color: textColor, fontSize: validModerateScale}]}>
-					{initials}
-				</Text>
+				<Text style={[styles.text, {color: textColor, fontSize: validFontSize}]}>{initials}</Text>
 			)}
 		</View>
 	);

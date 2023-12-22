@@ -7,12 +7,12 @@ exports[`StatusChip component render correct a valid component is passed 1`] = `
       "alignItems": "center",
       "backgroundColor": "#fff",
       "borderColor": "#C4C6CC",
-      "borderRadius": 25,
-      "borderWidth": 2,
+      "borderRadius": 12,
+      "borderWidth": 1,
       "flexDirection": "row",
-      "height": 50,
-      "paddingLeft": 25,
-      "paddingRight": 25,
+      "height": 24,
+      "paddingLeft": 12,
+      "paddingRight": 12,
     }
   }
 >
@@ -21,7 +21,7 @@ exports[`StatusChip component render correct a valid component is passed 1`] = `
       Array [
         Object {
           "fontFamily": "Roboto",
-          "fontSize": 27,
+          "fontSize": 13,
         },
         undefined,
       ]
@@ -40,12 +40,12 @@ exports[`StatusChip component render correct if a background is passed 1`] = `
       "alignItems": "center",
       "backgroundColor": "#2979FF",
       "borderColor": "#2979FF",
-      "borderRadius": 25,
-      "borderWidth": 2,
+      "borderRadius": 12,
+      "borderWidth": 1,
       "flexDirection": "row",
-      "height": 50,
-      "paddingLeft": 25,
-      "paddingRight": 25,
+      "height": 24,
+      "paddingLeft": 12,
+      "paddingRight": 12,
     }
   }
 >
@@ -54,14 +54,14 @@ exports[`StatusChip component render correct if a background is passed 1`] = `
       Array [
         Object {
           "fontFamily": "Roboto",
-          "fontSize": 27,
+          "fontSize": 13,
         },
         Object {
           "color": "#fff",
           "fontFamily": "Roboto",
-          "fontSize": 27,
+          "fontSize": 13,
           "fontWeight": "900",
-          "lineHeight": 37.5,
+          "lineHeight": 18,
           "textAlign": "center",
         },
       ]
@@ -79,12 +79,12 @@ exports[`StatusChip component render correct text is passed 1`] = `
       "alignItems": "center",
       "backgroundColor": "#fff",
       "borderColor": "#C4C6CC",
-      "borderRadius": 25,
-      "borderWidth": 2,
+      "borderRadius": 12,
+      "borderWidth": 1,
       "flexDirection": "row",
-      "height": 50,
-      "paddingLeft": 25,
-      "paddingRight": 25,
+      "height": 24,
+      "paddingLeft": 12,
+      "paddingRight": 12,
     }
   }
 >
@@ -93,14 +93,14 @@ exports[`StatusChip component render correct text is passed 1`] = `
       Array [
         Object {
           "fontFamily": "Roboto",
-          "fontSize": 27,
+          "fontSize": 13,
         },
         Object {
           "color": "#2979FF",
           "fontFamily": "Roboto",
-          "fontSize": 27,
+          "fontSize": 13,
           "fontWeight": "900",
-          "lineHeight": 37.5,
+          "lineHeight": 18,
           "textAlign": "center",
         },
       ]
