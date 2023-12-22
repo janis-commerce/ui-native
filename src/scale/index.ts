@@ -1,5 +1,7 @@
+/* istanbul ignore file */
+
 import {Dimensions, PixelRatio, Platform} from 'react-native';
-import {isLoadedStorybook} from '../env';
+import {WEB_MODE} from '../../env.json';
 
 const guidelineBaseWidth = 360;
 const guidelineBaseHeight = 720;
@@ -21,7 +23,7 @@ const moderateScale = (size: number, factor: number = 1) =>
 
 /* istanbul ignore next */
 const scaledForDevice = (size: number, scaleCallback: (size: number) => number): number =>
-	!isLoadedStorybook ? scaleCallback(size) : size;
+	WEB_MODE ? size : scaleCallback(size);
 
 export {
 	isIOS,
