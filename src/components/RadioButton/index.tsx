@@ -85,6 +85,7 @@ const RadioButton = ({
 				disabled={disabled}
 				customSize={customSize}
 				borderRadius={customSize / 2}
+				onPress={onPress}
 			/>
 			<View style={checkLeft ? checkToLeft : checkToRight}>
 				{isStringChild ? <Text>{children}</Text> : children}
