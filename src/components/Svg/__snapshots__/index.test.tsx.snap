@@ -65,15 +65,15 @@ exports[`Svg component render correct pased a valid name 1`] = `
 exports[`Svg component render correct pased size 1`] = `
 <View>
   <View
-    height={120}
-    width={120}
+    height={250}
+    width={250}
   >
     <RNSVGSvgView
       align="xMidYMid"
-      bbHeight={120}
-      bbWidth={120}
+      bbHeight={250}
+      bbWidth={250}
       focusable={false}
-      height={120}
+      height={250}
       meetOrSlice={0}
       minX={0}
       minY={0}
@@ -85,14 +85,14 @@ exports[`Svg component render correct pased size 1`] = `
           },
           Object {
             "flex": 0,
-            "height": 120,
-            "width": 120,
+            "height": 250,
+            "width": 250,
           },
         ]
       }
       vbHeight={36}
       vbWidth={152}
-      width={120}
+      width={250}
       xmlns="http://www.w3.org/2000/svg"
     >
       <RNSVGGroup>
