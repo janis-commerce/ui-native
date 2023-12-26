@@ -1,5 +1,3 @@
-/* istanbul ignore file */
-
 import {Dimensions, PixelRatio, Platform} from 'react-native';
 import {WEB_MODE} from '../../env.json';
 
