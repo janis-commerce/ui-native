@@ -1,6 +1,6 @@
 import React from 'react';
 import {create} from 'react-test-renderer';
-import Dropdown from './';
+import Dropdown from '.';
 import {Text, TouchableOpacity, View} from 'react-native';
 import {primary, white} from '../../../../theme/palette';
 

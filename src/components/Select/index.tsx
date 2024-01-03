@@ -2,7 +2,7 @@ import React, {FC, useState, useEffect, useRef, useCallback} from 'react';
 import {Keyboard, StyleSheet, Text, TextInput, View} from 'react-native';
 import {black, grey, primary} from '../../theme/palette';
 import {formatPlaceholderMulti} from './utils';
-import Dropdown from './Components/Dropdown';
+import Options from './Components/Options';
 import Icon from '../Icon';
 
 enum KeyboardTypes {
@@ -13,6 +13,11 @@ enum KeyboardTypes {
 	EmailAddress = 'email-address',
 	PhonePad = 'phone-pad',
 	URL = 'url',
+}
+
+export enum VariantOptions {
+	Dropdown = 'Dropdown',
+	Modal = 'Modal',
 }
 
 export interface DropdownMeasures {
@@ -39,6 +44,7 @@ interface SelectProps {
 	options: Option[];
 	label: string;
 	value?: Option[];
+	variantOptions?: VariantOptions;
 	optionStyles?: {};
 	placeholder?: string;
 	inputProps?: TextInput;
@@ -57,6 +63,7 @@ const Select: FC<SelectProps> = ({
 	options,
 	label,
 	value = null,
+	variantOptions = VariantOptions.Dropdown,
 	placeholder = '',
 	optionStyles = {},
 	inputProps = {},
@@ -64,7 +71,7 @@ const Select: FC<SelectProps> = ({
 	isMulti = false,
 	isDisabled = false,
 	noOptionsMessage = 'no options',
-	multiOptionsText = '',
+	multiOptionsText = null,
 	keyboardType = KeyboardTypes.Default,
 	onFocus = () => {},
 	onSelectOption = () => {},
@@ -74,7 +81,7 @@ const Select: FC<SelectProps> = ({
 	const [inputValue, setInputValue] = useState('');
 	const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
 	const [filteredOptions, setFilteredOptions] = useState<Option[]>(options);
-	const [isShowedDropdown, setIsShowedDropdown] = useState(false);
+	const [isShowedOptions, setIsShowedOptions] = useState(false);
 	const [dropdownMeasures, setDropdownMeasures] = useState<DropdownMeasures>({
 		width: 0,
 		pageY: 0,
@@ -84,9 +91,9 @@ const Select: FC<SelectProps> = ({
 	const inputRef = useRef<TextInput>(null);
 	const hasDefaultValue =
 		!!value?.length && options?.some((option) => option?.label === value[0]?.label);
-	const isMoveLabel = isShowedDropdown || inputValue;
+	const isMoveLabel = isShowedOptions || inputValue;
 	const showDeleteIcon = isDisabled ? false : !!inputValue && !!selectedOptions?.length;
-	const isArrowRotated = isShowedDropdown ? '180deg' : '0deg';
+	const isArrowRotated = isShowedOptions ? '180deg' : '0deg';
 
 	const filterOptions = (textValue: string) => {
 		if (typeof textValue !== 'string' || !textValue.length) {
@@ -109,11 +116,11 @@ const Select: FC<SelectProps> = ({
 			Keyboard.dismiss();
 		}
 		onFocus();
-		setIsShowedDropdown(true);
+		setIsShowedOptions(true);
 	};
 
 	const setSingleOption = (option: Option) => {
-		setIsShowedDropdown(false);
+		setIsShowedOptions(false);
 		setSelectedOptions([option]);
 		setInputValue(option.label);
 	};
@@ -137,12 +144,12 @@ const Select: FC<SelectProps> = ({
 		if (isDisabled) {
 			return null;
 		}
-		setIsShowedDropdown(!isShowedDropdown);
+		setIsShowedOptions(!isShowedOptions);
 		inputRef.current?.blur();
 	};
 
 	const handleResetOptions = () => {
-		setIsShowedDropdown(false);
+		setIsShowedOptions(false);
 		setInputValue('');
 		setSelectedOptions([]);
 	};
@@ -171,7 +178,7 @@ const Select: FC<SelectProps> = ({
 			width: '100%',
 			marginBottom: 10,
 			position: 'relative',
-			zIndex: isShowedDropdown ? 10 : 0,
+			zIndex: isShowedOptions ? 10 : 0,
 		},
 		wrapperInput: {
 			position: 'relative',
@@ -198,7 +205,7 @@ const Select: FC<SelectProps> = ({
 			letterSpacing: 0,
 			borderBottomWidth: 1,
 			color: black.main,
-			borderBottomColor: isShowedDropdown ? primary.main : grey[200],
+			borderBottomColor: isShowedOptions ? primary.main : grey[200],
 		},
 		arrowIcon: {
 			position: 'absolute',
@@ -220,10 +227,10 @@ const Select: FC<SelectProps> = ({
 	useEffect(() => {
 		if (inputRef.current) {
 			inputRef.current.measure((x, y, width, height, pageX, pageY) =>
-				setDropdownMeasures({width, pageX, pageY: pageY - 35})
+				setDropdownMeasures({width, pageX, pageY: pageY - 15})
 			);
 		}
-	}, [isShowedDropdown]);
+	}, [isShowedOptions]);
 
 	return (
 		<View style={styles.wrapper} {...props}>
@@ -261,10 +268,11 @@ const Select: FC<SelectProps> = ({
 				/>
 			</View>
 
-			<Dropdown
+			<Options
+				variantOptions={variantOptions}
 				dropdownMeasures={dropdownMeasures}
-				setIsShowedDropdown={setIsShowedDropdown}
-				isShowedDropdown={isShowedDropdown}
+				setIsShowedOptions={setIsShowedOptions}
+				isShowedOptions={isShowedOptions}
 				filteredOptions={filteredOptions}
 				selectedOptions={selectedOptions}
 				noOptionsMessage={noOptionsMessage}

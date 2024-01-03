@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import {View} from 'react-native';
 import Select from './src/components/Select';
 
 const App = () => {
@@ -54,11 +54,11 @@ const App = () => {
 				onSelectOption={(option) => console.log(option)}
 			/>
 			<Select
-				value={[listaPaises[11]]}
+				value={[listaPaises[5], listaPaises[8]]}
 				options={listaPaises}
 				label={'Paises'}
 				optionStyles={() => {}}
-				multiOptionsText={'others'}
+				// multiOptionsText={'others'}
 				placeholder={'seleccione un pais'}
 				isDisabled={false}
 				isMulti={true}

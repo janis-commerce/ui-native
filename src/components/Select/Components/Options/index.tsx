@@ -1,12 +1,14 @@
 import React, {FC} from 'react';
-import {View, StyleSheet, TouchableOpacity, ScrollView, Text, Modal, Pressable} from 'react-native';
+import {View, StyleSheet, TouchableOpacity, ScrollView, Text} from 'react-native';
 import {base, black, grey, primary, white} from '../../../../theme/palette';
-import {CustomOptionComponent, DropdownMeasures, Option} from '../..';
+import {CustomOptionComponent, DropdownMeasures, Option, VariantOptions} from '../..';
+import SwitcherComponent from '../SwitcherComponent';
 
-interface DropdownProps {
+interface OptionsProps {
+	variantOptions: VariantOptions;
 	dropdownMeasures: DropdownMeasures;
-	isShowedDropdown: boolean;
-	setIsShowedDropdown: (isShowed: boolean) => void;
+	isShowedOptions: boolean;
+	setIsShowedOptions: (isShowed: boolean) => void;
 	filteredOptions: Option[];
 	selectedOptions: Option[];
 	noOptionsMessage: string;
@@ -15,11 +17,12 @@ interface DropdownProps {
 	customOptionComponent?: CustomOptionComponent | null;
 }
 
-const Dropdown: FC<DropdownProps> = (props) => {
+const Options: FC<OptionsProps> = (props) => {
 	const {
+		variantOptions,
 		dropdownMeasures,
-		isShowedDropdown,
-		setIsShowedDropdown,
+		isShowedOptions,
+		setIsShowedOptions,
 		filteredOptions,
 		callbackOption,
 		selectedOptions,
@@ -30,21 +33,6 @@ const Dropdown: FC<DropdownProps> = (props) => {
 	const handleSelectedOption = (option: Option) => callbackOption(option);
 
 	const styles = StyleSheet.create({
-		modal: {
-			position: 'relative',
-			flex: 1,
-		},
-		containerModal: {
-			position: 'absolute',
-			width: dropdownMeasures.width,
-			top: dropdownMeasures.pageY,
-			left: dropdownMeasures.pageX,
-			height: '100%',
-		},
-		backgroundModal: {
-			width: '100%',
-			height: '100%',
-		},
 		container: {
 			width: '100%',
 			padding: 8,
@@ -118,16 +106,16 @@ const Dropdown: FC<DropdownProps> = (props) => {
 	);
 
 	return (
-		<Modal transparent visible={isShowedDropdown} style={styles.modal}>
-			<Pressable onPress={() => setIsShowedDropdown(false)} style={styles.backgroundModal}>
-				<View style={styles.containerModal}>
-					<ScrollView style={styles.optionWrapper} contentContainerStyle={styles.container}>
-						{filteredOptions?.length ? renderOptions : noRenderOptions}
-					</ScrollView>
-				</View>
-			</Pressable>
-		</Modal>
+		<SwitcherComponent
+			measures={dropdownMeasures}
+			variant={variantOptions}
+			show={isShowedOptions}
+			setShow={setIsShowedOptions}>
+			<ScrollView style={styles.optionWrapper} contentContainerStyle={styles.container}>
+				{filteredOptions?.length ? renderOptions : noRenderOptions}
+			</ScrollView>
+		</SwitcherComponent>
 	);
 };
 
-export default Dropdown;
+export default Options;

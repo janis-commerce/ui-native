@@ -21,7 +21,7 @@ const validOptions = [
 ];
 
 const validProps = {
-	value: 'Argentina',
+	value: [validOptions[0]],
 	options: validOptions,
 	label: 'Paises',
 	onSelectOption: jest.fn(),
