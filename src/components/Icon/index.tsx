@@ -14,13 +14,14 @@ interface Props {
 	color?: string;
 	size?: number;
 	style?: any;
+	onPress?: () => void;
 }
 
-const Icon: FC<Props> = ({name, color = primary.main, size = 16, ...props}) => {
+const Icon: FC<Props> = ({name, color = primary.main, size = 16, onPress, ...props}) => {
 	if (!name) {
 		return null;
 	}
-	return <IconComponent name={name} color={color} size={size} {...props} />;
+	return <IconComponent name={name} color={color} size={size} onPress={onPress} {...props} />;
 };
 
 export default Icon;

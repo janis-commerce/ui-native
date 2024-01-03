@@ -2,9 +2,8 @@ import React, {FC, useState, useEffect, useRef, useCallback} from 'react';
 import {Keyboard, StyleSheet, Text, TextInput, View} from 'react-native';
 import {black, grey, primary} from '../../theme/palette';
 import {formatPlaceholderMulti} from './utils';
-import ChevronIcon from './Components/Icons/Chevron';
-import DeleteIcon from './Components/Icons/Delete';
 import Dropdown from './Components/Dropdown';
+import Icon from '../Icon';
 
 enum KeyboardTypes {
 	Default = 'default',
@@ -14,6 +13,12 @@ enum KeyboardTypes {
 	EmailAddress = 'email-address',
 	PhonePad = 'phone-pad',
 	URL = 'url',
+}
+
+export interface DropdownMeasures {
+	width: number;
+	pageY: number;
+	pageX: number;
 }
 
 export interface Option {
@@ -33,7 +38,7 @@ export type CustomOptionComponent = (props: CustomOptionComponentProps) => React
 interface SelectProps {
 	options: Option[];
 	label: string;
-	value?: string;
+	value?: Option[];
 	optionStyles?: {};
 	placeholder?: string;
 	inputProps?: TextInput;
@@ -70,9 +75,15 @@ const Select: FC<SelectProps> = ({
 	const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
 	const [filteredOptions, setFilteredOptions] = useState<Option[]>(options);
 	const [isShowedDropdown, setIsShowedDropdown] = useState(false);
+	const [dropdownMeasures, setDropdownMeasures] = useState<DropdownMeasures>({
+		width: 0,
+		pageY: 0,
+		pageX: 0,
+	});
 
 	const inputRef = useRef<TextInput>(null);
-	const hasDefaultValue = value && options?.find((option) => option.label === value);
+	const hasDefaultValue =
+		!!value?.length && options?.some((option) => option?.label === value[0]?.label);
 	const isMoveLabel = isShowedDropdown || inputValue;
 	const showDeleteIcon = isDisabled ? false : !!inputValue && !!selectedOptions?.length;
 	const isArrowRotated = isShowedDropdown ? '180deg' : '0deg';
@@ -108,10 +119,13 @@ const Select: FC<SelectProps> = ({
 	};
 
 	const setMultiOptions = (option: Option) => {
-		const optionMatcher = selectedOptions.some((previewOption) => previewOption === option);
+		const optionMatcher = !!selectedOptions.find(
+			(previewOption) => previewOption.value === option.value
+		);
 		const updateOption = optionMatcher
-			? selectedOptions.filter((previewOption) => previewOption !== option)
+			? selectedOptions.filter((previewOption) => previewOption.value !== option.value)
 			: [...selectedOptions, option];
+
 		setSelectedOptions(updateOption);
 		setInputValue(formatPlaceholderMulti(updateOption, multiOptionsText));
 	};
@@ -137,17 +151,19 @@ const Select: FC<SelectProps> = ({
 		if (!!selectedOptions?.length && !!inputValue) {
 			onSelectOption(selectedOptions);
 		}
-	}, [inputValue, onSelectOption, selectedOptions]);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [selectedOptions]);
 
 	useEffect(() => {
 		memoizedSelectedOptions();
-	}, [selectedOptions, inputValue, memoizedSelectedOptions]);
+	}, [selectedOptions, memoizedSelectedOptions]);
 
 	useEffect(() => {
 		if (hasDefaultValue) {
-			setSelectedOptions([hasDefaultValue]);
-			setInputValue(value);
+			setSelectedOptions(value);
+			setInputValue(formatPlaceholderMulti(value, multiOptionsText));
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [hasDefaultValue, value]);
 
 	const styles = StyleSheet.create({
@@ -201,13 +217,31 @@ const Select: FC<SelectProps> = ({
 		},
 	});
 
+	useEffect(() => {
+		if (inputRef.current) {
+			inputRef.current.measure((x, y, width, height, pageX, pageY) =>
+				setDropdownMeasures({width, pageX, pageY: pageY - 35})
+			);
+		}
+	}, [isShowedDropdown]);
+
 	return (
-		<View style={styles.wrapper}>
-			<View style={styles.wrapperInput} {...props}>
-				{showDeleteIcon && <DeleteIcon style={styles.deleteIcon} onPress={handleResetOptions} />}
-				<ChevronIcon
-					style={styles.arrowIcon}
+		<View style={styles.wrapper} {...props}>
+			<View style={styles.wrapperInput}>
+				{isMulti && showDeleteIcon && (
+					<Icon
+						size={20}
+						color={black.main}
+						name="cross_circle_flat"
+						style={styles.deleteIcon}
+						onPress={handleResetOptions}
+					/>
+				)}
+				<Icon
+					size={20}
 					color={isDisabled ? black.main : primary.main}
+					name="chevron_down"
+					style={styles.arrowIcon}
 					onPress={handleCloseDropdown}
 				/>
 
@@ -228,6 +262,8 @@ const Select: FC<SelectProps> = ({
 			</View>
 
 			<Dropdown
+				dropdownMeasures={dropdownMeasures}
+				setIsShowedDropdown={setIsShowedDropdown}
 				isShowedDropdown={isShowedDropdown}
 				filteredOptions={filteredOptions}
 				selectedOptions={selectedOptions}
