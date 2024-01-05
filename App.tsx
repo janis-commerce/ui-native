@@ -27,41 +27,27 @@ const App = () => {
 	return (
 		<View style={style}>
 			<Select
-				style={{marginBottom: 20}}
-				value={[listaPaises[9]]}
 				options={listaPaises}
 				label={'Paises'}
 				optionStyles={() => {}}
 				multiOptionsText={'others'}
 				placeholder={'seleccione un pais'}
-				isDisabled={false}
-				isMulti={false}
 				isSearchable={false}
+				variantOptions={'Modal'}
 				// eslint-disable-next-line no-console
 				onSelectOption={(option) => console.log(option)}
 			/>
+
 			<Select
+				style={{marginBottom: 20}}
 				value={[listaPaises[1]]}
 				options={listaPaises}
 				label={'Paises'}
 				optionStyles={() => {}}
 				multiOptionsText={'others'}
 				placeholder={'seleccione un pais'}
-				isDisabled={true}
-				isMulti={false}
-				isSearchable={false}
-				// eslint-disable-next-line no-console
-				onSelectOption={(option) => console.log(option)}
-			/>
-			<Select
-				value={[listaPaises[5], listaPaises[8]]}
-				options={listaPaises}
-				label={'Paises'}
-				optionStyles={() => {}}
-				// multiOptionsText={'others'}
-				placeholder={'seleccione un pais'}
 				isDisabled={false}
-				isMulti={true}
+				isMulti={false}
 				isSearchable={false}
 				// eslint-disable-next-line no-console
 				onSelectOption={(option) => console.log(option)}
@@ -72,9 +58,24 @@ const App = () => {
 				optionStyles={() => {}}
 				multiOptionsText={'others'}
 				placeholder={'seleccione un pais'}
+				// isDisabled={true}
+				isMulti={true}
+				isSearchable={false}
+				variantOptions={'Modal'}
+				// eslint-disable-next-line no-console
+				onSelectOption={(option) => console.log(option)}
+			/>
+			<Select
+				value={[listaPaises[0], listaPaises[1]]}
+				options={listaPaises}
+				label={'Paises'}
+				optionStyles={() => {}}
+				// multiOptionsText={'others'}
+				placeholder={'seleccione un pais'}
 				isDisabled={false}
 				isMulti={false}
-				isSearchable={false}
+				isSearchable={true}
+				// variantOptions={'Modal'}
 				// eslint-disable-next-line no-console
 				onSelectOption={(option) => console.log(option)}
 			/>

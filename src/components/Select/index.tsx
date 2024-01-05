@@ -57,6 +57,7 @@ interface SelectProps {
 	onFocus?: () => void;
 	onSelectOption?: (selectedOptions: Option[]) => void;
 	customOptionComponent?: CustomOptionComponent | null;
+	modalAcceptText?: string;
 }
 
 const Select: FC<SelectProps> = ({
@@ -76,6 +77,7 @@ const Select: FC<SelectProps> = ({
 	onFocus = () => {},
 	onSelectOption = () => {},
 	customOptionComponent = null,
+	modalAcceptText = 'accept',
 	...props
 }) => {
 	const [inputValue, setInputValue] = useState('');
@@ -112,7 +114,7 @@ const Select: FC<SelectProps> = ({
 	};
 
 	const handleOnFocus = () => {
-		if (!isSearchable || isMulti) {
+		if (!isSearchable || !isShowedOptions || isMulti || variantOptions === VariantOptions.Modal) {
 			Keyboard.dismiss();
 		}
 		onFocus();
@@ -251,7 +253,6 @@ const Select: FC<SelectProps> = ({
 					style={styles.arrowIcon}
 					onPress={handleCloseDropdown}
 				/>
-
 				<Text style={styles.label}>{label}</Text>
 				<TextInput
 					ref={inputRef}
@@ -279,6 +280,8 @@ const Select: FC<SelectProps> = ({
 				optionStyles={optionStyles}
 				callbackOption={handleSelectedOption}
 				customOptionComponent={customOptionComponent}
+				isMulti={isMulti}
+				modalAcceptText={modalAcceptText}
 			/>
 		</View>
 	);

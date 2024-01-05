@@ -1,10 +1,9 @@
 import React from 'react';
 import {create} from 'react-test-renderer';
-import ChevronIcon from './Components/Icons/Chevron';
-import DeleteIcon from './Components/Icons/Delete';
-import Dropdown from './Components/Dropdown';
-import Select from './';
+import Options from './Components/Options';
 import {TextInput} from 'react-native';
+import Icon from '../Icon';
+import Select from './';
 
 jest.spyOn(React, 'useEffect').mockImplementation((f) => f());
 
@@ -13,6 +12,7 @@ const setInputValueSpy = jest.fn();
 const setSelectedOptions = jest.fn();
 const setFilteredOptionsSpy = jest.fn();
 const setIsShowedDropdownSpy = jest.fn();
+const setDropdownMeasures = jest.fn();
 
 const validOptions = [
 	{label: 'Argentina', value: '1'},
@@ -28,6 +28,8 @@ const validProps = {
 	onFocusSpy: jest.fn(),
 };
 
+const validMeasures = {width: 0, pageY: 0, pageX: 0};
+
 describe('Select component', () => {
 	describe('render correctly', () => {
 		it('when has minimum props needed', () => {
@@ -40,11 +42,12 @@ describe('Select component', () => {
 				.mockReturnValueOnce(['', setInputValueSpy])
 				.mockReturnValueOnce([[], setSelectedOptions])
 				.mockReturnValueOnce([validOptions, setFilteredOptionsSpy])
-				.mockReturnValueOnce([false, setIsShowedDropdownSpy]);
+				.mockReturnValueOnce([false, setIsShowedDropdownSpy])
+				.mockReturnValueOnce([validMeasures, setDropdownMeasures]);
 			const {root} = create(
 				<Select options={validProps.options} label={validProps.label} isDisabled={true} />
 			);
-			const ChevronComponent = root.findByType(ChevronIcon);
+			const ChevronComponent = root.findByType(Icon);
 			ChevronComponent.props.onPress();
 
 			expect(setIsShowedDropdownSpy).not.toBeCalled();
@@ -57,10 +60,13 @@ describe('Select component', () => {
 				.mockReturnValueOnce(['Argentina', setInputValueSpy])
 				.mockReturnValueOnce([[validOptions[0]], setSelectedOptions])
 				.mockReturnValueOnce([validOptions, setFilteredOptionsSpy])
-				.mockReturnValueOnce([true, setIsShowedDropdownSpy]);
+				.mockReturnValueOnce([true, setIsShowedDropdownSpy])
+				.mockReturnValueOnce([validMeasures, setDropdownMeasures]);
 
-			const {root} = create(<Select options={validProps.options} label={validProps.label} />);
-			const DeleteComponent = root.findByType(DeleteIcon);
+			const {root} = create(
+				<Select options={validProps.options} label={validProps.label} isMulti />
+			);
+			const [DeleteComponent] = root.findAllByType(Icon);
 			DeleteComponent.props.onPress();
 
 			expect(setIsShowedDropdownSpy).toBeCalledWith(false);
@@ -75,13 +81,14 @@ describe('Select component', () => {
 				.mockReturnValueOnce(['', setInputValueSpy])
 				.mockReturnValueOnce([[], setSelectedOptions])
 				.mockReturnValueOnce([validOptions, setFilteredOptionsSpy])
-				.mockReturnValueOnce([true, setIsShowedDropdownSpy]);
+				.mockReturnValueOnce([true, setIsShowedDropdownSpy])
+				.mockReturnValueOnce([validMeasures, setDropdownMeasures]);
 
 			const {root} = create(<Select options={validProps.options} label={validProps.label} />);
 			const InputComponent = root.findByType(TextInput);
-			const DropdownComponent = root.findByType(Dropdown);
+			const OptionsComponent = root.findByType(Options);
 			InputComponent.props.onFocus();
-			DropdownComponent.props.callbackOption(validOptions[0]);
+			OptionsComponent.props.callbackOption(validOptions[0]);
 
 			expect(setIsShowedDropdownSpy).toBeCalledWith(true);
 			expect(setIsShowedDropdownSpy).toBeCalledWith(false);
@@ -94,7 +101,8 @@ describe('Select component', () => {
 				.mockReturnValueOnce(['', setInputValueSpy])
 				.mockReturnValueOnce([[], setSelectedOptions])
 				.mockReturnValueOnce([validOptions, setFilteredOptionsSpy])
-				.mockReturnValueOnce([true, setIsShowedDropdownSpy]);
+				.mockReturnValueOnce([true, setIsShowedDropdownSpy])
+				.mockReturnValueOnce([validMeasures, setDropdownMeasures]);
 
 			const {root} = create(
 				<Select options={validProps.options} label={validProps.label} isSearchable />
@@ -112,7 +120,8 @@ describe('Select component', () => {
 				.mockReturnValueOnce(['', setInputValueSpy])
 				.mockReturnValueOnce([[], setSelectedOptions])
 				.mockReturnValueOnce([validOptions, setFilteredOptionsSpy])
-				.mockReturnValueOnce([true, setIsShowedDropdownSpy]);
+				.mockReturnValueOnce([true, setIsShowedDropdownSpy])
+				.mockReturnValueOnce([validMeasures, setDropdownMeasures]);
 
 			const {root} = create(
 				<Select options={validProps.options} label={validProps.label} isSearchable />
@@ -130,7 +139,8 @@ describe('Select component', () => {
 				.mockReturnValueOnce(['', setInputValueSpy])
 				.mockReturnValueOnce([[], setSelectedOptions])
 				.mockReturnValueOnce([validOptions, setFilteredOptionsSpy])
-				.mockReturnValueOnce([true, setIsShowedDropdownSpy]);
+				.mockReturnValueOnce([true, setIsShowedDropdownSpy])
+				.mockReturnValueOnce([validMeasures, setDropdownMeasures]);
 
 			const {root} = create(
 				<Select
@@ -155,14 +165,15 @@ describe('Select component', () => {
 				.mockReturnValueOnce(['', setInputValueSpy])
 				.mockReturnValueOnce([[], setSelectedOptions])
 				.mockReturnValueOnce([validOptions, setFilteredOptionsSpy])
-				.mockReturnValueOnce([true, setIsShowedDropdownSpy]);
+				.mockReturnValueOnce([true, setIsShowedDropdownSpy])
+				.mockReturnValueOnce([validMeasures, setDropdownMeasures]);
 
 			const {root} = create(
 				<Select options={validProps.options} label={validProps.label} isMulti />
 			);
-			const DropdownComponent = root.findByType(Dropdown);
-			const ChevronComponent = root.findByType(ChevronIcon);
-			DropdownComponent.props.callbackOption(validOptions[0]);
+			const OptionsComponent = root.findByType(Options);
+			const ChevronComponent = root.findByType(Icon);
+			OptionsComponent.props.callbackOption(validOptions[0]);
 			ChevronComponent.props.onPress();
 
 			expect(setSelectedOptions).toBeCalledWith([validOptions[0]]);
@@ -175,14 +186,15 @@ describe('Select component', () => {
 				.mockReturnValueOnce(['', setInputValueSpy])
 				.mockReturnValueOnce([[validOptions[0]], setSelectedOptions])
 				.mockReturnValueOnce([validOptions, setFilteredOptionsSpy])
-				.mockReturnValueOnce([true, setIsShowedDropdownSpy]);
+				.mockReturnValueOnce([true, setIsShowedDropdownSpy])
+				.mockReturnValueOnce([validMeasures, setDropdownMeasures]);
 
 			const {root} = create(
 				<Select options={validProps.options} label={validProps.label} isMulti />
 			);
-			const DropdownComponent = root.findByType(Dropdown);
-			const ChevronComponent = root.findByType(ChevronIcon);
-			DropdownComponent.props.callbackOption(validOptions[0]);
+			const OptionsComponent = root.findByType(Options);
+			const ChevronComponent = root.findByType(Icon);
+			OptionsComponent.props.callbackOption(validOptions[0]);
 			ChevronComponent.props.onPress();
 
 			expect(setSelectedOptions).toBeCalledWith([]);
@@ -197,7 +209,8 @@ describe('Select component', () => {
 				.mockReturnValueOnce(['', setInputValueSpy])
 				.mockReturnValueOnce([[validOptions[0]], setSelectedOptions])
 				.mockReturnValueOnce([validOptions, setFilteredOptionsSpy])
-				.mockReturnValueOnce([true, setIsShowedDropdownSpy]);
+				.mockReturnValueOnce([true, setIsShowedDropdownSpy])
+				.mockReturnValueOnce([validMeasures, setDropdownMeasures]);
 
 			const {root} = create(
 				<Select
@@ -207,9 +220,9 @@ describe('Select component', () => {
 					isMulti
 				/>
 			);
-			const DropdownComponent = root.findByType(Dropdown);
-			const ChevronComponent = root.findByType(ChevronIcon);
-			DropdownComponent.props.callbackOption(validOptions[0]);
+			const OptionsComponent = root.findByType(Options);
+			const ChevronComponent = root.findByType(Icon);
+			OptionsComponent.props.callbackOption(validOptions[0]);
 			ChevronComponent.props.onPress();
 
 			expect(setSelectedOptions).toBeCalledWith([]);

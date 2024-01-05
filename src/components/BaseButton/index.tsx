@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {Pressable, PressableProps, ViewStyle, StyleSheet} from 'react-native';
+import {Pressable, PressableProps, ViewStyle, StyleSheet, TextStyle} from 'react-native';
 import {palette} from '../../theme/palette';
 import Text from '../Text';
 import Icon from '../Icon';
@@ -17,7 +17,7 @@ interface BaseButtonProps extends PressableProps {
 	pressedColor?: string;
 	style?: ViewStyle;
 	iconStyle?: ViewStyle;
-	textStyle?: ViewStyle;
+	textStyle?: TextStyle;
 	children?: React.ReactNode;
 }
 

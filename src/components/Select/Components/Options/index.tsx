@@ -15,6 +15,8 @@ interface OptionsProps {
 	optionStyles?: {};
 	callbackOption: (option: Option) => void;
 	customOptionComponent?: CustomOptionComponent | null;
+	isMulti: boolean;
+	modalAcceptText: string;
 }
 
 const Options: FC<OptionsProps> = (props) => {
@@ -29,24 +31,28 @@ const Options: FC<OptionsProps> = (props) => {
 		noOptionsMessage,
 		optionStyles,
 		customOptionComponent = null,
+		isMulti,
+		modalAcceptText,
 	} = props;
 	const handleSelectedOption = (option: Option) => callbackOption(option);
+	const isModal = variantOptions === 'Modal';
 
 	const styles = StyleSheet.create({
 		container: {
+			position: 'relative',
 			width: '100%',
-			padding: 8,
+			padding: !isModal ? 8 : 0,
 		},
 		optionWrapper: {
-			position: 'absolute',
+			position: !isModal ? 'absolute' : 'relative',
 			maxHeight: 168,
+			minHeight: 'auto',
 			borderColor: grey[200],
 			backgroundColor: base.white,
 			width: '100%',
-			top: 60,
+			top: !isModal ? 60 : 0,
 			marginBottom: 20,
-			elevation: 5,
-			zIndex: 10,
+			elevation: !isModal ? 5 : 0,
 			flex: 1,
 		},
 		option: {
@@ -110,7 +116,9 @@ const Options: FC<OptionsProps> = (props) => {
 			measures={dropdownMeasures}
 			variant={variantOptions}
 			show={isShowedOptions}
-			setShow={setIsShowedOptions}>
+			setShow={setIsShowedOptions}
+			isMulti={isMulti}
+			modalAcceptText={modalAcceptText}>
 			<ScrollView style={styles.optionWrapper} contentContainerStyle={styles.container}>
 				{filteredOptions?.length ? renderOptions : noRenderOptions}
 			</ScrollView>
