@@ -48,7 +48,6 @@ interface SelectProps {
 	optionStyles?: {};
 	placeholder?: string;
 	inputProps?: TextInput;
-	isSearchable?: boolean;
 	isMulti?: boolean;
 	isDisabled?: boolean;
 	noOptionsMessage?: string;
@@ -68,7 +67,6 @@ const Select: FC<SelectProps> = ({
 	placeholder = '',
 	optionStyles = {},
 	inputProps = {},
-	isSearchable = false,
 	isMulti = false,
 	isDisabled = false,
 	noOptionsMessage = 'no options',
@@ -114,11 +112,9 @@ const Select: FC<SelectProps> = ({
 	};
 
 	const handleOnFocus = () => {
-		if (!isSearchable || !isShowedOptions || isMulti || variantOptions === VariantOptions.Modal) {
-			Keyboard.dismiss();
-		}
-		onFocus();
+		Keyboard.dismiss();
 		setIsShowedOptions(true);
+		onFocus();
 	};
 
 	const setSingleOption = (option: Option) => {
@@ -175,6 +171,14 @@ const Select: FC<SelectProps> = ({
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [hasDefaultValue, value]);
 
+	useEffect(() => {
+		if (inputRef.current) {
+			inputRef.current.measure((x, y, width, height, pageX, pageY) =>
+				setDropdownMeasures({width, pageX, pageY: pageY - 15})
+			);
+		}
+	}, [isShowedOptions]);
+
 	const styles = StyleSheet.create({
 		wrapper: {
 			width: '100%',
@@ -226,14 +230,6 @@ const Select: FC<SelectProps> = ({
 		},
 	});
 
-	useEffect(() => {
-		if (inputRef.current) {
-			inputRef.current.measure((x, y, width, height, pageX, pageY) =>
-				setDropdownMeasures({width, pageX, pageY: pageY - 15})
-			);
-		}
-	}, [isShowedOptions]);
-
 	return (
 		<View style={styles.wrapper} {...props}>
 			<View style={styles.wrapperInput}>
@@ -259,8 +255,8 @@ const Select: FC<SelectProps> = ({
 					style={styles.input}
 					value={inputValue}
 					placeholder={isMoveLabel && placeholder}
-					showSoftInputOnFocus={!isMulti && isSearchable}
-					caretHidden={!isSearchable}
+					showSoftInputOnFocus={false}
+					caretHidden={true}
 					keyboardType={keyboardType}
 					editable={!isDisabled}
 					onFocus={handleOnFocus}

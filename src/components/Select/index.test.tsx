@@ -8,6 +8,7 @@ import Select from './';
 jest.spyOn(React, 'useEffect').mockImplementation((f) => f());
 
 const useStateSpy = jest.spyOn(React, 'useState');
+const inputRefSpy = jest.spyOn(React, 'useRef');
 const setInputValueSpy = jest.fn();
 const setSelectedOptions = jest.fn();
 const setFilteredOptionsSpy = jest.fn();
@@ -28,6 +29,8 @@ const validProps = {
 	onFocusSpy: jest.fn(),
 };
 
+const measureMock = jest.fn((callback) => callback(0, 0, 100, 50, 0, 0));
+
 const validMeasures = {width: 0, pageY: 0, pageX: 0};
 
 describe('Select component', () => {
@@ -44,13 +47,17 @@ describe('Select component', () => {
 				.mockReturnValueOnce([validOptions, setFilteredOptionsSpy])
 				.mockReturnValueOnce([false, setIsShowedDropdownSpy])
 				.mockReturnValueOnce([validMeasures, setDropdownMeasures]);
+			inputRefSpy.mockReturnValueOnce({current: {measure: measureMock}});
 			const {root} = create(
 				<Select options={validProps.options} label={validProps.label} isDisabled={true} />
 			);
 			const ChevronComponent = root.findByType(Icon);
 			ChevronComponent.props.onPress();
 
+			jest.spyOn(React, 'useEffect').mockImplementation((f) => f());
+
 			expect(setIsShowedDropdownSpy).not.toBeCalled();
+			expect(setDropdownMeasures).toBeCalled();
 		});
 	});
 
@@ -104,9 +111,7 @@ describe('Select component', () => {
 				.mockReturnValueOnce([true, setIsShowedDropdownSpy])
 				.mockReturnValueOnce([validMeasures, setDropdownMeasures]);
 
-			const {root} = create(
-				<Select options={validProps.options} label={validProps.label} isSearchable />
-			);
+			const {root} = create(<Select options={validProps.options} label={validProps.label} />);
 			const InputComponent = root.findByType(TextInput);
 			InputComponent.props.onFocus();
 			InputComponent.props.onChangeText(5);
@@ -123,9 +128,7 @@ describe('Select component', () => {
 				.mockReturnValueOnce([true, setIsShowedDropdownSpy])
 				.mockReturnValueOnce([validMeasures, setDropdownMeasures]);
 
-			const {root} = create(
-				<Select options={validProps.options} label={validProps.label} isSearchable />
-			);
+			const {root} = create(<Select options={validProps.options} label={validProps.label} />);
 			const InputComponent = root.findByType(TextInput);
 			InputComponent.props.onFocus();
 			InputComponent.props.onChangeText('');
@@ -146,7 +149,6 @@ describe('Select component', () => {
 				<Select
 					options={validProps.options}
 					label={validProps.label}
-					isSearchable
 					onFocus={validProps.onFocusSpy}
 				/>
 			);
