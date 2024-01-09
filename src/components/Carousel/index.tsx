@@ -1,7 +1,6 @@
 import React, {FC} from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
 import useCarouselControls from './utils';
-import {horizontalScale, scaledForDevice} from '../../scale';
 
 export interface CarouselProps {
 	pages: React.ReactNode[];
@@ -42,11 +41,9 @@ const Carousel: FC<CarouselProps> = ({
 	// eslint-disable-next-line react-hooks/rules-of-hooks
 	const {slider, width, onPageChange} = useCarouselControls(carouselParams);
 
-	const validateWidth = scaledForDevice(width, horizontalScale);
-
 	const styles = StyleSheet.create({
 		page: {
-			width: validateWidth,
+			width,
 			alignItems: 'center',
 		},
 	});
