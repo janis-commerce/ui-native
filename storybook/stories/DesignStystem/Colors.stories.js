@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, SafeAreaView} from 'react-native';
+import {View} from 'react-native';
 import Text from '../../../src/components/Text';
 import {black, palette} from '../../../src/theme/palette';
 import CenterScrollView from '../../decorators/CenterScrollView';
@@ -29,7 +29,7 @@ const styles = {
 		flexDirection: 'row',
 		flexWrap: 'wrap',
 		marginBottom: 30,
-		// flexShrink: 0,
+		flexShrink: 0,
 	},
 	ColorSquare: (color) => ({
 		backgroundColor: color,
