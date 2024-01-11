@@ -28,8 +28,8 @@ const styles = {
 		display: 'flex',
 		flexDirection: 'row',
 		flexWrap: 'wrap',
-		gap: 40,
 		marginBottom: 30,
+		// flexShrink: 0,
 	},
 	ColorSquare: (color) => ({
 		backgroundColor: color,
@@ -37,11 +37,15 @@ const styles = {
 		height: 100,
 		borderColor: black.semiTransparent,
 		borderWidth: 1,
+		marginRight: 10,
 	}),
 	TitleWrapper: {
 		fontSize: 24,
 		textTransform: 'capitalize',
 		marginBottom: 30,
+	},
+	Title: {
+		marginVertical: 5,
 	},
 };
 
@@ -64,15 +68,15 @@ const renderColor = (colorData) => {
 
 	return arrayComponent.map(({title, value}) => (
 		<View key={`${title}-${value}`} style={styles.ColorContainer}>
-			<Text>{title}</Text>
+			<Text style={styles.Title}>{title}</Text>
 			<View style={styles.ColorSquare(value)} />
-			<Text>{value}</Text>
+			<Text style={styles.Title}>{value}</Text>
 		</View>
 	));
 };
 
 export const Colors = () => (
-	<SafeAreaView>
+	<>
 		{colorsKeys.map((title) => {
 			return (
 				<View key={title}>
@@ -83,5 +87,5 @@ export const Colors = () => (
 				</View>
 			);
 		})}
-	</SafeAreaView>
+	</>
 );
