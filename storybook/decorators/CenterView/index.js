@@ -1,19 +1,11 @@
 import React from 'react';
-import {ScrollView, StyleSheet, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 
 const CenterView = ({children}) => {
-	return (
-		<ScrollView contentContainerStyle={styles.scrollView}>
-			<View style={styles.main}>{children}</View>
-		</ScrollView>
-	);
+	return <View style={styles.main}>{children}</View>;
 };
 
 const styles = StyleSheet.create({
-	scrollView: {
-		paddingVertical: 25,
-		paddingHorizontal: 10,
-	},
 	main: {
 		flex: 1,
 		display: 'flex',
@@ -21,6 +13,8 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'center',
 		alignItems: 'center',
+		paddingVertical: 25,
+		paddingHorizontal: 10,
 	},
 });
 

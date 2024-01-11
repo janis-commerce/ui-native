@@ -19,6 +19,7 @@ const primary: Primary = {
 const black: Black = {
 	main: '#2F2F2F',
 	dark: '#050505',
+	semiTransparent: 'rgba(0, 0, 0, 0.1)',
 };
 const white: White = {
 	main: '#E8EAF6',

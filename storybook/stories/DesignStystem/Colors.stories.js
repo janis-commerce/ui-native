@@ -1,7 +1,8 @@
 import React from 'react';
-import {View, ScrollView, SafeAreaView} from 'react-native';
+import {View, SafeAreaView} from 'react-native';
 import Text from '../../../src/components/Text';
-import {palette} from '../../../src/theme/palette';
+import {black, palette} from '../../../src/theme/palette';
+import CenterScrollView from '../../decorators/CenterScrollView';
 
 export default {
 	title: 'Design system/Colors',
@@ -12,28 +13,30 @@ export default {
 			},
 		},
 	},
+	decorators: [
+		(Story) => (
+			<CenterScrollView>
+				<Story />
+			</CenterScrollView>
+		),
+	],
 };
 
 const styles = {
 	Base: {fontFamily: 'Roboto'},
-	Container: {
-		width: '100%',
-		paddingLeft: 10,
-		paddingRight: 10,
-	},
 	ColorWrapper: {
 		display: 'flex',
 		flexDirection: 'row',
+		flexWrap: 'wrap',
 		gap: 40,
 		marginBottom: 30,
-	},
-	ColorContainer: {
-		display: 'flex',
 	},
 	ColorSquare: (color) => ({
 		backgroundColor: color,
 		width: 100,
 		height: 100,
+		borderColor: black.semiTransparent,
+		borderWidth: 1,
 	}),
 	TitleWrapper: {
 		fontSize: 24,
@@ -70,19 +73,15 @@ const renderColor = (colorData) => {
 
 export const Colors = () => (
 	<SafeAreaView>
-		<View style={styles.Container}>
-			<ScrollView>
-				{colorsKeys.map((title) => {
-					return (
-						<View key={title}>
-							<Text style={[styles.TitleWrapper, styles.Base]}>{title}</Text>
-							<View style={styles.ColorWrapper}>
-								<>{renderColor(title)}</>
-							</View>
-						</View>
-					);
-				})}
-			</ScrollView>
-		</View>
+		{colorsKeys.map((title) => {
+			return (
+				<View key={title}>
+					<Text style={[styles.TitleWrapper, styles.Base]}>{title}</Text>
+					<View style={styles.ColorWrapper}>
+						<>{renderColor(title)}</>
+					</View>
+				</View>
+			);
+		})}
 	</SafeAreaView>
 );
