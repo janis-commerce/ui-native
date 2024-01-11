@@ -1,5 +1,5 @@
 import React from 'react';
-import {View} from 'react-native';
+import {View, useWindowDimensions} from 'react-native';
 import Text from '../../../src/components/Text';
 import {black, palette} from '../../../src/theme/palette';
 import CenterScrollView from '../../decorators/CenterScrollView';
@@ -24,12 +24,14 @@ export default {
 
 const styles = {
 	Base: {fontFamily: 'Roboto'},
+	Container: {
+		width: '100%',
+	},
 	ColorWrapper: {
 		display: 'flex',
 		flexDirection: 'row',
 		flexWrap: 'wrap',
 		marginBottom: 30,
-		flexShrink: 0,
 	},
 	ColorSquare: (color) => ({
 		backgroundColor: color,
@@ -75,17 +77,19 @@ const renderColor = (colorData) => {
 	));
 };
 
-export const Colors = () => (
-	<>
-		{colorsKeys.map((title) => {
-			return (
-				<View key={title}>
-					<Text style={[styles.TitleWrapper, styles.Base]}>{title}</Text>
-					<View style={styles.ColorWrapper}>
-						<>{renderColor(title)}</>
+export const Colors = () => {
+	return (
+		<View style={styles.Container}>
+			{colorsKeys.map((title) => {
+				return (
+					<View key={title}>
+						<Text style={[styles.TitleWrapper, styles.Base]}>{title}</Text>
+						<View style={styles.ColorWrapper}>
+							<>{renderColor(title)}</>
+						</View>
 					</View>
-				</View>
-			);
-		})}
-	</>
-);
+				);
+			})}
+		</View>
+	);
+};
