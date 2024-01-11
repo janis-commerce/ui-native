@@ -96,28 +96,6 @@ MultiProps.args = {
 	onSelectOption: (option) => option,
 };
 
-export const SearcherProps = (props) => (
-	<View style={inlineStyles}>
-		<Select {...props} />
-	</View>
-);
-
-SearcherProps.storyName = 'with search';
-
-SearcherProps.args = {
-	value: null,
-	options: listaPaises,
-	label: 'Paises',
-	optionStyles: () => {},
-	multiOptionsText: 'others',
-	placeholder: 'seleccione un pais',
-	isDisabled: false,
-	isMulti: false,
-	isSearchable: true,
-	keyboardType: 'default',
-	onSelectOption: (option) => option,
-};
-
 export const CustomComponent = (props) => (
 	<View style={inlineStyles}>
 		<Select {...props} />
