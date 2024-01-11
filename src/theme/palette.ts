@@ -19,13 +19,13 @@ const primary: Primary = {
 const black: Black = {
 	main: '#2F2F2F',
 	dark: '#050505',
-	semiTransparent: 'rgba(0, 0, 0, 0.1)',
+	semiTransparent: '#0000001a',
 };
 const white: White = {
 	main: '#E8EAF6',
 	dark: '#D0D3E3',
 	light: '#F4F5FB',
-	semiTransparent: 'rgba(255, 255, 255, 0.75)',
+	semiTransparent: '#ffffffbf',
 };
 const grey: GreyScale = {
 	100: '#DDDFE2',
