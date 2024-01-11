@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, useWindowDimensions} from 'react-native';
+import {View} from 'react-native';
 import Text from '../../../src/components/Text';
 import {black, palette} from '../../../src/theme/palette';
 import CenterScrollView from '../../decorators/CenterScrollView';
