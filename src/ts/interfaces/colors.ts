@@ -19,7 +19,7 @@ export interface gamaColor {
 	main: string;
 	dark: string;
 }
-export interface Black extends gamaColor {}
+
 export interface Success extends gamaColor {}
 export interface Error extends gamaColor {}
 export interface Warning extends gamaColor {}
@@ -28,5 +28,8 @@ export interface Primary extends gamaColor {
 	light: string;
 }
 export interface White extends Primary {
+	semiTransparent: string;
+}
+export interface Black extends gamaColor {
 	semiTransparent: string;
 }

@@ -1,7 +1,8 @@
 import React from 'react';
-import {View, ScrollView, SafeAreaView} from 'react-native';
+import {View} from 'react-native';
 import Text from '../../../src/components/Text';
-import {palette} from '../../../src/theme/palette';
+import {black, palette} from '../../../src/theme/palette';
+import CenterScrollView from '../../decorators/CenterScrollView';
 
 export default {
 	title: 'Design system/Colors',
@@ -12,33 +13,41 @@ export default {
 			},
 		},
 	},
+	decorators: [
+		(Story) => (
+			<CenterScrollView>
+				<Story />
+			</CenterScrollView>
+		),
+	],
 };
 
 const styles = {
 	Base: {fontFamily: 'Roboto'},
 	Container: {
 		width: '100%',
-		paddingLeft: 10,
-		paddingRight: 10,
 	},
 	ColorWrapper: {
 		display: 'flex',
 		flexDirection: 'row',
-		gap: 40,
+		flexWrap: 'wrap',
 		marginBottom: 30,
-	},
-	ColorContainer: {
-		display: 'flex',
 	},
 	ColorSquare: (color) => ({
 		backgroundColor: color,
 		width: 100,
 		height: 100,
+		borderColor: black.semiTransparent,
+		borderWidth: 1,
+		marginRight: 10,
 	}),
 	TitleWrapper: {
 		fontSize: 24,
 		textTransform: 'capitalize',
 		marginBottom: 30,
+	},
+	Title: {
+		marginVertical: 5,
 	},
 };
 
@@ -61,28 +70,26 @@ const renderColor = (colorData) => {
 
 	return arrayComponent.map(({title, value}) => (
 		<View key={`${title}-${value}`} style={styles.ColorContainer}>
-			<Text>{title}</Text>
+			<Text style={styles.Title}>{title}</Text>
 			<View style={styles.ColorSquare(value)} />
-			<Text>{value}</Text>
+			<Text style={styles.Title}>{value}</Text>
 		</View>
 	));
 };
 
-export const Colors = () => (
-	<SafeAreaView>
+export const Colors = () => {
+	return (
 		<View style={styles.Container}>
-			<ScrollView>
-				{colorsKeys.map((title) => {
-					return (
-						<View key={title}>
-							<Text style={[styles.TitleWrapper, styles.Base]}>{title}</Text>
-							<View style={styles.ColorWrapper}>
-								<>{renderColor(title)}</>
-							</View>
+			{colorsKeys.map((title) => {
+				return (
+					<View key={title}>
+						<Text style={[styles.TitleWrapper, styles.Base]}>{title}</Text>
+						<View style={styles.ColorWrapper}>
+							<>{renderColor(title)}</>
 						</View>
-					);
-				})}
-			</ScrollView>
+					</View>
+				);
+			})}
 		</View>
-	</SafeAreaView>
-);
+	);
+};
