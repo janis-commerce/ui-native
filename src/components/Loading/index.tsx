@@ -2,6 +2,7 @@ import React, {useEffect, useRef, FC} from 'react';
 import {StyleSheet, View, Animated, Easing, ViewStyle} from 'react-native';
 import LoadingSvg from './LoadingSvg';
 import {primary} from '../../theme/palette';
+import {horizontalScale, moderateScale, scaledForDevice} from '../../scale';
 
 interface Params {
 	duration: number;
@@ -38,13 +39,17 @@ const Loading: FC<Props> = ({
 }) => {
 	const rotationDegree = useRef(new Animated.Value(0)).current;
 
+	const validWidth = scaledForDevice(size, horizontalScale);
+	const validHeight = scaledForDevice(size, moderateScale);
+	const validSize = scaledForDevice(size, moderateScale);
+
 	const styles = StyleSheet.create({
 		container: {
 			position: 'relative',
 			justifyContent: 'center',
 			alignItems: 'center',
-			width: size,
-			height: size,
+			width: validWidth,
+			height: validHeight,
 		},
 		spinner: {
 			position: 'absolute',
@@ -81,7 +86,11 @@ const Loading: FC<Props> = ({
 
 	return (
 		<View style={[styles.container, style]} {...props}>
-			<LoadingSvg style={[styles.spinner, {...animationSpinnerStyle}]} size={size} color={color} />
+			<LoadingSvg
+				style={[styles.spinner, {...animationSpinnerStyle}]}
+				size={validSize}
+				color={color}
+			/>
 			{children}
 		</View>
 	);

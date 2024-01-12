@@ -2,28 +2,36 @@ import React, {ReactElement, isValidElement} from 'react';
 import {StyleSheet, ViewProps, View} from 'react-native';
 import {base, grey, primary} from '../../theme/palette';
 import Text from '../Text';
+import {horizontalScale, moderateScale, scaledForDevice} from '../../scale';
 
 interface StatusChipProps extends ViewProps {
 	children?: ReactElement | string;
 	background?: string;
 }
 
+const validHeight = scaledForDevice(24, moderateScale);
+const validPadding = scaledForDevice(12, horizontalScale);
+const validBorderRadius = scaledForDevice(12, moderateScale);
+const validBorderWidth = scaledForDevice(1, moderateScale);
+const validFontSize = scaledForDevice(13, moderateScale);
+const validLineHeight = scaledForDevice(18, moderateScale);
+
 const styles = ({background}: StatusChipProps) =>
 	StyleSheet.create({
 		ViewStyles: {
-			height: 24,
+			height: validHeight,
 			flexDirection: 'row',
 			alignItems: 'center',
-			paddingLeft: 12,
-			paddingRight: 12,
-			borderRadius: 12,
+			paddingLeft: validPadding,
+			paddingRight: validPadding,
+			borderRadius: validBorderRadius,
 			backgroundColor: background ?? base.white,
-			borderWidth: 1,
+			borderWidth: validBorderWidth,
 			borderColor: background ?? grey['300'],
 		},
 		TextStyles: {
-			fontSize: 13,
-			lineHeight: 18,
+			fontSize: validFontSize,
+			lineHeight: validLineHeight,
 			fontFamily: 'Roboto',
 			fontWeight: '900',
 			textAlign: 'center',

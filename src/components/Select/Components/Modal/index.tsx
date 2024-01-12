@@ -1,9 +1,9 @@
-import {FC} from 'react';
+import React, {FC} from 'react';
 import {Modal as ModalComponent, StyleSheet, View} from 'react-native';
 import {base, primary, white} from '../../../../theme/palette';
 import BaseButton from '../../../BaseButton';
 import {DropdownProps} from '../Dropdown';
-import React from 'react';
+import {moderateScale, scaledForDevice} from '../../../../scale';
 
 interface ModalProps extends DropdownProps {
 	isMulti: boolean;
@@ -11,6 +11,15 @@ interface ModalProps extends DropdownProps {
 }
 
 const Modal: FC<ModalProps> = ({show, setShow, isMulti, modalAcceptText, children}) => {
+	const validBottom = scaledForDevice(20, moderateScale);
+	const validMinWidth = scaledForDevice(270, moderateScale);
+	const validPaddingTop = scaledForDevice(24, moderateScale);
+	const validPaddingBottom = scaledForDevice(12, moderateScale);
+	const validPaddingHorizontal = scaledForDevice(20, moderateScale);
+	const validLeft = scaledForDevice(8, moderateScale);
+	const validTop = scaledForDevice(4, moderateScale);
+	const validFontSize = scaledForDevice(13, moderateScale);
+
 	const styles = StyleSheet.create({
 		background: {
 			display: 'flex',
@@ -24,12 +33,12 @@ const Modal: FC<ModalProps> = ({show, setShow, isMulti, modalAcceptText, childre
 			justifyContent: 'space-between',
 		},
 		contentWrapper: {
-			bottom: 20,
-			minWidth: 270,
-			paddingTop: 24,
-			paddingBottom: 12,
-			paddingLeft: 20,
-			paddingRight: 20,
+			bottom: validBottom,
+			minWidth: validMinWidth,
+			paddingTop: validPaddingTop,
+			paddingBottom: validPaddingBottom,
+			paddingLeft: validPaddingHorizontal,
+			paddingRight: validPaddingHorizontal,
 			backgroundColor: base.white,
 			elevation: 5,
 		},
@@ -37,15 +46,15 @@ const Modal: FC<ModalProps> = ({show, setShow, isMulti, modalAcceptText, childre
 			flexDirection: 'row',
 			justifyContent: 'flex-end',
 			flexWrap: 'wrap',
-			left: 8,
-			top: 4,
+			left: validLeft,
+			top: validTop,
 		},
 		button: {
 			backgroundColor: base.white,
 		},
 		buttonText: {
 			color: primary.main,
-			fontSize: 13,
+			fontSize: validFontSize,
 			fontWeight: '700',
 			textTransform: 'uppercase',
 		},

@@ -69,6 +69,3 @@ dist/
 # Static storybook page
 .storybook_static
 .docs
-
-# env.json
-env.json

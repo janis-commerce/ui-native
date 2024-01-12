@@ -4,6 +4,7 @@ import Loading from '../Loading';
 import Svg from '../Svg';
 import {grey, white} from '../../theme/palette';
 import {Names} from '../../ts/interfaces/svgs';
+import {moderateScale, horizontalScale, scaledForDevice} from '../../scale';
 
 interface ILoadingFullScreen extends ModalProps {
 	isLoading: boolean;
@@ -13,6 +14,12 @@ interface ILoadingFullScreen extends ModalProps {
 	style?: ViewStyle;
 }
 
+const validFontSize = scaledForDevice(16, moderateScale);
+const validLineHeight = scaledForDevice(24, moderateScale);
+const validMarginTop = scaledForDevice(25, moderateScale);
+const validWidth = scaledForDevice(36, horizontalScale);
+const validHeight = scaledForDevice(25, moderateScale);
+
 const styles = StyleSheet.create({
 	ContainerStyles: {
 		flex: 1,
@@ -21,14 +28,14 @@ const styles = StyleSheet.create({
 		backgroundColor: white.semiTransparent,
 	},
 	TextStyles: {
-		fontSize: 16,
-		lineHeight: 24,
+		fontSize: validFontSize,
+		lineHeight: validLineHeight,
 		fontFamily: 'Roboto',
 		color: grey[700],
 		textAlign: 'center',
 		fontWeight: '500',
 		width: '50%',
-		marginTop: 25,
+		marginTop: validMarginTop,
 	},
 });
 
@@ -45,7 +52,7 @@ const LoadingFullScreen = ({
 		<Modal visible={isLoading} transparent animationType="fade" testID="loading modal" {...props}>
 			<View style={[styles.ContainerStyles, style]}>
 				<Loading isLoading={isLoading} duration={spinnerDuration}>
-					<Svg name={svgName} width={36} height={25} />
+					<Svg name={svgName} width={validWidth} height={validHeight} />
 				</Loading>
 				{hasTextPassed && <Text style={styles.TextStyles}>{text}</Text>}
 			</View>

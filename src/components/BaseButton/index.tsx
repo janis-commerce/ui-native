@@ -1,5 +1,6 @@
 import React, {FC} from 'react';
 import {Pressable, PressableProps, ViewStyle, StyleSheet, TextStyle} from 'react-native';
+import {moderateScale, horizontalScale, scaledForDevice} from '../../scale';
 import {palette} from '../../theme/palette';
 import Text from '../Text';
 import Icon from '../Icon';
@@ -41,24 +42,32 @@ const BaseButton: FC<BaseButtonProps> = ({
 	const bgColor = !disabled ? palette.primary.main : palette.grey[200];
 	const iconPaddingLeft = iconRight && title ? 8 : 0;
 	const iconPaddingRight = !iconRight && title ? 8 : 0;
+
+	const validatePaddingVertical = scaledForDevice(10, moderateScale);
+	const validatePaddingHorizontal = scaledForDevice(16, horizontalScale);
+	const validateFontSize = scaledForDevice(14, moderateScale);
+	const validateBorderRadius = scaledForDevice(borderRadius, moderateScale);
+	const validatePaddingRightIcon = scaledForDevice(iconPaddingRight, horizontalScale);
+	const validatePaddingLeftIcon = scaledForDevice(iconPaddingLeft, horizontalScale);
+
 	const styles = StyleSheet.create({
 		container: {
 			display: 'flex',
 			flexDirection: 'row',
 			alignItems: 'center',
 			justifyContent: 'center',
-			paddingHorizontal: 16,
-			paddingVertical: 10,
-			borderRadius,
+			paddingHorizontal: validatePaddingHorizontal,
+			paddingVertical: validatePaddingVertical,
+			borderRadius: validateBorderRadius,
 			backgroundColor: bgColor,
 		},
 		icon: {
 			color: palette.base.white,
-			paddingRight: iconPaddingRight,
-			paddingLeft: iconPaddingLeft,
+			paddingRight: validatePaddingRightIcon,
+			paddingLeft: validatePaddingLeftIcon,
 		},
 		title: {
-			fontSize: 14,
+			fontSize: validateFontSize,
 			fontWeight: '500',
 			textAlign: 'center',
 			color: palette.base.white,
