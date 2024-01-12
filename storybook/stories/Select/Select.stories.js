@@ -19,6 +19,10 @@ export default {
 			],
 			control: {type: 'select'},
 		},
+		variantOptions: {
+			options: ['Dropdown', 'Modal'],
+			control: {type: 'select'},
+		},
 	},
 };
 
@@ -26,6 +30,9 @@ const listaPaises = [
 	{label: 'Argentina', value: 'ar'},
 	{label: 'Chile', value: 'cl'},
 	{label: 'Mexico', value: 'mx'},
+	{label: 'Brasil', value: 'br'},
+	{label: 'Panamá', value: 'pa'},
+	{label: 'España', value: 'es'},
 ];
 
 const inlineStyles = {width: '100%', padding: 10};
@@ -47,7 +54,6 @@ DisabledSelect.args = {
 	placeholder: 'seleccione un pais',
 	isDisabled: true,
 	isMulti: false,
-	isSearchable: false,
 	keyboardType: 'default',
 	onSelectOption: (option) => option,
 };
@@ -69,9 +75,30 @@ SingleProps.args = {
 	placeholder: 'seleccione un pais',
 	isDisabled: false,
 	isMulti: false,
-	isSearchable: false,
 	keyboardType: 'default',
 	onSelectOption: (option) => option,
+};
+
+export const OptionTypeModalProps = (props) => (
+	<View style={inlineStyles}>
+		<Select {...props} />
+	</View>
+);
+
+OptionTypeModalProps.storyName = 'option type modal';
+
+OptionTypeModalProps.args = {
+	value: 'Argentina',
+	options: listaPaises,
+	label: 'Paises',
+	optionStyles: () => {},
+	multiOptionsText: 'others',
+	placeholder: 'seleccione un pais',
+	isDisabled: false,
+	isMulti: true,
+	keyboardType: 'default',
+	onSelectOption: (option) => option,
+	variantOptions: 'Modal',
 };
 
 export const MultiProps = (props) => (
@@ -91,7 +118,6 @@ MultiProps.args = {
 	placeholder: 'seleccione un pais',
 	isDisabled: false,
 	isMulti: true,
-	isSearchable: false,
 	keyboardType: 'default',
 	onSelectOption: (option) => option,
 };
@@ -147,7 +173,6 @@ CustomComponent.args = {
 	placeholder: 'seleccione un pais',
 	isDisabled: false,
 	isMulti: false,
-	isSearchable: false,
 	keyboardType: 'default',
 	onSelectOption: (option) => option,
 	customOptionComponent: customOption,
