@@ -3,6 +3,7 @@ import {StyleSheet, View, ViewStyle} from 'react-native';
 import Image from '../Image';
 import Text from '../Text';
 import {formatPlaceholder} from './utils/formatPlaceholder/index';
+import {horizontalScale, moderateScale, scaledForDevice} from '../../scale';
 
 export const sizeValues = {
 	sm: 24,
@@ -56,6 +57,14 @@ const Avatar = ({
 	}
 
 	const initials = formatPlaceholder(String(placeholder));
+	const calculateBorderRadius = getSize(size, customSize) / 2;
+	const calculateSize = getSize(size, customSize);
+	const calculateFontSize = getSize(size, customSize) * 0.4;
+
+	const validBorderRadius = scaledForDevice(calculateBorderRadius, moderateScale);
+	const validWidth = scaledForDevice(calculateSize, horizontalScale);
+	const validHeight = scaledForDevice(calculateSize, moderateScale);
+	const validFontSize = scaledForDevice(calculateFontSize, moderateScale);
 
 	const handleOnErrorImage = () => {
 		setShowInitials(true);
@@ -70,9 +79,9 @@ const Avatar = ({
 				styles.container,
 				{
 					backgroundColor: bgColor,
-					borderRadius: getSize(size, customSize) / 2,
-					height: getSize(size, customSize),
-					width: getSize(size, customSize),
+					borderRadius: validBorderRadius,
+					height: validHeight,
+					width: validWidth,
 				},
 				style,
 			]}
@@ -86,16 +95,14 @@ const Avatar = ({
 						uri: imageUrl,
 					}}
 					style={{
-						height: getSize(size, customSize),
-						width: getSize(size, customSize),
+						height: validHeight,
+						width: validWidth,
 					}}
 				/>
 			)}
 
 			{(showInitials || !imageUrl) && !!initials.length && (
-				<Text style={[styles.text, {color: textColor, fontSize: getSize(size, customSize) * 0.4}]}>
-					{initials}
-				</Text>
+				<Text style={[styles.text, {color: textColor, fontSize: validFontSize}]}>{initials}</Text>
 			)}
 		</View>
 	);

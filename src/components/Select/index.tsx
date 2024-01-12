@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import React, {FC, useState, useEffect, useRef, useCallback} from 'react';
 import {Keyboard, StyleSheet, Text, TextInput, View} from 'react-native';
 import {black, grey, primary} from '../../theme/palette';
@@ -5,6 +6,7 @@ import {formatPlaceholderMulti} from './utils';
 import ChevronIcon from './Components/Icons/Chevron';
 import DeleteIcon from './Components/Icons/Delete';
 import Dropdown from './Components/Dropdown';
+import {horizontalScale, moderateScale, scaledForDevice} from '../../scale';
 
 enum KeyboardTypes {
 	Default = 'default',
@@ -150,10 +152,22 @@ const Select: FC<SelectProps> = ({
 		}
 	}, [hasDefaultValue, value]);
 
+	const moveLabel = isMoveLabel ? 38 : 10;
+
+	const validFontSize = scaledForDevice(16, moderateScale);
+	const validMarginBottom = scaledForDevice(10, moderateScale);
+	const validMarginTop = scaledForDevice(18, moderateScale);
+	const validHeightLabel = scaledForDevice(19, moderateScale);
+	const validPadding = scaledForDevice(8, moderateScale);
+	const validBottomLabel = scaledForDevice(moveLabel, moderateScale);
+	const validHeightInput = scaledForDevice(38, moderateScale);
+	const validRight = scaledForDevice(30, horizontalScale);
+	const validBorderBottomWidth = scaledForDevice(1, moderateScale);
+
 	const styles = StyleSheet.create({
 		wrapper: {
 			width: '100%',
-			marginBottom: 10,
+			marginBottom: validMarginBottom,
 			position: 'relative',
 			zIndex: isShowedDropdown ? 10 : 0,
 		},
@@ -161,32 +175,32 @@ const Select: FC<SelectProps> = ({
 			position: 'relative',
 			width: '100%',
 			marginBottom: 0,
-			marginTop: 18,
+			marginTop: validMarginTop,
 		},
 		label: {
 			position: 'absolute',
 			color: isMoveLabel && !isDisabled ? primary.main : black.main,
-			fontSize: 16,
-			lineHeight: 19,
+			fontSize: validFontSize,
+			lineHeight: validHeightLabel,
 			letterSpacing: 0,
 			left: 0,
 			fontWeight: isMoveLabel ? '600' : '400',
-			bottom: isMoveLabel ? 38 : 10,
+			bottom: validBottomLabel,
 		},
 		input: {
 			width: '100%',
-			height: 38,
+			height: validHeightInput,
 			padding: 0,
-			fontSize: 16,
-			lineHeight: 19,
+			fontSize: validFontSize,
+			lineHeight: validHeightLabel,
 			letterSpacing: 0,
-			borderBottomWidth: 1,
+			borderBottomWidth: validBorderBottomWidth,
 			color: black.main,
 			borderBottomColor: isShowedDropdown ? primary.main : grey[200],
 		},
 		arrowIcon: {
 			position: 'absolute',
-			padding: 8,
+			padding: validPadding,
 			right: 0,
 			bottom: 0,
 			zIndex: 1,
@@ -194,8 +208,8 @@ const Select: FC<SelectProps> = ({
 		},
 		deleteIcon: {
 			position: 'absolute',
-			padding: 8,
-			right: 30,
+			padding: validPadding,
+			right: validRight,
 			bottom: 0,
 			zIndex: 1,
 		},

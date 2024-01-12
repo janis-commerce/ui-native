@@ -6,7 +6,7 @@ exports[`Text component render correct match snapshot 1`] = `
     Array [
       Object {
         "fontFamily": "Roboto",
-        "fontSize": 13,
+        "fontSize": 27,
       },
       undefined,
     ]

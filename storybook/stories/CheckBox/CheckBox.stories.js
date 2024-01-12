@@ -33,10 +33,10 @@ DefaultProps.storyName = 'default props';
 
 DefaultProps.args = {
 	checked: true,
-	customSize: 16,
+	customSize: 6,
 	checkOnColor: '#2979FF',
 	checkOffColor: '#939598',
 	iconCheckColor: '#FFF',
-	borderRadius: 4,
+	borderRadius: 2,
 	disabled: false,
 };

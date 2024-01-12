@@ -2,6 +2,7 @@ import React, {FC} from 'react';
 import {View, StyleSheet, TouchableOpacity, ScrollView, Text} from 'react-native';
 import {base, black, grey, primary, white} from '../../../../theme/palette';
 import {CustomOptionComponent, Option} from '../..';
+import {horizontalScale, moderateScale, scaledForDevice} from '../../../../scale';
 
 interface DropdownProps {
 	isShowedDropdown: boolean;
@@ -30,39 +31,51 @@ const Dropdown: FC<DropdownProps> = (props) => {
 
 	const handleSelectedOption = (option: Option) => callbackOption(option);
 
+	const validPadding = scaledForDevice(8, moderateScale);
+	const validMaxHeight = scaledForDevice(168, moderateScale);
+	const validTop = scaledForDevice(60, moderateScale);
+	const validMarginBottom = scaledForDevice(20, moderateScale);
+	const validElevation = scaledForDevice(5, moderateScale);
+	const validHeight = scaledForDevice(42, moderateScale);
+	const validLeft = scaledForDevice(8, horizontalScale);
+	const validFontSize = scaledForDevice(14, moderateScale);
+	const validPaddingVertical = scaledForDevice(10, moderateScale);
+
 	const styles = StyleSheet.create({
 		container: {
 			width: '100%',
-			padding: 8,
+			padding: validPadding,
 		},
 		optionWrapper: {
 			position: 'absolute',
-			maxHeight: 168,
+			maxHeight: validMaxHeight,
 			borderColor: grey[200],
 			backgroundColor: base.white,
 			width: '100%',
-			top: 60,
-			marginBottom: 20,
-			elevation: 5,
+			top: validTop,
+			marginBottom: validMarginBottom,
+			elevation: validElevation,
 			zIndex: 10,
 			flex: 1,
 		},
 		option: {
 			width: '100%',
-			height: 42,
+			height: validHeight,
 			justifyContent: 'center',
 			alignItems: 'stretch',
-			paddingLeft: 8,
+			paddingLeft: validLeft,
 		},
 		optionText: {
+			fontSize: validFontSize,
 			color: black.main,
 			fontWeight: '400',
 		},
 		noOptionText: {
+			fontSize: validFontSize,
 			color: grey[500],
 			fontWeight: '400',
-			paddingLeft: 8,
-			paddingVertical: 10,
+			paddingLeft: validLeft,
+			paddingVertical: validPaddingVertical,
 		},
 	});
 

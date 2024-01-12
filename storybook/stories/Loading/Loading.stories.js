@@ -20,5 +20,6 @@ DefaultProps.args = {
 	color: '#2979FF',
 	size: 64,
 	duration: 1000,
-	children: <Text>Loading</Text>,
+	// eslint-disable-next-line react-native/no-inline-styles
+	children: <Text style={{fontSize: 14}}>Loading</Text>,
 };
