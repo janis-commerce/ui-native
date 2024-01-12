@@ -1,7 +1,7 @@
 import 'react-native';
 import React from 'react';
 import {create} from 'react-test-renderer';
-import Svg from './index';
+import Svg from './';
 
 describe('Svg component', () => {
 	describe('return null because name is undefined', () => {

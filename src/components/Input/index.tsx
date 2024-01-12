@@ -18,6 +18,7 @@ import {
 	raiseLabel,
 	showStatusMessage,
 } from './utils';
+import {moderateScale, horizontalScale, scaledForDevice} from '../../scale';
 
 export enum keyboardTypes {
 	default = 'default',
@@ -112,36 +113,43 @@ const Input = React.forwardRef<TextInput, InputProps>(
 			statusMessage,
 			status,
 		});
+
 		const validStatusMessageColor = getStatusMessageColor(status);
+		const validBottom = scaledForDevice(25, moderateScale);
+		const validHeight = scaledForDevice(50, moderateScale);
+		const validBorderBottomWidth = scaledForDevice(1, horizontalScale);
+		const validLineHeight = scaledForDevice(19, moderateScale);
+		const validFontSize = scaledForDevice(16, moderateScale);
+		const validateMarginTop = scaledForDevice(5, moderateScale);
 
 		const styles = StyleSheet.create({
 			container: {
 				width: '100%',
 			},
 			inputWrapper: {
-				height: 50,
+				height: validHeight,
 				borderBottomColor: validBorderColor,
-				borderBottomWidth: 1,
+				borderBottomWidth: validBorderBottomWidth,
 				justifyContent: 'flex-end',
 			},
 			label: {
 				color: validLabelColor,
-				fontSize: 16,
+				fontSize: validFontSize,
 				letterSpacing: 0,
-				lineHeight: 19,
+				lineHeight: validLineHeight,
 				position: 'absolute',
-				bottom: raiseLabel({disabled, hasMessage, inputState}) ? 25 : 0,
+				bottom: raiseLabel({disabled, hasMessage, inputState}) ? validBottom : 0,
 			},
 			input: {
 				color: valueColor,
-				fontSize: 16,
+				fontSize: validFontSize,
 				letterSpacing: 0,
-				lineHeight: 19,
+				lineHeight: validLineHeight,
 				padding: 0,
 			},
 			statusMessage: {
 				color: validStatusMessageColor,
-				marginTop: 5,
+				marginTop: validateMarginTop,
 			},
 		});
 

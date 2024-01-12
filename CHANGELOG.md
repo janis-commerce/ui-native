@@ -7,7 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Added scaling funtions for different resolutions
+
+### Fixed
+
+- Fixed storybook's components
+
 ## [1.2.0] - 2023-12-06
+
 ### Added
 
 - Added progress bar component
