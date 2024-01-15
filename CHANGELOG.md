@@ -7,9 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.0] - 2024-01-15
+
+### Fixed
+
+- Fixed Select component
+
+## [1.3.0] - 2024-01-15
+
 ### Added
 
 - Added scaling funtions for different resolutions
+
+### Fixed
+
+- Fixed storybook's components
 
 ## [1.2.0] - 2023-12-06
 

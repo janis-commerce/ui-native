@@ -3,10 +3,18 @@ import {View, Text, StyleSheet, useWindowDimensions} from 'react-native';
 import Icon from '../../../src/components/Icon';
 import {primary} from '../../../src/theme/palette';
 import iconsSelection from '../../../src/components/Icon/assets/fonts/selection.json';
+import CenterScrollView from '../../decorators/CenterScrollView';
 
 export default {
 	title: 'Design system/Icons',
 	argTypes: {color: {control: {type: 'color'}}},
+	decorators: [
+		(Story) => (
+			<CenterScrollView>
+				<Story />
+			</CenterScrollView>
+		),
+	],
 };
 
 export const DefaultProps = ({color, size, ...props}) => {
