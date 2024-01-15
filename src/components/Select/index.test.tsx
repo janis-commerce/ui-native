@@ -1,8 +1,7 @@
 import React from 'react';
 import {create} from 'react-test-renderer';
 import Options from './Components/Options';
-import {TextInput} from 'react-native';
-import Icon from '../Icon';
+import {Pressable, TextInput} from 'react-native';
 import Select from './';
 
 jest.spyOn(React, 'useEffect').mockImplementation((f) => f());
@@ -51,8 +50,8 @@ describe('Select component', () => {
 			const {root} = create(
 				<Select options={validProps.options} label={validProps.label} isDisabled={true} />
 			);
-			const ChevronComponent = root.findByType(Icon);
-			ChevronComponent.props.onPress();
+			const ChevronComponent = root.findAllByType(Pressable);
+			ChevronComponent[0].props.onPress();
 
 			jest.spyOn(React, 'useEffect').mockImplementation((f) => f());
 
@@ -73,8 +72,8 @@ describe('Select component', () => {
 			const {root} = create(
 				<Select options={validProps.options} label={validProps.label} isMulti />
 			);
-			const [DeleteComponent] = root.findAllByType(Icon);
-			DeleteComponent.props.onPress();
+			const DeleteComponent = root.findAllByType(Pressable);
+			DeleteComponent[0].props.onPress();
 
 			expect(setIsShowedDropdownSpy).toBeCalledWith(false);
 			expect(setInputValueSpy).toBeCalledWith('');
@@ -174,9 +173,9 @@ describe('Select component', () => {
 				<Select options={validProps.options} label={validProps.label} isMulti />
 			);
 			const OptionsComponent = root.findByType(Options);
-			const ChevronComponent = root.findByType(Icon);
+			const ChevronComponent = root.findAllByType(Pressable);
+			ChevronComponent[0].props.onPress();
 			OptionsComponent.props.callbackOption(validOptions[0]);
-			ChevronComponent.props.onPress();
 
 			expect(setSelectedOptions).toBeCalledWith([validOptions[0]]);
 			expect(setInputValueSpy).toBeCalledWith(validOptions[0].label);
@@ -195,9 +194,9 @@ describe('Select component', () => {
 				<Select options={validProps.options} label={validProps.label} isMulti />
 			);
 			const OptionsComponent = root.findByType(Options);
-			const ChevronComponent = root.findByType(Icon);
+			const ChevronComponent = root.findAllByType(Pressable);
+			ChevronComponent[0].props.onPress();
 			OptionsComponent.props.callbackOption(validOptions[0]);
-			ChevronComponent.props.onPress();
 
 			expect(setSelectedOptions).toBeCalledWith([]);
 			expect(setInputValueSpy).toBeCalledWith('');
@@ -223,9 +222,9 @@ describe('Select component', () => {
 				/>
 			);
 			const OptionsComponent = root.findByType(Options);
-			const ChevronComponent = root.findByType(Icon);
+			const ChevronComponent = root.findAllByType(Pressable);
+			ChevronComponent[0].props.onPress();
 			OptionsComponent.props.callbackOption(validOptions[0]);
-			ChevronComponent.props.onPress();
 
 			expect(setSelectedOptions).toBeCalledWith([]);
 			expect(setInputValueSpy).toBeCalledWith('');

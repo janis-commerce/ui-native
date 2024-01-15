@@ -15,18 +15,15 @@ interface Props {
 	color?: string;
 	size?: number;
 	style?: any;
-	onPress?: () => void;
 }
 
-const Icon: FC<Props> = ({name, color = primary.main, size = 16, onPress, ...props}) => {
+const Icon: FC<Props> = ({name, color = primary.main, size = 16, ...props}) => {
 	if (!name) {
 		return null;
 	}
 	const validateSize = scaledForDevice(size, moderateScale);
 
-	return (
-		<IconComponent name={name} color={color} size={validateSize} onPress={onPress} {...props} />
-	);
+	return <IconComponent name={name} color={color} size={validateSize} {...props} />;
 };
 
 export default Icon;

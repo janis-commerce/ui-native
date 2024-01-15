@@ -1,6 +1,6 @@
 /* istanbul ignore file */
 import React, {FC, useState, useEffect, useRef, useCallback} from 'react';
-import {Keyboard, StyleSheet, Text, TextInput, View} from 'react-native';
+import {Keyboard, Pressable, StyleSheet, Text, TextInput, View} from 'react-native';
 import {black, grey, primary} from '../../theme/palette';
 import {formatPlaceholderMulti} from './utils';
 import Options from './Components/Options';
@@ -247,21 +247,14 @@ const Select: FC<SelectProps> = ({
 		<View style={styles.wrapper} {...props}>
 			<View style={styles.wrapperInput}>
 				{isMulti && showDeleteIcon && (
-					<Icon
-						size={20}
-						color={black.main}
-						name="cross_circle_flat"
-						style={styles.deleteIcon}
-						onPress={handleResetOptions}
-					/>
+					<Pressable onPress={handleResetOptions} style={styles.deleteIcon}>
+						<Icon size={20} color={black.main} name="cross_circle_flat" />
+					</Pressable>
 				)}
-				<Icon
-					size={20}
-					color={isDisabled ? black.main : primary.main}
-					name="chevron_down"
-					style={styles.arrowIcon}
-					onPress={handleCloseDropdown}
-				/>
+				<Pressable style={styles.arrowIcon} onPress={handleCloseDropdown}>
+					<Icon size={20} color={isDisabled ? black.main : primary.main} name="chevron_down" />
+				</Pressable>
+
 				<Text style={styles.label}>{label}</Text>
 				<TextInput
 					ref={inputRef}
