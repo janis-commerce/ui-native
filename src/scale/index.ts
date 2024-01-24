@@ -1,10 +1,10 @@
 import {Dimensions, PixelRatio, Platform} from 'react-native';
-import {WEB_MODE} from '../../env.json';
 
 const guidelineBaseWidth = 360;
 const guidelineBaseHeight = 720;
 
 const isIOS = Platform.OS === 'ios';
+const isWeb = Platform.OS === 'web';
 
 const {width: viewportWidth, height: viewportHeight} = Dimensions.get('window');
 
@@ -21,7 +21,7 @@ const moderateScale = (size: number, factor: number = 1) =>
 
 /* istanbul ignore next */
 const scaledForDevice = (size: number, scaleCallback: (size: number) => number): number =>
-	WEB_MODE ? size : scaleCallback(size);
+	isWeb ? size : scaleCallback(size);
 
 export {
 	isIOS,

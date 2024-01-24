@@ -1,4 +1,5 @@
 export interface GreyScale {
+	[key: string]: string;
 	100: string;
 	200: string;
 	300: string;
@@ -8,14 +9,17 @@ export interface GreyScale {
 	700: string;
 }
 export interface Env {
+	[key: string]: string;
 	qa: string;
 	beta: string;
 }
 export interface Base {
+	[key: string]: string;
 	black: string;
 	white: string;
 }
 export interface gamaColor {
+	[key: string]: string;
 	main: string;
 	dark: string;
 }
@@ -32,4 +36,18 @@ export interface White extends Primary {
 }
 export interface Black extends gamaColor {
 	semiTransparent: string;
+}
+
+export interface Palette {
+	[key: string]: any;
+	primary: Primary;
+	black: Black;
+	white: White;
+	grey: GreyScale;
+	base: Base;
+	success: Success;
+	error: Error;
+	warning: Warning;
+	alert: Alert;
+	environment: Env;
 }
