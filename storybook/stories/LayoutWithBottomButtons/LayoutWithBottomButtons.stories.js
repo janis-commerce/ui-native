@@ -3,7 +3,6 @@ import {View, Text, Platform} from 'react-native';
 import {StyleSheet} from 'react-native';
 import LayoutWithBottomButtons from '../../../src/components/LayoutWithBottomButtons';
 import {palette} from '../../../src/theme/palette';
-import {WEB_MODE} from '../../../env.json';
 
 export default {
 	title: 'Components/LayoutWithBottomButtons',
