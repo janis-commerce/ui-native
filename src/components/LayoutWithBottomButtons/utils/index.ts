@@ -1,5 +1,6 @@
 import {PressableProps, ViewStyle, TextStyle} from 'react-native';
 import {moderateScale, scaledForDevice} from '../../../scale';
+import {palette} from '../../../theme/palette';
 
 export interface IlayoutButtons extends PressableProps {
 	title?: string | null;
@@ -40,6 +41,20 @@ const buttonVariantStyles = (variant: string | null) => ({
 	}),
 });
 
+const getBackgroundColor = ({
+	color,
+	pressedColor: receivedPressedColor,
+	disabled,
+}: IlayoutButtons) => {
+	const validColor = typeof color === 'string' ? color : 'primary';
+	const validPressedColor =
+		typeof receivedPressedColor === 'string' ? receivedPressedColor : validColor;
+	palette.grey[200];
+	const backgroundColor = disabled ? palette.grey[200] : palette[validColor]?.main || validColor;
+	const pressedColor = palette[validPressedColor]?.dark || validPressedColor;
+	return {backgroundColor, pressedColor};
+};
+
 export const buttonWrapperVariantStyles = (variant: string) => ({
 	...(variant === 'rounded' && {
 		padding: scaledForDevice(16, moderateScale),
@@ -69,11 +84,14 @@ export const parseButtonsStyles = (buttons: Array<IlayoutButtons>, variant: stri
 
 	if (newButtons.length === 3 && areButtonsRounded) {
 		const parsedButtons = newButtons.map((btn, idx) => {
+			const {backgroundColor, pressedColor} = getBackgroundColor(btn);
 			if (idx === 0) {
 				return {
 					...btn,
+					pressedColor,
 					style: {
 						...btn?.style,
+						backgroundColor,
 						width: '100%',
 						...buttonVariantStyles(currentVariant),
 					},
@@ -82,8 +100,10 @@ export const parseButtonsStyles = (buttons: Array<IlayoutButtons>, variant: stri
 
 			return {
 				...btn,
+				pressedColor,
 				style: {
 					...btn?.style,
+					backgroundColor,
 					width: validWidth(btn.width) ?? '49%',
 					...buttonVariantStyles(currentVariant),
 				},
@@ -95,11 +115,14 @@ export const parseButtonsStyles = (buttons: Array<IlayoutButtons>, variant: stri
 
 	if (newButtons.length === 2 && areButtonsRounded) {
 		const parsedButtons = newButtons.map((btn, idx) => {
+			const {backgroundColor, pressedColor} = getBackgroundColor(btn);
 			if (idx === 0 && btn.width === '100%') {
 				return {
 					...btn,
+					pressedColor,
 					style: {
 						...btn?.style,
+						backgroundColor,
 						width: btn.width,
 						marginBottom: scaledForDevice(10, moderateScale),
 						...buttonVariantStyles(currentVariant),
@@ -108,8 +131,10 @@ export const parseButtonsStyles = (buttons: Array<IlayoutButtons>, variant: stri
 			}
 			return {
 				...btn,
+				pressedColor,
 				style: {
 					...btn?.style,
+					backgroundColor,
 					width: validWidth(btn.width) ?? '49%',
 					...buttonVariantStyles(currentVariant),
 				},
@@ -121,10 +146,13 @@ export const parseButtonsStyles = (buttons: Array<IlayoutButtons>, variant: stri
 
 	if (newButtons.length === 1 && areButtonsRounded) {
 		const parsedButtons = newButtons.map((btn) => {
+			const {backgroundColor, pressedColor} = getBackgroundColor(btn);
 			return {
 				...btn,
+				pressedColor,
 				style: {
 					...btn?.style,
+					backgroundColor,
 					width: '100%',
 					...buttonVariantStyles(currentVariant),
 				},
@@ -136,11 +164,14 @@ export const parseButtonsStyles = (buttons: Array<IlayoutButtons>, variant: stri
 
 	const flex = 1 / buttons.length;
 	const parsedButtons = newButtons.map((btn) => {
+		const {backgroundColor, pressedColor} = getBackgroundColor(btn);
 		return {
 			...btn,
 			flex,
+			pressedColor,
 			style: {
 				...btn?.style,
+				backgroundColor,
 				...buttonVariantStyles(currentVariant),
 			},
 		};

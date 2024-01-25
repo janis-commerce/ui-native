@@ -4,6 +4,7 @@ import {moderateScale, scaledForDevice} from '../../../scale';
 const layoutButtons = [
 	{
 		icon: 'keyboard',
+		pressedColor: '#FFFFFF',
 		onPress: jest.fn(),
 	},
 	{

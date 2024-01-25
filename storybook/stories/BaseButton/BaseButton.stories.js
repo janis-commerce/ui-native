@@ -12,9 +12,6 @@ export default {
 			control: {type: 'select'},
 		},
 		borderRadius: {control: 'number', min: 0},
-		color: {
-			control: {type: 'color'},
-		},
 	},
 };
 
@@ -28,7 +25,6 @@ DefaultProps.args = {
 	disabled: false,
 	iconRight: false,
 	borderRadius: 25,
-	color: 'primary',
 };
 
 export const WithChildren = (props) => {
