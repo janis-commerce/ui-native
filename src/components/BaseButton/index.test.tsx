@@ -10,7 +10,8 @@ const validData = {
 	iconRight: true,
 	disabled: true,
 	borderRadius: 15,
-	pressedColor: palette.success.main,
+	color: palette.success.main,
+	pressedColor: palette.success.dark,
 	style: {backgroundColor: palette.black.main},
 	iconStyle: {backgroundColor: palette.black.main},
 	textStyle: {color: palette.black.main},
@@ -57,6 +58,13 @@ describe('BaseButton Component', () => {
 
 		it('is renders left icon when iconRight prop is not passed', () => {
 			const {toJSON} = create(<BaseButton title={validData.title} icon={validData.icon} />);
+			expect(toJSON()).toBeTruthy();
+		});
+	});
+
+	describe('color', () => {
+		it('it changes when color props is an string color format', () => {
+			const {toJSON} = create(<BaseButton title={validData.title} color={validData.color} />);
 			expect(toJSON()).toBeTruthy();
 		});
 	});

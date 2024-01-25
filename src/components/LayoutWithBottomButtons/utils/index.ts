@@ -1,8 +1,7 @@
 import {PressableProps, ViewStyle, TextStyle} from 'react-native';
 import {moderateScale, scaledForDevice} from '../../../scale';
-import {palette} from '../../../theme/palette';
 
-interface layoutButtons extends PressableProps {
+export interface IlayoutButtons extends PressableProps {
 	title?: string | null;
 	icon?: string;
 	iconRight?: boolean;
@@ -13,7 +12,6 @@ interface layoutButtons extends PressableProps {
 	style?: ViewStyle;
 	iconStyle?: ViewStyle;
 	textStyle?: TextStyle;
-	variant?: string;
 	width?: number | string;
 	flex?: number;
 }
@@ -42,12 +40,6 @@ const buttonVariantStyles = (variant: string | null) => ({
 	}),
 });
 
-const getBackgroundColor = (color: string | undefined) => {
-	const validColor = typeof color === 'string' ? color : 'primary';
-	const validatedColor = palette[validColor]?.main || validColor;
-	return validatedColor;
-};
-
 export const buttonWrapperVariantStyles = (variant: string) => ({
 	...(variant === 'rounded' && {
 		padding: scaledForDevice(16, moderateScale),
@@ -64,7 +56,7 @@ const validWidth = (width: string | number | undefined) => {
 	return null;
 };
 
-export const parseButtonsStyles = (buttons: Array<layoutButtons>, variant: string) => {
+export const parseButtonsStyles = (buttons: Array<IlayoutButtons>, variant: string) => {
 	if (!buttons || !(buttons instanceof Array) || !buttons.length) {
 		return [];
 	}
@@ -83,7 +75,6 @@ export const parseButtonsStyles = (buttons: Array<layoutButtons>, variant: strin
 					style: {
 						...btn?.style,
 						width: '100%',
-						backgroundColor: getBackgroundColor(btn.color),
 						...buttonVariantStyles(currentVariant),
 					},
 				};
@@ -94,7 +85,6 @@ export const parseButtonsStyles = (buttons: Array<layoutButtons>, variant: strin
 				style: {
 					...btn?.style,
 					width: validWidth(btn.width) ?? '49%',
-					backgroundColor: getBackgroundColor(btn.color),
 					...buttonVariantStyles(currentVariant),
 				},
 			};
@@ -111,7 +101,6 @@ export const parseButtonsStyles = (buttons: Array<layoutButtons>, variant: strin
 					style: {
 						...btn?.style,
 						width: btn.width,
-						backgroundColor: getBackgroundColor(btn.color),
 						marginBottom: scaledForDevice(10, moderateScale),
 						...buttonVariantStyles(currentVariant),
 					},
@@ -122,7 +111,6 @@ export const parseButtonsStyles = (buttons: Array<layoutButtons>, variant: strin
 				style: {
 					...btn?.style,
 					width: validWidth(btn.width) ?? '49%',
-					backgroundColor: getBackgroundColor(btn.color),
 					...buttonVariantStyles(currentVariant),
 				},
 			};
@@ -138,7 +126,6 @@ export const parseButtonsStyles = (buttons: Array<layoutButtons>, variant: strin
 				style: {
 					...btn?.style,
 					width: '100%',
-					backgroundColor: getBackgroundColor(btn.color),
 					...buttonVariantStyles(currentVariant),
 				},
 			};
@@ -148,15 +135,16 @@ export const parseButtonsStyles = (buttons: Array<layoutButtons>, variant: strin
 	}
 
 	const flex = 1 / buttons.length;
-	const parsedButtons = newButtons.map((btn) => ({
-		...btn,
-		flex,
-		style: {
-			...btn?.style,
-			backgroundColor: getBackgroundColor(btn.color),
-			...buttonVariantStyles(currentVariant),
-		},
-	}));
+	const parsedButtons = newButtons.map((btn) => {
+		return {
+			...btn,
+			flex,
+			style: {
+				...btn?.style,
+				...buttonVariantStyles(currentVariant),
+			},
+		};
+	});
 
 	return parsedButtons;
 };

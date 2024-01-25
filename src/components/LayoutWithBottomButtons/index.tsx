@@ -4,10 +4,11 @@ import BaseButton from '../BaseButton';
 import {palette} from '../../theme/palette';
 import {moderateScale, scaledForDevice} from '../../scale';
 import {validVariants, parseButtonsStyles, buttonWrapperVariantStyles} from './utils';
+import type {IlayoutButtons} from './utils';
 
 interface LayoutWithBottomButtonsProps extends ViewProps {
 	children: ReactElement | string;
-	buttons: Array<object>;
+	buttons: Array<IlayoutButtons>;
 	variant?: string;
 	buttonBackgroundColor?: string;
 }
