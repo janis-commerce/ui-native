@@ -15,7 +15,6 @@ interface BaseButtonProps extends PressableProps {
 	iconRight?: boolean;
 	disabled?: boolean;
 	borderRadius?: number;
-	color?: string;
 	pressedColor?: string;
 	style?: ViewStyle;
 	iconStyle?: ViewStyle;
@@ -29,7 +28,6 @@ const BaseButton: FC<BaseButtonProps> = ({
 	iconRight = false,
 	disabled = false,
 	borderRadius = 0,
-	color,
 	pressedColor,
 	style,
 	iconStyle,
@@ -41,12 +39,7 @@ const BaseButton: FC<BaseButtonProps> = ({
 		return null;
 	}
 
-	const validColor = typeof color === 'string' ? color : 'primary';
-	const validPressedColor = typeof pressedColor === 'string' ? pressedColor : validColor;
-	palette.grey[200];
-	const backgroundColor = palette[validColor]?.main || validColor;
-	const ValidatePressedColor = palette[validPressedColor]?.dark || validPressedColor;
-	const ValidateBackgroundColor = disabled ? palette.grey[200] : backgroundColor;
+	const bgColor = !disabled ? palette.primary.main : palette.grey[200];
 	const iconPaddingLeft = iconRight && title ? 8 : 0;
 	const iconPaddingRight = !iconRight && title ? 8 : 0;
 
@@ -66,7 +59,7 @@ const BaseButton: FC<BaseButtonProps> = ({
 			paddingHorizontal: validatePaddingHorizontal,
 			paddingVertical: validatePaddingVertical,
 			borderRadius: validateBorderRadius,
-			backgroundColor: ValidateBackgroundColor,
+			backgroundColor: bgColor,
 		},
 		icon: {
 			color: palette.base.white,
@@ -91,7 +84,8 @@ const BaseButton: FC<BaseButtonProps> = ({
 
 	/* istanbul ignore next */
 	const PressableStyle = ({pressed}: PressableStyleProp) => {
-		const pressedBgColor = pressed ? [{backgroundColor: ValidatePressedColor}] : [];
+		const backgroundColor = pressedColor ?? palette.primary.dark;
+		const pressedBgColor = pressed ? [{backgroundColor}] : [];
 
 		return [styles.container, style, ...pressedBgColor];
 	};
