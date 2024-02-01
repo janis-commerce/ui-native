@@ -9,6 +9,7 @@ import {
 	Success,
 	Warning,
 	White,
+	Palette,
 } from '../ts/interfaces/colors';
 
 const primary: Primary = {
@@ -61,7 +62,7 @@ const environment: Env = {
 	beta: '#F13B70',
 };
 
-const palette = {
+const palette: Palette = {
 	primary,
 	black,
 	white,

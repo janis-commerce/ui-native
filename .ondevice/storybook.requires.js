@@ -55,6 +55,7 @@ const getStories = () => {
 		'./storybook/stories/DesignStystem/Icons.stories.js': require('../storybook/stories/DesignStystem/Icons.stories.js'),
 		'./storybook/stories/Image/Image.stories.js': require('../storybook/stories/Image/Image.stories.js'),
 		'./storybook/stories/Input/Input.stories.js': require('../storybook/stories/Input/Input.stories.js'),
+		'./storybook/stories/LayoutWithBottomButtons/LayoutWithBottomButtons.stories.js': require('../storybook/stories/LayoutWithBottomButtons/LayoutWithBottomButtons.stories.js'),
 		'./storybook/stories/List/List.stories.js': require('../storybook/stories/List/List.stories.js'),
 		'./storybook/stories/Loading/Loading.stories.js': require('../storybook/stories/Loading/Loading.stories.js'),
 		'./storybook/stories/LoadingFullScreen/LoadingFullScreen.stories.js': require('../storybook/stories/LoadingFullScreen/LoadingFullScreen.stories.js'),
