@@ -35,10 +35,10 @@ const FullScreenMessage: FC<Props> = ({
 	children = null,
 	...props
 }) => {
-	if (!title || typeof title !== 'string') {
+	if (!children && (!title || typeof title !== 'string')) {
 		return null;
 	}
-	if (!backgroundColor || typeof backgroundColor !== 'string') {
+	if (!children && (!backgroundColor || typeof backgroundColor !== 'string')) {
 		return null;
 	}
 

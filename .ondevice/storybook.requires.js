@@ -53,6 +53,7 @@ const getStories = () => {
 		'./storybook/stories/CheckBox/CheckBox.stories.js': require('../storybook/stories/CheckBox/CheckBox.stories.js'),
 		'./storybook/stories/DesignStystem/Colors.stories.js': require('../storybook/stories/DesignStystem/Colors.stories.js'),
 		'./storybook/stories/DesignStystem/Icons.stories.js': require('../storybook/stories/DesignStystem/Icons.stories.js'),
+		'./storybook/stories/FullScreenMessage/FullScreenMessage.stories.js': require('../storybook/stories/FullScreenMessage/FullScreenMessage.stories.js'),
 		'./storybook/stories/Image/Image.stories.js': require('../storybook/stories/Image/Image.stories.js'),
 		'./storybook/stories/Input/Input.stories.js': require('../storybook/stories/Input/Input.stories.js'),
 		'./storybook/stories/LayoutWithBottomButtons/LayoutWithBottomButtons.stories.js': require('../storybook/stories/LayoutWithBottomButtons/LayoutWithBottomButtons.stories.js'),
