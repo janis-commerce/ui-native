@@ -1,7 +1,7 @@
-import React, {FC, ReactElement} from 'react';
+import React, {FC, ReactElement, useCallback, useEffect, useState} from 'react';
 import {Modal, StyleSheet, View} from 'react-native';
 import {moderateScale, scaledForDevice} from '../../scale';
-import {base} from '../../theme/palette';
+import {base, primary} from '../../theme/palette';
 import Icon from '../Icon';
 import Text from '../Text';
 
@@ -12,36 +12,36 @@ export enum animationTypes {
 }
 
 interface Props {
-	backgroundColor: string;
-	title: string;
+	backgroundColor?: string;
 	isVisible?: boolean;
+	title?: string;
 	subtitle?: string;
 	iconName?: string;
 	textsColor?: string;
 	iconColor?: string;
 	animationType?: animationTypes;
+	duration?: number;
+	onEndDuration?: (data: any) => void | null;
 	children?: ReactElement | null;
 }
 
 const FullScreenMessage: FC<Props> = ({
-	backgroundColor,
-	title,
+	backgroundColor = primary.main,
+	title = '',
 	isVisible = false,
 	subtitle = '',
 	iconName = '',
 	textsColor = base.white,
 	iconColor = base.white,
 	animationType = animationTypes.Slide,
+	duration = 3000,
+	onEndDuration = null,
 	children = null,
 	...props
 }) => {
-	if (!children && (!title || typeof title !== 'string')) {
-		return null;
-	}
-	if (!children && (!backgroundColor || typeof backgroundColor !== 'string')) {
-		return null;
-	}
+	const [visible, setVisible] = useState(isVisible);
 
+	const validTitle = !!title && typeof title === 'string';
 	const validSubtitle = !!subtitle && typeof subtitle === 'string';
 	const validIconName = !!iconName && typeof iconName === 'string';
 
@@ -78,12 +78,30 @@ const FullScreenMessage: FC<Props> = ({
 		},
 	});
 
+	const updateCallback = useCallback(() => {
+		if (onEndDuration) {
+			onEndDuration(visible);
+		}
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [visible]);
+
+	useEffect(() => {
+		if (isVisible) {
+			setTimeout(() => {
+				setVisible(false);
+			}, duration);
+		}
+	}, [duration, isVisible]);
+
+	useEffect(() => updateCallback(), [updateCallback]);
+
 	return (
-		<Modal visible={isVisible} animationType={animationType} transparent {...props}>
+		<Modal visible={visible} animationType={animationType} transparent {...props}>
 			<View style={styles.container}>
 				{children ?? (
 					<>
-						<Text style={styles.title}>{title}</Text>
+						{validTitle && <Text style={styles.title}>{title}</Text>}
 						{validSubtitle && <Text style={styles.subtitle}>{subtitle}</Text>}
 						{validIconName && <Icon color={iconColor} size={130} name={iconName} />}
 					</>
