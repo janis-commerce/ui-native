@@ -21,6 +21,7 @@ import Carousel from './components/Carousel';
 import ProgressBar from './components/ProgressBar';
 import List from './components/List';
 import BaseButton from './components/BaseButton';
+import FullScreenMessage from './components/FullScreenMessage';
 import LayoutWithBottomButtons from './components/LayoutWithBottomButtons';
 import * as getScale from './scale';
 
@@ -48,4 +49,5 @@ export {
 	BaseButton,
 	getScale,
 	LayoutWithBottomButtons,
+	FullScreenMessage,
 };
