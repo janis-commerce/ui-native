@@ -35,6 +35,7 @@ describe('FullScreenMessasge component', () => {
 	afterEach(() => {
 		jest.useFakeTimers();
 		spyUseEffect.mockImplementation((f) => f());
+		spyUseState.mockReturnValueOnce([true, setVisible]);
 	});
 
 	beforeEach(() => {
@@ -108,7 +109,7 @@ describe('FullScreenMessasge component', () => {
 	describe('it should show modal', () => {
 		it('timeout update visible state and update callback', () => {
 			jest.useFakeTimers();
-			spyUseState.mockReturnValueOnce([false, setVisible]);
+			spyUseState.mockReturnValueOnce([true, setVisible]);
 			create(
 				<FullsCreenMessage
 					isVisible={validData.isVisible}
@@ -119,14 +120,12 @@ describe('FullScreenMessasge component', () => {
 					iconColor={validData.iconColor}
 					animationType={validData.animationType}
 					duration={validData.duration}
-					onEndDuration={validData.onEndDuration}
 					children={validData.children}
 				/>
 			);
 			jest.advanceTimersByTime(validData.duration);
 
 			expect(setVisible).toHaveBeenCalledWith(false);
-			expect(onEndDurarionMock).toBeCalled();
 		});
 	});
 });

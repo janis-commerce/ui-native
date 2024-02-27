@@ -39,19 +39,12 @@ const styles = StyleSheet.create({
 export const DefaultProps = (props) => {
 	const [visible, setVisible] = useState(false);
 
-	const Toogle = () => {
-		setVisible(true);
-		setTimeout(() => {
-			setVisible(false);
-		}, 3000);
-	};
-
 	return (
 		<>
-			<TouchableHighlight style={styles.ButtonStyle} onPress={Toogle}>
+			<TouchableHighlight style={styles.ButtonStyle} onPress={() => setVisible(true)}>
 				<Text style={styles.TextStyles}>Preview FullScreenMessage</Text>
 			</TouchableHighlight>
-			<FullScreenMessage {...props} isVisible={visible} />
+			<FullScreenMessage isVisible={visible} onEndDuration={() => setVisible(false)} {...props} />
 		</>
 	);
 };
@@ -81,19 +74,12 @@ const Children = (
 export const WithChildren = (props) => {
 	const [visible, setVisible] = useState(false);
 
-	const Toogle = () => {
-		setVisible(true);
-		setTimeout(() => {
-			setVisible(false);
-		}, 3000);
-	};
-
 	return (
 		<>
-			<TouchableHighlight style={styles.ButtonStyle} onPress={Toogle}>
+			<TouchableHighlight style={styles.ButtonStyle} onPress={() => setVisible(true)}>
 				<Text style={styles.TextStyles}>Preview FullScreenMessage</Text>
 			</TouchableHighlight>
-			<FullScreenMessage {...props} isVisible={visible}>
+			<FullScreenMessage isVisible={visible} onEndDuration={() => setVisible(false)} {...props}>
 				{props.children}
 			</FullScreenMessage>
 		</>

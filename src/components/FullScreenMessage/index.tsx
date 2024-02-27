@@ -1,4 +1,4 @@
-import React, {FC, ReactElement, useCallback, useEffect, useState} from 'react';
+import React, {FC, ReactElement, useEffect, useState} from 'react';
 import {Modal, StyleSheet, View} from 'react-native';
 import {moderateScale, scaledForDevice} from '../../scale';
 import {base, primary} from '../../theme/palette';
@@ -21,7 +21,7 @@ interface Props {
 	iconColor?: string;
 	animationType?: animationTypes;
 	duration?: number;
-	onEndDuration?: (data: any) => void | null;
+	onEndDuration?: () => void;
 	children?: ReactElement | null;
 }
 
@@ -35,11 +35,11 @@ const FullScreenMessage: FC<Props> = ({
 	iconColor = base.white,
 	animationType = animationTypes.Slide,
 	duration = 3000,
-	onEndDuration = null,
+	onEndDuration = () => {},
 	children = null,
 	...props
 }) => {
-	const [visible, setVisible] = useState(isVisible);
+	const [visible, setVisible] = useState(false);
 
 	const validTitle = !!title && typeof title === 'string';
 	const validSubtitle = !!subtitle && typeof subtitle === 'string';
@@ -78,23 +78,22 @@ const FullScreenMessage: FC<Props> = ({
 		},
 	});
 
-	const updateCallback = useCallback(() => {
-		if (onEndDuration && !visible) {
-			onEndDuration(visible);
+	useEffect(() => {
+		if (isVisible) {
+			setVisible(true);
+		}
+	}, [isVisible]);
+
+	useEffect(() => {
+		if (visible) {
+			setTimeout(() => {
+				setVisible(false);
+				onEndDuration();
+			}, duration);
 		}
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [visible]);
-
-	useEffect(() => {
-		if (isVisible) {
-			setTimeout(() => {
-				setVisible(false);
-			}, duration);
-		}
-	}, [duration, isVisible]);
-
-	useEffect(() => updateCallback(), [updateCallback]);
+	}, [visible, setVisible]);
 
 	return (
 		<Modal visible={visible} animationType={animationType} transparent {...props}>
