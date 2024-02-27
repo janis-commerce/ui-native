@@ -79,7 +79,7 @@ const FullScreenMessage: FC<Props> = ({
 	});
 
 	const updateCallback = useCallback(() => {
-		if (onEndDuration) {
+		if (onEndDuration && !visible) {
 			onEndDuration(visible);
 		}
 
