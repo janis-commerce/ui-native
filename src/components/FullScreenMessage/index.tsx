@@ -93,7 +93,7 @@ const FullScreenMessage: FC<Props> = ({
 		}
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [visible, setVisible]);
+	}, [visible]);
 
 	return (
 		<Modal visible={visible} animationType={animationType} transparent {...props}>
