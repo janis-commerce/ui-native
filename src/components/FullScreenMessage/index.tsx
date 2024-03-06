@@ -1,4 +1,4 @@
-import React, {FC, ReactElement, useEffect, useState} from 'react';
+import React, {FC, ReactElement, useEffect} from 'react';
 import {Modal, StyleSheet, View} from 'react-native';
 import {moderateScale, scaledForDevice} from '../../scale';
 import {base, primary} from '../../theme/palette';
@@ -39,8 +39,6 @@ const FullScreenMessage: FC<Props> = ({
 	children = null,
 	...props
 }) => {
-	const [visible, setVisible] = useState(false);
-
 	const validTitle = !!title && typeof title === 'string';
 	const validSubtitle = !!subtitle && typeof subtitle === 'string';
 	const validIconName = !!iconName && typeof iconName === 'string';
@@ -79,24 +77,15 @@ const FullScreenMessage: FC<Props> = ({
 	});
 
 	useEffect(() => {
-		if (isVisible) {
-			setVisible(true);
-		}
-	}, [isVisible]);
-
-	useEffect(() => {
-		if (visible) {
-			setTimeout(() => {
-				setVisible(false);
-				onEndDuration();
-			}, duration);
-		}
+		setTimeout(() => {
+			onEndDuration();
+		}, duration);
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [visible]);
+	}, []);
 
 	return (
-		<Modal visible={visible} animationType={animationType} transparent {...props}>
+		<Modal visible={isVisible} animationType={animationType} transparent {...props}>
 			<View style={styles.container}>
 				{children ?? (
 					<>

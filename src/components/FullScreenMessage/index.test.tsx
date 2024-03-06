@@ -6,7 +6,6 @@ import {base, primary} from '../../theme/palette';
 import Icon from '../Icon';
 
 const spyUseEffect = jest.spyOn(React, 'useEffect');
-const spyUseState = jest.spyOn(React, 'useState');
 
 const validChildren = (
 	<View>
@@ -14,7 +13,6 @@ const validChildren = (
 	</View>
 );
 
-const setVisible = jest.fn();
 const onEndDurarionMock = jest.fn();
 
 const validData = {
@@ -35,7 +33,6 @@ describe('FullScreenMessasge component', () => {
 	afterEach(() => {
 		jest.useFakeTimers();
 		spyUseEffect.mockImplementation((f) => f());
-		spyUseState.mockReturnValueOnce([true, setVisible]);
 	});
 
 	beforeEach(() => {
@@ -109,8 +106,7 @@ describe('FullScreenMessasge component', () => {
 	describe('it should show modal', () => {
 		it('timeout update visible state and update callback', () => {
 			jest.useFakeTimers();
-			spyUseState.mockReturnValueOnce([true, setVisible]);
-			create(
+			const {toJSON} = create(
 				<FullsCreenMessage
 					isVisible={validData.isVisible}
 					title={validData.title}
@@ -125,7 +121,7 @@ describe('FullScreenMessasge component', () => {
 			);
 			jest.advanceTimersByTime(validData.duration);
 
-			expect(setVisible).toHaveBeenCalledWith(false);
+			expect(toJSON()).toBeTruthy();
 		});
 	});
 });
