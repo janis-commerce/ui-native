@@ -7,6 +7,9 @@ import Icon from '../../../src/components/Icon';
 export default {
 	title: 'Components/FullScreenMessage',
 	argTypes: {
+		duration: {
+			control: 'number',
+		},
 		animationType: {
 			options: ['slide', 'fade', 'none'],
 			control: {type: 'select'},
@@ -53,6 +56,7 @@ DefaultProps.storyName = 'default props';
 
 DefaultProps.args = {
 	animationType: animationTypes.Slide,
+	duration: 3000,
 	backgroundColor: primary.main,
 	title: 'Janis',
 	subtitle: 'Subtitle text',
@@ -89,6 +93,7 @@ export const WithChildren = (props) => {
 WithChildren.storyName = 'with children prop';
 
 WithChildren.args = {
+	duration: 3000,
 	animationType: animationTypes.Fade,
 	backgroundColor: success.main,
 	children: Children,
