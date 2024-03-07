@@ -77,12 +77,14 @@ const FullScreenMessage: FC<Props> = ({
 	});
 
 	useEffect(() => {
-		setTimeout(() => {
-			onEndDuration();
-		}, duration);
+		if (isVisible) {
+			setTimeout(() => {
+				onEndDuration();
+			}, duration);
+		}
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [isVisible]);
 
 	return (
 		<Modal visible={isVisible} animationType={animationType} transparent {...props}>
