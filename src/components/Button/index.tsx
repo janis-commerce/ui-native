@@ -37,9 +37,9 @@ export enum IconPosition {
 }
 
 interface ButtonProps extends BaseButtonProps {
-	type: Types,
-	variant: Variants;
-	color: Colors;
+	type?: Types,
+	variant?: Variants;
+	color?: Colors;
 	isLoading?: boolean;
 	value?: string | null;
 	icon?: string;
@@ -86,14 +86,12 @@ const Button: FC<ButtonProps> = ({
 	const pressedStyle = isPressed ? palette.primary.dark : palette.primary.main;
 	const bgColor = !disabled ? pressedStyle : palette.grey[200];
 	
-	const validateFontSize = scaledForDevice(14, moderateScale);	
-
 
 	const styles = StyleSheet.create({
 		container: {
 			backgroundColor: bgColor,
 		},
-		wrapperDirection: {
+		directionWrapper: {
 			flexDirection: 'row',
 			justifyContent: 'center',
 			alignItems: 'center'
@@ -102,7 +100,7 @@ const Button: FC<ButtonProps> = ({
 			color: palette.base.white,
 		},
 		text: {
-			fontSize: validateFontSize,
+			fontSize: scaledForDevice(14, moderateScale),
 			fontWeight: '500',
 			textAlign: 'center',
 			color: palette.base.white,
@@ -127,8 +125,8 @@ const Button: FC<ButtonProps> = ({
 		/> 
 	);
 
-	const ButtonWrapper = (
-		<View style={styles.wrapperDirection}>
+	const WrapperComponent = (
+		<View style={styles.directionWrapper}>
 			{icon && <Icon name={icon} style={[styles.icon, iconStyle]} size={24} />}
 			{value && <Text style={[styles.text, textStyle]}>{value}</Text>}
 		</View>
@@ -140,7 +138,7 @@ const Button: FC<ButtonProps> = ({
 			onPressIn={useCallback(handleOnPressIn, [setIsPressed, isPressed])}
 			onPressOut={useCallback(handleOnPressOut, [setIsPressed, isPressed])}
 			{...props}>
-			{isLoading ? LoadingCompontent : ButtonWrapper}
+			{isLoading ? LoadingCompontent : WrapperComponent}
 		</BaseButton>
 	);
 };
