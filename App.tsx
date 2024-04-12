@@ -1,9 +1,10 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View} from 'react-native';
+import Button from './src/components/Button';
 
 const App = () => (
-	<View>
-		<Text>UI native</Text>
+	<View style={{padding: 20}}>
+		<Button value='Button normal' icon='box' isLoading={false} onPressIn={() => {console.log('anda mierda')}} />
 	</View>
 );
 
