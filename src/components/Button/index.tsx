@@ -1,28 +1,25 @@
 import React, {FC, useCallback, useState} from 'react';
 import {ViewStyle, StyleSheet, TextStyle, View} from 'react-native';
-import {moderateScale, scaledForDevice} from '../../scale';
 import BaseButton, { BaseButtonProps } from '../BaseButton';
 import Loading from '../Loading';
-import {palette} from '../../theme/palette';
 import Text from '../Text';
 import Icon from '../Icon';
 import { getMixedButtonStyles } from './utils';
 
-export enum Types {
+export enum Type {
 	Main = 'main',
 	Secondary = 'secondary',
 }
 
-export enum Variants {
+export enum Variant {
 	Contained = 'contained',
 	Outlined = 'outlined',
 	Text ='text',
 }
 
-export enum Colors {
+export enum Color {
 	Primary = 'primary',
 	Secondary = 'secondary',
-	Black = 'black',
 	Success = 'success',
 	Error = 'error',
 	Warning = 'warning',
@@ -37,9 +34,9 @@ export enum IconPosition {
 }
 
 interface ButtonProps extends BaseButtonProps {
-	type?: Types,
-	variant?: Variants;
-	color?: Colors;
+	type?: Type,
+	variant?: Variant;
+	color?: Color;
 	isLoading?: boolean;
 	value?: string | null;
 	icon?: string;
@@ -55,9 +52,9 @@ interface ButtonProps extends BaseButtonProps {
 }
 
 const Button: FC<ButtonProps> = ({
-	type = Types.Main,
-	variant = Variants.Contained,
-	color = Colors.Primary,
+	type = Type.Main,
+	variant = Variant.Contained,
+	color = Color.Primary,
 	iconPosition = IconPosition.Left,
 	isLoading = false,
 	value = null,
@@ -79,33 +76,11 @@ const Button: FC<ButtonProps> = ({
 		color,
 		iconPosition,
 		isLoading,
+		isPressed,
 		disabled,
 	};
 	const buttonStyle = getMixedButtonStyles(params)
-
-	const pressedStyle = isPressed ? palette.primary.dark : palette.primary.main;
-	const bgColor = !disabled ? pressedStyle : palette.grey[200];
-	
-
-	const styles = StyleSheet.create({
-		container: {
-			backgroundColor: bgColor,
-		},
-		directionWrapper: {
-			flexDirection: 'row',
-			justifyContent: 'center',
-			alignItems: 'center'
-		},
-		icon: {
-			color: palette.base.white,
-		},
-		text: {
-			fontSize: scaledForDevice(14, moderateScale),
-			fontWeight: '500',
-			textAlign: 'center',
-			color: palette.base.white,
-		},
-	});		
+	const styles = StyleSheet.create(buttonStyle);		
 	
 	const handleOnPressIn = () => {
 		setIsPressed(true)
@@ -120,13 +95,13 @@ const Button: FC<ButtonProps> = ({
 	const LoadingCompontent = (
 		<Loading  
 			isLoading={isLoading}
-			color = {palette.primary.light}
+			color = {buttonStyle.loadingColor}
 			size = {24}
 		/> 
 	);
 
 	const WrapperComponent = (
-		<View style={styles.directionWrapper}>
+		<View style={styles.direction}>
 			{icon && <Icon name={icon} style={[styles.icon, iconStyle]} size={24} />}
 			{value && <Text style={[styles.text, textStyle]}>{value}</Text>}
 		</View>
@@ -137,6 +112,7 @@ const Button: FC<ButtonProps> = ({
 			style={[styles.container, style]}
 			onPressIn={useCallback(handleOnPressIn, [setIsPressed, isPressed])}
 			onPressOut={useCallback(handleOnPressOut, [setIsPressed, isPressed])}
+			disabled={disabled || isLoading}
 			{...props}>
 			{isLoading ? LoadingCompontent : WrapperComponent}
 		</BaseButton>
