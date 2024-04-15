@@ -1,74 +1,101 @@
 import { moderateScale, scaledForDevice } from "../../../scale"
-import { palette } from "../../../theme/palette"
-import { themeColors, mixedColors } from "../theme";
-import type { ContainerStyle, Params, ReturnStyles } from "./types";
+import { colorConfig, stlyeConfig } from "../theme/configs";
+import { themeColors } from "../theme";
+import { defaultColor, defaultIconPosition, defaultType, defaultVariant, verticalHeights } from '../constants';
+import type { ContainerStyle, DirectionStyle,  LoadingStyle,  Params, ReturnStyles, TextStyle } from "../types";
 
-const containerStyle = ({isPressed, disabled, isLoading, color, variant, type}: ContainerStyle) => {
-	const selectedColor = themeColors[color];
-	const {
-		mainBgColor,
-		mainBorderColor,
-		pressedBgColor,
-		pressedBorderColor,
-		disabledBgColor,
-		disabledBorderColor
-	} = mixedColors(selectedColor);
+const containerStyle = ({isPressed, disabled: isDisabled, isLoading, color, variant, type, iconPosition}: ContainerStyle) => {
+	const selectedColor = themeColors[color] || themeColors[defaultColor];
+	const {main, pressed, disabled} = colorConfig(selectedColor);
+	
+	const {container} = stlyeConfig;
+
+	const mainBgColor = main.background[variant] || main.background[defaultVariant];
+	const mainBorderColor = main.border[variant] || main.border[defaultVariant];
+
+	const pressedBgColor = pressed.background[variant] || pressed.background[defaultVariant];
+	const pressedBorderColor = pressed.border[variant] || pressed.border[defaultVariant];
+	
+	const disabledBgColor = disabled.background[variant] || disabled.background[defaultVariant];
+	const disabledBorderColor = disabled.border[type][variant] || disabled.border[defaultType][defaultVariant];
+	
+	const containerHeight = container.height[type] || container.height[defaultType];
+	const containerShadow = container.shadow;
 
 	// main and pressed button colors
-	const mainColor = isPressed ? pressedBgColor[variant] : mainBgColor[variant];
-	const borderColor = isPressed ? pressedBorderColor[variant] : mainBorderColor[variant];
-	
-	// disabled button colors
-	const backgroundDisabled = disabledBgColor[variant]
-	const borderDisabled = disabledBorderColor[type][variant]
+	const mainColor = isPressed ? pressedBgColor : mainBgColor;
+	const borderColor = isPressed ? pressedBorderColor : mainBorderColor;
 
-	const selectHeight = {
-		main: scaledForDevice(50, moderateScale),
-		secondary: scaledForDevice(42, moderateScale),
-	}
+	// validation of height
+	const hasVerticalHeight = verticalHeights.includes(iconPosition);
 
-	const height = variant === 'text' ? scaledForDevice(35, moderateScale) : selectHeight[type]
+	// validation of shadow
+	const hasShadow = type === 'secondary' && variant === 'outlined';
 
 	return {
 		borderWidth: 1,
-		borderColor: disabled || isLoading ? borderDisabled : borderColor,
-		backgroundColor: disabled || isLoading ? backgroundDisabled : mainColor,
-		// elevation: 5,
-		height,
+		borderColor: isDisabled || isLoading ? disabledBorderColor : borderColor,
+		backgroundColor: isDisabled || isLoading ? disabledBgColor : mainColor,
+		...(!hasVerticalHeight && {height: variant !== 'text' ? containerHeight : scaledForDevice(35, moderateScale)}),
+		...(hasVerticalHeight && {padding: scaledForDevice(10, moderateScale)}),
+		...(hasShadow && containerShadow)
 	}
-}
+};
 
-const directionWrapperStyle = (params = {}) => {
+const directionWrapperStyle = ({iconPosition}: DirectionStyle ) => {
+	const {directionWrapper} = stlyeConfig;
 
+	const flexDirection = 
+		directionWrapper.flexDirection[iconPosition] || directionWrapper.flexDirection[defaultIconPosition];
+	const flexCenter = directionWrapper.center || {};
 
+	return {
+		...flexCenter,
+		flexDirection,
+	}
+};
+
+const baseTextStyle = ({type, variant, color, disabled: isDisabled, isLoading, isPressed}: TextStyle) => {
+	const selectedColor = themeColors[color] || themeColors[defaultColor];
+	const {main, pressed, disabled} = colorConfig(selectedColor);
 	
-	return {
-		flexDirection: 'row',
-		justifyContent: 'center',
-		alignItems: 'center'
-	}
-}
+	const {text: textStyle} = stlyeConfig;
 
-const iconStyle = (params = {}) => {
-	return {
-		color: palette.base.white,
-	}
-}
+	const mainTextColor = main.text[type][variant] || main.text[defaultType][defaultVariant];
+	const pressedTextColor = pressed.text[type][variant] || pressed.text[defaultType][defaultVariant];
+	const disabledTextColor = disabled.text[type][variant] || disabled.text[defaultType][defaultVariant];
 
-const textStyle = (params = {}) => {
-	return  {
-		fontSize: scaledForDevice(14, moderateScale),
-		fontWeight: '500',
-		textAlign: 'center',
-		color: palette.base.white,
+	const mainColor = isPressed ? pressedTextColor : mainTextColor;
+
+	return {
+		...textStyle,
+		color: isDisabled || isLoading ? disabledTextColor : mainColor,
 	}
-}
+};
+const textStyle = (params : TextStyle) => ({
+	...baseTextStyle(params),
+	fontSize: scaledForDevice(14, moderateScale),
+});
+const iconStyle  = (params: TextStyle) => {
+	const {hasIconAndText, iconPosition} = params;
+	const {icon} = stlyeConfig;
+
+	return {
+		...baseTextStyle(params),
+		...(!!hasIconAndText && icon.margin[iconPosition] || {})
+	}
+};
+
+const loadingColor = ({color}: LoadingStyle) => {
+	const selectedColor = themeColors[color] || themeColors[defaultColor];
+	return selectedColor.main;
+};
 
 
 export const getMixedButtonStyles = (params: Params): ReturnStyles  => ({
     container: containerStyle(params),
 	direction: directionWrapperStyle(params),
-	icon: iconStyle(params),
 	text: textStyle(params),
-	loadingColor: themeColors[params.color].main,
-})
+	icon: iconStyle(params),
+	loadingColor: loadingColor(params),
+});

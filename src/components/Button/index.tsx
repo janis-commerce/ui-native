@@ -28,7 +28,7 @@ export enum Color {
 
 export enum IconPosition {
 	Left = 'left',
-	Right = 'rigth',
+	Right = 'right',
 	Top = 'top',
 	Bottom = 'bottom',
 }
@@ -69,6 +69,7 @@ const Button: FC<ButtonProps> = ({
 	...props
 }) => {
 	const [isPressed, setIsPressed] = useState<Boolean>(false);
+	const hasIconAndText = !!icon && !!value;
 
 	const params = {
 		type,
@@ -78,6 +79,7 @@ const Button: FC<ButtonProps> = ({
 		isLoading,
 		isPressed,
 		disabled,
+		hasIconAndText,
 	};
 	const buttonStyle = getMixedButtonStyles(params)
 	const styles = StyleSheet.create(buttonStyle);		
@@ -113,6 +115,7 @@ const Button: FC<ButtonProps> = ({
 			onPressIn={useCallback(handleOnPressIn, [setIsPressed, isPressed])}
 			onPressOut={useCallback(handleOnPressOut, [setIsPressed, isPressed])}
 			disabled={disabled || isLoading}
+			borderRadius={50}
 			{...props}>
 			{isLoading ? LoadingCompontent : WrapperComponent}
 		</BaseButton>
