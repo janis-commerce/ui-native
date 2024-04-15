@@ -1,5 +1,5 @@
 import { moderateScale, scaledForDevice } from '../../../../scale';
-import { base, black, grey} from '../../../../theme/palette';
+import { base, black, grey, white} from '../../../../theme/palette';
 import { SelectedColor } from "../../types"
 
 export const colorConfig = (selectedColor: SelectedColor) => {
@@ -19,12 +19,12 @@ export const colorConfig = (selectedColor: SelectedColor) => {
                 main: {
                     contained:  base.white,
                     outlined: black.main,
-                    text: selectedColor.main,
+                    text: black.main,
                 },
                 secondary: {
                     contained:  base.white,
                     outlined: selectedColor.main,
-                    text: black.main,  
+                    text: selectedColor.main,  
                 }
             },
         },
@@ -32,7 +32,7 @@ export const colorConfig = (selectedColor: SelectedColor) => {
             background: {
                 contained:  selectedColor.dark,
                 outlined: selectedColor.light,
-                text: grey[100],
+                text: white.main,
             },
             border: {
                 contained:  'transparent',
@@ -43,7 +43,7 @@ export const colorConfig = (selectedColor: SelectedColor) => {
                 main: {
                     contained:  base.white,
                     outlined: black.main,
-                    text: selectedColor.main,
+                    text: black.main,
                 },
                 secondary: {
                     contained:  base.white,
@@ -126,7 +126,7 @@ export const stlyeConfig = {
             top: {},
             bottom: {},
             left: {
-                right: scaledForDevice(8, moderateScale)
+                marginRight: scaledForDevice(8, moderateScale)
             },
             right: {
                 marginLeft: scaledForDevice(8, moderateScale)

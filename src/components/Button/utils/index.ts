@@ -36,8 +36,9 @@ const containerStyle = ({isPressed, disabled: isDisabled, isLoading, color, vari
 		borderWidth: 1,
 		borderColor: isDisabled || isLoading ? disabledBorderColor : borderColor,
 		backgroundColor: isDisabled || isLoading ? disabledBgColor : mainColor,
+		paddingHorizontal: scaledForDevice(type === 'main' ? 12 : 8, moderateScale) ,
+		...(hasVerticalHeight && {paddingVertical: scaledForDevice(10, moderateScale)}),
 		...(!hasVerticalHeight && {height: variant !== 'text' ? containerHeight : scaledForDevice(35, moderateScale)}),
-		...(hasVerticalHeight && {padding: scaledForDevice(10, moderateScale)}),
 		...(hasShadow && containerShadow)
 	}
 };
