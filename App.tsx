@@ -9,10 +9,11 @@ const App = () => (
 			icon='box'
 			isLoading={false}
 			type={Type.Main}
-			variant={Variant.Contained}
-			color={Color.Success}
-			iconPosition={IconPosition.Left}
+			variant={Variant.Outlined}
+			color={Color.Primary}
+			// iconPosition={IconPosition.Right}
 			disabled={false}
+			style={{width: '100%'}}
 		/>
 	</View>
 );

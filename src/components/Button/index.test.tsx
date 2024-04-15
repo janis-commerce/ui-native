@@ -1,0 +1,3 @@
+describe('Button', () => {
+    /* global expect */
+});

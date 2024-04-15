@@ -9,23 +9,19 @@ export interface BaseButtonProps extends PressableProps {
 }
 
 const BaseButton: FC<BaseButtonProps> = ({
-	borderRadius = 50,
+	borderRadius = 0,
 	children = null,
 	style,
 	...props
 }) => {
 	if(!children) return null;
 
-	const validatePaddingVertical = scaledForDevice(10, moderateScale);
-	const validatePaddingHorizontal = scaledForDevice(16, horizontalScale);
 	const validateBorderRadius = scaledForDevice(borderRadius, moderateScale);
 
 	const styles = StyleSheet.create({
 		container: {
 			alignItems: 'center',
 			justifyContent: 'center',
-			paddingHorizontal: validatePaddingHorizontal,
-			paddingVertical: validatePaddingVertical,
 			borderRadius: validateBorderRadius,
 		},
 	});
