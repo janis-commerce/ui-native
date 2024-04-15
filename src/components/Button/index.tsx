@@ -70,6 +70,7 @@ const Button: FC<ButtonProps> = ({
 }) => {
 	const [isPressed, setIsPressed] = useState<Boolean>(false);
 	const hasIconAndText = !!icon && !!value;
+	const borderRadius = variant === 'text' ? 6 : 50;
 
 	const params = {
 		type,
@@ -115,7 +116,7 @@ const Button: FC<ButtonProps> = ({
 			onPressIn={useCallback(handleOnPressIn, [setIsPressed, isPressed])}
 			onPressOut={useCallback(handleOnPressOut, [setIsPressed, isPressed])}
 			disabled={disabled || isLoading}
-			borderRadius={50}
+			borderRadius={borderRadius}
 			{...props}>
 			{isLoading ? LoadingCompontent : WrapperComponent}
 		</BaseButton>
