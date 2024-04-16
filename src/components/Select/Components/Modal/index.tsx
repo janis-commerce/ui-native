@@ -1,9 +1,9 @@
 import React, {FC} from 'react';
 import {Modal as ModalComponent, StyleSheet, View} from 'react-native';
-import {base, primary, white} from '../../../../theme/palette';
+import {base} from '../../../../theme/palette';
 import {DropdownProps} from '../Dropdown';
 import {moderateScale, scaledForDevice} from '../../../../scale';
-import Button, { Type, Variant } from '../../../Button';
+import Button, {Type, Variant} from '../../../Button';
 
 interface ModalProps extends DropdownProps {
 	isMulti: boolean;
@@ -18,7 +18,6 @@ const Modal: FC<ModalProps> = ({show, setShow, isMulti, modalAcceptText, childre
 	const validPaddingHorizontal = scaledForDevice(20, moderateScale);
 	const validLeft = scaledForDevice(8, moderateScale);
 	const validTop = scaledForDevice(4, moderateScale);
-	const validFontSize = scaledForDevice(13, moderateScale);
 
 	const styles = StyleSheet.create({
 		background: {

@@ -1,10 +1,10 @@
 import React, {FC, useCallback, useState} from 'react';
 import {ViewStyle, StyleSheet, TextStyle, View} from 'react-native';
-import BaseButton, { BaseButtonProps } from '../BaseButton';
+import BaseButton, {BaseButtonProps} from '../BaseButton';
 import Loading from '../Loading';
 import Text from '../Text';
 import Icon from '../Icon';
-import { getMixedButtonStyles } from './utils';
+import {getMixedButtonStyles} from './utils';
 
 export enum Type {
 	Main = 'main',
@@ -14,7 +14,7 @@ export enum Type {
 export enum Variant {
 	Contained = 'contained',
 	Outlined = 'outlined',
-	Text ='text',
+	Text = 'text',
 }
 
 export enum Color {
@@ -34,7 +34,7 @@ export enum IconPosition {
 }
 
 interface ButtonProps extends BaseButtonProps {
-	type?: Type,
+	type?: Type;
 	variant?: Variant;
 	color?: Color;
 	isLoading?: boolean;
@@ -45,8 +45,8 @@ interface ButtonProps extends BaseButtonProps {
 	style?: ViewStyle;
 	iconStyle?: TextStyle;
 	textStyle?: TextStyle;
-	onPressIn?:  () => void;
-	onPressOut?:  () => void;
+	onPressIn?: () => void;
+	onPressOut?: () => void;
 }
 
 const Button: FC<ButtonProps> = ({
@@ -55,7 +55,7 @@ const Button: FC<ButtonProps> = ({
 	color = Color.Primary,
 	iconPosition = IconPosition.Left,
 	isLoading = false,
-	value = null,
+	value = 'Button',
 	icon = null,
 	disabled = false,
 	style,
@@ -65,8 +65,6 @@ const Button: FC<ButtonProps> = ({
 	onPressOut = () => {},
 	...props
 }) => {
-	if(!icon && !value) return null;
-
 	const [isPressed, setIsPressed] = useState<Boolean>(false);
 	const hasIconAndText = !!icon && !!value;
 	const borderRadius = variant === 'text' ? 6 : 50;
@@ -81,25 +79,21 @@ const Button: FC<ButtonProps> = ({
 		disabled,
 		hasIconAndText,
 	};
-	const buttonStyle = getMixedButtonStyles(params)
-	const styles = StyleSheet.create(buttonStyle);		
-	
-	const handleOnPressIn = () => {
+	const buttonStyle = getMixedButtonStyles(params);
+	const styles = StyleSheet.create(buttonStyle);
+
+	const handleOnPressIn = useCallback(() => {
 		setIsPressed(true);
 		onPressIn();
-	}
+	}, [onPressIn]);
 
-	const handleOnPressOut = () => {
+	const handleOnPressOut = useCallback(() => {
 		setIsPressed(false);
 		onPressOut();
-	};
+	}, [onPressOut]);
 
 	const LoadingCompontent = (
-		<Loading  
-			isLoading={isLoading}
-			color = {buttonStyle.loadingColor}
-			size = {24}
-		/> 
+		<Loading isLoading={isLoading} color={buttonStyle.loadingColor} size={24} />
 	);
 
 	const WrapperComponent = (
@@ -110,10 +104,10 @@ const Button: FC<ButtonProps> = ({
 	);
 
 	return (
-		<BaseButton 
+		<BaseButton
 			style={[styles.container, style]}
-			onPressIn={useCallback(handleOnPressIn, [setIsPressed, isPressed])}
-			onPressOut={useCallback(handleOnPressOut, [setIsPressed, isPressed])}
+			onPressIn={handleOnPressIn}
+			onPressOut={handleOnPressOut}
 			disabled={disabled || isLoading}
 			borderRadius={borderRadius}
 			{...props}>

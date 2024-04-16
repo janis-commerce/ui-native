@@ -5,7 +5,11 @@ import BaseButton from './';
 
 const validData = {
 	borderRadius: 15,
-	children: <View><Text>Button</Text></View>,
+	children: (
+		<View>
+			<Text>Button</Text>
+		</View>
+	),
 };
 
 describe('BaseButton Component', () => {
@@ -17,12 +21,11 @@ describe('BaseButton Component', () => {
 	});
 
 	describe('render correctly when has minimum props needed, example', () => {
-			it('when hasnt minimum props needed', () => {
+		it('when hasnt minimum props needed', () => {
 			const {toJSON} = create(
-			<BaseButton borderRadius={validData.borderRadius}>
-				{validData.children}
-			</BaseButton>);
-			
+				<BaseButton borderRadius={validData.borderRadius}>{validData.children}</BaseButton>
+			);
+
 			expect(toJSON()).toBeTruthy();
 		});
 	});
