@@ -47,7 +47,6 @@ const containerStyle = ({
 	const disabledBorderColor = disabled.border[validType][validVariant];
 
 	const containerHeight = container.height[validType];
-	const containerShadow = container.shadow;
 
 	// main and pressed button colors
 	const mainColor = isPressed ? pressedBgColor : mainBgColor;
@@ -55,9 +54,6 @@ const containerStyle = ({
 
 	// validation of height
 	const hasVerticalHeight = verticalHeights.includes(iconPosition);
-
-	// validation of shadow
-	const hasShadow = type === 'secondary' && variant === 'outlined';
 
 	return {
 		borderWidth: 1,
@@ -68,7 +64,6 @@ const containerStyle = ({
 		...(!hasVerticalHeight && {
 			height: variant !== 'text' ? containerHeight : scaledForDevice(35, moderateScale),
 		}),
-		...(hasShadow && containerShadow),
 	};
 };
 

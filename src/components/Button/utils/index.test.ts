@@ -33,11 +33,6 @@ describe('getMixedButtonStyles util', () => {
 				backgroundColor: '#DDDFE2',
 				paddingHorizontal: 16.5,
 				paddingVertical: 21,
-				shadowColor: '#000',
-				elevation: 5,
-				shadowOpacity: 0.25,
-				shadowRadius: 3.84,
-				shadowOffset: {width: 0, height: 6.5},
 			},
 			direction: {
 				justifyContent: 'center',

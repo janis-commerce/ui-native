@@ -92,18 +92,6 @@ export const stlyeConfig = {
 			main: scaledForDevice(50, moderateScale),
 			secondary: scaledForDevice(42, moderateScale),
 		},
-		shadow: {
-			// android
-			shadowColor: '#000',
-			elevation: 5,
-			// IOS
-			shadowOpacity: 0.25,
-			shadowRadius: 3.84,
-			shadowOffset: {
-				width: 0,
-				height: scaledForDevice(3, moderateScale),
-			},
-		},
 	},
 	directionWrapper: {
 		center: {
