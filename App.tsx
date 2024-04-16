@@ -25,6 +25,7 @@ const App = () => (
 			iconPosition={IconPosition.Left}
 			disabled={false}
 			style={{marginLeft: 6}}
+			iconStyle={{color: 'red', fontSize: 30}}
 		/>
 	</View>
 );

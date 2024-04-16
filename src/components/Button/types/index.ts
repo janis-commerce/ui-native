@@ -14,6 +14,7 @@ export interface Params {
 	isLoading: Boolean,
 	isPressed: Boolean,
 	disabled: Boolean,
+	hasIconAndText?: Boolean,
 }
 
 export interface ReturnStyles {

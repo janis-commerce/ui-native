@@ -42,11 +42,9 @@ interface ButtonProps extends BaseButtonProps {
 	icon?: string;
 	iconPosition?: IconPosition;
 	disabled?: boolean;
-	borderRadius?: number;
 	style?: ViewStyle;
-	iconStyle?: ViewStyle;
+	iconStyle?: TextStyle;
 	textStyle?: TextStyle;
-	pressedColor?: string;
 	onPressIn?:  () => void;
 	onPressOut?:  () => void;
 }
@@ -63,11 +61,12 @@ const Button: FC<ButtonProps> = ({
 	style,
 	iconStyle,
 	textStyle,
-	pressedColor,
 	onPressIn = () => {},
 	onPressOut = () => {},
 	...props
 }) => {
+	if(!icon && !value) return null;
+
 	const [isPressed, setIsPressed] = useState<Boolean>(false);
 	const hasIconAndText = !!icon && !!value;
 	const borderRadius = variant === 'text' ? 6 : 50;
@@ -86,7 +85,7 @@ const Button: FC<ButtonProps> = ({
 	const styles = StyleSheet.create(buttonStyle);		
 	
 	const handleOnPressIn = () => {
-		setIsPressed(true)
+		setIsPressed(true);
 		onPressIn();
 	}
 

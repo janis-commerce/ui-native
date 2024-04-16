@@ -3,7 +3,7 @@ import {Modal as ModalComponent, StyleSheet, View} from 'react-native';
 import {base, primary, white} from '../../../../theme/palette';
 import {DropdownProps} from '../Dropdown';
 import {moderateScale, scaledForDevice} from '../../../../scale';
-import Button from '../../../Button';
+import Button, { Type, Variant } from '../../../Button';
 
 interface ModalProps extends DropdownProps {
 	isMulti: boolean;
@@ -49,12 +49,7 @@ const Modal: FC<ModalProps> = ({show, setShow, isMulti, modalAcceptText, childre
 			left: validLeft,
 			top: validTop,
 		},
-		button: {
-			backgroundColor: base.white,
-		},
 		buttonText: {
-			color: primary.main,
-			fontSize: validFontSize,
 			fontWeight: '700',
 			textTransform: 'uppercase',
 		},
@@ -69,8 +64,8 @@ const Modal: FC<ModalProps> = ({show, setShow, isMulti, modalAcceptText, childre
 						<View style={styles.buttonWrapper}>
 							<Button
 								value={modalAcceptText}
-								pressedColor={white.main}
-								style={styles.button}
+								variant={Variant.Text}
+								type={Type.Secondary}
 								textStyle={styles.buttonText}
 								onPress={() => setShow(false)}
 							/>

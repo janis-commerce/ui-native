@@ -1,25 +1,52 @@
 import { moderateScale, scaledForDevice } from "../../../scale"
 import { colorConfig, stlyeConfig } from "../theme/configs";
 import { themeColors } from "../theme";
-import { defaultColor, defaultIconPosition, defaultType, defaultVariant, verticalHeights } from '../constants';
-import type { ContainerStyle, DirectionStyle,  LoadingStyle,  Params, ReturnStyles, TextStyle } from "../types";
+import { 
+	defaultColor,
+	validTypes,
+	validVariants,
+	validIconPositions,
+	defaultIconPosition,
+	defaultType,
+	defaultVariant,
+	verticalHeights
+} from '../constants';
+import type { 
+	ContainerStyle,
+	DirectionStyle,
+	LoadingStyle,
+	Params,
+	ReturnStyles,
+	TextStyle
+} from "../types";
 
-const containerStyle = ({isPressed, disabled: isDisabled, isLoading, color, variant, type, iconPosition}: ContainerStyle) => {
+const containerStyle = ({
+	disabled: isDisabled,
+	isPressed,
+	isLoading,
+	color,
+	variant,
+	type,
+	iconPosition
+}: ContainerStyle) => {
 	const selectedColor = themeColors[color] || themeColors[defaultColor];
 	const {main, pressed, disabled} = colorConfig(selectedColor);
-	
+
 	const {container} = stlyeConfig;
 
-	const mainBgColor = main.background[variant] || main.background[defaultVariant];
-	const mainBorderColor = main.border[variant] || main.border[defaultVariant];
+	const validType = !!validTypes.includes(type) ? type : defaultType;
+	const validVariant = !!validVariants.includes(variant) ? variant : defaultVariant;
 
-	const pressedBgColor = pressed.background[variant] || pressed.background[defaultVariant];
-	const pressedBorderColor = pressed.border[variant] || pressed.border[defaultVariant];
+	const mainBgColor = main.background[validVariant];
+	const mainBorderColor = main.border[validVariant];
+
+	const pressedBgColor = pressed.background[validVariant];
+	const pressedBorderColor = pressed.border[validVariant];
 	
-	const disabledBgColor = disabled.background[variant] || disabled.background[defaultVariant];
-	const disabledBorderColor = disabled.border[type][variant] || disabled.border[defaultType][defaultVariant];
-	
-	const containerHeight = container.height[type] || container.height[defaultType];
+	const disabledBgColor = disabled.background[validVariant];
+	const disabledBorderColor = disabled.border[validType][validVariant];
+
+	const containerHeight = container.height[validType];
 	const containerShadow = container.shadow;
 
 	// main and pressed button colors
@@ -46,9 +73,12 @@ const containerStyle = ({isPressed, disabled: isDisabled, isLoading, color, vari
 const directionWrapperStyle = ({iconPosition}: DirectionStyle ) => {
 	const {directionWrapper} = stlyeConfig;
 
-	const flexDirection = 
-		directionWrapper.flexDirection[iconPosition] || directionWrapper.flexDirection[defaultIconPosition];
-	const flexCenter = directionWrapper.center || {};
+	const flexCenter = directionWrapper.center;
+
+	const validIconPosition = !!validIconPositions.includes(iconPosition) 
+		? iconPosition 
+		: defaultIconPosition;
+	const flexDirection = directionWrapper.flexDirection[validIconPosition];
 
 	return {
 		...flexCenter,
@@ -56,15 +86,25 @@ const directionWrapperStyle = ({iconPosition}: DirectionStyle ) => {
 	}
 };
 
-const baseTextStyle = ({type, variant, color, disabled: isDisabled, isLoading, isPressed}: TextStyle) => {
+const baseTextStyle = ({
+	disabled: isDisabled,
+	type,
+	variant,
+	color,
+	isLoading,
+	isPressed
+}: TextStyle) => {
 	const selectedColor = themeColors[color] || themeColors[defaultColor];
 	const {main, pressed, disabled} = colorConfig(selectedColor);
 	
 	const {text: textStyle} = stlyeConfig;
 
-	const mainTextColor = main.text[type][variant] || main.text[defaultType][defaultVariant];
-	const pressedTextColor = pressed.text[type][variant] || pressed.text[defaultType][defaultVariant];
-	const disabledTextColor = disabled.text[type][variant] || disabled.text[defaultType][defaultVariant];
+	const validType = !!validTypes.includes(type) ? type : defaultType;
+	const validVariant = !!validVariants.includes(variant) ? variant : defaultVariant;
+
+	const mainTextColor = main.text[validType][validVariant];
+	const pressedTextColor = pressed.text[validType][validVariant];
+	const disabledTextColor = disabled.text[validType][validVariant];
 
 	const mainColor = isPressed ? pressedTextColor : mainTextColor;
 
@@ -73,10 +113,12 @@ const baseTextStyle = ({type, variant, color, disabled: isDisabled, isLoading, i
 		color: isDisabled || isLoading ? disabledTextColor : mainColor,
 	}
 };
+
 const textStyle = (params : TextStyle) => ({
 	...baseTextStyle(params),
 	fontSize: scaledForDevice(14, moderateScale),
 });
+
 const iconStyle  = (params: TextStyle) => {
 	const {hasIconAndText, iconPosition} = params;
 	const {icon} = stlyeConfig;

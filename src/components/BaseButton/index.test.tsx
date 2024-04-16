@@ -1,6 +1,6 @@
 import React from 'react';
 import {create} from 'react-test-renderer';
-import {View, Text, Pressable} from 'react-native';
+import {View, Text} from 'react-native';
 import BaseButton from './';
 
 const validData = {
