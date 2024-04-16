@@ -1,7 +1,7 @@
-import { moderateScale, scaledForDevice } from "../../../scale"
-import { colorConfig, stlyeConfig } from "../theme/configs";
-import { themeColors } from "../theme";
-import { 
+import {moderateScale, scaledForDevice} from '../../../scale';
+import {colorConfig, stlyeConfig} from '../theme/configs';
+import {themeColors} from '../theme';
+import {
 	defaultColor,
 	validTypes,
 	validVariants,
@@ -9,16 +9,16 @@ import {
 	defaultIconPosition,
 	defaultType,
 	defaultVariant,
-	verticalHeights
+	verticalHeights,
 } from '../constants';
-import type { 
+import type {
 	ContainerStyle,
 	DirectionStyle,
 	LoadingStyle,
 	Params,
 	ReturnStyles,
-	TextStyle
-} from "../types";
+	TextStyle,
+} from '../types';
 
 const containerStyle = ({
 	disabled: isDisabled,
@@ -27,22 +27,22 @@ const containerStyle = ({
 	color,
 	variant,
 	type,
-	iconPosition
+	iconPosition,
 }: ContainerStyle) => {
 	const selectedColor = themeColors[color] || themeColors[defaultColor];
 	const {main, pressed, disabled} = colorConfig(selectedColor);
 
 	const {container} = stlyeConfig;
 
-	const validType = !!validTypes.includes(type) ? type : defaultType;
-	const validVariant = !!validVariants.includes(variant) ? variant : defaultVariant;
+	const validType = validTypes.includes(type) ? type : defaultType;
+	const validVariant = validVariants.includes(variant) ? variant : defaultVariant;
 
 	const mainBgColor = main.background[validVariant];
 	const mainBorderColor = main.border[validVariant];
 
 	const pressedBgColor = pressed.background[validVariant];
 	const pressedBorderColor = pressed.border[validVariant];
-	
+
 	const disabledBgColor = disabled.background[validVariant];
 	const disabledBorderColor = disabled.border[validType][validVariant];
 
@@ -63,27 +63,29 @@ const containerStyle = ({
 		borderWidth: 1,
 		borderColor: isDisabled || isLoading ? disabledBorderColor : borderColor,
 		backgroundColor: isDisabled || isLoading ? disabledBgColor : mainColor,
-		paddingHorizontal: scaledForDevice(type === 'main' ? 12 : 8, moderateScale) ,
+		paddingHorizontal: scaledForDevice(type === 'main' ? 12 : 8, moderateScale),
 		...(hasVerticalHeight && {paddingVertical: scaledForDevice(10, moderateScale)}),
-		...(!hasVerticalHeight && {height: variant !== 'text' ? containerHeight : scaledForDevice(35, moderateScale)}),
-		...(hasShadow && containerShadow)
-	}
+		...(!hasVerticalHeight && {
+			height: variant !== 'text' ? containerHeight : scaledForDevice(35, moderateScale),
+		}),
+		...(hasShadow && containerShadow),
+	};
 };
 
-const directionWrapperStyle = ({iconPosition}: DirectionStyle ) => {
+const directionWrapperStyle = ({iconPosition}: DirectionStyle) => {
 	const {directionWrapper} = stlyeConfig;
 
 	const flexCenter = directionWrapper.center;
 
-	const validIconPosition = !!validIconPositions.includes(iconPosition) 
-		? iconPosition 
+	const validIconPosition = validIconPositions.includes(iconPosition)
+		? iconPosition
 		: defaultIconPosition;
 	const flexDirection = directionWrapper.flexDirection[validIconPosition];
 
 	return {
 		...flexCenter,
 		flexDirection,
-	}
+	};
 };
 
 const baseTextStyle = ({
@@ -92,15 +94,15 @@ const baseTextStyle = ({
 	variant,
 	color,
 	isLoading,
-	isPressed
+	isPressed,
 }: TextStyle) => {
 	const selectedColor = themeColors[color] || themeColors[defaultColor];
 	const {main, pressed, disabled} = colorConfig(selectedColor);
-	
+
 	const {text: textStyle} = stlyeConfig;
 
-	const validType = !!validTypes.includes(type) ? type : defaultType;
-	const validVariant = !!validVariants.includes(variant) ? variant : defaultVariant;
+	const validType = validTypes.includes(type) ? type : defaultType;
+	const validVariant = validVariants.includes(variant) ? variant : defaultVariant;
 
 	const mainTextColor = main.text[validType][validVariant];
 	const pressedTextColor = pressed.text[validType][validVariant];
@@ -111,22 +113,22 @@ const baseTextStyle = ({
 	return {
 		...textStyle,
 		color: isDisabled || isLoading ? disabledTextColor : mainColor,
-	}
+	};
 };
 
-const textStyle = (params : TextStyle) => ({
+const textStyle = (params: TextStyle) => ({
 	...baseTextStyle(params),
 	fontSize: scaledForDevice(14, moderateScale),
 });
 
-const iconStyle  = (params: TextStyle) => {
+const iconStyle = (params: TextStyle) => {
 	const {hasIconAndText, iconPosition} = params;
 	const {icon} = stlyeConfig;
 
 	return {
 		...baseTextStyle(params),
-		...(!!hasIconAndText && icon.margin[iconPosition] || {})
-	}
+		...((!!hasIconAndText && icon.margin[iconPosition]) || {}),
+	};
 };
 
 const loadingColor = ({color}: LoadingStyle) => {
@@ -134,9 +136,8 @@ const loadingColor = ({color}: LoadingStyle) => {
 	return selectedColor.main;
 };
 
-
-export const getMixedButtonStyles = (params: Params): ReturnStyles  => ({
-    container: containerStyle(params),
+export const getMixedButtonStyles = (params: Params): ReturnStyles => ({
+	container: containerStyle(params),
 	direction: directionWrapperStyle(params),
 	text: textStyle(params),
 	icon: iconStyle(params),

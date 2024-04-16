@@ -1,6 +1,6 @@
 import React, {FC, ReactNode} from 'react';
-import {Pressable, PressableProps, StyleSheet, ViewStyle} from 'react-native';
-import {moderateScale, horizontalScale, scaledForDevice} from '../../scale';
+import {Pressable, PressableProps, StyleSheet} from 'react-native';
+import {moderateScale, scaledForDevice} from '../../scale';
 
 export interface BaseButtonProps extends PressableProps {
 	borderRadius?: number;
@@ -8,13 +8,10 @@ export interface BaseButtonProps extends PressableProps {
 	style?: any;
 }
 
-const BaseButton: FC<BaseButtonProps> = ({
-	borderRadius = 0,
-	children = null,
-	style,
-	...props
-}) => {
-	if(!children) return null;
+const BaseButton: FC<BaseButtonProps> = ({borderRadius = 0, children = null, style, ...props}) => {
+	if (!children) {
+		return null;
+	}
 
 	const validateBorderRadius = scaledForDevice(borderRadius, moderateScale);
 
@@ -27,7 +24,9 @@ const BaseButton: FC<BaseButtonProps> = ({
 	});
 
 	return (
-		<Pressable style={[styles.container, style]} {...props}>{children}</Pressable>
+		<Pressable style={[styles.container, style]} {...props}>
+			{children}
+		</Pressable>
 	);
 };
 
