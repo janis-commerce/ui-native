@@ -1,4 +1,4 @@
-import type {Color, IconPosition, Type, Variant} from '../';
+import type {keyColor, keyIconPosition, keyType, keyVariant} from '../';
 
 export interface SelectedColor {
 	light: string;
@@ -7,10 +7,10 @@ export interface SelectedColor {
 }
 
 export interface Params {
-	type: Type;
-	variant: Variant;
-	color: Color;
-	iconPosition: IconPosition;
+	type: keyType;
+	variant: keyVariant;
+	color: keyColor;
+	iconPosition: keyIconPosition;
 	isLoading: Boolean;
 	isPressed: Boolean;
 	disabled: Boolean;
@@ -29,27 +29,27 @@ export interface ContainerStyle {
 	isPressed: Boolean;
 	disabled: Boolean;
 	isLoading: Boolean;
-	color: Color;
-	variant: Variant;
-	type: Type;
-	iconPosition: IconPosition;
+	color: keyColor;
+	variant: keyVariant;
+	type: keyType;
+	iconPosition: keyIconPosition;
 }
 
 export interface TextStyle {
-	type: Type;
-	variant: Variant;
-	color: Color;
+	type: keyType;
+	variant: keyVariant;
+	color: keyColor;
 	disabled: Boolean;
 	isLoading: Boolean;
 	isPressed: Boolean;
 	hasIconAndText?: Boolean;
-	iconPosition: IconPosition;
+	iconPosition: keyIconPosition;
 }
 
 export interface LoadingStyle {
-	color: Color;
+	color: keyColor;
 }
 
 export interface DirectionStyle {
-	iconPosition: IconPosition;
+	iconPosition: keyIconPosition;
 }

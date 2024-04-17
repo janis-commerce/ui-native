@@ -86,7 +86,7 @@ export const colorConfig = (selectedColor: SelectedColor) => {
 	};
 };
 
-export const stlyeConfig = {
+export const styleConfig = {
 	container: {
 		height: {
 			main: scaledForDevice(50, moderateScale),
