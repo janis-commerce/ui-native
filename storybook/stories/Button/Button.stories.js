@@ -42,7 +42,7 @@ export default {
 			control: {type: 'select'},
 			options: {
 				Primary: 'primary',
-				Secondary: 'bottom',
+				Secondary: 'secondary',
 				Success: 'success',
 				Error: 'error',
 				Warning: 'warning',
