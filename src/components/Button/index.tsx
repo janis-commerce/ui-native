@@ -6,41 +6,53 @@ import Text from '../Text';
 import Icon from '../Icon';
 import {getMixedButtonStyles} from './utils';
 
-export enum Type {
-	Main = 'main',
-	Secondary = 'secondary',
-}
+export const types = {
+	main: 'main',
+	secondary: 'secondary',
+};
 
-export enum Variant {
-	Contained = 'contained',
-	Outlined = 'outlined',
-	Text = 'text',
-}
+export const variant = {
+	contained: 'contained',
+	outlined: 'outlined',
+	text: 'text',
+};
 
-export enum Color {
-	Primary = 'primary',
-	Secondary = 'secondary',
-	Success = 'success',
-	Error = 'error',
-	Warning = 'warning',
-	Alert = 'alert',
-}
+export const color = {
+	primary: 'primary',
+	secondary: 'secondary',
+	success: 'success',
+	error: 'error',
+	warning: 'warning',
+	alert: 'alert',
+};
 
-export enum IconPosition {
-	Left = 'left',
-	Right = 'right',
-	Top = 'top',
-	Bottom = 'bottom',
-}
+export const iconPosition = {
+	top: 'top',
+	bottom: 'bottom',
+	left: 'left',
+	right: 'right',
+};
+
+export type buttonType = typeof types;
+export type keyType = keyof buttonType;
+
+export type buttonVariant = typeof variant;
+export type keyVariant = keyof buttonVariant;
+
+export type buttonColor = typeof color;
+export type keyColor = keyof buttonColor;
+
+export type buttonIconPosition = typeof iconPosition;
+export type keyIconPosition = keyof buttonIconPosition;
 
 interface ButtonProps extends BaseButtonProps {
-	type?: Type;
-	variant?: Variant;
-	color?: Color;
+	type?: keyType;
+	variant?: keyVariant;
+	color?: keyColor;
 	isLoading?: boolean;
 	value?: string | null;
 	icon?: string;
-	iconPosition?: IconPosition;
+	iconPosition?: keyIconPosition;
 	disabled?: boolean;
 	style?: ViewStyle;
 	iconStyle?: TextStyle;
@@ -50,10 +62,10 @@ interface ButtonProps extends BaseButtonProps {
 }
 
 const Button: FC<ButtonProps> = ({
-	type = Type.Main,
-	variant = Variant.Contained,
-	color = Color.Primary,
-	iconPosition = IconPosition.Left,
+	type = 'main',
+	variant = 'contained',
+	color = 'primary',
+	iconPosition = 'left',
 	isLoading = false,
 	value = 'Button',
 	icon = null,

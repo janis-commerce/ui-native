@@ -1,11 +1,10 @@
 import {getMixedButtonStyles} from '.';
-import {Color, IconPosition, Type, Variant} from '..';
 
 const validParams = {
-	type: Type.Secondary,
-	variant: Variant.Outlined,
-	color: Color.Secondary,
-	iconPosition: IconPosition.Top,
+	type: 'secondary',
+	variant: 'outlined',
+	color: 'secondary',
+	iconPosition: 'top',
 	isLoading: true,
 	isPressed: true,
 	disabled: true,
@@ -25,6 +24,7 @@ const failedParams = {
 
 describe('getMixedButtonStyles util', () => {
 	it('return styles when params are passed correclty', () => {
+		// @ts-ignore
 		const response = getMixedButtonStyles(validParams);
 		expect(response).toEqual({
 			container: {

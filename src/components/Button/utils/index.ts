@@ -1,5 +1,5 @@
 import {moderateScale, scaledForDevice} from '../../../scale';
-import {colorConfig, stlyeConfig} from '../theme/configs';
+import {colorConfig, styleConfig} from '../theme/configs';
 import {themeColors} from '../theme';
 import {
 	defaultColor,
@@ -32,7 +32,7 @@ const containerStyle = ({
 	const selectedColor = themeColors[color] || themeColors[defaultColor];
 	const {main, pressed, disabled} = colorConfig(selectedColor);
 
-	const {container} = stlyeConfig;
+	const {container} = styleConfig;
 
 	const validType = validTypes.includes(type) ? type : defaultType;
 	const validVariant = validVariants.includes(variant) ? variant : defaultVariant;
@@ -68,7 +68,7 @@ const containerStyle = ({
 };
 
 const directionWrapperStyle = ({iconPosition}: DirectionStyle) => {
-	const {directionWrapper} = stlyeConfig;
+	const {directionWrapper} = styleConfig;
 
 	const flexCenter = directionWrapper.center;
 
@@ -94,7 +94,7 @@ const baseTextStyle = ({
 	const selectedColor = themeColors[color] || themeColors[defaultColor];
 	const {main, pressed, disabled} = colorConfig(selectedColor);
 
-	const {text: textStyle} = stlyeConfig;
+	const {text: textStyle} = styleConfig;
 
 	const validType = validTypes.includes(type) ? type : defaultType;
 	const validVariant = validVariants.includes(variant) ? variant : defaultVariant;
@@ -118,7 +118,7 @@ const textStyle = (params: TextStyle) => ({
 
 const iconStyle = (params: TextStyle) => {
 	const {hasIconAndText, iconPosition} = params;
-	const {icon} = stlyeConfig;
+	const {icon} = styleConfig;
 
 	return {
 		...baseTextStyle(params),

@@ -4,16 +4,12 @@ import {Text} from 'react-native';
 import Icon from '../Icon';
 import BaseButton from '../BaseButton';
 import Loading from '../Loading';
-import Button, {Color, IconPosition, Type, Variant} from './';
+import Button from './';
 
 const validData = {
-	type: Type.Main,
-	variant: Variant.Contained,
-	color: Color.Primary,
 	isLoading: true,
 	value: 'Button Test',
 	icon: 'box',
-	iconPosition: IconPosition.Left,
 };
 
 const setIsPressed = jest.fn();
@@ -44,12 +40,12 @@ describe('Button component', () => {
 
 			const {root} = create(
 				<Button
-					type={Type.Main}
-					variant={Variant.Contained}
-					color={Color.Primary}
+					type={'main'}
+					variant={'contained'}
+					color={'primary'}
 					value="Button Test"
 					icon="box"
-					iconPosition={IconPosition.Left}
+					iconPosition={'left'}
 				/>
 			);
 
