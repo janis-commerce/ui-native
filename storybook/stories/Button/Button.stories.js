@@ -45,7 +45,7 @@ export default {
 				Secondary: 'bottom',
 				Success: 'success',
 				Error: 'error',
-				Warni: 'warning',
+				Warning: 'warning',
 				Alert: 'alert',
 			},
 		},
