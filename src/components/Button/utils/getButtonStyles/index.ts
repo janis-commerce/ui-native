@@ -12,7 +12,7 @@ import {
 import type {ContainerStyle, DirectionStyle, Params, ReturnStyles, TextStyle} from '../../types';
 
 const containerStyle = ({
-	disabled: isDisabled,
+	isDisabled,
 	isLoading,
 	color,
 	variant,
@@ -78,7 +78,7 @@ const directionWrapperStyle = ({iconPosition}: DirectionStyle) => {
 	};
 };
 
-const baseTextStyle = ({disabled: isDisabled, type, variant, color, isLoading}: TextStyle) => {
+const baseTextStyle = ({isDisabled, type, variant, color, isLoading}: TextStyle) => {
 	const selectedColor = palette[color] || palette[defaultColor];
 	const {main, disabled} = colorConfig(selectedColor);
 

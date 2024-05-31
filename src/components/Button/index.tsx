@@ -84,7 +84,7 @@ const Button: FC<ButtonProps> = ({
 		color,
 		iconPosition,
 		isLoading,
-		disabled,
+		isDisabled: disabled,
 		hasIconAndText,
 	});
 	const styles = StyleSheet.create(buttonStyles);
