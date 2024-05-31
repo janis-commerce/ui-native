@@ -1,4 +1,4 @@
-import {getMixedButtonStyles} from '.';
+import getButtonStyles from './';
 
 const validParams = {
 	type: 'secondary',
@@ -6,7 +6,6 @@ const validParams = {
 	color: 'secondary',
 	iconPosition: 'top',
 	isLoading: true,
-	isPressed: true,
 	disabled: true,
 	hasIconAndText: true,
 };
@@ -17,7 +16,6 @@ const failedParams = {
 	color: undefined,
 	iconPosition: undefined,
 	isLoading: false,
-	isPressed: false,
 	disabled: false,
 	hasIconAndText: false,
 };
@@ -25,7 +23,7 @@ const failedParams = {
 describe('getMixedButtonStyles util', () => {
 	it('return styles when params are passed correclty', () => {
 		// @ts-ignore
-		const response = getMixedButtonStyles(validParams);
+		const response = getButtonStyles(validParams);
 		expect(response).toEqual({
 			container: {
 				borderWidth: 1,
@@ -34,6 +32,7 @@ describe('getMixedButtonStyles util', () => {
 				paddingHorizontal: 16.5,
 				paddingVertical: 21,
 			},
+			pressed: {borderColor: '#2979FF', backgroundColor: '#fff'},
 			direction: {
 				justifyContent: 'center',
 				alignItems: 'center',
@@ -46,13 +45,13 @@ describe('getMixedButtonStyles util', () => {
 				fontSize: 29,
 			},
 			icon: {fontWeight: '500', textAlign: 'center', color: '#C4C6CC'},
-			loadingColor: '#2F2F2F',
+			loadingColor: '#2979FF',
 		});
 	});
 
 	it('returns default styles when params is not correct or no exist', () => {
 		// @ts-ignore
-		const response = getMixedButtonStyles(failedParams);
+		const response = getButtonStyles(failedParams);
 		expect(response).toEqual({
 			container: {
 				borderWidth: 1,
@@ -61,6 +60,7 @@ describe('getMixedButtonStyles util', () => {
 				paddingHorizontal: 16.5,
 				height: 104,
 			},
+			pressed: {borderColor: 'transparent', backgroundColor: '#1759FF'},
 			direction: {
 				justifyContent: 'center',
 				alignItems: 'center',

@@ -5,10 +5,17 @@ import {moderateScale, scaledForDevice} from '../../scale';
 export interface BaseButtonProps extends PressableProps {
 	borderRadius?: number;
 	children?: ReactNode | null;
+	pressedStyle?: ReactNode;
 	style?: any;
 }
 
-const BaseButton: FC<BaseButtonProps> = ({borderRadius = 0, children = null, style, ...props}) => {
+const BaseButton: FC<BaseButtonProps> = ({
+	borderRadius = 0,
+	children = null,
+	style,
+	pressedStyle,
+	...props
+}) => {
 	if (!children) {
 		return null;
 	}
@@ -24,7 +31,13 @@ const BaseButton: FC<BaseButtonProps> = ({borderRadius = 0, children = null, sty
 	});
 
 	return (
-		<Pressable style={[styles.container, style]} {...props}>
+		<Pressable
+			style={({pressed}) => [
+				styles.container,
+				style,
+				pressed && /* istanbul ignore next */ pressedStyle,
+			]}
+			{...props}>
 			{children}
 		</Pressable>
 	);

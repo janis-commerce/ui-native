@@ -1,7 +1,6 @@
 import type {keyColor, keyIconPosition, keyType, keyVariant} from '../';
 
 export interface SelectedColor {
-	light: string;
 	main: string;
 	dark: string;
 }
@@ -12,7 +11,6 @@ export interface Params {
 	color: keyColor;
 	iconPosition: keyIconPosition;
 	isLoading: Boolean;
-	isPressed: Boolean;
 	disabled: Boolean;
 	hasIconAndText?: Boolean;
 }
@@ -20,13 +18,13 @@ export interface Params {
 export interface ReturnStyles {
 	container: object;
 	direction: object;
+	pressed: object;
 	icon: object;
 	text: object;
 	loadingColor: any;
 }
 
 export interface ContainerStyle {
-	isPressed: Boolean;
 	disabled: Boolean;
 	isLoading: Boolean;
 	color: keyColor;
@@ -41,7 +39,7 @@ export interface TextStyle {
 	color: keyColor;
 	disabled: Boolean;
 	isLoading: Boolean;
-	isPressed: Boolean;
+
 	hasIconAndText?: Boolean;
 	iconPosition: keyIconPosition;
 }

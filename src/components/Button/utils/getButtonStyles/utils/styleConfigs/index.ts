@@ -1,13 +1,13 @@
-import {moderateScale, scaledForDevice} from '../../../../scale';
-import {base, black, grey, white} from '../../../../theme/palette';
-import {SelectedColor} from '../../types';
+import {moderateScale, scaledForDevice} from '../../../../../../scale';
+import {base, black, grey, white} from '../../../../../../theme/palette';
+import {SelectedColor} from '../../../../types';
 
 export const colorConfig = (selectedColor: SelectedColor) => {
 	return {
 		main: {
 			background: {
 				contained: selectedColor.main,
-				outlined: selectedColor.light,
+				outlined: base.white,
 				text: 'transparent',
 			},
 			border: {
@@ -31,7 +31,7 @@ export const colorConfig = (selectedColor: SelectedColor) => {
 		pressed: {
 			background: {
 				contained: selectedColor.dark,
-				outlined: selectedColor.light,
+				outlined: base.white,
 				text: white.main,
 			},
 			border: {

@@ -1,36 +1,26 @@
-import {moderateScale, scaledForDevice} from '../../../scale';
-import {colorConfig, styleConfig} from '../theme/configs';
-import {themeColors} from '../theme';
+import {moderateScale, scaledForDevice} from '../../../../scale';
+import {palette} from '../../../../theme/palette';
+import {colorConfig, styleConfig} from './utils/styleConfigs';
+import {validTypes, validVariants, validIconPositions, verticalHeights} from './utils/constants';
 import {
 	defaultColor,
-	validTypes,
-	validVariants,
-	validIconPositions,
 	defaultIconPosition,
 	defaultType,
 	defaultVariant,
-	verticalHeights,
-} from '../constants';
-import type {
-	ContainerStyle,
-	DirectionStyle,
-	LoadingStyle,
-	Params,
-	ReturnStyles,
-	TextStyle,
-} from '../types';
+} from './utils/defaultValues';
+
+import type {ContainerStyle, DirectionStyle, Params, ReturnStyles, TextStyle} from '../../types';
 
 const containerStyle = ({
 	disabled: isDisabled,
-	isPressed,
 	isLoading,
 	color,
 	variant,
 	type,
 	iconPosition,
 }: ContainerStyle) => {
-	const selectedColor = themeColors[color] || themeColors[defaultColor];
-	const {main, pressed, disabled} = colorConfig(selectedColor);
+	const selectedColor = palette[color] || palette[defaultColor];
+	const {main, disabled} = colorConfig(selectedColor);
 
 	const {container} = styleConfig;
 
@@ -40,30 +30,35 @@ const containerStyle = ({
 	const mainBgColor = main.background[validVariant];
 	const mainBorderColor = main.border[validVariant];
 
-	const pressedBgColor = pressed.background[validVariant];
-	const pressedBorderColor = pressed.border[validVariant];
-
 	const disabledBgColor = disabled.background[validVariant];
 	const disabledBorderColor = disabled.border[validType][validVariant];
 
 	const containerHeight = container.height[validType];
-
-	// main and pressed button colors
-	const mainColor = isPressed ? pressedBgColor : mainBgColor;
-	const borderColor = isPressed ? pressedBorderColor : mainBorderColor;
 
 	// validation of height
 	const hasVerticalHeight = verticalHeights.includes(iconPosition);
 
 	return {
 		borderWidth: 1,
-		borderColor: isDisabled || isLoading ? disabledBorderColor : borderColor,
-		backgroundColor: isDisabled || isLoading ? disabledBgColor : mainColor,
+		borderColor: isDisabled || isLoading ? disabledBorderColor : mainBorderColor,
+		backgroundColor: isDisabled || isLoading ? disabledBgColor : mainBgColor,
 		paddingHorizontal: scaledForDevice(type === 'main' ? 12 : 8, moderateScale),
 		...(hasVerticalHeight && {paddingVertical: scaledForDevice(10, moderateScale)}),
 		...(!hasVerticalHeight && {
 			height: variant !== 'text' ? containerHeight : scaledForDevice(35, moderateScale),
 		}),
+	};
+};
+
+const pressedStyle = ({variant, color}: ContainerStyle) => {
+	const selectedColor = palette[color] || palette[defaultColor];
+	const {pressed} = colorConfig(selectedColor);
+
+	const validVariant = validVariants.includes(variant) ? variant : defaultVariant;
+
+	return {
+		borderColor: pressed.border[validVariant],
+		backgroundColor: pressed.background[validVariant],
 	};
 };
 
@@ -83,16 +78,9 @@ const directionWrapperStyle = ({iconPosition}: DirectionStyle) => {
 	};
 };
 
-const baseTextStyle = ({
-	disabled: isDisabled,
-	type,
-	variant,
-	color,
-	isLoading,
-	isPressed,
-}: TextStyle) => {
-	const selectedColor = themeColors[color] || themeColors[defaultColor];
-	const {main, pressed, disabled} = colorConfig(selectedColor);
+const baseTextStyle = ({disabled: isDisabled, type, variant, color, isLoading}: TextStyle) => {
+	const selectedColor = palette[color] || palette[defaultColor];
+	const {main, disabled} = colorConfig(selectedColor);
 
 	const {text: textStyle} = styleConfig;
 
@@ -100,14 +88,11 @@ const baseTextStyle = ({
 	const validVariant = validVariants.includes(variant) ? variant : defaultVariant;
 
 	const mainTextColor = main.text[validType][validVariant];
-	const pressedTextColor = pressed.text[validType][validVariant];
 	const disabledTextColor = disabled.text[validType][validVariant];
-
-	const mainColor = isPressed ? pressedTextColor : mainTextColor;
 
 	return {
 		...textStyle,
-		color: isDisabled || isLoading ? disabledTextColor : mainColor,
+		color: isDisabled || isLoading ? disabledTextColor : mainTextColor,
 	};
 };
 
@@ -126,15 +111,13 @@ const iconStyle = (params: TextStyle) => {
 	};
 };
 
-const loadingColor = ({color}: LoadingStyle) => {
-	const selectedColor = themeColors[color] || themeColors[defaultColor];
-	return selectedColor.main;
-};
-
-export const getMixedButtonStyles = (params: Params): ReturnStyles => ({
+const getButtonStyles = (params: Params): ReturnStyles => ({
 	container: containerStyle(params),
+	pressed: pressedStyle(params),
 	direction: directionWrapperStyle(params),
 	text: textStyle(params),
 	icon: iconStyle(params),
-	loadingColor: loadingColor(params),
+	loadingColor: palette.primary.main,
 });
+
+export default getButtonStyles;
