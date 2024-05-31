@@ -20,13 +20,12 @@ describe('BaseButton Component', () => {
 		});
 	});
 
-	describe('render correctly when has minimum props needed, example', () => {
+	describe('render correctly when has minimum props needed', () => {
 		it('when hasnt minimum props needed', () => {
-			const {toJSON} = create(
+			const {root} = create(
 				<BaseButton borderRadius={validData.borderRadius}>{validData.children}</BaseButton>
 			);
-
-			expect(toJSON()).toBeTruthy();
+			expect(root).toBeTruthy();
 		});
 	});
 });
