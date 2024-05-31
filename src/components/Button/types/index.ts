@@ -11,7 +11,7 @@ export interface Params {
 	color: keyColor;
 	iconPosition: keyIconPosition;
 	isLoading: Boolean;
-	disabled: Boolean;
+	isDisabled: Boolean;
 	hasIconAndText?: Boolean;
 }
 
@@ -25,7 +25,7 @@ export interface ReturnStyles {
 }
 
 export interface ContainerStyle {
-	disabled: Boolean;
+	isDisabled: Boolean;
 	isLoading: Boolean;
 	color: keyColor;
 	variant: keyVariant;
@@ -37,7 +37,7 @@ export interface TextStyle {
 	type: keyType;
 	variant: keyVariant;
 	color: keyColor;
-	disabled: Boolean;
+	isDisabled: Boolean;
 	isLoading: Boolean;
 
 	hasIconAndText?: Boolean;
