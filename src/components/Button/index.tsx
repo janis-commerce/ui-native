@@ -66,7 +66,7 @@ const Button: FC<ButtonProps> = ({
 	color = 'primary',
 	iconPosition = 'left',
 	isLoading = false,
-	value = '',
+	value = 'Button',
 	icon = null,
 	disabled = false,
 	style,
