@@ -7,11 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.7.0] - 2024-06-06
+
+- Added Button component.
+
 ## [1.6.0] - 2024-03-07
 
 - Added FullScreenMessage component.
 
 ## [1.5.0] - 2024-02-14
+
 ### Added
 
 - Added LayoutWithBottomButtons component.
