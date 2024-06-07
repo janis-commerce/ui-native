@@ -1,15 +1,15 @@
 import React from 'react';
-import BaseToast from '../components/BaseToast';
+import Toast from '..';
 
 export const configToast = {
-	picked: (props: any) => <BaseToast {...props} />,
-	warning: (props: any) => <BaseToast {...props} />,
-	skipped: (props: any) => <BaseToast {...props} />,
-	missing: (props: any) => <BaseToast {...props} />,
-	substituted: (props: any) => <BaseToast {...props} />,
-	postponed: (props: any) => <BaseToast {...props} />,
-	unpicked: (props: any) => <BaseToast {...props} />,
-	success: (props: any) => <BaseToast {...props} />,
-	message: (props: any) => <BaseToast {...props} />,
-	error: (props: any) => <BaseToast {...props} />,
+	picked: (props: any) => <Toast {...props} />,
+	warning: (props: any) => <Toast {...props} />,
+	skipped: (props: any) => <Toast {...props} />,
+	missing: (props: any) => <Toast {...props} />,
+	substituted: (props: any) => <Toast {...props} />,
+	postponed: (props: any) => <Toast {...props} />,
+	unpicked: (props: any) => <Toast {...props} />,
+	success: (props: any) => <Toast {...props} />,
+	message: (props: any) => <Toast {...props} />,
+	error: (props: any) => <Toast {...props} />,
 };

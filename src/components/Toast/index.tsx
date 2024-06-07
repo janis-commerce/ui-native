@@ -5,7 +5,7 @@ import Text from '../Text';
 import {horizontalScale, moderateScale, scaledForDevice} from '../../scale';
 import {base} from '../../theme/palette';
 
-const Toast: FC<ToastProps> = ({text1, text2, ...props}) => {
+const Toast: FC<ToastProps> = ({type, text1, text2, style}) => {
 	const validTitle = text1 && typeof text1 === 'string';
 	const validText = text2 && typeof text2 === 'string';
 
@@ -18,6 +18,7 @@ const Toast: FC<ToastProps> = ({text1, text2, ...props}) => {
 			height: 'auto',
 			borderRadius: scaledForDevice(4, horizontalScale),
 			padding: scaledForDevice(16, moderateScale),
+			backgroundColor: type ? 'peru' : 'grey',
 		},
 		title: {
 			fontSize: scaledForDevice(13, moderateScale),
@@ -31,7 +32,7 @@ const Toast: FC<ToastProps> = ({text1, text2, ...props}) => {
 	});
 
 	return (
-		<BaseToast {...props}>
+		<BaseToast type={type} style={[styles.container, style]}>
 			{validTitle && <Text style={styles.title}>{text1}</Text>}
 			{validText && <Text style={styles.text}>{text2}</Text>}
 		</BaseToast>
