@@ -23,7 +23,6 @@ const Toast: FC<ToastProps> = ({type, text1, style}) => {
 			fontSize: scaledForDevice(14, moderateScale),
 			lineHeight: scaledForDevice(18, moderateScale),
 			color: type === 'warning' ? black.main : base.white,
-			weight: 400,
 		},
 	});
 
