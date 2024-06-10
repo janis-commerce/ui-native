@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import Button from '../../../src/components/Button';
 import Toast from 'react-native-toast-message';
