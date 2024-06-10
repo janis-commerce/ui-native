@@ -4,7 +4,7 @@ import {BaseToastProps} from 'react-native-toast-message';
 import {black, palette} from '../../theme/palette';
 import {parseType} from './utils';
 
-enum Types {
+export enum Types {
 	Success = 'success',
 	Notice = 'notice',
 	Warning = 'warning',
@@ -21,6 +21,10 @@ export interface ToastProps extends BaseToastProps {
 }
 
 const BaseToast: FC<ToastProps> = ({children, style, type = defaultType, ...props}) => {
+	if (!children) {
+		return null;
+	}
+
 	const selectedType = parseType[type];
 	const backgroundColor = palette[selectedType]?.main || palette[defaultType]?.main;
 
