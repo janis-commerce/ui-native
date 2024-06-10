@@ -4,7 +4,6 @@ import {
 	StyleSheet,
 	View,
 	Text,
-	KeyboardType,
 	TextStyle,
 	NativeSyntheticEvent,
 	TextInputEndEditingEventData,
@@ -18,33 +17,15 @@ import {
 	raiseLabel,
 	showStatusMessage,
 } from './utils';
+import {InputBehaviors, InputConfigs} from '../../ts/interfaces/inputs';
+import {keyboardTypes} from '../../ts/enums/commons';
 import {moderateScale, horizontalScale, scaledForDevice} from '../../scale';
 
-export enum keyboardTypes {
-	default = 'default',
-	numberPad = 'number-pad',
-	decimalPad = 'decimal-pad',
-	numeric = 'numeric',
-	emailAddress = 'email-address',
-	phonePad = 'phone-pad',
-	url = 'url',
-}
-
-interface InputProps {
-	disabled?: boolean;
-	readOnly?: boolean;
-	label: string;
-	placeholder: string;
-	value?: number | string;
+interface InputProps extends InputBehaviors, InputConfigs {
 	inputColor?: string;
 	valueColor?: string;
 	status?: Status;
 	statusMessage?: string;
-	keyboardType?: KeyboardType;
-	onChange?: () => void;
-	onSubmitEditing?: () => void;
-	onFocus?: () => void;
-	onBlur?: () => void;
 	style?: TextStyle;
 }
 
