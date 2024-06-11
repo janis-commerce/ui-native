@@ -1,7 +1,19 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
 import Tabs from '../../../src/components/Tabs';
-import {Text, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
+
+const styles = StyleSheet.create({
+	decorators: {
+		position: 'absolute',
+		top: 0,
+		width: '110%',
+	},
+	wrapper: {
+		padding: 30,
+		backgroundColor: 'whitesmoke',
+	},
+});
 
 export default {
 	title: 'Components/Tabs',
@@ -14,6 +26,13 @@ export default {
 			},
 		},
 	},
+	decorators: [
+		(Story) => (
+			<View style={styles.decorators}>
+				<Story />
+			</View>
+		),
+	],
 };
 
 export const DefaultProps = (props) => {
@@ -29,7 +48,7 @@ DefaultProps.args = {
 		{
 			title: 'Title 1',
 			scene: (
-				<View style={{padding: 30}}>
+				<View style={styles.wrapper}>
 					<Text>View 1</Text>
 				</View>
 			),
@@ -37,7 +56,7 @@ DefaultProps.args = {
 		{
 			title: 'Title 2',
 			scene: (
-				<View style={{padding: 30}}>
+				<View style={styles.wrapper}>
 					<Text>View 2</Text>
 				</View>
 			),
@@ -61,7 +80,7 @@ ScrollViewTab.args = {
 		{
 			title: 'Title 1',
 			scene: (
-				<View style={{padding: 30}}>
+				<View style={styles.wrapper}>
 					<Text>View 1</Text>
 				</View>
 			),
@@ -69,7 +88,7 @@ ScrollViewTab.args = {
 		{
 			title: 'Title 2',
 			scene: (
-				<View style={{padding: 30}}>
+				<View style={styles.wrapper}>
 					<Text>View 2</Text>
 				</View>
 			),
@@ -77,7 +96,7 @@ ScrollViewTab.args = {
 		{
 			title: 'Title 3',
 			scene: (
-				<View style={{padding: 30}}>
+				<View style={styles.wrapper}>
 					<Text>View 3</Text>
 				</View>
 			),
@@ -85,7 +104,7 @@ ScrollViewTab.args = {
 		{
 			title: 'Title 4',
 			scene: (
-				<View style={{padding: 30}}>
+				<View style={styles.wrapper}>
 					<Text>View 4</Text>
 				</View>
 			),
@@ -93,7 +112,7 @@ ScrollViewTab.args = {
 		{
 			title: 'Title 5',
 			scene: (
-				<View style={{padding: 30}}>
+				<View style={styles.wrapper}>
 					<Text>View 5</Text>
 				</View>
 			),
