@@ -34,12 +34,19 @@ interface WrapperTabProps {
 
 const Tabs: FC<TabsProps> = ({
 	scenes,
-	indexChanger = [0],
+	indexChanger,
 	position = positions.top,
 	scrollContentStyle = {},
 	style = {},
 	...props
 }) => {
+	if (!scenes || !Array.isArray(scenes) || !scenes.length) {
+		return null;
+	}
+	if (!indexChanger || !Array.isArray(indexChanger) || !indexChanger.length) {
+		return null;
+	}
+
 	const [activeTab, setActiveTab] = indexChanger;
 	const handleClick = (idx: number) => setActiveTab(idx);
 
@@ -80,6 +87,7 @@ const Tabs: FC<TabsProps> = ({
 		title: {
 			...hasPaddingHorizontal,
 			textTransform: 'uppercase',
+			fontFamily: 'Roboto-Medium',
 		},
 		content: {
 			flex: 1,
