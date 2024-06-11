@@ -1,5 +1,6 @@
 import React, {FC, ReactNode} from 'react';
 import {StyleSheet, View, ViewStyle, ScrollView} from 'react-native';
+import {moderateScale, scaledForDevice} from '../../scale';
 import {base, grey, primary} from '../../theme/palette';
 import BaseButton from '../BaseButton';
 import Text from '../Text';
@@ -71,18 +72,18 @@ const Tabs: FC<TabsProps> = ({
 		},
 		wrapperTab: {
 			width: '100%',
-			height: 48,
+			height: scaledForDevice(48, moderateScale),
 			position: 'absolute',
 			flexDirection: 'row',
 			backgroundColor: base.white,
 			zIndex: 1,
-			elevation: 5,
+			elevation: scaledForDevice(5, moderateScale),
 		},
 		tabButton: {
 			flex: 1,
 			justifyContent: 'center',
 			alignItems: 'center',
-			borderBottomWidth: 2,
+			borderBottomWidth: scaledForDevice(2, moderateScale),
 		},
 		title: {
 			...hasPaddingHorizontal,

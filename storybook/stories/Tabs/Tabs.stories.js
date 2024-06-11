@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
 import Tabs from '../../../src/components/Tabs';
 import {StyleSheet, Text, View} from 'react-native';
