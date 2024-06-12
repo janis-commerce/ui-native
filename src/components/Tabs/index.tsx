@@ -1,4 +1,5 @@
-import React, {FC, ReactNode} from 'react';
+/* eslint-disable react-hooks/rules-of-hooks */
+import React, {FC, ReactNode, useEffect, useRef} from 'react';
 import {StyleSheet, View, ViewStyle, ScrollView} from 'react-native';
 import {moderateScale, scaledForDevice} from '../../scale';
 import {base, grey, primary} from '../../theme/palette';
@@ -49,7 +50,9 @@ const Tabs: FC<TabsProps> = ({
 	}
 
 	const [activeTab, setActiveTab] = indexChanger;
-	const handleClick = (idx: number) => setActiveTab(idx);
+
+	const scrollViewRef = useRef<any>(null);
+	const scrollPosition = scrollViewRef?.current?.x;
 
 	const validScenes = scenes.filter(({scene, title}) => scene && title);
 	const areScenesValid = !!validScenes && Array.isArray(validScenes) && !!validScenes.length;
@@ -96,14 +99,34 @@ const Tabs: FC<TabsProps> = ({
 		},
 	});
 
-	const WrapperTab: FC<WrapperTabProps> = ({children, ...tabProps}) =>
-		isScrollViewTab ? (
-			<ScrollView horizontal showsHorizontalScrollIndicator={false} {...tabProps}>
+	useEffect(() => {
+		scrollViewRef?.current?.scrollTo({x: scrollPosition, animated: false});
+	}, [scrollPosition]);
+
+	const WrapperTab: FC<WrapperTabProps> = ({children, ...tabProps}) => {
+		const handleScroll = ({nativeEvent}: any) => {
+			if (nativeEvent.contentOffset.x !== 0 && !scrollPosition) {
+				return (scrollViewRef.current = {
+					...scrollViewRef.current,
+					x: nativeEvent.contentOffset.x,
+				});
+			}
+		};
+
+		return isScrollViewTab ? (
+			<ScrollView
+				horizontal
+				showsHorizontalScrollIndicator={false}
+				ref={scrollViewRef}
+				onScroll={handleScroll}
+				scrollEventThrottle={16}
+				{...tabProps}>
 				{children}
 			</ScrollView>
 		) : (
 			<View {...tabProps}>{children}</View>
 		);
+	};
 
 	return (
 		<View style={[styles.wrapper, style]} {...props}>
@@ -113,12 +136,14 @@ const Tabs: FC<TabsProps> = ({
 						const borderBottomColor = idx === activeTab ? primary.main : base.white;
 						const textColor = idx === activeTab ? primary.main : grey[400];
 
+						const handleOnPress = (idx: number) => setActiveTab(idx);
+
 						return (
 							<BaseButton
 								key={scene.title}
 								style={{...styles.tabButton, borderBottomColor}}
 								disabled={scene.disabled}
-								onPress={() => handleClick(idx)}>
+								onPress={() => handleOnPress(idx)}>
 								<Text
 									style={{...styles.title, color: textColor}}
 									adjustsFontSizeToFit={true}
