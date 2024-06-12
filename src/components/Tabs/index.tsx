@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, {FC, ReactNode, useEffect, useRef} from 'react';
-import {StyleSheet, View, ViewStyle, ScrollView} from 'react-native';
+import {StyleSheet, View, ViewStyle, ScrollView, FlatList} from 'react-native';
 import {moderateScale, scaledForDevice} from '../../scale';
 import {base, grey, primary} from '../../theme/palette';
 import BaseButton from '../BaseButton';
@@ -29,9 +29,10 @@ interface TabsProps {
 	style?: ViewStyle;
 }
 
-interface WrapperTabProps {
-	children: ReactNode;
-	style: ViewStyle;
+interface TitleTabProps {
+	title: string;
+	index: number;
+	disabled: boolean | undefined;
 }
 
 const Tabs: FC<TabsProps> = ({
@@ -52,7 +53,6 @@ const Tabs: FC<TabsProps> = ({
 	const [activeTab, setActiveTab] = indexChanger;
 
 	const scrollViewRef = useRef<any>(null);
-	const scrollPosition = scrollViewRef?.current?.x;
 
 	const validScenes = scenes.filter(({scene, title}) => scene && title);
 	const areScenesValid = !!validScenes && Array.isArray(validScenes) && !!validScenes.length;
@@ -62,10 +62,10 @@ const Tabs: FC<TabsProps> = ({
 		!!Object.keys(validScenes[activeTab]).length;
 
 	const contentDirection = position === positions.bottom ? 'column-reverse' : 'column';
-	const contentMargin = position === positions.bottom ? {marginBottom: 45} : {marginTop: 45};
 
 	const isScrollViewTab = scenes?.length && scenes.length > 3;
 	const hasPaddingHorizontal = isScrollViewTab ? {paddingHorizontal: 25} : {};
+	const contentMargin = position === positions.bottom ? {marginBottom: 45} : {marginTop: 45};
 
 	const styles = StyleSheet.create({
 		wrapper: {
@@ -74,9 +74,9 @@ const Tabs: FC<TabsProps> = ({
 			flexDirection: contentDirection,
 		},
 		wrapperTab: {
+			position: 'absolute',
 			width: '100%',
 			height: scaledForDevice(48, moderateScale),
-			position: 'absolute',
 			flexDirection: 'row',
 			backgroundColor: base.white,
 			zIndex: 1,
@@ -94,67 +94,69 @@ const Tabs: FC<TabsProps> = ({
 			fontFamily: 'Roboto-Medium',
 		},
 		content: {
-			flex: 1,
 			...contentMargin,
 		},
 	});
 
 	useEffect(() => {
-		scrollViewRef?.current?.scrollTo({x: scrollPosition, animated: false});
-	}, [scrollPosition]);
+		if (isScrollViewTab) {
+			scrollViewRef?.current?.scrollToIndex({
+				index: activeTab,
+				animated: true,
+			});
+		}
+	}, [activeTab, isScrollViewTab]);
 
-	const WrapperTab: FC<WrapperTabProps> = ({children, ...tabProps}) => {
-		const handleScroll = ({nativeEvent}: any) => {
-			if (nativeEvent.contentOffset.x !== 0 && !scrollPosition) {
-				return (scrollViewRef.current = {
-					...scrollViewRef.current,
-					x: nativeEvent.contentOffset.x,
-				});
-			}
-		};
+	const TitleTab: FC<TitleTabProps> = ({title, disabled, index}) => {
+		const borderBottomColor = index === activeTab ? primary.main : base.white;
+		const textColor = index === activeTab ? primary.main : grey[400];
 
-		return isScrollViewTab ? (
-			<ScrollView
-				horizontal
-				showsHorizontalScrollIndicator={false}
-				ref={scrollViewRef}
-				onScroll={handleScroll}
-				scrollEventThrottle={16}
-				{...tabProps}>
-				{children}
-			</ScrollView>
-		) : (
-			<View {...tabProps}>{children}</View>
+		const handleOnPress = (idx: number) => setActiveTab(idx);
+
+		return (
+			<BaseButton
+				key={title}
+				style={{...styles.tabButton, borderBottomColor}}
+				disabled={disabled}
+				onPress={() => handleOnPress(index)}>
+				<Text
+					style={{...styles.title, color: textColor}}
+					adjustsFontSizeToFit={true}
+					selectable={false}
+					numberOfLines={1}>
+					{title}
+				</Text>
+			</BaseButton>
 		);
 	};
 
+	const renderItem = ({item, index}: any) => (
+		<TitleTab title={item.title} disabled={item.disabled} index={index} />
+	);
+
 	return (
 		<View style={[styles.wrapper, style]} {...props}>
-			<WrapperTab style={styles.wrapperTab}>
-				{areScenesValid &&
-					validScenes.map((scene, idx) => {
-						const borderBottomColor = idx === activeTab ? primary.main : base.white;
-						const textColor = idx === activeTab ? primary.main : grey[400];
+			{!isScrollViewTab && (
+				<View style={styles.wrapperTab}>
+					{areScenesValid &&
+						validScenes.map((scene, idx) => (
+							<TitleTab title={scene.title} disabled={scene.disabled} index={idx} />
+						))}
+				</View>
+			)}
 
-						const handleOnPress = (idx: number) => setActiveTab(idx);
-
-						return (
-							<BaseButton
-								key={scene.title}
-								style={{...styles.tabButton, borderBottomColor}}
-								disabled={scene.disabled}
-								onPress={() => handleOnPress(idx)}>
-								<Text
-									style={{...styles.title, color: textColor}}
-									adjustsFontSizeToFit={true}
-									selectable={false}
-									numberOfLines={1}>
-									{scene.title}
-								</Text>
-							</BaseButton>
-						);
-					})}
-			</WrapperTab>
+			{isScrollViewTab && (
+				<FlatList
+					style={styles.wrapperTab}
+					data={scenes}
+					renderItem={renderItem}
+					ref={scrollViewRef}
+					horizontal
+					pagingEnabled={true}
+					showsHorizontalScrollIndicator={false}
+					keyExtractor={(item, index) => item.title + index}
+				/>
+			)}
 
 			{isValidCurrentScene && (
 				<ScrollView contentContainerStyle={scrollContentStyle} style={styles.content}>
