@@ -58,6 +58,12 @@ const invalidData2 = {
 	indexChanger: null,
 };
 
+const spyUseEffect = jest.spyOn(React, 'useEffect');
+const spyUseRef = jest.spyOn(React, 'useRef');
+
+spyUseEffect.mockImplementation((f) => f());
+spyUseRef.mockReturnValueOnce({current: {scrollToIndex: jest.fn()}});
+
 describe('Tabs', () => {
 	describe('should be null when', () => {
 		it('scenes is not array or is empty', () => {
