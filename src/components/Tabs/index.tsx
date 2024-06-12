@@ -115,7 +115,7 @@ const Tabs: FC<TabsProps> = ({
 
 		return (
 			<BaseButton
-				key={title}
+				key={title + index}
 				style={{...styles.tabButton, borderBottomColor}}
 				disabled={disabled}
 				onPress={() => handleOnPress(index)}>
@@ -140,7 +140,12 @@ const Tabs: FC<TabsProps> = ({
 				<View style={styles.wrapperTab}>
 					{areScenesValid &&
 						validScenes.map((scene, idx) => (
-							<TitleTab title={scene.title} disabled={scene.disabled} index={idx} />
+							<TitleTab
+								key={scene.title}
+								title={scene.title}
+								disabled={scene.disabled}
+								index={idx}
+							/>
 						))}
 				</View>
 			)}
