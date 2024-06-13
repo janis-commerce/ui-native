@@ -16,6 +16,20 @@ export default {
 				Action: 'action',
 			},
 		},
+		customIcon: {
+			control: {type: 'select'},
+			options: {
+				None: null,
+				Janis: 'iso_janis',
+			},
+		},
+		link: {
+			control: {type: 'select'},
+			options: {
+				None: null,
+				Select: 'Select',
+			},
+		},
 	},
 	decorators: [
 		(Story) => (
@@ -28,12 +42,38 @@ export default {
 };
 
 export const DefaultProps = (props) => (
-	<Button value="Show Toast" onPress={() => Toast.show({text1: props.text1, type: props.type})} />
+	<Button
+		value="Show Toast"
+		onPress={() =>
+			Toast.show({
+				type: props.type,
+				text1: props.text1,
+				text2: props.text2,
+				autoHide: props.autoHide,
+				props: {
+					link: props.link,
+					showIcon: props.showIcon,
+					customIcon: props.customIcon,
+					showClose: props.showClose,
+					iconStyle: props.iconStyle,
+					onCloseCb: Toast.hide,
+				},
+			})
+		}
+	/>
 );
 
 DefaultProps.storyName = 'default props';
 
 DefaultProps.args = {
-	text1: 'Mensaje de ui-native',
 	type: 'success',
+	text1: 'Title Text',
+	text2:
+		'Lorem ipsum dolor sit amet, consectetur adipiscingsed ipsum dolorrrrdfds ipsum dolor sit amet.',
+	autoHide: true,
+	showIcon: true,
+	showClose: true,
+	customIcon: null,
+	link: null,
+	iconStyle: {},
 };
