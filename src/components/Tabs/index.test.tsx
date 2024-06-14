@@ -38,7 +38,6 @@ const validScene4 = {
 
 const validData1 = {
 	scenes: [validScene1],
-	indexChanger: [0, () => {}],
 	position: 'bottom',
 	scrollContentStyle: {padding: 20},
 	style: {backgroundColor: 'red'},
@@ -46,16 +45,13 @@ const validData1 = {
 
 const validData2 = {
 	scenes: [validScene1, validScene2, validScene3, validScene4],
-	indexChanger: [0, () => {}],
+	initialTab: 0,
+	onPressTabCn: jest.fn(),
 };
 
 const invalidData1 = {
 	...validData1,
 	scenes: null,
-};
-const invalidData2 = {
-	...validData1,
-	indexChanger: null,
 };
 
 const spyUseEffect = jest.spyOn(React, 'useEffect');
@@ -68,11 +64,6 @@ describe('Tabs', () => {
 	describe('should be null when', () => {
 		it('scenes is not array or is empty', () => {
 			const {toJSON} = create(<Tabs {...(invalidData1 as any)} />);
-			expect(toJSON()).toBeNull();
-		});
-
-		it('indexChanger is not array or is empty', () => {
-			const {toJSON} = create(<Tabs {...(invalidData2 as any)} />);
 			expect(toJSON()).toBeNull();
 		});
 	});

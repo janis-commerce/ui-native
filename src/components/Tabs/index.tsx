@@ -1,10 +1,11 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React, {FC, ReactNode, useEffect, useRef} from 'react';
+import React, {FC, ReactNode, useEffect, useRef, useState} from 'react';
 import {StyleSheet, View, ViewStyle, ScrollView, FlatList} from 'react-native';
 import {moderateScale, scaledForDevice} from '../../scale';
 import {base, grey, primary} from '../../theme/palette';
 import BaseButton from '../BaseButton';
 import Text from '../Text';
+import {viewportWidth} from '../../scale';
 import {isObject} from './utils';
 
 interface Scene {
@@ -23,8 +24,9 @@ export type keyPosition = keyof positionsType;
 
 interface TabsProps {
 	scenes: Scene[];
-	indexChanger: any;
+	initialTab?: number;
 	position?: keyPosition;
+	onPressTabCb?: (activeTab: number) => void;
 	scrollContentStyle?: ViewStyle;
 	style?: ViewStyle;
 }
@@ -37,8 +39,9 @@ interface TitleTabProps {
 
 const Tabs: FC<TabsProps> = ({
 	scenes,
-	indexChanger,
+	initialTab = 0,
 	position = positions.top,
+	onPressTabCb = () => {},
 	scrollContentStyle = {},
 	style = {},
 	...props
@@ -46,11 +49,8 @@ const Tabs: FC<TabsProps> = ({
 	if (!scenes || !Array.isArray(scenes) || !scenes.length) {
 		return null;
 	}
-	if (!indexChanger || !Array.isArray(indexChanger) || !indexChanger.length) {
-		return null;
-	}
 
-	const [activeTab, setActiveTab] = indexChanger;
+	const [activeTab, setActiveTab] = useState(initialTab);
 
 	const scrollViewRef = useRef<any>(null);
 
@@ -64,7 +64,7 @@ const Tabs: FC<TabsProps> = ({
 	const contentDirection = position === positions.bottom ? 'column-reverse' : 'column';
 
 	const isScrollViewTab = scenes?.length && scenes.length > 3;
-	const hasPaddingHorizontal = isScrollViewTab ? {paddingHorizontal: 25} : {};
+	const calculateTabs = isScrollViewTab ? {width: viewportWidth / 3} : {flex: 1};
 	const contentMargin = position === positions.bottom ? {marginBottom: 45} : {marginTop: 45};
 
 	const styles = StyleSheet.create({
@@ -83,13 +83,12 @@ const Tabs: FC<TabsProps> = ({
 			elevation: scaledForDevice(5, moderateScale),
 		},
 		tabButton: {
-			flex: 1,
+			...calculateTabs,
 			justifyContent: 'center',
 			alignItems: 'center',
 			borderBottomWidth: scaledForDevice(2, moderateScale),
 		},
 		title: {
-			...hasPaddingHorizontal,
 			textTransform: 'uppercase',
 			fontFamily: 'Roboto-Medium',
 		},
@@ -111,7 +110,10 @@ const Tabs: FC<TabsProps> = ({
 		const borderBottomColor = index === activeTab ? primary.main : base.white;
 		const textColor = index === activeTab ? primary.main : grey[400];
 
-		const handleOnPress = (idx: number) => setActiveTab(idx);
+		const handleOnPress = (idx: number) => {
+			setActiveTab(idx);
+			return onPressTabCb(idx);
+		};
 
 		return (
 			<BaseButton
@@ -119,11 +121,7 @@ const Tabs: FC<TabsProps> = ({
 				style={{...styles.tabButton, borderBottomColor}}
 				disabled={disabled}
 				onPress={() => handleOnPress(index)}>
-				<Text
-					style={{...styles.title, color: textColor}}
-					adjustsFontSizeToFit={true}
-					selectable={false}
-					numberOfLines={1}>
+				<Text style={{...styles.title, color: textColor}} selectable={false} numberOfLines={1}>
 					{title}
 				</Text>
 			</BaseButton>

@@ -34,15 +34,12 @@ export default {
 	],
 };
 
-export const DefaultProps = (props) => {
-	const indexChanger = useState(0);
-
-	return <Tabs {...props} indexChanger={indexChanger} />;
-};
+export const DefaultProps = (props) => <Tabs {...props} />;
 
 DefaultProps.storyName = 'Default Tabs';
 
 DefaultProps.args = {
+	initialTab: 1,
 	scenes: [
 		{
 			title: 'Title 1',
@@ -66,15 +63,12 @@ DefaultProps.args = {
 	style: {},
 };
 
-export const ScrollViewTab = (props) => {
-	const indexChanger = useState(0);
-
-	return <Tabs {...props} indexChanger={indexChanger} />;
-};
+export const ScrollViewTab = (props) => <Tabs {...props} />;
 
 ScrollViewTab.storyName = 'Scroll List';
 
 ScrollViewTab.args = {
+	initialTab: 0,
 	scenes: [
 		{
 			title: 'Title 1',
