@@ -6,7 +6,7 @@ import {base, grey, primary} from '../../theme/palette';
 import BaseButton from '../BaseButton';
 import Text from '../Text';
 import {viewportWidth} from '../../scale';
-import {isObject} from './utils';
+import {isObject} from '../../utils';
 
 interface Scene {
 	title: string;

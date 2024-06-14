@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Tabs from '../../../src/components/Tabs';
 import {StyleSheet, Text, View} from 'react-native';
 
