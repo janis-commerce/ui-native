@@ -1,6 +1,6 @@
 import React from 'react';
 import Toast from '..';
-import {ToastProps} from '../../BaseToast';
+import {ToastProps} from '../';
 
 export const configToast = {
 	success: (props: ToastProps) => <Toast {...props} />,

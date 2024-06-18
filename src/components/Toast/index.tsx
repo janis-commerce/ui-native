@@ -4,11 +4,11 @@ import {StyleSheet} from 'react-native';
 import {moderateScale, scaledForDevice} from '../../scale';
 import {defaultIcon} from './utils';
 import {base, black} from '../../theme/palette';
-import BaseToast, {ToastProps} from '../BaseToast';
+import BaseToast, {BaseToastProps} from '../BaseToast';
 import Text from '../Text';
 import Icon from '../Icon';
 
-interface Props extends ToastProps {
+export interface ToastProps extends BaseToastProps {
 	props?: {
 		showIcon?: boolean;
 		customIcon?: string;
@@ -20,15 +20,12 @@ interface Props extends ToastProps {
 	};
 }
 
-const Toast: FC<Props> = ({type, text1, text2, style, props}) => {
+const Toast: FC<ToastProps> = ({type, text1, text2, style, props}) => {
 	const validType = type && typeof type === 'string';
 	const validTitle = text1 && typeof text1 === 'string';
 	const validMessage = text2 && typeof text2 === 'string';
 
-	if (!validType) {
-		return null;
-	}
-	if (!validMessage) {
+	if (!validType || !validMessage) {
 		return null;
 	}
 

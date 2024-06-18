@@ -1,6 +1,6 @@
 import React, {FC, ReactNode} from 'react';
 import {StyleSheet, View, ViewStyle} from 'react-native';
-import {BaseToastProps} from 'react-native-toast-message';
+import {BaseToastProps as Props} from 'react-native-toast-message';
 import {black, palette} from '../../theme/palette';
 import {parseType} from './utils';
 
@@ -14,13 +14,13 @@ export enum Types {
 
 const defaultType = Types.Notice;
 
-export interface ToastProps extends BaseToastProps {
+export interface BaseToastProps extends Props {
 	type?: Types;
 	children: ReactNode;
 	style?: {} | ViewStyle;
 }
 
-const BaseToast: FC<ToastProps> = ({children, style, type = defaultType, ...props}) => {
+const BaseToast: FC<BaseToastProps> = ({children, style, type = defaultType, ...props}) => {
 	if (!children) {
 		return null;
 	}
