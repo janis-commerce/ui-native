@@ -75,8 +75,8 @@ describe('Tabs', () => {
 
 	describe('should render correct when', () => {
 		afterEach(() => {
-			jest.useRealTimers(); // Restaura los temporizadores reales
-			clearInterval(intervalMock); // Limpia el intervalo
+			jest.useRealTimers();
+			clearInterval(intervalMock);
 		});
 
 		it('has minimum data', () => {
