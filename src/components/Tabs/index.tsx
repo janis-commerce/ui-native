@@ -8,6 +8,8 @@ import Text from '../Text';
 import {viewportWidth} from '../../scale';
 import {isObject} from '../../utils';
 
+type Data = Scene[] | null | undefined;
+
 interface Scene {
 	title: string;
 	scene: ReactNode;
@@ -24,7 +26,7 @@ export type keyPosition = keyof positionsType;
 
 interface TabsProps {
 	scenes: Scene[];
-	initialTab?: number;
+	initialTab?: number | null;
 	position?: keyPosition;
 	onPressTabCb?: (activeTab: number) => void;
 	scrollContentStyle?: ViewStyle;
@@ -39,7 +41,7 @@ interface TitleTabProps {
 
 const Tabs: FC<TabsProps> = ({
 	scenes,
-	initialTab = 0,
+	initialTab = null,
 	position = positions.top,
 	onPressTabCb = () => {},
 	scrollContentStyle = {},
@@ -50,7 +52,7 @@ const Tabs: FC<TabsProps> = ({
 		return null;
 	}
 
-	const [activeTab, setActiveTab] = useState(initialTab);
+	const [activeTab, setActiveTab] = useState(0);
 
 	const scrollViewRef = useRef<any>(null);
 
@@ -63,7 +65,8 @@ const Tabs: FC<TabsProps> = ({
 
 	const contentDirection = position === positions.bottom ? 'column-reverse' : 'column';
 
-	const isScrollViewTab = scenes?.length && scenes.length > 3;
+	const quantityScenes = scenes?.length;
+	const isScrollViewTab = quantityScenes && quantityScenes > 3;
 	const calculateTabs = isScrollViewTab ? {width: viewportWidth / 3} : {flex: 1};
 	const contentMargin = position === positions.bottom ? {marginBottom: 45} : {marginTop: 45};
 
@@ -98,6 +101,12 @@ const Tabs: FC<TabsProps> = ({
 	});
 
 	useEffect(() => {
+		if (typeof initialTab === 'number') {
+			setActiveTab(initialTab);
+		}
+	}, [initialTab]);
+
+	useEffect(() => {
 		if (isScrollViewTab) {
 			scrollViewRef?.current?.scrollToIndex({
 				index: activeTab,
@@ -105,6 +114,25 @@ const Tabs: FC<TabsProps> = ({
 			});
 		}
 	}, [activeTab, isScrollViewTab]);
+
+	const getItemLayout = (data: Data, index: number) => ({
+		length: viewportWidth / 3,
+		offset: (viewportWidth / 3) * index,
+		index,
+	});
+
+	const handleScrollToIndexFailed = (info: {
+		index: number;
+		highestMeasuredFrameIndex: number;
+		averageItemLength: number;
+	}) => {
+		setTimeout(() => {
+			scrollViewRef?.current?.scrollToIndex({
+				index: info.index,
+				animated: true,
+			});
+		}, 300);
+	};
 
 	const TitleTab: FC<TitleTabProps> = ({title, disabled, index}) => {
 		const borderBottomColor = index === activeTab ? primary.main : base.white;
@@ -158,6 +186,9 @@ const Tabs: FC<TabsProps> = ({
 					pagingEnabled={true}
 					showsHorizontalScrollIndicator={false}
 					keyExtractor={(item, index) => item.title + index}
+					getItemLayout={getItemLayout}
+					onScrollToIndexFailed={handleScrollToIndexFailed}
+					initialNumToRender={quantityScenes}
 				/>
 			)}
 

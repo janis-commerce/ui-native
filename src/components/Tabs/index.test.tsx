@@ -1,5 +1,5 @@
 import React from 'react';
-import {Pressable, Text, View} from 'react-native';
+import {FlatList, Pressable, Text, View} from 'react-native';
 import {create} from 'react-test-renderer';
 import Tabs from './';
 
@@ -54,11 +54,16 @@ const invalidData1 = {
 	scenes: null,
 };
 
+const spyUseState = jest.spyOn(React, 'useState');
 const spyUseEffect = jest.spyOn(React, 'useEffect');
 const spyUseRef = jest.spyOn(React, 'useRef');
 
-spyUseEffect.mockImplementation((f) => f());
+const setActiveTab = jest.fn();
+spyUseState.mockReturnValueOnce([0, setActiveTab]);
 spyUseRef.mockReturnValueOnce({current: {scrollToIndex: jest.fn()}});
+spyUseEffect.mockImplementation((f) => f());
+
+const intervalMock = 300;
 
 describe('Tabs', () => {
 	describe('should be null when', () => {
@@ -69,16 +74,35 @@ describe('Tabs', () => {
 	});
 
 	describe('should render correct when', () => {
+		afterEach(() => {
+			jest.useRealTimers(); // Restaura los temporizadores reales
+			clearInterval(intervalMock); // Limpia el intervalo
+		});
+
 		it('has minimum data', () => {
-			const {toJSON} = create(<Tabs {...validData2} />);
-			expect(toJSON()).toBeTruthy();
+			jest.useFakeTimers();
+			const {root} = create(<Tabs {...validData2} />);
+			const [ButtonComp] = root.findAllByType(Pressable);
+			const {onPress} = ButtonComp.props;
+			onPress();
+
+			const FlatlistComp = root.findByType(FlatList);
+			const {getItemLayout, onScrollToIndexFailed} = FlatlistComp.props;
+			getItemLayout(null, 1);
+			onScrollToIndexFailed({index: 1, highestMeasuredFrameIndex: 50, averageItemLength: 4});
+			jest.runOnlyPendingTimers();
+
+			expect(root).toBeTruthy();
 		});
 
 		it('has valid data and press tab', () => {
+			jest.useFakeTimers();
 			const {root} = create(<Tabs {...(validData1 as any)} />);
 			const [ButtonComp] = root.findAllByType(Pressable);
 			const {onPress} = ButtonComp.props;
 			onPress();
+
+			jest.runOnlyPendingTimers();
 
 			expect(root).toBeTruthy();
 		});
