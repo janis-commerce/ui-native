@@ -10,6 +10,7 @@ const validScene1 = {
 			<Text>View</Text>
 		</View>
 	),
+	disabled: false,
 };
 const validScene2 = {
 	title: 'Title2',
@@ -18,6 +19,7 @@ const validScene2 = {
 			<Text>View</Text>
 		</View>
 	),
+	disabled: true,
 };
 const validScene3 = {
 	title: 'Title3',
@@ -26,6 +28,7 @@ const validScene3 = {
 			<Text>View</Text>
 		</View>
 	),
+	disabled: true,
 };
 const validScene4 = {
 	title: 'Title4',
@@ -34,6 +37,7 @@ const validScene4 = {
 			<Text>View</Text>
 		</View>
 	),
+	disabled: false,
 };
 
 const validData1 = {

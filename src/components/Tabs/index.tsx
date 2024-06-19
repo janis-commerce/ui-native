@@ -2,7 +2,7 @@
 import React, {FC, ReactNode, useEffect, useRef, useState} from 'react';
 import {StyleSheet, View, ViewStyle, ScrollView, FlatList} from 'react-native';
 import {moderateScale, scaledForDevice} from '../../scale';
-import {base, grey, primary} from '../../theme/palette';
+import {base, black, grey, primary} from '../../theme/palette';
 import BaseButton from '../BaseButton';
 import Text from '../Text';
 import {viewportWidth} from '../../scale';
@@ -136,7 +136,8 @@ const Tabs: FC<TabsProps> = ({
 
 	const TitleTab: FC<TitleTabProps> = ({title, disabled, index}) => {
 		const borderBottomColor = index === activeTab ? primary.main : base.white;
-		const textColor = index === activeTab ? primary.main : grey[400];
+		const inactiveText = disabled ? grey[400] : black.main;
+		const textColor = index === activeTab ? primary.main : inactiveText;
 
 		const handleOnPress = (idx: number) => {
 			setActiveTab(idx);
