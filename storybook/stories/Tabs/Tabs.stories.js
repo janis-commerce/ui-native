@@ -1,15 +1,21 @@
 import React from 'react';
 import Tabs from '../../../src/components/Tabs';
 import {StyleSheet, Text, View} from 'react-native';
+import {moderateScale, scaledForDevice} from '../../../src/scale';
+import {grey} from '../../../src/theme/palette';
 
 const styles = StyleSheet.create({
 	decorators: {
 		position: 'absolute',
 		top: 0,
-		width: '110%',
+		width: scaledForDevice(350, moderateScale),
+		overflow: 'hidden',
+		marginVertical: scaledForDevice(5, moderateScale),
+		borderWidth: scaledForDevice(1, moderateScale),
+		borderColor: grey[200],
 	},
 	wrapper: {
-		padding: 30,
+		padding: scaledForDevice(30, moderateScale),
 		backgroundColor: 'whitesmoke',
 	},
 });
@@ -48,6 +54,7 @@ DefaultProps.args = {
 					<Text>View 1</Text>
 				</View>
 			),
+			disabled: false,
 		},
 		{
 			title: 'Title 2',
@@ -56,6 +63,7 @@ DefaultProps.args = {
 					<Text>View 2</Text>
 				</View>
 			),
+			disabled: false,
 		},
 	],
 	position: 'top',
@@ -77,6 +85,7 @@ ScrollViewTab.args = {
 					<Text>View 1</Text>
 				</View>
 			),
+			disabled: false,
 		},
 		{
 			title: 'Title 2',
@@ -85,6 +94,7 @@ ScrollViewTab.args = {
 					<Text>View 2</Text>
 				</View>
 			),
+			disabled: true,
 		},
 		{
 			title: 'Title 3',
@@ -93,6 +103,7 @@ ScrollViewTab.args = {
 					<Text>View 3</Text>
 				</View>
 			),
+			disabled: false,
 		},
 		{
 			title: 'Title 4',
@@ -101,6 +112,7 @@ ScrollViewTab.args = {
 					<Text>View 4</Text>
 				</View>
 			),
+			disabled: false,
 		},
 		{
 			title: 'Title 5',
@@ -109,6 +121,7 @@ ScrollViewTab.args = {
 					<Text>View 5</Text>
 				</View>
 			),
+			disabled: false,
 		},
 	],
 	position: 'top',
