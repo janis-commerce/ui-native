@@ -24,6 +24,7 @@ import BaseButton from './components/BaseButton';
 import Button from './components/Button/index';
 import FullScreenMessage from './components/FullScreenMessage';
 import LayoutWithBottomButtons from './components/LayoutWithBottomButtons';
+import Tabs from './components/Tabs';
 import * as getScale from './scale';
 
 export {
@@ -52,4 +53,5 @@ export {
 	getScale,
 	LayoutWithBottomButtons,
 	FullScreenMessage,
+	Tabs,
 };
