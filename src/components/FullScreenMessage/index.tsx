@@ -46,9 +46,10 @@ const FullScreenMessage: FC<Props> = ({
 	const validPaddingHorizontal = scaledForDevice(50, moderateScale);
 	const validMarginBottomTitle = scaledForDevice(30, moderateScale);
 	const validMarginBottomSubtitle = scaledForDevice(50, moderateScale);
-	const validFontTitle = scaledForDevice(32, moderateScale);
+	const validFontTitle = scaledForDevice(34, moderateScale);
 	const validFontSubtitle = scaledForDevice(16, moderateScale);
 	const validLineHeightTitle = scaledForDevice(40, moderateScale);
+	const validLineHeightSubtitle = scaledForDevice(20, moderateScale);
 
 	const styles = StyleSheet.create({
 		container: {
@@ -59,7 +60,7 @@ const FullScreenMessage: FC<Props> = ({
 			backgroundColor: backgroundColor,
 		},
 		title: {
-			fontWeight: 'bold',
+			fontFamily: 'Roboto-Medium',
 			textAlign: 'center',
 			color: textsColor,
 			paddingHorizontal: validPaddingHorizontal,
@@ -68,11 +69,13 @@ const FullScreenMessage: FC<Props> = ({
 			lineHeight: validLineHeightTitle,
 		},
 		subtitle: {
+			fontFamily: 'Roboto-Regular',
 			textAlign: 'center',
 			color: textsColor,
 			paddingHorizontal: validPaddingHorizontal,
 			marginBottom: validMarginBottomSubtitle,
 			fontSize: validFontSubtitle,
+			lineHeight: validLineHeightSubtitle,
 		},
 	});
 

@@ -24,6 +24,8 @@ import BaseButton from './components/BaseButton';
 import Button from './components/Button/index';
 import FullScreenMessage from './components/FullScreenMessage';
 import LayoutWithBottomButtons from './components/LayoutWithBottomButtons';
+import Toast from 'react-native-toast-message';
+import {configToast} from './components/Toast/utils';
 import * as getScale from './scale';
 
 export {
@@ -52,4 +54,6 @@ export {
 	getScale,
 	LayoutWithBottomButtons,
 	FullScreenMessage,
+	Toast,
+	configToast,
 };
