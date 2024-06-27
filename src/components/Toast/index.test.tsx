@@ -8,15 +8,15 @@ import Text from '../Text';
 const props1 = {
 	showIcon: true,
 	customIcon: 'iso_janis',
-	showClose: true,
-	link: 'Open',
+	showCloseIcon: true,
+	actionTitle: 'Open',
 	iconStyle: {color: 'red'},
 };
 
 const props2 = {
 	...props1,
 	onCloseCb: jest.fn(),
-	linkCb: jest.fn(),
+	actionCb: jest.fn(),
 };
 
 const validProps = {
@@ -68,8 +68,8 @@ describe('Toast', () => {
 					props={props1}
 				/>
 			);
-			const [link, close] = root.findAllByType(TouchableOpacity);
-			const {onPress: linkOnPress} = link.props;
+			const [actionTitle, close] = root.findAllByType(TouchableOpacity);
+			const {onPress: linkOnPress} = actionTitle.props;
 			const {onPress: closeOnPress} = close.props;
 			linkOnPress();
 			closeOnPress();

@@ -23,7 +23,7 @@ export default {
 				Janis: 'iso_janis',
 			},
 		},
-		link: {
+		actionTitle: {
 			control: {type: 'select'},
 			options: {
 				None: null,
@@ -51,10 +51,10 @@ export const DefaultProps = (props) => (
 				text2: props.text2,
 				autoHide: props.autoHide,
 				props: {
-					link: props.link,
+					actionTitle: props.actionTitle,
 					showIcon: props.showIcon,
 					customIcon: props.customIcon,
-					showClose: props.showClose,
+					showCloseIcon: props.showCloseIcon,
 					iconStyle: props.iconStyle,
 					onCloseCb: Toast.hide,
 				},
@@ -72,8 +72,8 @@ DefaultProps.args = {
 		'Lorem ipsum dolor sit amet, consectetur adipiscingsed ipsum dolorrrrdfds ipsum dolor sit amet.',
 	autoHide: true,
 	showIcon: true,
-	showClose: true,
+	showCloseIcon: true,
 	customIcon: null,
-	link: null,
+	actionTitle: null,
 	iconStyle: {},
 };

@@ -12,10 +12,10 @@ export interface ToastProps extends BaseToastProps {
 	props?: {
 		showIcon?: boolean;
 		customIcon?: string;
-		showClose?: boolean;
-		link?: string;
+		showCloseIcon?: boolean;
+		actionTitle?: string;
 		onCloseCb?: () => void;
-		linkCb?: () => void;
+		actionCb?: () => void;
 		iconStyle?: TextStyle;
 	};
 }
@@ -32,10 +32,10 @@ const Toast: FC<ToastProps> = ({type, text1, text2, style, props}) => {
 	const {
 		showIcon = false,
 		customIcon = null,
-		showClose = false,
-		link = null,
+		showCloseIcon = false,
+		actionTitle = null,
 		onCloseCb = () => {},
-		linkCb = () => {},
+		actionCb = () => {},
 		iconStyle = {},
 	} = props || {};
 
@@ -82,7 +82,7 @@ const Toast: FC<ToastProps> = ({type, text1, text2, style, props}) => {
 		closeIcon: {
 			paddingLeft: scaledForDevice(10, moderateScale),
 		},
-		link: {
+		actionTitle: {
 			marginRight: scaledForDevice(5, moderateScale),
 			marginLeft: scaledForDevice(10, moderateScale),
 			fontFamily: 'Roboto-Medium',
@@ -108,12 +108,12 @@ const Toast: FC<ToastProps> = ({type, text1, text2, style, props}) => {
 			</View>
 
 			<View style={styles.feedbackWrapper}>
-				{link && (
-					<TouchableOpacity onPress={linkCb} activeOpacity={0.6}>
-						<Text style={styles.link}>{link}</Text>
+				{actionTitle && (
+					<TouchableOpacity onPress={actionCb} activeOpacity={0.6}>
+						<Text style={styles.actionTitle}>{actionTitle}</Text>
 					</TouchableOpacity>
 				)}
-				{showClose && (
+				{showCloseIcon && (
 					<TouchableOpacity onPress={onCloseCb} activeOpacity={0.6}>
 						<Icon name="cross_light" color={validColor} size={24} style={styles.closeIcon} />
 					</TouchableOpacity>
