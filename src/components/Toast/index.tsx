@@ -5,6 +5,7 @@ import {moderateScale, scaledForDevice} from '../../scale';
 import {defaultIcon} from './utils';
 import {base, black} from '../../theme/palette';
 import BaseToast, {BaseToastProps} from '../BaseToast';
+import ToastAction from 'react-native-toast-message';
 import Text from '../Text';
 import Icon from '../Icon';
 
@@ -44,6 +45,13 @@ const Toast: FC<ToastProps> = ({type, text1, text2, style, props}) => {
 	const defaultIconName = defaultIcon[type] || defaultIcon.notice;
 	const selectedIconName = customIcon || defaultIconName;
 	const horizontalAlign = validTitle ? 'flex-start' : 'center';
+
+	const handleActionCb = () => actionCb();
+
+	const handleCloseCb = () => {
+		ToastAction.hide();
+		onCloseCb();
+	};
 
 	const styles = StyleSheet.create({
 		container: {
@@ -109,12 +117,12 @@ const Toast: FC<ToastProps> = ({type, text1, text2, style, props}) => {
 
 			<View style={styles.feedbackWrapper}>
 				{actionTitle && (
-					<TouchableOpacity onPress={actionCb} activeOpacity={0.6}>
+					<TouchableOpacity onPress={handleActionCb} activeOpacity={0.6}>
 						<Text style={styles.actionTitle}>{actionTitle}</Text>
 					</TouchableOpacity>
 				)}
 				{showCloseIcon && (
-					<TouchableOpacity onPress={onCloseCb} activeOpacity={0.6}>
+					<TouchableOpacity onPress={handleCloseCb} activeOpacity={0.6}>
 						<Icon name="cross_light" color={validColor} size={24} style={styles.closeIcon} />
 					</TouchableOpacity>
 				)}
