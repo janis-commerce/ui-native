@@ -23,3 +23,9 @@ jest.mock('@gorhom/bottom-sheet', () => {
 		BottomSheetView: react.View,
 	};
 });
+
+jest.mock('react-native-toast-message', () => ({
+	show: jest.fn(),
+	hide: jest.fn(),
+	setRef: jest.fn(),
+}));
