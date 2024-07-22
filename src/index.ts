@@ -26,6 +26,7 @@ import FullScreenMessage from './components/FullScreenMessage';
 import LayoutWithBottomButtons from './components/LayoutWithBottomButtons';
 import Toast from 'react-native-toast-message';
 import {configToast} from './components/Toast/utils';
+import Tabs from './components/Tabs';
 import * as getScale from './scale';
 
 export {
@@ -56,4 +57,5 @@ export {
 	FullScreenMessage,
 	Toast,
 	configToast,
+	Tabs,
 };
