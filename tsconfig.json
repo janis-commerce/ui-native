@@ -25,7 +25,8 @@
 			"templates/*": ["./components/templates/*"],
 			"scale": ["./scale"],
 			"theme/*": ["./theme/*"],
-			"ts/*": ["./ts/*"]
+			"ts/*": ["./ts/*"],
+			"utils/*": ["./utils/*"]
 		}
 	},
 	"exclude": [

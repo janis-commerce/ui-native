@@ -24,6 +24,7 @@ module.exports = {
 					scale: './src/scale',
 					theme: './src/theme',
 					ts: './src/ts',
+					utils: './src/utils',
 				},
 			},
 		],
