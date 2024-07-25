@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text} from 'react-native';
-import Loading from '../../../src/components/atoms/Loading/';
+import Loading from 'atoms/Loading/';
 
 export default {
 	title: 'Components/Loading',

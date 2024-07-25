@@ -1,9 +1,9 @@
 import React from 'react';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {StyleSheet} from 'react-native';
-import SwipeUp from '../../../src/components/atoms/SwipeUp';
-import {SwipeUpView} from '../../../src/components/atoms/SwipeUp/childComponents';
-import Svg from '../../../src/components/atoms/Svg';
+import SwipeUp from 'atoms/SwipeUp';
+import {SwipeUpView} from 'atoms/SwipeUp/childComponents';
+import Svg from 'atoms/Svg';
 
 export default {
 	title: 'Components/SwipeUp',

@@ -67,6 +67,7 @@ const getStories = () => {
 		'./storybook/stories/Svg/Svg.stories.js': require('../storybook/stories/Svg/Svg.stories.js'),
 		'./storybook/stories/SwipeUp/SwipeUp.stories.js': require('../storybook/stories/SwipeUp/SwipeUp.stories.js'),
 		'./storybook/stories/Text/Text.stories.js': require('../storybook/stories/Text/Text.stories.js'),
+		'./storybook/stories/Toast/Toast.stories.js': require('../storybook/stories/Toast/Toast.stories.js'),
 	};
 };
 

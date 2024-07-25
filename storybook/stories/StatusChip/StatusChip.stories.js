@@ -1,5 +1,5 @@
-import StatusChip from '../../../src/components/atoms/StatusChip';
-import Text from '../../../src/components/atoms/Text';
+import StatusChip from 'atoms/StatusChip';
+import Text from 'atoms/Text';
 import React from 'react';
 
 export default {

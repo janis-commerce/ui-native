@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from '../../../src/components/atoms/Image';
+import Image from 'atoms/Image';
 
 export default {
 	title: 'Components/Image',

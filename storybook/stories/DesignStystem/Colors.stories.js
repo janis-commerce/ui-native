@@ -1,7 +1,7 @@
 import React from 'react';
 import {View} from 'react-native';
-import Text from '../../../src/components/atoms/Text';
-import {black, palette} from '../../../src/theme/palette';
+import Text from 'atoms/Text';
+import {black, palette} from 'theme/palette';
 import CenterScrollView from '../../decorators/CenterScrollView';
 
 export default {

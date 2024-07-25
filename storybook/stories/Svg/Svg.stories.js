@@ -1,5 +1,5 @@
 import React from 'react';
-import Svg from '../../../src/components/atoms/Svg';
+import Svg from 'atoms/Svg';
 
 export default {
 	title: 'Components/Svg',

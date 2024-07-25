@@ -1,10 +1,8 @@
 import React, {useState} from 'react';
 import {TouchableHighlight, Text, StyleSheet} from 'react-native';
-import FullScreenMessage, {
-	animationTypes,
-} from '../../../src/components/organisms/FullScreenMessage';
-import {base, primary, success} from '../../../src/theme/palette';
-import Icon from '../../../src/components/atoms/Icon';
+import FullScreenMessage, {animationTypes} from 'organisms/FullScreenMessage';
+import {base, primary, success} from 'theme/palette';
+import Icon from 'atoms/Icon';
 
 export default {
 	title: 'Components/FullScreenMessage',

@@ -1,7 +1,7 @@
 import React from 'react';
-import List from '../../../src/components/atoms/List';
+import List from 'atoms/List';
 import {StyleSheet, Text, View} from 'react-native';
-import {white} from '../../../src/theme/palette';
+import {white} from 'theme/palette';
 
 export default {
 	title: 'Components/List',
