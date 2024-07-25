@@ -22,6 +22,7 @@ import ProgressBar from 'molecules/ProgressBar';
 import Select from 'molecules/Select';
 import Toast from 'react-native-toast-message';
 import {configToast} from 'molecules/Toast/utils';
+import SwipeList from 'molecules/SwipeList';
 
 // Organisms
 import LoadingFullScreen from 'organisms/LoadingFullScreen';
@@ -59,4 +60,5 @@ export {
 	FullScreenMessage,
 	Toast,
 	configToast,
+	SwipeList,
 };

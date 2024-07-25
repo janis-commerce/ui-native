@@ -45,7 +45,7 @@ export type keyColor = keyof buttonColor;
 export type buttonIconPosition = typeof iconPosition;
 export type keyIconPosition = keyof buttonIconPosition;
 
-interface ButtonProps extends BaseButtonProps {
+export interface ButtonProps extends BaseButtonProps {
 	type?: keyType;
 	variant?: keyVariant;
 	color?: keyColor;
