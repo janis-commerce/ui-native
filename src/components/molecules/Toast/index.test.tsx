@@ -1,7 +1,7 @@
 import React from 'react';
 import {TouchableOpacity} from 'react-native';
 import {create} from 'react-test-renderer';
-import Toast from '.';
+import Toast from './';
 import {Types} from '../../atoms/BaseToast';
 import Text from '../../atoms/Text';
 

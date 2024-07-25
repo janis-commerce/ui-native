@@ -1,6 +1,6 @@
 // @ts-nocheck
-import {getBarColor, getPercentage} from '.';
-import {palette} from '../../../theme/palette';
+import {getBarColor, getPercentage} from './';
+import {palette} from '../../../../theme/palette';
 
 describe('getPercentage method', () => {
 	describe('return zero when', () => {

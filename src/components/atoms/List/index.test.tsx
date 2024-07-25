@@ -1,7 +1,7 @@
 import React from 'react';
 import {create} from 'react-test-renderer';
 import {Text, View} from 'react-native';
-import List, {TypeList} from '.';
+import List, {TypeList} from './';
 
 const data = [
 	{id: 1, nombre: 'nombre1'},

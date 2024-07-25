@@ -2,7 +2,7 @@ import React from 'react';
 import {create} from 'react-test-renderer';
 import Text from '../../../../atoms/Text';
 import BaseButton from '../../../../atoms/BaseButton';
-import Modal from '.';
+import Modal from './';
 
 const validData = {
 	show: true,

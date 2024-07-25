@@ -1,6 +1,6 @@
 import React from 'react';
 import {create} from 'react-test-renderer';
-import SwipeUp from '.';
+import SwipeUp from './';
 import {View, Text} from 'react-native';
 
 describe('SwipeUp component', () => {

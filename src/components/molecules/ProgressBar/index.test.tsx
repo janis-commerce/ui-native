@@ -3,7 +3,7 @@ import * as React from 'react';
 import {create} from 'react-test-renderer';
 import * as utils from './utils';
 import ProgressBar from './';
-import {palette} from '../../../../theme/palette';
+import {palette} from '../../../theme/palette';
 
 jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
 jest.spyOn(React, 'useEffect').mockImplementation((f) => f());

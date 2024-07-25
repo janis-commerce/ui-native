@@ -2,7 +2,7 @@ import React from 'react';
 import {create} from 'react-test-renderer';
 import Text from '../../../../atoms/Text';
 import {VariantOptions} from '../..';
-import SwitcherComponent from '.';
+import SwitcherComponent from './';
 
 const validData = {
 	variant: VariantOptions.Dropdown,
