@@ -2,7 +2,7 @@ import {View, Text} from 'react-native';
 import React from 'react';
 import {render} from '@testing-library/react-native';
 import {create} from 'react-test-renderer';
-import Button from '../../atoms/BaseButton';
+import Button from 'atoms/BaseButton';
 import LayoutWithBottomButtons from './index';
 import * as utils from './utils';
 

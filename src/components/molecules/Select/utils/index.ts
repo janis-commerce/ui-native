@@ -1,4 +1,4 @@
-import {Option} from '..';
+import {Option} from '../';
 
 export const formatPlaceholderMulti = (options: Option[], optionsText: string | null): string => {
 	if (!options.length) {

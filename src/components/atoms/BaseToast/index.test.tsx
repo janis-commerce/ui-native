@@ -1,6 +1,6 @@
 import React from 'react';
 import {create} from 'react-test-renderer';
-import Text from '../Text';
+import Text from 'atoms/Text';
 import BaseToast, {Types} from './';
 
 const validProps = {

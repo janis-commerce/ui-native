@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {DropdownMeasures, VariantOptions} from '../..';
+import {DropdownMeasures, VariantOptions} from '../../';
 import Dropdown from '../Dropdown';
 import Modal from '../Modal';
 

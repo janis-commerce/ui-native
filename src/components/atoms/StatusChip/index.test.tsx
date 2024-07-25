@@ -2,8 +2,8 @@ import 'react-native';
 import React from 'react';
 import {create} from 'react-test-renderer';
 import StatusChip from './index';
-import Text from '../Text';
-import {primary} from '../../../theme/palette';
+import Text from 'atoms/Text';
+import {primary} from 'theme/palette';
 
 describe('StatusChip component', () => {
 	describe('return error because is not a valid children', () => {

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {create} from 'react-test-renderer';
 import {ScrollView} from 'react-native';
-import Text from '../../atoms/Text';
+import Text from 'atoms/Text';
 import Carousel from './';
 
 const validPages = [<Text>Page1</Text>, <Text>Page2</Text>, <Text>Page3</Text>];

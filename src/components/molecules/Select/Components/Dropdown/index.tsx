@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {Modal, Pressable, StyleSheet, View} from 'react-native';
-import {DropdownMeasures} from '../..';
+import {DropdownMeasures} from '../../';
 
 export interface DropdownProps {
 	show: boolean;

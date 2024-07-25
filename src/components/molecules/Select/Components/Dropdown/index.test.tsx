@@ -1,7 +1,7 @@
 import React from 'react';
 import {create} from 'react-test-renderer';
 import Dropdown from './';
-import Text from '../../../../atoms/Text';
+import Text from 'atoms/Text';
 import {Pressable} from 'react-native';
 
 const validData = {

@@ -1,8 +1,8 @@
 import React from 'react';
 import {create} from 'react-test-renderer';
 import {Text} from 'react-native';
-import Icon from '../../atoms/Icon';
-import Loading from '../../atoms/Loading';
+import Icon from 'atoms/Icon';
+import Loading from 'atoms/Loading';
 import Button from './';
 
 const validData = {

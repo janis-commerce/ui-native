@@ -1,5 +1,5 @@
 import React from 'react';
-import Toast from '..';
+import Toast from '../';
 import {ToastProps} from '../';
 
 export const configToast = {

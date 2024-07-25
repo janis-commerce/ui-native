@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import {View, StyleSheet, TouchableOpacity, ScrollView, Text} from 'react-native';
 import {base, black, grey, primary, white} from 'theme/palette';
-import {CustomOptionComponent, DropdownMeasures, Option, VariantOptions} from '../..';
+import {CustomOptionComponent, DropdownMeasures, Option, VariantOptions} from '../../';
 import SwitcherComponent from '../SwitcherComponent';
 
 interface OptionsProps {

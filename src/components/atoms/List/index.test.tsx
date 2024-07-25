@@ -8,7 +8,7 @@ const data = [
 	{id: 2, nombre: 'nombre2'},
 ];
 
-const renderComponent = ({item}) => (
+const renderComponent = ({item}: any) => (
 	<View key={item.id}>
 		<Text>{item.nombre}</Text>
 	</View>

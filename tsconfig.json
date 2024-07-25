@@ -16,7 +16,7 @@
 		"esModuleInterop": true,
 		"skipLibCheck": true,
 		"baseUrl": "./src",
-		"types": ["react", "react-native"],
+		"types": ["react", "react-native", "jest"],
 		"paths": {
 			"react": ["../node_modules/@types/react"],
 			"atoms/*": ["./components/atoms/*"],
@@ -34,9 +34,7 @@
 		"metro.config.js",
 		"jest.config.js",
 		"src/**/*.spec.ts",
-		"src/**/*.spec.tsx",
-		"src/**/*.test.ts",
-		"src/**/*.test.tsx"
+		"src/**/*.spec.tsx"
 	],
 	"include": ["src/**/*"],
 	"ts-node": {

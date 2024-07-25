@@ -2,7 +2,7 @@ import React from 'react';
 import Avatar from './index';
 import {create} from 'react-test-renderer';
 import {Text} from 'react-native';
-import Image from '../../atoms/Image';
+import Image from 'atoms/Image';
 
 const useStateSpy = jest.spyOn(React, 'useState');
 

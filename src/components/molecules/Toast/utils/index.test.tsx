@@ -1,10 +1,10 @@
 import React from 'react';
 import {render} from '@testing-library/react-native';
-import Text from '../../../atoms/Text';
+import Text from 'atoms/Text';
 import {configToast} from './'; // Ajusta la ruta según sea necesario
 
 // Mocks
-jest.mock('..', () => {
+jest.mock('../', () => {
 	return jest.fn().mockImplementation(({message}) => <div>{message}</div>);
 });
 

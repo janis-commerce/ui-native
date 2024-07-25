@@ -1,7 +1,7 @@
 import React from 'react';
 import {create} from 'react-test-renderer';
 import Options from './';
-import {VariantOptions} from '../..';
+import {VariantOptions} from '../../';
 import {ScrollView, TouchableOpacity} from 'react-native';
 
 const validOptions = [

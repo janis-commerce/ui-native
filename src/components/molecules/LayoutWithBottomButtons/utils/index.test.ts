@@ -1,5 +1,5 @@
 import {buttonWrapperVariantStyles, parseButtonsStyles} from './index';
-import {moderateScale, scaledForDevice} from '../../../../scale';
+import {moderateScale, scaledForDevice} from 'scale';
 
 const layoutButtons = [
 	{

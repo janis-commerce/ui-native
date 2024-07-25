@@ -1,7 +1,7 @@
 import React, {FC, ReactElement, useEffect} from 'react';
 import {Modal, StyleSheet, View} from 'react-native';
-import {moderateScale, scaledForDevice} from '../../../scale';
-import {base, primary} from '../../../theme/palette';
+import {moderateScale, scaledForDevice} from 'scale';
+import {base, primary} from 'theme/palette';
 import Icon from 'atoms/Icon';
 import Text from 'atoms/Text';
 

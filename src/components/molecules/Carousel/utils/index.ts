@@ -1,6 +1,6 @@
 import {useCallback, useEffect, useRef, useState} from 'react';
 import {Dimensions, NativeScrollEvent, NativeSyntheticEvent, ScrollView} from 'react-native';
-import {CarouselProps} from '..';
+import {CarouselProps} from '../';
 
 const useCarouselControls = ({
 	pages,

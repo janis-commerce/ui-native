@@ -25,7 +25,7 @@ describe('SwipeUpView', () => {
 
 describe('SwipeUpFlatList', () => {
 	const dataItem = ['1', '2', '3', '4', '5'];
-	const renderItem = ({item}) => <Text>{item}</Text>;
+	const renderItem = ({item}: any) => <Text>{item}</Text>;
 
 	describe('should not render and return null', () => {
 		it('if not receive a data argument', () => {
