@@ -1,5 +1,5 @@
 import React from 'react';
-import Select from '../../../src/components/Select';
+import Select from '../../../src/components/molecules/Select';
 import {View, Text, StyleSheet} from 'react-native';
 import {TouchableOpacity} from 'react-native';
 import {primary, white} from '../../../src/theme/palette';

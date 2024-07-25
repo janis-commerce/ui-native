@@ -1,6 +1,6 @@
 import React from 'react';
-import RadioButton from '../../../src/components/RadioButton';
-import Image from '../../../src/components/Image';
+import RadioButton from '../../../src/components/atoms/RadioButton';
+import Image from '../../../src/components/atoms/Image';
 
 export default {
 	title: 'Components/RadioButton',

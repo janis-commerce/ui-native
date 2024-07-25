@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, Platform} from 'react-native';
 import {StyleSheet} from 'react-native';
-import LayoutWithBottomButtons from '../../../src/components/LayoutWithBottomButtons';
+import LayoutWithBottomButtons from '../../../src/components/molecules/LayoutWithBottomButtons';
 import {palette} from '../../../src/theme/palette';
 
 export default {

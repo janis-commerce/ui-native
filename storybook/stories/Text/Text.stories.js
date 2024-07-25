@@ -1,5 +1,5 @@
 import React from 'react';
-import Text from '../../../src/components/Text';
+import Text from '../../../src/components/atoms/Text';
 
 const fontFamilies = [
 	'normal',

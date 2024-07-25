@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import Input from '../../../src/components/Input';
+import Input from '../../../src/components/atoms/Input';
 
 export default {
 	title: 'Components/Input',

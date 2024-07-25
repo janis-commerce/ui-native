@@ -1,5 +1,5 @@
 import React from 'react';
-import List from '../../../src/components/List';
+import List from '../../../src/components/atoms/List';
 import {StyleSheet, Text, View} from 'react-native';
 import {white} from '../../../src/theme/palette';
 

@@ -1,0 +1,14 @@
+{
+	"extends": "./tsconfig.json",
+	"compilerOptions": {
+		"baseUrl": "./src",
+		"react": ["../node_modules/@types/react"],
+		"atoms/*": ["./components/atoms/*"],
+		"molecules/*": ["./components/molecules/*"],
+		"organisms/*": ["./components/organisms/*"],
+		"templates/*": ["./components/templates/*"],
+		"scale": ["./scale"],
+		"theme/*": ["./theme/*"],
+		"ts/*": ["./ts/*"]
+	}
+}

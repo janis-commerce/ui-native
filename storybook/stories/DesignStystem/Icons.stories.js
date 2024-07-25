@@ -1,8 +1,8 @@
 import React from 'react';
 import {View, Text, StyleSheet, useWindowDimensions} from 'react-native';
-import Icon from '../../../src/components/Icon';
+import Icon from '../../../src/components/atoms/Icon';
 import {primary} from '../../../src/theme/palette';
-import iconsSelection from '../../../src/components/Icon/assets/fonts/selection.json';
+import iconsSelection from '../../../src/components/atoms/Icon/assets/fonts/selection.json';
 import CenterScrollView from '../../decorators/CenterScrollView';
 
 export default {

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {TouchableHighlight, Text, StyleSheet} from 'react-native';
-import LoadingFullScreen from '../../../src/components/LoadingFullScreen';
+import LoadingFullScreen from '../../../src/components/organisms/LoadingFullScreen';
 import {primary} from '../../../src/theme/palette';
 
 export default {

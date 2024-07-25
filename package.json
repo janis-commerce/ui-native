@@ -19,7 +19,7 @@
 		"validate:code": "npm run lint -- --fix && tsc --noEmit && npm t",
 		"test:commit": "jest --colors --bail --findRelatedTests",
 		"test:coverage": "tsc --noEmit && jest --collectCoverage --detectOpenHandles",
-		"build": "rm -rf dist && tsc && cp -r android ios dist",
+		"build": "rm -rf dist && tsc && cp -r android ios dist && tsc-alias -p tsconfig.aliases.json",
 		"storybook-server": "react-native-storybook-server",
 		"storybook-watcher": "sb-rn-watcher --config-path .ondevice",
 		"update-stories": "sb-rn-get-stories --config-path .ondevice",
@@ -46,8 +46,8 @@
 		"react": ">=17.0.2",
 		"react-native": ">=0.67.5",
 		"react-native-gesture-handler": ">=2.9.0",
-		"react-native-toast-message": ">=1.6.0",
-		"react-native-reanimated": "2.17.0"
+		"react-native-reanimated": "2.17.0",
+		"react-native-toast-message": ">=1.6.0"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.12.9",
@@ -98,6 +98,7 @@
 		"react-test-renderer": "17.0.2",
 		"setup-env": "^2.0.0",
 		"storybook": "^6.5.4",
+		"tsc-alias": "^1.8.10",
 		"typescript": "^5.1.6",
 		"webpack": "^5.52.0"
 	},
@@ -122,12 +123,13 @@
 		"@react-native-community/datetimepicker": "^7.4.0",
 		"@react-native-community/slider": "^4.4.2",
 		"@storybook/cli": "^6.5.4",
-		"react-native-reanimated": "^2.17.0",
-		"react-native-gesture-handler": "^2.9.0",
+		"babel-plugin-module-resolver": "^5.0.2",
+		"react-native-gesture-handler": ">=2.9.0",
+		"react-native-reanimated": "2.17.0",
 		"react-native-safe-area-context": "^4.6.4",
 		"react-native-svg": "12.1.1",
-		"react-native-vector-icons": "^9.2.0",
 		"react-native-toast-message": ">=1.6.0",
+		"react-native-vector-icons": "^9.2.0",
 		"react-native-web": "^0.15.0"
 	}
 }

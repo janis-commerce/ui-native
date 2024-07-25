@@ -15,9 +15,17 @@
 		"allowSyntheticDefaultImports": true,
 		"esModuleInterop": true,
 		"skipLibCheck": true,
+		"baseUrl": "./src",
 		"types": ["react", "react-native"],
 		"paths": {
-			"react": ["./node_modules/@types/react"]
+			"react": ["../node_modules/@types/react"],
+			"atoms/*": ["./components/atoms/*"],
+			"molecules/*": ["./components/molecules/*"],
+			"organisms/*": ["./components/organisms/*"],
+			"templates/*": ["./components/templates/*"],
+			"scale": ["./scale"],
+			"theme/*": ["./theme/*"],
+			"ts/*": ["./ts/*"]
 		}
 	},
 	"exclude": [
@@ -30,5 +38,8 @@
 		"src/**/*.test.ts",
 		"src/**/*.test.tsx"
 	],
-	"include": ["src/**/*"]
+	"include": ["src/**/*"],
+	"ts-node": {
+		"require": ["tsconfig-paths/register"]
+	}
 }
