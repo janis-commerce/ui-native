@@ -118,7 +118,7 @@
 		]
 	},
 	"dependencies": {
-		"@gorhom/bottom-sheet": "^4.5.1",
+		"@gorhom/bottom-sheet": "^4.6.3",
 		"@react-native-async-storage/async-storage": "^1.19.0",
 		"@react-native-community/datetimepicker": "^7.4.0",
 		"@react-native-community/slider": "^4.4.2",
