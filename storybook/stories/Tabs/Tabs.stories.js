@@ -1,8 +1,8 @@
 import React from 'react';
-import Tabs from '../../../src/components/Tabs';
+import Tabs from 'molecules/Tabs';
 import {StyleSheet, Text, View} from 'react-native';
-import {moderateScale, scaledForDevice} from '../../../src/scale';
-import {grey} from '../../../src/theme/palette';
+import {moderateScale, scaledForDevice} from 'scale';
+import {grey} from 'theme/palette';
 
 const styles = StyleSheet.create({
 	decorators: {

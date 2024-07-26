@@ -1,33 +1,35 @@
-import Text from './components/Text';
-import Avatar from './components/Avatar';
-import CheckBox from './components/CheckBox';
-import Image from './components/Image';
-import Svg from './components/Svg';
-import Loading from './components/Loading';
-import StatusChip from './components/StatusChip';
-import Input from './components/Input';
-import LoadingFullScreen from './components/LoadingFullScreen';
-import Icon from './components/Icon';
-import Select from './components/Select';
-import {palette} from './theme/palette';
-import RadioButton from './components/RadioButton';
-import SwipeUp from './components/SwipeUp';
-import {
-	SwipeUpFlatList,
-	SwipeUpScrollView,
-	SwipeUpView,
-} from './components/SwipeUp/childComponents';
-import Carousel from './components/Carousel';
-import ProgressBar from './components/ProgressBar';
-import List from './components/List';
-import BaseButton from './components/BaseButton';
-import Button from './components/Button/index';
-import FullScreenMessage from './components/FullScreenMessage';
-import LayoutWithBottomButtons from './components/LayoutWithBottomButtons';
+// Atoms
+import BaseButton from 'atoms/BaseButton';
+import CheckBox from 'atoms/CheckBox';
+import Icon from 'atoms/Icon';
+import Image from 'atoms/Image';
+import Input from 'atoms/Input';
+import List from 'atoms/List';
+import Loading from 'atoms/Loading';
+import RadioButton from 'atoms/RadioButton';
+import StatusChip from 'atoms/StatusChip';
+import Svg from 'atoms/Svg';
+import SwipeUp from 'atoms/SwipeUp';
+import {SwipeUpFlatList, SwipeUpScrollView, SwipeUpView} from 'atoms/SwipeUp/childComponents';
+import Text from 'atoms/Text';
+
+// Molecules
+import Avatar from 'molecules/Avatar';
+import Button from 'molecules/Button';
+import Carousel from 'molecules/Carousel';
+import LayoutWithBottomButtons from 'molecules/LayoutWithBottomButtons';
+import ProgressBar from 'molecules/ProgressBar';
+import Select from 'molecules/Select';
 import Toast from 'react-native-toast-message';
-import {configToast} from './components/Toast/utils';
-import Tabs from './components/Tabs';
-import * as getScale from './scale';
+import {configToast} from 'molecules/Toast/utils';
+
+// Organisms
+import LoadingFullScreen from 'organisms/LoadingFullScreen';
+import FullScreenMessage from 'organisms/FullScreenMessage';
+
+// Misc
+import {palette} from 'theme/palette';
+import * as getScale from 'scale';
 
 export {
 	Text,
@@ -57,5 +59,4 @@ export {
 	FullScreenMessage,
 	Toast,
 	configToast,
-	Tabs,
 };

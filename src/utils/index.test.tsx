@@ -1,4 +1,4 @@
-import {isObject} from '.';
+import {isObject} from './';
 
 describe('isObject', () => {
 	it('is true when is object type', () => {

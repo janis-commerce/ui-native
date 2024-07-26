@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {TouchableHighlight, Text, StyleSheet} from 'react-native';
-import LoadingFullScreen from '../../../src/components/LoadingFullScreen';
-import {primary} from '../../../src/theme/palette';
+import LoadingFullScreen from 'organisms/LoadingFullScreen';
+import {primary} from 'theme/palette';
 
 export default {
 	title: 'Components/LoadingFullScreen',

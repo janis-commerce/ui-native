@@ -1,0 +1,13 @@
+{
+	"extends": "./tsconfig.json",
+	"exclude": [
+		"node_modules",
+		"babel.config.js",
+		"metro.config.js",
+		"jest.config.js",
+		"src/**/*.spec.ts",
+		"src/**/*.spec.tsx",
+		"src/**/*.test.ts",
+		"src/**/*.test.tsx"
+	]
+}

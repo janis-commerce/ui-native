@@ -1,8 +1,8 @@
 import React, {useRef, useState} from 'react';
 import {Button, Image, View} from 'react-native';
-import Text from '../../../src/components/Text';
-import Carousel from '../../../src/components/Carousel';
-import {white} from '../../../src/theme/palette';
+import Text from 'atoms/Text';
+import Carousel from 'molecules/Carousel';
+import {white} from 'theme/palette';
 import {StyleSheet} from 'react-native';
 
 const TextComponent = ({text}) => (
