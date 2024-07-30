@@ -6,7 +6,7 @@ import {SwipeUpScrollView} from 'atoms/SwipeUp/childComponents';
 import {StyleSheet, View} from 'react-native';
 import {verticalScale} from 'scale';
 
-interface SwipeListProps extends SwipeUpProps, BottomSheetProps {
+export interface SwipeListProps extends SwipeUpProps, BottomSheetProps {
 	renderHeader?: () => void;
 	actions?: ButtonProps[];
 }
@@ -41,7 +41,7 @@ const SwipeList: FC<SwipeListProps> = React.forwardRef(
 		};
 
 		return (
-			<SwipeUp ref={ref} footerComponent={renderActions} enableDynamicSizing {...props}>
+			<SwipeUp ref={ref} footerComponent={renderActions} {...props}>
 				{isRenderHeaderValid && renderHeader()}
 				<SwipeUpScrollView>{children}</SwipeUpScrollView>
 			</SwipeUp>

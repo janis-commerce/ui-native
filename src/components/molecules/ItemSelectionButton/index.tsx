@@ -1,10 +1,10 @@
 import React from 'react';
 import RadioButton from 'atoms/RadioButton';
 import CheckBox from 'atoms/CheckBox';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import Text from 'atoms/Text';
 import {palette} from 'theme/palette';
-import {verticalScale} from 'scale';
+import {horizontalScale, moderateScale, verticalScale} from 'scale';
 
 export interface ItemSelectionButtonProps {
 	name: string;
@@ -17,18 +17,30 @@ export interface ItemSelectionButtonProps {
 
 const styles = StyleSheet.create({
 	container: {
+		justifyContent: 'center',
+	},
+	radioButtonContainer: {
 		display: 'flex',
 		height: verticalScale(48),
 		borderRadius: verticalScale(4),
 	},
 	checkBoxContainer: {
+		flexDirection: 'row',
 		justifyContent: 'space-between',
+		paddingHorizontal: horizontalScale(16),
+		height: moderateScale(48),
 	},
 	text: {
 		fontSize: 16,
 		fontWeight: '400',
-		color: palette.black.secondary,
+		color: palette.black.main,
 		textTransform: 'capitalize',
+	},
+	separator: {
+		alignSelf: 'center',
+		borderBottomColor: palette.grey[200],
+		borderBottomWidth: verticalScale(1),
+		width: '90%',
 	},
 });
 
@@ -37,23 +49,23 @@ const ItemSelectionButton: React.FC<ItemSelectionButtonProps> = ({
 	selected = false,
 	radioButton = false,
 	leftSelection = false,
-	rightSelection = true,
+	rightSelection = false,
 	onSelection = () => {},
 }) => {
 	if (!name) {
 		return null;
 	}
 
-	const checkPosition = rightSelection ? 'right' : 'left';
+	const checkPosition = rightSelection || (!rightSelection && !leftSelection) ? 'right' : 'left';
 
 	const renderSelectionComponent = () => {
 		if (!radioButton) {
-			return <CheckBox onPress={onSelection} checked={selected} customSize={24} />;
+			return <CheckBox onPress={onSelection as () => {}} checked={selected} customSize={24} />;
 		}
 
 		return (
 			<RadioButton
-				onPress={onSelection}
+				onPress={onSelection as () => {}}
 				selected={selected}
 				checkPosition={checkPosition}
 				checkSize="md">
@@ -64,9 +76,18 @@ const ItemSelectionButton: React.FC<ItemSelectionButtonProps> = ({
 
 	return (
 		<View style={styles.container}>
-			{leftSelection && !rightSelection && renderSelectionComponent()}
-			{!radioButton && <Text style={styles.text}>{name}</Text>}
-			{rightSelection && !leftSelection && renderSelectionComponent()}
+			<TouchableOpacity
+				style={[
+					radioButton && styles.radioButtonContainer,
+					!radioButton && styles.checkBoxContainer,
+				]}
+				onPress={onSelection}>
+				{leftSelection && !rightSelection && renderSelectionComponent()}
+				{!radioButton && <Text style={styles.text}>{name}</Text>}
+				{((rightSelection && !leftSelection) || (!rightSelection && !leftSelection)) &&
+					renderSelectionComponent()}
+			</TouchableOpacity>
+			<View style={styles.separator} />
 		</View>
 	);
 };
