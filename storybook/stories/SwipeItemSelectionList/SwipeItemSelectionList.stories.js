@@ -18,12 +18,13 @@ export default {
 			options: [0, 1, 2],
 			control: {type: 'radio'},
 		},
-		multiselect: {
-			options: [true, false],
-		},
 		renderHeader: {
 			options: [true, false],
 		},
+		multiselect: {
+			options: [true, false],
+		},
+		radioButton: {options: [true, false]},
 	},
 };
 
@@ -48,7 +49,7 @@ const options = Array.from({length: 30}, (_, i) => ({
 }));
 
 export const WithSwipeUpViewComponent = (props) => {
-	const {renderHeaderComponent, headerText, showActions, multiselect} = props;
+	const {renderHeaderComponent, headerText, showActions, multiselect, radioButton} = props;
 
 	const actions = [{value: 'Confirmar'}];
 
@@ -70,6 +71,7 @@ export const WithSwipeUpViewComponent = (props) => {
 				data={options}
 				renderHeader={renderHeader}
 				multiselect={multiselect}
+				radioButton={radioButton}
 				{...(showActions && actions)}
 				{...props}
 			/>
@@ -84,4 +86,5 @@ WithSwipeUpViewComponent.args = {
 	headerText: 'Header',
 	showActions: false,
 	multiselect: false,
+	radioButton: false,
 };
