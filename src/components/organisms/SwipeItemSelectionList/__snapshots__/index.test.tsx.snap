@@ -1,0 +1,229 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SwipeItemSelectionList component renders correctly, select and unselect it with checkbox, selects and unselects it 1`] = `
+<View
+  footerComponent={[Function]}
+  index={0}
+  snapPoints={
+    Array [
+      "100%",
+    ]
+  }
+>
+  <RCTScrollView>
+    <View>
+      <View
+        style={
+          Object {
+            "justifyContent": "center",
+          }
+        }
+      >
+        <View
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "height": "auto",
+              "justifyContent": "space-between",
+              "marginVertical": 27,
+              "opacity": 1,
+              "paddingHorizontal": 33.5,
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "fontFamily": "Roboto",
+                  "fontSize": 27,
+                },
+                Object {
+                  "color": "#2F2F2F",
+                  "fontSize": 16,
+                  "fontWeight": "400",
+                  "textTransform": "capitalize",
+                },
+              ]
+            }
+          >
+            1
+          </Text>
+          <View
+            accessibilityState={
+              Object {
+                "disabled": false,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "borderRadius": 12.5,
+                "height": 50,
+                "opacity": 1,
+                "width": 50,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "borderColor": "#939598",
+                  "borderRadius": 6,
+                  "borderWidth": 1.5,
+                  "height": 50,
+                  "width": 50,
+                }
+              }
+            />
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "alignSelf": "center",
+              "borderBottomColor": "#D5D7DB",
+              "borderBottomWidth": 2,
+              "width": "90%",
+            }
+          }
+        />
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;
+
+exports[`SwipeItemSelectionList component renders correctly, select and unselect it with radioButton, selects and unselect it 1`] = `
+<View
+  footerComponent={[Function]}
+  index={0}
+  snapPoints={
+    Array [
+      "100%",
+    ]
+  }
+>
+  <RCTScrollView>
+    <View>
+      <View
+        style={
+          Object {
+            "justifyContent": "center",
+          }
+        }
+      >
+        <View
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "height": "auto",
+              "justifyContent": "space-between",
+              "marginVertical": 27,
+              "opacity": 1,
+              "paddingHorizontal": 33.5,
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "fontFamily": "Roboto",
+                  "fontSize": 27,
+                },
+                Object {
+                  "color": "#2F2F2F",
+                  "fontSize": 16,
+                  "fontWeight": "400",
+                  "textTransform": "capitalize",
+                },
+              ]
+            }
+          >
+            1
+          </Text>
+          <View
+            accessibilityState={
+              Object {
+                "disabled": false,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "borderRadius": 12.5,
+                "height": 50,
+                "opacity": 1,
+                "width": 50,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "borderColor": "#939598",
+                  "borderRadius": 6,
+                  "borderWidth": 1.5,
+                  "height": 50,
+                  "width": 50,
+                }
+              }
+            />
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "alignSelf": "center",
+              "borderBottomColor": "#D5D7DB",
+              "borderBottomWidth": 2,
+              "width": "90%",
+            }
+          }
+        />
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;

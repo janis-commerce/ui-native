@@ -7,6 +7,7 @@ import {StyleSheet, View} from 'react-native';
 import {verticalScale} from 'scale';
 
 export interface SwipeListProps extends SwipeUpProps, BottomSheetProps {
+	ref?: Ref<BottomSheet>;
 	renderHeader?: () => void;
 	actions?: ButtonProps[];
 }
