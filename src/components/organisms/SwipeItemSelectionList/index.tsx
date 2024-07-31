@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import SwipeList, {SwipeListProps} from 'molecules/SwipeList';
 import ItemSelectionButton from 'molecules/ItemSelectionButton';
 
-interface SwipeItemSelectionListProps extends SwipeListProps {
+interface SwipeItemSelectionListProps extends Partial<SwipeListProps> {
 	data: any[];
 	multiselect?: boolean;
 	leftSelection?: boolean;
@@ -20,6 +20,10 @@ const SwipeItemSelectionList: React.FC<SwipeItemSelectionListProps> = ({
 }) => {
 	const [selectedElementId, setSelectedElementId] = useState<string>('');
 	const [selectedElementsIds, setSelectedElementsIds] = useState<string[]>([]);
+
+	if (!data || !data.length) {
+		return null;
+	}
 
 	const checkIfElementIsSelected = (id: string, isElementSelected: boolean) => {
 		if (isElementSelected) {
