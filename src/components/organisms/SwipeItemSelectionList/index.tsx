@@ -36,8 +36,9 @@ const SwipeItemSelectionList: React.FC<SwipeItemSelectionListProps> = React.forw
 		const checkIfElementIsSelected = (id: string, isElementSelected: boolean) => {
 			if (isElementSelected) {
 				return multiselect
-					? setSelectedElementsIds((prevState) =>
-							prevState.filter((includedId) => includedId !== id)
+					? setSelectedElementsIds(
+							(prevState) => prevState.filter((includedId) => includedId !== id)
+							// eslint-disable-next-line no-mixed-spaces-and-tabs
 					  )
 					: setSelectedElementId('');
 			}
