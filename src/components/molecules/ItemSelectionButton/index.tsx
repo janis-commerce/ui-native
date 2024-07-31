@@ -4,7 +4,7 @@ import CheckBox from 'atoms/CheckBox';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import Text from 'atoms/Text';
 import {palette} from 'theme/palette';
-import {horizontalScale, moderateScale, verticalScale} from 'scale';
+import {horizontalScale, moderateScale, scaledForDevice, verticalScale} from 'scale';
 
 export interface ItemSelectionButtonProps {
 	name: string;
@@ -14,6 +14,9 @@ export interface ItemSelectionButtonProps {
 	rightSelection?: boolean;
 	onSelection?: () => {};
 }
+
+const validPaddingHorizontal = scaledForDevice(16, horizontalScale);
+const validMarginVertical = scaledForDevice(13, moderateScale);
 
 const styles = StyleSheet.create({
 	container: {
@@ -27,9 +30,10 @@ const styles = StyleSheet.create({
 	checkBoxContainer: {
 		flexDirection: 'row',
 		justifyContent: 'space-between',
-		paddingHorizontal: horizontalScale(16),
-		height: moderateScale(20),
+		paddingHorizontal: validPaddingHorizontal,
+		marginVertical: validMarginVertical,
 		alignItems: 'center',
+		height: 'auto',
 	},
 	text: {
 		fontSize: 16,
