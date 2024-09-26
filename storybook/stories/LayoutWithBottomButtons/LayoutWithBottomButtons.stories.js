@@ -8,7 +8,7 @@ export default {
 	title: 'Components/LayoutWithBottomButtons',
 	argTypes: {
 		variant: {
-			options: ['squared', 'rounded'],
+			options: ['squared', 'rounded', 'roundedOnTop'],
 			control: {type: 'select'},
 		},
 		buttonBackgroundColor: {
