@@ -14,7 +14,7 @@ describe('BaseCardList component', () => {
 	describe('renders properly', () => {
 		it('as it has children', () => {
 			const {root} = create(
-				<BaseCardList>
+				<BaseCardList style={{width: 100}}>
 					<Text>Test</Text>
 				</BaseCardList>
 			);

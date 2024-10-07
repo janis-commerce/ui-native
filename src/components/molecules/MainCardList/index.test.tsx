@@ -20,7 +20,7 @@ describe('MainCardList component', () => {
 
 		it('with children', () => {
 			const {root} = create(
-				<MainCardList displayId="123456">
+				<MainCardList displayId="123456" style={{width: 100}}>
 					<Text>Test</Text>
 				</MainCardList>
 			);
