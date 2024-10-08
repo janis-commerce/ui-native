@@ -33,13 +33,15 @@ export const DefaultProps = (props) => {
 		: [];
 
 	return (
-		<MainCardList displayId={100} blocks={blocks} {...props}>
-			{showChildren && (
-				<Text style={{color: palette.grey['600'], fontSize: 16, fontFamily: 'Roboto'}}>
-					{childrenText}
-				</Text>
-			)}
-		</MainCardList>
+		<View>
+			<MainCardList displayId={100} blocks={blocks} {...props}>
+				{showChildren && (
+					<Text style={{color: palette.grey['600'], fontSize: 16, fontFamily: 'Roboto'}}>
+						{childrenText}
+					</Text>
+				)}
+			</MainCardList>
+		</View>
 	);
 };
 
@@ -48,6 +50,6 @@ DefaultProps.args = {
 	isSelected: false,
 	showChildren: true,
 	childrenText: '28/05 14:00 - 29/05 18:00',
-	showBlock: true,
+	showBlock: false,
 	blockText: '2 productos - 5 items',
 };
