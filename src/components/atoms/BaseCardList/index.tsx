@@ -1,11 +1,10 @@
 import React, {FC, ReactNode} from 'react';
-import {StyleSheet, View, ViewStyle} from 'react-native';
+import {StyleSheet, View, ViewProps} from 'react-native';
 import {palette} from 'theme/palette';
 
-export interface BaseCardListProps {
+export interface BaseCardListProps extends ViewProps {
 	children: ReactNode;
 	isSelected?: boolean;
-	style?: ViewStyle;
 }
 
 const BaseCardList: FC<BaseCardListProps> = ({children, isSelected = false, style, ...props}) => {
@@ -26,7 +25,11 @@ const BaseCardList: FC<BaseCardListProps> = ({children, isSelected = false, styl
 		},
 	});
 
-	const activeStyles = [styles.container, isSelected && styles.selectedContainer, style && style];
+	const activeStyles = [
+		styles.container,
+		isSelected && styles.selectedContainer,
+		style && style,
+	].filter(Boolean);
 
 	return (
 		<View style={activeStyles} {...props}>

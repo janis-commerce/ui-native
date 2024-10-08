@@ -1,7 +1,7 @@
 import BaseCardList from 'atoms/BaseCardList';
 import Text from 'atoms/Text';
 import React, {FC, ReactNode} from 'react';
-import {StyleSheet, View, ViewStyle} from 'react-native';
+import {StyleSheet, View, ViewProps} from 'react-native';
 import {palette} from 'theme/palette';
 
 export interface Block {
@@ -9,12 +9,11 @@ export interface Block {
 	hasSeparator?: boolean;
 }
 
-export interface MainCardListProps {
+export interface MainCardListProps extends ViewProps {
 	displayId: string;
 	children?: ReactNode;
 	blocks?: Block[];
 	isSelected?: boolean;
-	style?: ViewStyle;
 }
 
 const MainCardList: FC<MainCardListProps> = ({

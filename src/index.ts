@@ -12,7 +12,6 @@ import Svg from 'atoms/Svg';
 import SwipeUp from 'atoms/SwipeUp';
 import {SwipeUpFlatList, SwipeUpScrollView, SwipeUpView} from 'atoms/SwipeUp/childComponents';
 import Text from 'atoms/Text';
-import BaseCardList from 'atoms/BaseCardList';
 
 // Molecules
 import Avatar from 'molecules/Avatar';
@@ -63,6 +62,5 @@ export {
 	Toast,
 	configToast,
 	SwipeList,
-	BaseCardList,
 	MainCardList,
 };
