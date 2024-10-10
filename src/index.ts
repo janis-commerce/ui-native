@@ -24,6 +24,7 @@ import Select from 'molecules/Select';
 import Toast from 'react-native-toast-message';
 import {configToast} from 'molecules/Toast/utils';
 import SwipeList from 'molecules/SwipeList';
+import MainCardList from 'molecules/MainCardList';
 
 // Organisms
 import LoadingFullScreen from 'organisms/LoadingFullScreen';
@@ -62,5 +63,6 @@ export {
 	Toast,
 	configToast,
 	SwipeList,
+	MainCardList,
 	Typography,
 };
