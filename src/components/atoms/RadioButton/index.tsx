@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, TouchableOpacity, StyleSheet, ViewStyle} from 'react-native';
-import Text from 'atoms/Text';
+import Text from 'atoms/Typography';
 import CheckBox from 'atoms/CheckBox';
 import {horizontalScale, moderateScale, scaledForDevice} from 'scale';
 

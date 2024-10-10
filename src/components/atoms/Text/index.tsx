@@ -7,20 +7,13 @@ import {
 	TextStyle,
 } from 'react-native';
 import {moderateScale, scaledForDevice} from 'scale';
-import getStyleByTypography from './utils/getStyleByTypography';
 
-export type TypographyType = 'display' | 'heading' | 'title' | 'label' | 'body' | 'overline';
-
-export type TypographySize = 'large' | 'medium' | 'small';
-
-interface TextProps extends TextComponentProps {
+export interface TextProps extends TextComponentProps {
 	children?: ReactElement | string;
 	style?: StyleProp<TextStyle>;
-	type?: TypographyType;
-	size?: TypographySize;
 }
 
-const Text = ({children, style, type, size, ...props}: TextProps) => {
+const Text = ({children, style, ...props}: TextProps) => {
 	if (!children) {
 		return null;
 	}
@@ -34,13 +27,8 @@ const Text = ({children, style, type, size, ...props}: TextProps) => {
 		},
 	});
 
-	const typographyStyles = getStyleByTypography(
-		type as TypographyType | 'string',
-		size as TypographySize | 'string'
-	);
-
 	return (
-		<TextComponent style={[styles.TextStyles, style, typographyStyles.typography]} {...props}>
+		<TextComponent style={[styles.TextStyles, style]} {...props}>
 			{children}
 		</TextComponent>
 	);

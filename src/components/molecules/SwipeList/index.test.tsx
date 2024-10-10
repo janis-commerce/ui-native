@@ -1,7 +1,7 @@
 import React from 'react';
 import {create} from 'react-test-renderer';
 import SwipeList from './';
-import Text from 'atoms/Text';
+import Text from 'atoms/Typography';
 import SwipeUp from 'atoms/SwipeUp';
 
 describe('SwipeList component', () => {

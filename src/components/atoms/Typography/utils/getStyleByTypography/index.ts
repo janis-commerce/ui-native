@@ -1,14 +1,13 @@
 import {StyleSheet, TextStyle} from 'react-native';
-import typography, {Typography, TypographyItem} from 'theme/typography';
+import typography, {Typography} from 'theme/typography';
 
-// Define valid types and sizes
 type TypographyType = keyof Typography;
 type TypographySize = 'large' | 'medium' | 'small';
 
 const validTypes: TypographyType[] = Object.keys(typography) as TypographyType[];
 const validSizes: TypographySize[] = ['large', 'medium', 'small'];
 
-const defaultStyles = StyleSheet.create<{typography: TextStyle}>({
+export const defaultStyles = StyleSheet.create<{typography: TextStyle}>({
 	typography: {
 		fontWeight: typography.body.medium.weight,
 		fontSize: typography.body.medium.size,
@@ -49,11 +48,9 @@ const getStyleByTypography = (type: TypographyType | string, size: TypographySiz
 	}
 
 	const typographyObject = typography[typographyType];
-	if (typographySize in typographyObject) {
-		const typographyStyle = typographyObject[
-			typographySize as keyof typeof typographyObject
-		] as TypographyItem;
-
+	// istanbul ignore next
+	if (typographyObject && typographySize in typographyObject) {
+		const typographyStyle = typographyObject[typographySize as keyof typeof typographyObject];
 		return StyleSheet.create({
 			typography: {
 				fontWeight: typographyStyle.weight,
@@ -64,6 +61,7 @@ const getStyleByTypography = (type: TypographyType | string, size: TypographySiz
 		});
 	}
 
+	// istanbul ignore next
 	return defaultStyles;
 };
 

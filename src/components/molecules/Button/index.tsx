@@ -3,7 +3,7 @@ import {ViewStyle, StyleSheet, TextStyle, View} from 'react-native';
 import BaseButton, {BaseButtonProps} from 'atoms/BaseButton';
 import getButtonStyles from './utils/getButtonStyles';
 import Loading from 'atoms/Loading';
-import Text from 'atoms/Text';
+import Text from 'atoms/Typography';
 import Icon from 'atoms/Icon';
 
 export const types = {

@@ -1,7 +1,7 @@
 import React from 'react';
 import {renderHook} from '@testing-library/react-hooks';
 import useCarouselControls from './';
-import Text from 'atoms/Text';
+import Text from 'atoms/Typography';
 
 const validPages = [<Text>Page1</Text>, <Text>Page2</Text>, <Text>Page3</Text>];
 const validProps = {

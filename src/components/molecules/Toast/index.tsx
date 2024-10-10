@@ -6,7 +6,7 @@ import {defaultIcon} from './utils';
 import {base, black} from 'theme/palette';
 import BaseToast, {BaseToastProps} from 'atoms/BaseToast';
 import ToastAction from 'react-native-toast-message';
-import Text from 'atoms/Text';
+import Text from 'atoms/Typography';
 import Icon from 'atoms/Icon';
 
 export interface ToastProps extends BaseToastProps {

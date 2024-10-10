@@ -1,7 +1,7 @@
 import React, {ReactElement, isValidElement} from 'react';
 import {StyleSheet, ViewProps, View} from 'react-native';
 import {base, grey, primary} from 'theme/palette';
-import Text from 'atoms/Text';
+import Text from 'atoms/Typography';
 import {horizontalScale, moderateScale, scaledForDevice} from 'scale';
 
 interface StatusChipProps extends ViewProps {
