@@ -74,6 +74,10 @@ const Button: FC<ButtonProps> = ({
 	textStyle,
 	...props
 }) => {
+	if (!value && !icon) {
+		return null;
+	}
+
 	const validDisabled = disabled || isLoading;
 	const hasIconAndText = !!icon && !!value;
 	const borderRadius = variant === 'text' ? 6 : 50;

@@ -15,6 +15,14 @@ jest.spyOn(React, 'useEffect').mockImplementation((f) => f());
 jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
 
 describe('Button component', () => {
+	describe('it does not render', () => {
+		it('as there is no value nor icon', () => {
+			const ButtonComponent = create(<Button />).toJSON();
+
+			expect(ButtonComponent).toBeFalsy();
+		});
+	});
+
 	describe('it renders correctly', () => {
 		it('when it has valie as minimum prop', () => {
 			const {root} = create(<Button value={validData.value} />);
