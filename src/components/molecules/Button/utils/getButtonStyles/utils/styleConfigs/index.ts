@@ -110,7 +110,6 @@ export const styleConfig = {
 		textAlign: 'center',
 		fontFamily: 'Roboto-Medium',
 		letterSpacing: 0,
-		lineHeight: scaledForDevice(19, moderateScale),
 	},
 	icon: {
 		margin: {

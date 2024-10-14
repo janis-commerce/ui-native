@@ -44,14 +44,12 @@ describe('getMixedButtonStyles util', () => {
 				color: '#C4C6CC',
 				fontFamily: 'Roboto-Medium',
 				letterSpacing: 0,
-				lineHeight: 39.5,
 				fontSize: 29,
 			},
 			icon: {
 				fontWeight: '500',
 				fontFamily: 'Roboto-Medium',
 				letterSpacing: 0,
-				lineHeight: 39.5,
 				textAlign: 'center',
 				color: '#C4C6CC',
 			},
@@ -82,7 +80,6 @@ describe('getMixedButtonStyles util', () => {
 				color: '#fff',
 				fontFamily: 'Roboto-Medium',
 				letterSpacing: 0,
-				lineHeight: 39.5,
 				fontSize: 29,
 			},
 			icon: {
@@ -91,7 +88,6 @@ describe('getMixedButtonStyles util', () => {
 				color: '#fff',
 				fontFamily: 'Roboto-Medium',
 				letterSpacing: 0,
-				lineHeight: 39.5,
 			},
 			loadingColor: '#2979FF',
 		});
