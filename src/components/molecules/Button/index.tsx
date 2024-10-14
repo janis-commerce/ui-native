@@ -66,7 +66,7 @@ const Button: FC<ButtonProps> = ({
 	color = 'primary',
 	iconPosition = 'left',
 	isLoading = false,
-	value = 'Button',
+	value = '',
 	icon = null,
 	disabled = false,
 	style,
@@ -74,6 +74,10 @@ const Button: FC<ButtonProps> = ({
 	textStyle,
 	...props
 }) => {
+	if (!value && !icon) {
+		return null;
+	}
+
 	const validDisabled = disabled || isLoading;
 	const hasIconAndText = !!icon && !!value;
 	const borderRadius = variant === 'text' ? 6 : 50;
@@ -89,12 +93,12 @@ const Button: FC<ButtonProps> = ({
 	});
 	const styles = StyleSheet.create(buttonStyles);
 
-	const LoadingCompontent = <Loading isLoading={isLoading} color={styles.loadingColor} size={24} />;
+	const LoadingComponent = <Loading isLoading={isLoading} color={styles.loadingColor} size={24} />;
 
 	const WrapperComponent = (
 		<View style={styles.direction}>
 			{icon && <Icon name={icon} style={[styles.icon, iconStyle]} size={24} />}
-			{value && <Text style={[styles.text, textStyle]}>{value}</Text>}
+			{!!value && <Text style={[styles.text, textStyle]}>{value}</Text>}
 		</View>
 	);
 
@@ -105,7 +109,7 @@ const Button: FC<ButtonProps> = ({
 			borderRadius={borderRadius}
 			disabled={validDisabled}
 			{...props}>
-			{isLoading ? LoadingCompontent : WrapperComponent}
+			{isLoading ? LoadingComponent : WrapperComponent}
 		</BaseButton>
 	);
 };
