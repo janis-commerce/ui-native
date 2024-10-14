@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Added swipe item selection list component
+- Added MainCardList component.
 
 ## [1.9.0] - 2024-07-22
 
