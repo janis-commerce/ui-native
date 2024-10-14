@@ -42,9 +42,19 @@ describe('getMixedButtonStyles util', () => {
 				fontWeight: '500',
 				textAlign: 'center',
 				color: '#C4C6CC',
+				fontFamily: 'Roboto-Medium',
+				letterSpacing: 0,
+				lineHeight: 39.5,
 				fontSize: 29,
 			},
-			icon: {fontWeight: '500', textAlign: 'center', color: '#C4C6CC'},
+			icon: {
+				fontWeight: '500',
+				fontFamily: 'Roboto-Medium',
+				letterSpacing: 0,
+				lineHeight: 39.5,
+				textAlign: 'center',
+				color: '#C4C6CC',
+			},
 			loadingColor: '#2979FF',
 		});
 	});
@@ -70,9 +80,19 @@ describe('getMixedButtonStyles util', () => {
 				fontWeight: '500',
 				textAlign: 'center',
 				color: '#fff',
+				fontFamily: 'Roboto-Medium',
+				letterSpacing: 0,
+				lineHeight: 39.5,
 				fontSize: 29,
 			},
-			icon: {fontWeight: '500', textAlign: 'center', color: '#fff'},
+			icon: {
+				fontWeight: '500',
+				textAlign: 'center',
+				color: '#fff',
+				fontFamily: 'Roboto-Medium',
+				letterSpacing: 0,
+				lineHeight: 39.5,
+			},
 			loadingColor: '#2979FF',
 		});
 	});

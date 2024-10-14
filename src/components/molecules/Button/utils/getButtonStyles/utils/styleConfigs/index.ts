@@ -108,6 +108,9 @@ export const styleConfig = {
 	text: {
 		fontWeight: '500',
 		textAlign: 'center',
+		fontFamily: 'Roboto-Medium',
+		letterSpacing: 0,
+		lineHeight: scaledForDevice(19, moderateScale),
 	},
 	icon: {
 		margin: {
