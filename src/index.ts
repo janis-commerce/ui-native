@@ -24,6 +24,7 @@ import Toast from 'react-native-toast-message';
 import {configToast} from 'molecules/Toast/utils';
 import SwipeList from 'molecules/SwipeList';
 import ItemSelectionButton from 'molecules/ItemSelectionButton';
+import MainCardList from 'molecules/MainCardList';
 
 // Organisms
 import LoadingFullScreen from 'organisms/LoadingFullScreen';
@@ -65,4 +66,5 @@ export {
 	SwipeList,
 	ItemSelectionButton,
 	SwipeItemSelectionList,
+	MainCardList,
 };
