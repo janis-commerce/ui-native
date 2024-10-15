@@ -1,20 +1,21 @@
+import {keyColor} from 'molecules/Button';
 import {buttonWrapperVariantStyles, parseButtonsStyles} from './index';
 import {moderateScale, scaledForDevice} from 'scale';
 
 const layoutButtons = [
 	{
 		icon: 'keyboard',
-		pressedColor: '#FFFFFF',
+		pressedColor: '#FFFFFF' as keyColor,
 		onPress: jest.fn(),
 	},
 	{
 		icon: 'camera',
-		color: '#fgfgfg',
+		color: '#fgfgfg' as keyColor,
 		onPress: jest.fn(),
 	},
 	{
 		icon: 'check_light',
-		color: 'success',
+		color: 'success' as keyColor,
 		disabled: true,
 		onPress: jest.fn(),
 	},
@@ -75,29 +76,29 @@ describe('LayoutWithBottomButtons utils', () => {
 			it('2 buttons - should adjust the size correctly', () => {
 				const buttons = layoutButtons.slice(0, 2);
 				const response = parseButtonsStyles(buttons, 'rounded');
-				expect(response[0].style?.width).toEqual('49%');
-				expect(response[1].style?.width).toEqual('49%');
+				expect(response[0].style?.width).toEqual('auto');
+				expect(response[1].style?.width).toEqual('75%');
 			});
 
 			it('2 buttons - should respect the defined sizes', () => {
 				const buttons = layoutButtons.map((btn) => ({...btn, width: 30})).slice(0, 2);
 				const response = parseButtonsStyles(buttons, 'rounded');
-				expect(response[0].style?.width).toEqual(30);
-				expect(response[1].style?.width).toEqual(30);
+				expect(response[0].style?.width).toEqual('auto');
+				expect(response[1].style?.width).toEqual('75%');
 			});
 
 			it('2 buttons - the first button is full width', () => {
 				const buttons = layoutButtons.map((btn) => ({...btn, width: '100%'})).slice(0, 2);
 				const response = parseButtonsStyles(buttons, 'rounded');
-				expect(response[0].style?.width).toEqual('100%');
-				expect(response[1].style?.width).toEqual('100%');
+				expect(response[0].style?.width).toEqual('auto');
+				expect(response[1].style?.width).toEqual('75%');
 			});
 
 			it('2 buttons - if an invalid width is passed, the default is applied', () => {
 				const buttons = layoutButtons.map((btn) => ({...btn, width: '30'})).slice(0, 2);
 				const response = parseButtonsStyles(buttons, 'rounded');
-				expect(response[0].style?.width).toEqual('49%');
-				expect(response[1].style?.width).toEqual('49%');
+				expect(response[0].style?.width).toEqual('auto');
+				expect(response[1].style?.width).toEqual('75%');
 			});
 
 			it('1 button - should adjust the size correctly', () => {

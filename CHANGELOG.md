@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.10.1] - 2024-10-22
+
+### Fixed
+
+- Fixed shadow for base card list component
+
+## [1.10.0] - 2024-10-14
+
+### Fixed
+
+- Fixed an error with layout buttons
+
+### Added
+
+- Added swipe item selection list component
+- Added MainCardList component.
+
 ## [1.9.0] - 2024-07-22
 
 ### Added
