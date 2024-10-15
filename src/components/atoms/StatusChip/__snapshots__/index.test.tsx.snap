@@ -23,7 +23,14 @@ exports[`StatusChip component render correct a valid component is passed 1`] = `
           "fontFamily": "Roboto",
           "fontSize": 27,
         },
-        undefined,
+        Array [
+          undefined,
+          Object {
+            "fontSize": 14,
+            "fontWeight": "400",
+            "lineHeight": 18,
+          },
+        ],
       ]
     }
   >
@@ -56,14 +63,21 @@ exports[`StatusChip component render correct if a background is passed 1`] = `
           "fontFamily": "Roboto",
           "fontSize": 27,
         },
-        Object {
-          "color": "#fff",
-          "fontFamily": "Roboto",
-          "fontSize": 27,
-          "fontWeight": "900",
-          "lineHeight": 37.5,
-          "textAlign": "center",
-        },
+        Array [
+          Object {
+            "color": "#fff",
+            "fontFamily": "Roboto",
+            "fontSize": 27,
+            "fontWeight": "900",
+            "lineHeight": 37.5,
+            "textAlign": "center",
+          },
+          Object {
+            "fontSize": 14,
+            "fontWeight": "400",
+            "lineHeight": 18,
+          },
+        ],
       ]
     }
   >
@@ -95,14 +109,21 @@ exports[`StatusChip component render correct text is passed 1`] = `
           "fontFamily": "Roboto",
           "fontSize": 27,
         },
-        Object {
-          "color": "#2979FF",
-          "fontFamily": "Roboto",
-          "fontSize": 27,
-          "fontWeight": "900",
-          "lineHeight": 37.5,
-          "textAlign": "center",
-        },
+        Array [
+          Object {
+            "color": "#2979FF",
+            "fontFamily": "Roboto",
+            "fontSize": 27,
+            "fontWeight": "900",
+            "lineHeight": 37.5,
+            "textAlign": "center",
+          },
+          Object {
+            "fontSize": 14,
+            "fontWeight": "400",
+            "lineHeight": 18,
+          },
+        ],
       ]
     }
   >

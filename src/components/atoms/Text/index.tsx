@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import {moderateScale, scaledForDevice} from 'scale';
 
-interface TextProps extends TextComponentProps {
+export interface TextProps extends TextComponentProps {
 	children?: ReactElement | string;
 	style?: StyleProp<TextStyle>;
 }
