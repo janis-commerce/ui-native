@@ -18,6 +18,7 @@ const BaseCardList: FC<BaseCardListProps> = ({children, isSelected = false, styl
 			borderRadius: 20,
 			width: '100%',
 			padding: 16,
+			elevation: 5,
 		},
 		selectedContainer: {
 			borderWidth: 2,
