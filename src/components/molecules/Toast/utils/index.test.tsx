@@ -1,6 +1,6 @@
 import React from 'react';
 import {render} from '@testing-library/react-native';
-import Text from 'atoms/Text';
+import Text from 'atoms/Typography';
 import {configToast} from './'; // Ajusta la ruta según sea necesario
 
 // Mocks

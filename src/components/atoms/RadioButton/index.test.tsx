@@ -1,7 +1,7 @@
 import React from 'react';
 import {create} from 'react-test-renderer';
 import RadioButton from './index';
-import Text from 'atoms/Text';
+import Text from 'atoms/Typography';
 import {TouchableOpacity} from 'react-native';
 
 describe('radioButton component', () => {

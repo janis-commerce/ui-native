@@ -3,7 +3,7 @@ import {Modal, StyleSheet, View} from 'react-native';
 import {moderateScale, scaledForDevice} from 'scale';
 import {base, primary} from 'theme/palette';
 import Icon from 'atoms/Icon';
-import Text from 'atoms/Text';
+import Text from 'atoms/Typography';
 
 export enum animationTypes {
 	Slide = 'slide',
