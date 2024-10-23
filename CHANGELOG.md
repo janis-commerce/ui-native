@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.10.2] - 2024-10-23
+
+### Fixed
+
+- Fixed shadow and pressed shadow for base card list component
+
 ## [1.10.1] - 2024-10-22
 
 ### Fixed
