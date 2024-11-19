@@ -87,8 +87,8 @@ const Toast: FC<ToastProps> = ({type, text1, text2, style, props}) => {
 			flexDirection: 'row',
 			alignItems: 'center',
 		},
-		closeIcon: {
-			paddingLeft: scaledForDevice(10, moderateScale),
+		closeIconWrapper: {
+			padding: scaledForDevice(10, moderateScale),
 		},
 		actionTitle: {
 			marginRight: scaledForDevice(5, moderateScale),
@@ -97,6 +97,9 @@ const Toast: FC<ToastProps> = ({type, text1, text2, style, props}) => {
 			fontSize: scaledForDevice(14, moderateScale),
 			lineHeight: scaledForDevice(16, moderateScale),
 			color: validColor,
+		},
+		actionWrapper: {
+			padding: scaledForDevice(10, moderateScale),
 		},
 	});
 	return (
@@ -117,13 +120,19 @@ const Toast: FC<ToastProps> = ({type, text1, text2, style, props}) => {
 
 			<View style={styles.feedbackWrapper}>
 				{actionTitle && (
-					<TouchableOpacity onPress={handleActionCb} activeOpacity={0.6}>
+					<TouchableOpacity
+						style={styles.actionWrapper}
+						onPress={handleActionCb}
+						activeOpacity={0.6}>
 						<Text style={styles.actionTitle}>{actionTitle}</Text>
 					</TouchableOpacity>
 				)}
 				{showCloseIcon && (
-					<TouchableOpacity onPress={handleCloseCb} activeOpacity={0.6}>
-						<Icon name="cross_light" color={validColor} size={24} style={styles.closeIcon} />
+					<TouchableOpacity
+						style={styles.closeIconWrapper}
+						onPress={handleCloseCb}
+						activeOpacity={0.6}>
+						<Icon name="cross_light" color={validColor} size={24} />
 					</TouchableOpacity>
 				)}
 			</View>

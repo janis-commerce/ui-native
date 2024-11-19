@@ -18,10 +18,14 @@ const BaseCardList: FC<BaseCardListProps> = ({children, isSelected = false, styl
 			borderRadius: 20,
 			width: '100%',
 			padding: 16,
+			elevation: 2,
+			shadowColor: palette.black.main,
 		},
 		selectedContainer: {
 			borderWidth: 2,
 			borderColor: palette.primary.main,
+			elevation: 4,
+			shadowColor: palette.primary.main,
 		},
 	});
 

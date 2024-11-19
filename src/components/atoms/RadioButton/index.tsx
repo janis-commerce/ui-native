@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
 
 	row: {
 		flexDirection: 'row',
-		justifyContent: 'flex-start',
+		justifyContent: 'space-between',
 	},
 	reverseRow: {
 		flexDirection: 'row-reverse',

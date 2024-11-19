@@ -7,6 +7,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.10.3] - 2024-10-24
+
+### Fixed
+
+- Adjusted action button and close button's sizing for toast component
+
+## [1.10.2] - 2024-10-23
+
+### Fixed
+
+- Fixed shadow and pressed shadow for base card list component
+
+## [1.10.1] - 2024-10-22
+
+### Fixed
+
+- Fixed shadow for base card list component
+
+## [1.10.0] - 2024-10-14
+
+### Fixed
+
+- Fixed an error with layout buttons
+
+### Added
+
+- Added swipe item selection list component
+- Added MainCardList component.
+
 ## [1.9.0] - 2024-07-22
 
 ### Added

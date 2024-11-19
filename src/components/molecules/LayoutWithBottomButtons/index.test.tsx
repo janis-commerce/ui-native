@@ -2,9 +2,10 @@ import {View, Text} from 'react-native';
 import React from 'react';
 import {render} from '@testing-library/react-native';
 import {create} from 'react-test-renderer';
-import Button from 'atoms/BaseButton';
+import Button from 'molecules/Button';
 import LayoutWithBottomButtons from './index';
 import * as utils from './utils';
+import {keyColor} from 'molecules/Button';
 
 describe('LayoutWithBottomButtons Layout', () => {
 	const parseButtonsStyles = jest.spyOn(utils, 'parseButtonsStyles');
@@ -50,8 +51,8 @@ describe('LayoutWithBottomButtons Layout', () => {
 			const testText = 'Some Content';
 			const testButton = [
 				{
-					iconName: 'home',
-					color: 'success',
+					icon: 'home',
+					color: 'success' as keyColor,
 					onPressHandler: jest.fn(),
 				},
 			];
@@ -70,10 +71,10 @@ describe('LayoutWithBottomButtons Layout', () => {
 
 		it('render one button correctly', () => {
 			const testText = 'Some Content';
-			const testColor = 'success';
+			const testColor = 'success' as keyColor;
 			const testButton = [
 				{
-					iconName: 'home',
+					icon: 'home',
 					color: testColor,
 					onPressHandler: jest.fn(),
 				},
@@ -96,16 +97,16 @@ describe('LayoutWithBottomButtons Layout', () => {
 
 		it('render two buttons correctly', () => {
 			const testText = 'Some Content';
-			const testColor1 = 'success';
-			const testColor2 = 'warning';
+			const testColor1 = 'success' as keyColor;
+			const testColor2 = 'warning' as keyColor;
 			const testButtons = [
 				{
-					iconName: 'home',
+					icon: 'home',
 					color: testColor1,
 					onPressHandler: jest.fn(),
 				},
 				{
-					iconName: 'camera',
+					icon: 'camera',
 					color: testColor2,
 					onPressHandler: jest.fn(),
 				},
@@ -128,24 +129,167 @@ describe('LayoutWithBottomButtons Layout', () => {
 			expect(secondButtonColor).toBe(testColor2);
 		});
 
-		it('render three buttons correctly - variant rounded', () => {
+		it('render two buttons with only icons correctly - variant roundedOnTop', () => {
 			const testText = 'Some Content';
-			const testColor1 = 'success';
-			const testColor2 = 'warning';
-			const testColor3 = 'error';
+			const testColor1 = 'success' as keyColor;
+			const testColor2 = 'warning' as keyColor;
 			const testButtons = [
 				{
-					iconName: 'home',
+					icon: 'home',
+					color: testColor1,
+					onPressHandler: jest.fn(),
+					width: 20,
+				},
+				{
+					icon: 'camera',
+					color: testColor2,
+					onPressHandler: jest.fn(),
+				},
+			];
+
+			const LayoutInstance = create(
+				<LayoutWithBottomButtons variant="roundedOnTop" buttons={testButtons}>
+					<View>
+						<Text>{testText}</Text>
+					</View>
+				</LayoutWithBottomButtons>
+			).root;
+
+			const Buttons = LayoutInstance.findAllByType(Button);
+			const {color: firstButtonColor} = Buttons[0].props;
+			const {color: secondButtonColor} = Buttons[1].props;
+
+			expect(Buttons.length).toBe(2);
+			expect(firstButtonColor).toBe(testColor1);
+			expect(secondButtonColor).toBe(testColor2);
+		});
+
+		it('render two buttons correctly - variant roundedOnTop', () => {
+			const testText = 'Some Content';
+			const testColor1 = 'success' as keyColor;
+			const testColor2 = 'warning' as keyColor;
+			const testButtons = [
+				{
+					icon: 'home',
+					value: 'Button',
+					color: testColor1,
+					onPressHandler: jest.fn(),
+					width: 20,
+				},
+				{
+					icon: 'camera',
+					value: 'Button',
+					color: testColor2,
+					onPressHandler: jest.fn(),
+				},
+			];
+
+			const LayoutInstance = create(
+				<LayoutWithBottomButtons variant="roundedOnTop" buttons={testButtons}>
+					<View>
+						<Text>{testText}</Text>
+					</View>
+				</LayoutWithBottomButtons>
+			).root;
+
+			const Buttons = LayoutInstance.findAllByType(Button);
+			const {color: firstButtonColor} = Buttons[0].props;
+			const {color: secondButtonColor} = Buttons[1].props;
+
+			expect(Buttons.length).toBe(2);
+			expect(firstButtonColor).toBe(testColor1);
+			expect(secondButtonColor).toBe(testColor2);
+		});
+
+		it('render two icon buttons correctly - variant rounded', () => {
+			const testText = 'Some Content';
+			const testColor1 = 'success' as keyColor;
+			const testColor2 = 'warning' as keyColor;
+			const testButtons = [
+				{
+					icon: 'home',
 					color: testColor1,
 					onPressHandler: jest.fn(),
 				},
 				{
-					iconName: 'camera',
+					icon: 'camera',
 					color: testColor2,
 					onPressHandler: jest.fn(),
 				},
+			];
+
+			const LayoutInstance = create(
+				<LayoutWithBottomButtons buttons={testButtons} variant="rounded">
+					<View>
+						<Text>{testText}</Text>
+					</View>
+				</LayoutWithBottomButtons>
+			).root;
+
+			const Buttons = LayoutInstance.findAllByType(Button);
+			const {color: firstButtonColor} = Buttons[0].props;
+			const {color: secondButtonColor} = Buttons[1].props;
+
+			expect(Buttons.length).toBe(2);
+			expect(firstButtonColor).toBe(testColor1);
+			expect(secondButtonColor).toBe(testColor2);
+		});
+
+		it('render two buttons correctly - variant rounded', () => {
+			const testText = 'Some Content';
+			const testColor1 = 'success' as keyColor;
+			const testColor2 = 'warning' as keyColor;
+			const testButtons = [
 				{
-					iconName: 'box',
+					icon: 'home',
+					value: 'Button',
+					color: testColor1,
+					onPressHandler: jest.fn(),
+				},
+				{
+					icon: 'camera',
+					value: 'Button',
+					color: testColor2,
+					onPressHandler: jest.fn(),
+				},
+			];
+
+			const LayoutInstance = create(
+				<LayoutWithBottomButtons buttons={testButtons} variant="rounded">
+					<View>
+						<Text>{testText}</Text>
+					</View>
+				</LayoutWithBottomButtons>
+			).root;
+
+			const Buttons = LayoutInstance.findAllByType(Button);
+			const {color: firstButtonColor} = Buttons[0].props;
+			const {color: secondButtonColor} = Buttons[1].props;
+
+			expect(Buttons.length).toBe(2);
+			expect(firstButtonColor).toBe(testColor1);
+			expect(secondButtonColor).toBe(testColor2);
+		});
+
+		it('render three buttons correctly - variant rounded', () => {
+			const testText = 'Some Content';
+			const testColor1 = 'success' as keyColor;
+			const testColor2 = 'warning' as keyColor;
+			const testColor3 = 'error' as keyColor;
+			const testButtons = [
+				{
+					icon: 'home',
+					color: testColor1,
+					onPressHandler: jest.fn(),
+				},
+				{
+					icon: 'camera',
+					color: testColor2,
+					onPressHandler: jest.fn(),
+					width: 25,
+				},
+				{
+					icon: 'box',
 					color: testColor3,
 					onPressHandler: jest.fn(),
 				},
