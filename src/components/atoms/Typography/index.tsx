@@ -1,7 +1,6 @@
 import React, {ReactElement} from 'react';
-import {StyleProp, TextStyle} from 'react-native';
+import {Text, StyleProp, TextStyle, TextProps} from 'react-native';
 import getStyleByTypography from './utils/getStyleByTypography';
-import Text, {TextProps} from 'atoms/Text';
 
 export type TypographyType = 'display' | 'heading' | 'title' | 'label' | 'body' | 'overline';
 

@@ -19,18 +19,12 @@ exports[`StatusChip component render correct a valid component is passed 1`] = `
   <Text
     style={
       Array [
+        undefined,
         Object {
-          "fontFamily": "Roboto",
-          "fontSize": 27,
+          "fontSize": 14,
+          "fontWeight": "400",
+          "lineHeight": 18,
         },
-        Array [
-          undefined,
-          Object {
-            "fontSize": 14,
-            "fontWeight": "400",
-            "lineHeight": 18,
-          },
-        ],
       ]
     }
   >
@@ -60,24 +54,18 @@ exports[`StatusChip component render correct if a background is passed 1`] = `
     style={
       Array [
         Object {
+          "color": "#fff",
           "fontFamily": "Roboto",
           "fontSize": 27,
+          "fontWeight": "900",
+          "lineHeight": 37.5,
+          "textAlign": "center",
         },
-        Array [
-          Object {
-            "color": "#fff",
-            "fontFamily": "Roboto",
-            "fontSize": 27,
-            "fontWeight": "900",
-            "lineHeight": 37.5,
-            "textAlign": "center",
-          },
-          Object {
-            "fontSize": 14,
-            "fontWeight": "400",
-            "lineHeight": 18,
-          },
-        ],
+        Object {
+          "fontSize": 14,
+          "fontWeight": "400",
+          "lineHeight": 18,
+        },
       ]
     }
   >
@@ -106,24 +94,18 @@ exports[`StatusChip component render correct text is passed 1`] = `
     style={
       Array [
         Object {
+          "color": "#2979FF",
           "fontFamily": "Roboto",
           "fontSize": 27,
+          "fontWeight": "900",
+          "lineHeight": 37.5,
+          "textAlign": "center",
         },
-        Array [
-          Object {
-            "color": "#2979FF",
-            "fontFamily": "Roboto",
-            "fontSize": 27,
-            "fontWeight": "900",
-            "lineHeight": 37.5,
-            "textAlign": "center",
-          },
-          Object {
-            "fontSize": 14,
-            "fontWeight": "400",
-            "lineHeight": 18,
-          },
-        ],
+        Object {
+          "fontSize": 14,
+          "fontWeight": "400",
+          "lineHeight": 18,
+        },
       ]
     }
   >

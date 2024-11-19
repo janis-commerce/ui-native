@@ -16,7 +16,7 @@
 		"esModuleInterop": true,
 		"skipLibCheck": true,
 		"baseUrl": "./src",
-		"types": ["react", "react-native", "jest"],
+		"types": ["react", "react-native", "jest", "node"],
 		"paths": {
 			"react": ["../node_modules/@types/react"],
 			"atoms/*": ["./components/atoms/*"],

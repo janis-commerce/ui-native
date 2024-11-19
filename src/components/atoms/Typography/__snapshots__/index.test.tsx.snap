@@ -4,18 +4,12 @@ exports[`Typography component render correct match snapshot with default typogra
 <Text
   style={
     Array [
+      undefined,
       Object {
-        "fontFamily": "Roboto",
-        "fontSize": 27,
+        "fontSize": 14,
+        "fontWeight": "400",
+        "lineHeight": 18,
       },
-      Array [
-        undefined,
-        Object {
-          "fontSize": 14,
-          "fontWeight": "400",
-          "lineHeight": 18,
-        },
-      ],
     ]
   }
 >

@@ -29,3 +29,5 @@ jest.mock('react-native-toast-message', () => ({
 	hide: jest.fn(),
 	setRef: jest.fn(),
 }));
+
+jest.spyOn(console, 'warn').mockImplementation(() => {});
