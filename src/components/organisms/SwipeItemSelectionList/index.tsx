@@ -62,6 +62,7 @@ const SwipeItemSelectionList: React.FC<SwipeItemSelectionListProps> = React.forw
 
 			return (
 				<ItemSelectionButton
+					key={id}
 					radioButton={radioButton}
 					leftSelection={leftSelection}
 					rightSelection={rightSelection}
