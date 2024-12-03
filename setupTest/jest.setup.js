@@ -1,3 +1,5 @@
+import {mockAccordion} from './__mocks__/react-native-collapsible';
+
 /* eslint-disable no-undef */
 jest.mock('react', () => {
 	const react = jest.requireActual('react');
@@ -29,3 +31,10 @@ jest.mock('react-native-toast-message', () => ({
 	hide: jest.fn(),
 	setRef: jest.fn(),
 }));
+
+jest.mock('react-native-collapsible/Accordion', () => {
+	return {
+		__esModule: true,
+		default: mockAccordion,
+	};
+});

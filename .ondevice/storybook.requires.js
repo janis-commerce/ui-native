@@ -48,8 +48,9 @@ try {
 const getStories = () => {
 	return {
 		'./storybook/stories/Avatar/Avatar.stories.js': require('../storybook/stories/Avatar/Avatar.stories.js'),
-		'./storybook/stories/Button/Button.stories.js': require('../storybook/stories/Button/Button.stories.js'),
+		'./storybook/stories/BaseCollapsible/BaseCollapsible.stories.js': require('../storybook/stories/BaseCollapsible/BaseCollapsible.stories.js'),
 		'./storybook/stories/BaseInput/BaseInput.stories.js': require('../storybook/stories/BaseInput/BaseInput.stories.js'),
+		'./storybook/stories/Button/Button.stories.js': require('../storybook/stories/Button/Button.stories.js'),
 		'./storybook/stories/Carousel/Carousel.stories.js': require('../storybook/stories/Carousel/Carousel.stories.js'),
 		'./storybook/stories/CheckBox/CheckBox.stories.js': require('../storybook/stories/CheckBox/CheckBox.stories.js'),
 		'./storybook/stories/DesignStystem/Colors.stories.js': require('../storybook/stories/DesignStystem/Colors.stories.js'),
@@ -73,6 +74,7 @@ const getStories = () => {
 		'./storybook/stories/Tabs/Tabs.stories.js': require('../storybook/stories/Tabs/Tabs.stories.js'),
 		'./storybook/stories/Text/Text.stories.js': require('../storybook/stories/Text/Text.stories.js'),
 		'./storybook/stories/Toast/Toast.stories.js': require('../storybook/stories/Toast/Toast.stories.js'),
+		'./storybook/stories/BaseCollapsible/BaseCollapsible.stories.js': require('../storybook/stories/BaseCollapsible/BaseCollapsible.stories.js'),
 	};
 };
 
