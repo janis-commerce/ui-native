@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, TouchableOpacity, StyleSheet, ViewStyle} from 'react-native';
-import Text from 'atoms/Typography';
+import Typography from 'atoms/Typography';
 import CheckBox from 'atoms/CheckBox';
 import {horizontalScale, moderateScale, scaledForDevice} from 'scale';
 
@@ -88,7 +88,7 @@ const RadioButton = ({
 				onPress={onPress}
 			/>
 			<View style={checkLeft ? checkToLeft : checkToRight}>
-				{isStringChild ? <Text>{children}</Text> : children}
+				{isStringChild ? <Typography>{children}</Typography> : children}
 			</View>
 		</TouchableOpacity>
 	);

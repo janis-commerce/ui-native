@@ -1,7 +1,7 @@
 import React from 'react';
 import {create} from 'react-test-renderer';
 import RadioButton from './index';
-import Text from 'atoms/Typography';
+import Typography from 'atoms/Typography';
 import {TouchableOpacity} from 'react-native';
 
 describe('radioButton component', () => {
@@ -17,7 +17,7 @@ describe('radioButton component', () => {
 	});
 
 	it('should render correctly when receives a valid child', () => {
-		const child = <Text>valid child</Text>;
+		const child = <Typography>valid child</Typography>;
 
 		const {toJSON} = create(<RadioButton>{child}</RadioButton>);
 		expect(toJSON()).toBeTruthy();

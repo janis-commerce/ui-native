@@ -1,6 +1,6 @@
 import React from 'react';
 import {create} from 'react-test-renderer';
-import Text from 'atoms/Typography';
+import Typography from 'atoms/Typography';
 import {VariantOptions} from '../../';
 import SwitcherComponent from './';
 
@@ -13,7 +13,7 @@ const validData = {
 		pageY: 0,
 		pageX: 0,
 	},
-	children: <Text>Text</Text>,
+	children: <Typography>Text</Typography>,
 	modalAcceptText: 'Accept Button',
 	setShow: () => {},
 };

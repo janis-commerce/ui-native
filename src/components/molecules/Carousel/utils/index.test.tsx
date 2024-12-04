@@ -1,9 +1,13 @@
 import React from 'react';
 import {renderHook} from '@testing-library/react-hooks';
 import useCarouselControls from './';
-import Text from 'atoms/Typography';
+import Typography from 'atoms/Typography';
 
-const validPages = [<Text>Page1</Text>, <Text>Page2</Text>, <Text>Page3</Text>];
+const validPages = [
+	<Typography>Page1</Typography>,
+	<Typography>Page2</Typography>,
+	<Typography>Page3</Typography>,
+];
 const validProps = {
 	pages: validPages,
 	isLoop: true,

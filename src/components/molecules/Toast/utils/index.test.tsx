@@ -1,6 +1,6 @@
 import React from 'react';
 import {render} from '@testing-library/react-native';
-import Text from 'atoms/Typography';
+import Typography from 'atoms/Typography';
 import {configToast} from './'; // Ajusta la ruta según sea necesario
 
 // Mocks
@@ -9,7 +9,7 @@ jest.mock('../', () => {
 });
 
 describe('configToast', () => {
-	const mockProps = {title1: 'Test message', children: <Text>Title</Text>};
+	const mockProps = {title1: 'Test message', children: <Typography>Title</Typography>};
 
 	it('should render success Toast correctly', () => {
 		const {toJSON} = render(configToast.success(mockProps));

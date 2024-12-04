@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {StyleSheet, View, ViewStyle} from 'react-native';
 import Image from 'atoms/Image';
-import Text from 'atoms/Typography';
+import Typography from 'atoms/Typography';
 import {formatPlaceholder} from './utils/formatPlaceholder/index';
 import {horizontalScale, moderateScale, scaledForDevice} from 'scale';
 
@@ -102,7 +102,9 @@ const Avatar = ({
 			)}
 
 			{(showInitials || !imageUrl) && !!initials.length && (
-				<Text style={[styles.text, {color: textColor, fontSize: validFontSize}]}>{initials}</Text>
+				<Typography style={[styles.text, {color: textColor, fontSize: validFontSize}]}>
+					{initials}
+				</Typography>
 			)}
 		</View>
 	);

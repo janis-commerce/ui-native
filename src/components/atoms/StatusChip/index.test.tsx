@@ -2,7 +2,7 @@ import 'react-native';
 import React from 'react';
 import {create} from 'react-test-renderer';
 import StatusChip from './index';
-import Text from 'atoms/Typography';
+import Typography from 'atoms/Typography';
 import {primary} from 'theme/palette';
 
 describe('StatusChip component', () => {
@@ -27,7 +27,7 @@ describe('StatusChip component', () => {
 		it('a valid component is passed', () => {
 			const {toJSON} = create(
 				<StatusChip>
-					<Text>Custom component</Text>
+					<Typography>Custom component</Typography>
 				</StatusChip>
 			);
 			expect(toJSON()).toMatchSnapshot();

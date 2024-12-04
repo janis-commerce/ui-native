@@ -3,7 +3,7 @@ import {TouchableOpacity} from 'react-native';
 import {create} from 'react-test-renderer';
 import Toast from './';
 import {Types} from 'atoms/BaseToast';
-import Text from 'atoms/Typography';
+import Typography from 'atoms/Typography';
 
 const props1 = {
 	showIcon: true,
@@ -24,7 +24,7 @@ const validProps = {
 	text2: 'Message toast',
 	type: Types.Notice,
 	style: {color: 'blue'},
-	children: <Text>Text</Text>,
+	children: <Typography>Text</Typography>,
 };
 
 describe('Toast', () => {
