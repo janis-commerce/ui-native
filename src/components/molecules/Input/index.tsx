@@ -31,12 +31,7 @@ const Input = forwardRef<TextInput, InputProps>(({style, type, ...props}, ref) =
 	});
 
 	return (
-		<BaseInput
-			style={[styles.input, style]}
-			ref={ref}
-			keyboardType={InputType[type] || InputType.text}
-			{...props}
-		/>
+		<BaseInput style={[styles.input, style]} ref={ref} keyboardType={InputType[type]} {...props} />
 	);
 });
 
