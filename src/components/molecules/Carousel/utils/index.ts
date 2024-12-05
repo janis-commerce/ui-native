@@ -14,7 +14,7 @@ const useCarouselControls = ({
 }: CarouselProps) => {
 	const [activePage, setActivePage] = useState(0);
 	const slider = useRef<ScrollView | null>(null);
-	const intervalId = useRef<number | null>(null);
+	const intervalId = useRef<any | number | null>(null);
 
 	const {width: screenWidth} = Dimensions.get('screen');
 	const width = customWidth ?? screenWidth;

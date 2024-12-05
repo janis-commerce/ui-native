@@ -3,7 +3,7 @@ import {ViewStyle, StyleSheet, TextStyle, View} from 'react-native';
 import BaseButton, {BaseButtonProps} from 'atoms/BaseButton';
 import getButtonStyles from './utils/getButtonStyles';
 import Loading from 'atoms/Loading';
-import Text from 'atoms/Text';
+import Typography from 'atoms/Typography';
 import Icon from 'atoms/Icon';
 
 export const types = {
@@ -98,7 +98,7 @@ const Button: FC<ButtonProps> = ({
 	const WrapperComponent = (
 		<View style={styles.direction}>
 			{icon && <Icon name={icon} style={[styles.icon, iconStyle]} size={24} />}
-			{!!value && <Text style={[styles.text, textStyle]}>{value}</Text>}
+			{!!value && <Typography style={[styles.text, textStyle]}>{value}</Typography>}
 		</View>
 	);
 
