@@ -3,7 +3,6 @@ import BaseButton from 'atoms/BaseButton';
 import CheckBox from 'atoms/CheckBox';
 import Icon from 'atoms/Icon';
 import Image from 'atoms/Image';
-import Input from 'atoms/Input';
 import List from 'atoms/List';
 import Loading from 'atoms/Loading';
 import RadioButton from 'atoms/RadioButton';
@@ -26,6 +25,7 @@ import {configToast} from 'molecules/Toast/utils';
 import SwipeList from 'molecules/SwipeList';
 import ItemSelectionButton from 'molecules/ItemSelectionButton';
 import MainCardList from 'molecules/MainCardList';
+import Input from 'molecules/Input';
 
 // Organisms
 import LoadingFullScreen from 'organisms/LoadingFullScreen';
@@ -42,10 +42,10 @@ export {
 	CheckBox,
 	Icon,
 	Image,
+	Input,
 	Loading,
 	Svg,
 	StatusChip,
-	Input,
 	palette,
 	LoadingFullScreen,
 	RadioButton,

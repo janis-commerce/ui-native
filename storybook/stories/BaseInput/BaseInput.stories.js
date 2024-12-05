@@ -1,25 +1,30 @@
-import React, {useState} from 'react';
+import React from 'react';
 import BaseInput from 'atoms/BaseInput';
 
 export default {
 	title: 'Components/BaseInput',
+	component: BaseInput,
 	argTypes: {
 		textAlign: {
-			options: ['center', 'left', 'right', null],
-			defaultValue: 'center',
-			control: {type: 'select'},
+			control: {
+				type: 'select',
+				options: ['center', 'left', 'right'],
+			},
 		},
 	},
 };
 
-export const DefaultProps = (props) => {
-	const [value, setValue] = useState('');
+const Template = (args) => <BaseInput {...args} />;
 
-	return <BaseInput value={value} onChangeText={setValue} {...props} />;
+export const Default = Template.bind({});
+Default.args = {
+	placeholder: 'Enter text',
+	textAlign: 'center',
 };
 
-DefaultProps.storyName = 'Base input with default props';
-
-DefaultProps.args = {
-	placeholder: 'Janis Commerce',
+export const WithCustomStyle = Template.bind({});
+WithCustomStyle.args = {
+	placeholder: 'Enter text',
+	textAlign: 'left',
+	style: {borderColor: 'red', borderWidth: 1},
 };
