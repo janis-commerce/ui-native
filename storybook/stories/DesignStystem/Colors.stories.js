@@ -1,7 +1,7 @@
 import React from 'react';
 import {View} from 'react-native';
 import Text from 'atoms/Text';
-import {black, palette} from 'theme/palette';
+import palette from 'theme/palette';
 import CenterScrollView from '../../decorators/CenterScrollView';
 
 export default {
@@ -37,7 +37,7 @@ const styles = {
 		backgroundColor: color,
 		width: 100,
 		height: 100,
-		borderColor: black.semiTransparent,
+		borderColor: '#0000001a',
 		borderWidth: 1,
 		marginRight: 10,
 	}),

@@ -1,7 +1,7 @@
 import {keyColor} from 'molecules/Button';
 import {PressableProps, ViewStyle, TextStyle} from 'react-native';
 import {moderateScale, scaledForDevice} from 'scale';
-import {palette} from 'theme/palette';
+import palette from 'theme/palette';
 
 export interface IlayoutButtons extends PressableProps {
 	value?: string | null;
@@ -49,12 +49,12 @@ const getBackgroundColor = ({
 	pressedColor: receivedPressedColor,
 	disabled,
 }: IlayoutButtons) => {
-	const validColor = typeof color === 'string' ? color : 'primary';
+	const validColor = typeof color === 'string' ? color : palette.primary.blue.normal;
 	const validPressedColor =
 		typeof receivedPressedColor === 'string' ? receivedPressedColor : validColor;
-	palette.grey[200];
-	const backgroundColor = disabled ? palette.grey[200] : palette[validColor]?.main || validColor;
-	const pressedColor = palette[validPressedColor]?.dark || validPressedColor;
+	palette.greyScale['03'];
+	const backgroundColor = disabled ? palette.greyScale['03'] : validColor;
+	const pressedColor = validPressedColor;
 	return {backgroundColor, pressedColor};
 };
 

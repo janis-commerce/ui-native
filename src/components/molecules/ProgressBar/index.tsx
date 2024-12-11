@@ -1,7 +1,7 @@
 /* istanbul ignore file */
 import React, {FC, useEffect, useRef} from 'react';
 import {View, StyleSheet, Animated, Easing, ViewStyle} from 'react-native';
-import {palette} from 'theme/palette';
+import palette from 'theme/palette';
 import {getBarColor, getPercentage} from './utils';
 import {moderateScale, scaledForDevice} from 'scale';
 
@@ -21,8 +21,6 @@ const ProgressBar: FC<ProgressBarProps> = ({
 	style,
 	...props
 }) => {
-	const {white} = palette;
-
 	const widthAnimation = useRef(new Animated.Value(0)).current;
 
 	const availableTimeDuration = isAnimated && typeof duration === 'number';
@@ -55,7 +53,7 @@ const ProgressBar: FC<ProgressBarProps> = ({
 			height: validHeight,
 			marginTop: validMarginTop,
 			borderRadius: validBorderRadius,
-			backgroundColor: white.main,
+			backgroundColor: palette.secondary.grey.normal,
 		},
 		fill: {
 			position: 'absolute',

@@ -1,7 +1,7 @@
 import Svg, {Path} from 'react-native-svg';
 import React from 'react';
 import {Animated, ViewProps} from 'react-native';
-import {white} from 'theme/palette';
+import palette from 'theme/palette';
 
 interface IanimatedView extends Animated.AnimatedProps<ViewProps> {
 	size?: number;
@@ -15,7 +15,7 @@ const LoadingSvg = ({size, color, ...props}: IanimatedView) => {
 				<Path
 					d="M134.1,136.4c-30.3,29.1-78.5,28-107.5-2.3c-29.1-30.3-28-78.5,2.3-107.5s78.5-28,107.5,2.3"
 					fill="none"
-					stroke={white.dark}
+					stroke={palette.secondary.grey.pressed}
 					strokeWidth="10.5546"
 					strokeLinecap="round"
 					strokeLinejoin="round"

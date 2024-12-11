@@ -1,7 +1,7 @@
 import React from 'react';
 import List from 'atoms/List';
 import {StyleSheet, Text, View} from 'react-native';
-import {white} from 'theme/palette';
+import palette from 'theme/palette';
 
 export default {
 	title: 'Components/List',
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
 	},
 	wrapperChildren: {
 		padding: 20,
-		backgroundColor: white.main,
+		backgroundColor: palette.secondary.grey.normal,
 		marginBottom: 2,
 	},
 });

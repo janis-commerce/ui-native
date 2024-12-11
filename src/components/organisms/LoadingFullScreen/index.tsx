@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, Modal, ModalProps, Text, View, ViewStyle} from 'react-native';
 import Loading from 'atoms/Loading';
 import Svg from 'atoms/Svg';
-import {grey, white} from 'theme/palette';
+import palette from 'theme/palette';
 import {Names} from 'ts/interfaces/svgs';
 import {moderateScale, horizontalScale, scaledForDevice} from 'scale';
 
@@ -25,13 +25,13 @@ const styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: 'center',
 		alignItems: 'center',
-		backgroundColor: white.semiTransparent,
+		backgroundColor: '#ffffffbf',
 	},
 	TextStyles: {
 		fontSize: validFontSize,
 		lineHeight: validLineHeight,
 		fontFamily: 'Roboto',
-		color: grey[700],
+		color: palette.greyScale['08'],
 		textAlign: 'center',
 		fontWeight: '500',
 		width: '50%',

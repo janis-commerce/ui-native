@@ -1,6 +1,6 @@
 import React, {FC, ReactNode} from 'react';
 import {StyleSheet, View, ViewProps} from 'react-native';
-import {palette} from 'theme/palette';
+import palette from 'theme/palette';
 
 export interface BaseCardListProps extends ViewProps {
 	children: ReactNode;
@@ -14,18 +14,18 @@ const BaseCardList: FC<BaseCardListProps> = ({children, isSelected = false, styl
 
 	const styles = StyleSheet.create({
 		container: {
-			backgroundColor: palette.base.white,
+			backgroundColor: palette.greyScale.white,
 			borderRadius: 20,
 			width: '100%',
 			padding: 16,
 			elevation: 2,
-			shadowColor: palette.black.main,
+			shadowColor: palette.secondary.black.normal,
 		},
 		selectedContainer: {
 			borderWidth: 2,
-			borderColor: palette.primary.main,
+			borderColor: palette.primary.blue.normal,
 			elevation: 4,
-			shadowColor: palette.primary.main,
+			shadowColor: palette.primary.blue.normal,
 		},
 	});
 

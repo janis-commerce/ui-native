@@ -1,15 +1,11 @@
 import {moderateScale, scaledForDevice} from 'scale';
-import {palette} from 'theme/palette';
+import palette from 'theme/palette';
 import {colorConfig, styleConfig} from './utils/styleConfigs';
 import {validTypes, validVariants, validIconPositions, verticalHeights} from './utils/constants';
-import {
-	defaultColor,
-	defaultIconPosition,
-	defaultType,
-	defaultVariant,
-} from './utils/defaultValues';
+import {defaultIconPosition, defaultType, defaultVariant} from './utils/defaultValues';
 
 import type {ContainerStyle, DirectionStyle, Params, ReturnStyles, TextStyle} from '../../types';
+import parseColor from './utils/parseColor';
 
 const containerStyle = ({
 	isDisabled,
@@ -19,7 +15,7 @@ const containerStyle = ({
 	type,
 	iconPosition,
 }: ContainerStyle) => {
-	const selectedColor = palette[color] || palette[defaultColor];
+	const selectedColor = parseColor[color] || palette.primary.blue;
 	const {main, disabled} = colorConfig(selectedColor);
 
 	const {container} = styleConfig;
@@ -51,7 +47,7 @@ const containerStyle = ({
 };
 
 const pressedStyle = ({variant, color}: ContainerStyle) => {
-	const selectedColor = palette[color] || palette[defaultColor];
+	const selectedColor = parseColor[color] || palette.primary.blue;
 	const {pressed} = colorConfig(selectedColor);
 
 	const validVariant = validVariants.includes(variant) ? variant : defaultVariant;
@@ -79,7 +75,7 @@ const directionWrapperStyle = ({iconPosition}: DirectionStyle) => {
 };
 
 const baseTextStyle = ({isDisabled, type, variant, color, isLoading}: TextStyle) => {
-	const selectedColor = palette[color] || palette[defaultColor];
+	const selectedColor = parseColor[color] || palette.primary.blue;
 	const {main, disabled} = colorConfig(selectedColor);
 
 	const {text: textStyle} = styleConfig;
@@ -117,7 +113,7 @@ const getButtonStyles = (params: Params): ReturnStyles => ({
 	direction: directionWrapperStyle(params),
 	text: textStyle(params),
 	icon: iconStyle(params),
-	loadingColor: palette.primary.main,
+	loadingColor: palette.primary.blue.normal,
 });
 
 export default getButtonStyles;

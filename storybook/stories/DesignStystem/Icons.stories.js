@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet, useWindowDimensions} from 'react-native';
 import Icon from '../../../src/components/atoms/Icon';
-import {primary} from '../../../src/theme/palette';
+import palette from '../../../src/theme/palette';
 import iconsSelection from '../../../src/components/atoms/Icon/assets/fonts/selection.json';
 import CenterScrollView from '../../decorators/CenterScrollView';
 
@@ -57,5 +57,5 @@ export const DefaultProps = ({color, size, ...props}) => {
 DefaultProps.storyName = 'Icons';
 
 DefaultProps.args = {
-	color: primary.main,
+	color: palette.primary.blue.normal,
 };

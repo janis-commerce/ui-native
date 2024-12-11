@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, FC} from 'react';
 import {StyleSheet, View, Animated, Easing, ViewStyle} from 'react-native';
 import LoadingSvg from './LoadingSvg';
-import {primary} from 'theme/palette';
+import palette from 'theme/palette';
 import {horizontalScale, moderateScale, scaledForDevice} from 'scale';
 
 interface Params {
@@ -30,7 +30,7 @@ const startRotationAnimation = ({duration, rotationDegree, timingAnimation}: Par
 
 const Loading: FC<Props> = ({
 	isLoading,
-	color = primary.main,
+	color = palette.primary.blue.normal,
 	size = 64,
 	duration = 1000,
 	children = null,

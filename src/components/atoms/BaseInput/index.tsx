@@ -1,6 +1,6 @@
 import React, {forwardRef} from 'react';
 import {StyleSheet, TextInput, TextInputProps} from 'react-native';
-import {palette} from 'theme/palette';
+import palette from 'theme/palette';
 import {moderateScale, scaledForDevice} from 'scale';
 
 interface BaseInputProps extends TextInputProps {
@@ -16,12 +16,12 @@ const BaseInput = forwardRef<TextInput, BaseInputProps>(
 			input: {
 				padding: 0,
 				height: scaledForDevice(70, moderateScale),
-				borderColor: palette.primary.main,
+				borderColor: palette.primary.blue.normal,
 				borderWidth: 2,
 				borderRadius: 8,
 				fontSize: scaledForDevice(42, moderateScale),
-				backgroundColor: palette.white.light,
-				color: palette.black.main,
+				backgroundColor: '#F4F5FB',
+				color: palette.secondary.black.normal,
 			},
 		});
 
@@ -33,8 +33,8 @@ const BaseInput = forwardRef<TextInput, BaseInputProps>(
 				placeholder={placeholder}
 				textAlign={textAlign || 'center'}
 				onChangeText={onChangeText}
-				selectionColor={palette.primary.main}
-				placeholderTextColor={palette.grey[500]}
+				selectionColor={palette.primary.blue.normal}
+				placeholderTextColor={palette.greyScale['06']}
 				{...props}
 			/>
 		);

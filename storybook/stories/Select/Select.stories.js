@@ -2,7 +2,7 @@ import React from 'react';
 import Select from 'molecules/Select';
 import {View, Text, StyleSheet} from 'react-native';
 import {TouchableOpacity} from 'react-native';
-import {primary, white} from 'theme/palette';
+import palette from 'theme/palette';
 
 export default {
 	title: 'Components/Select',
@@ -140,8 +140,8 @@ const customOption = ({renderedOption, callbackOptionSelected, ...rest}) => {
 		},
 		chip: {
 			textAlign: 'center',
-			backgroundColor: primary.main,
-			color: white.light,
+			backgroundColor: palette.primary.blue.normal,
+			color: '#F4F5FB',
 			fontSize: 10,
 			width: 30,
 			paddingVertical: 2,

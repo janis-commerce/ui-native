@@ -1,4 +1,4 @@
-import {palette} from 'theme/palette';
+import palette from 'theme/palette';
 import {
 	Status,
 	getInputInitialState,
@@ -34,28 +34,28 @@ describe('getBorderColor', () => {
 		expect(result).toBe(inputColor);
 	});
 
-	it('should return colorPalette.main when hasMessage is true and "main" property exists in colorPalette', () => {
+	it('should return colorPalette.normal when hasMessage is true and "main" property exists in colorPalette', () => {
 		const inputState = 'notFocus';
 		const hasMessage = true;
 		const status: Status = 'error';
 		const result = getBorderColor({inputState, hasMessage, status, inputColor});
-		expect(result).toBe(palette.error.main);
+		expect(result).toBe(palette.status.red.normal);
 	});
 
-	it('should return palette.error.main when hasMessage is true and "main" property does not exist in colorPalette', () => {
+	it('should return palette.status.red.normal when hasMessage and there is an invalid status', () => {
 		const inputState = 'notFocus';
 		const hasMessage = true;
-		const status: Status = 'grey';
+		const status = 'invalid' as Status;
 		const result = getBorderColor({inputState, hasMessage, status, inputColor});
-		expect(result).toBe(palette.error.main);
+		expect(result).toBe(palette.status.red.normal);
 	});
 
-	it('should return palette.grey[500] when hasMessage is false', () => {
+	it('should return palette.greyScale["06"] when hasMessage is false', () => {
 		const inputState = 'notFocus';
 		const hasMessage = false;
 		const status: Status = 'error';
 		const result = getBorderColor({inputState, hasMessage, status, inputColor});
-		expect(result).toBe(palette.grey[500]);
+		expect(result).toBe(palette.greyScale['06']);
 	});
 });
 
@@ -63,7 +63,7 @@ describe('getLabelColor', () => {
 	const inputColor = 'inputColor';
 	const statusMessage = 'statusMessage';
 
-	it('should return palette.grey[500] when disabled is true', () => {
+	it('should return palette.greyScale["06"] when disabled is true', () => {
 		const disabled = true;
 		const readOnly = false;
 		const inputState = 'inputState';
@@ -76,10 +76,10 @@ describe('getLabelColor', () => {
 			statusMessage,
 			status,
 		});
-		expect(result).toBe(palette.grey[500]);
+		expect(result).toBe(palette.greyScale['06']);
 	});
 
-	it('should return palette.grey[500] when readOnly is true', () => {
+	it('should return palette.greyScale["06"] when readOnly is true', () => {
 		const disabled = false;
 		const readOnly = true;
 		const inputState = 'inputState';
@@ -92,7 +92,7 @@ describe('getLabelColor', () => {
 			statusMessage,
 			status,
 		});
-		expect(result).toBe(palette.grey[500]);
+		expect(result).toBe(palette.greyScale['06']);
 	});
 
 	it('should return inputColor when inputState is "focus"', () => {
@@ -124,14 +124,14 @@ describe('getLabelColor', () => {
 			statusMessage,
 			status,
 		});
-		expect(result).toBe(palette[status].main);
+		expect(result).toBe(palette.status.green.normal);
 	});
 
-	it('should return palette.grey[500] when statusMessage is not empty but there is no main on palette', () => {
+	it('should return palette.greyScale["06"] when statusMessage is not empty but there is no valid status', () => {
 		const disabled = false;
 		const readOnly = false;
 		const inputState = 'notFocus';
-		const status = 'environment';
+		const status = 'invalid' as Status;
 		const result = getLabelColor({
 			disabled,
 			readOnly,
@@ -140,10 +140,10 @@ describe('getLabelColor', () => {
 			statusMessage,
 			status,
 		});
-		expect(result).toBe(palette.grey[500]);
+		expect(result).toBe(palette.greyScale['06']);
 	});
 
-	it('should return palette.grey[500] when statusMessage is empty', () => {
+	it('should return palette.greyScale["06"] when statusMessage is empty', () => {
 		const disabled = false;
 		const readOnly = false;
 		const inputState = 'notFocus';
@@ -157,7 +157,7 @@ describe('getLabelColor', () => {
 			statusMessage: emptyStatusMessage,
 			status,
 		});
-		expect(result).toBe(palette.grey[500]);
+		expect(result).toBe(palette.greyScale['06']);
 	});
 });
 
@@ -211,15 +211,15 @@ describe('showStatusMessage', () => {
 });
 
 describe('getStatusMessageColor', () => {
-	it('should return colorPalette.main when "main" property exists in colorPalette', () => {
+	it('should return colorPalette.normal when "main" property exists in colorPalette', () => {
 		const status: Status = 'error';
 		const result = getStatusMessageColor(status);
-		expect(result).toBe(palette.error.main);
+		expect(result).toBe(palette.status.red.normal);
 	});
 
-	it('should return palette.error.main when "main" property does not exist in colorPalette', () => {
-		const status: Status = 'grey';
+	it('should return palette.status.red.normal when there is an invalid status', () => {
+		const status = 'grey' as Status;
 		const result = getStatusMessageColor(status);
-		expect(result).toBe(palette.error.main);
+		expect(result).toBe(palette.status.red.normal);
 	});
 });

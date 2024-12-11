@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {Modal as ModalComponent, StyleSheet, View} from 'react-native';
-import {base} from 'theme/palette';
+import palette from 'theme/palette';
 import {DropdownProps} from '../Dropdown';
 import {moderateScale, scaledForDevice} from 'scale';
 import Button from 'molecules/Button';
@@ -38,7 +38,7 @@ const Modal: FC<ModalProps> = ({show, setShow, isMulti, modalAcceptText, childre
 			paddingBottom: validPaddingBottom,
 			paddingLeft: validPaddingHorizontal,
 			paddingRight: validPaddingHorizontal,
-			backgroundColor: base.white,
+			backgroundColor: palette.greyScale.white,
 			elevation: 5,
 		},
 		buttonWrapper: {

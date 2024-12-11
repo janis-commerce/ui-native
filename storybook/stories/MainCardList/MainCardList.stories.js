@@ -2,7 +2,7 @@
 import React from 'react';
 import MainCardList from 'molecules/MainCardList';
 import Text from 'atoms/Text';
-import {palette} from 'theme/palette';
+import palette from 'theme/palette';
 import {View} from 'react-native';
 
 export default {
@@ -24,7 +24,7 @@ export const DefaultProps = (props) => {
 				{
 					component: (
 						<View>
-							<Text style={{color: palette.base.black}}>{blockText}</Text>
+							<Text style={{color: '#000000'}}>{blockText}</Text>
 						</View>
 					),
 				},
@@ -36,7 +36,7 @@ export const DefaultProps = (props) => {
 		<View>
 			<MainCardList displayId={100} blocks={blocks} {...props}>
 				{showChildren && (
-					<Text style={{color: palette.grey['600'], fontSize: 16, fontFamily: 'Roboto'}}>
+					<Text style={{color: palette.greyScale['07'], fontSize: 16, fontFamily: 'Roboto'}}>
 						{childrenText}
 					</Text>
 				)}

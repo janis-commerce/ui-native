@@ -1,6 +1,6 @@
 // @ts-nocheck
 import {getBarColor, getPercentage} from './';
-import {palette} from 'theme/palette';
+import palette from 'theme/palette';
 
 describe('getPercentage method', () => {
 	describe('return zero when', () => {
@@ -47,15 +47,15 @@ describe('getPercentage method', () => {
 
 describe('getBarColor method', () => {
 	const colors = {
-		success: palette.success.main,
-		alert: palette.alert.main,
-		warning: palette.warning.main,
-		error: palette.error.main,
+		success: palette.status.green.normal,
+		alert: palette.status.yellow.normal,
+		warning: palette.status.orange.normal,
+		error: palette.status.red.normal,
 	};
 
 	it('returns a string', () => {
 		const colorValue = getBarColor(null);
-		expect(colorValue).toBe(palette.white.main);
+		expect(colorValue).toBe(palette.secondary.grey.normal);
 	});
 
 	it('returns a string with the color when the function returned is executed with props with an argument percentage (number)', () => {

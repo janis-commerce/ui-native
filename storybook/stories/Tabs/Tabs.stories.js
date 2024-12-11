@@ -2,7 +2,7 @@ import React from 'react';
 import Tabs from 'molecules/Tabs';
 import {StyleSheet, Text, View} from 'react-native';
 import {moderateScale, scaledForDevice} from 'scale';
-import {grey} from 'theme/palette';
+import palette from 'theme/palette';
 
 const styles = StyleSheet.create({
 	decorators: {
@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
 		overflow: 'hidden',
 		marginVertical: scaledForDevice(5, moderateScale),
 		borderWidth: scaledForDevice(1, moderateScale),
-		borderColor: grey[200],
+		borderColor: palette.greyScale['03'],
 	},
 	wrapper: {
 		padding: scaledForDevice(30, moderateScale),

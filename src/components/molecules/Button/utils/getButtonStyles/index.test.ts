@@ -3,7 +3,7 @@ import getButtonStyles from './';
 const validParams = {
 	type: 'secondary',
 	variant: 'outlined',
-	color: 'secondary',
+	color: 'primary',
 	iconPosition: 'top',
 	isLoading: true,
 	disabled: true,
@@ -32,7 +32,7 @@ describe('getMixedButtonStyles util', () => {
 				paddingHorizontal: 16.5,
 				paddingVertical: 21,
 			},
-			pressed: {borderColor: '#2979FF', backgroundColor: '#fff'},
+			pressed: {borderColor: '#2979FF', backgroundColor: '#FFFFFF'},
 			direction: {
 				justifyContent: 'center',
 				alignItems: 'center',
@@ -77,7 +77,7 @@ describe('getMixedButtonStyles util', () => {
 			text: {
 				fontWeight: '500',
 				textAlign: 'center',
-				color: '#fff',
+				color: '#FFFFFF',
 				fontFamily: 'Roboto-Medium',
 				letterSpacing: 0,
 				fontSize: 29,
@@ -85,7 +85,7 @@ describe('getMixedButtonStyles util', () => {
 			icon: {
 				fontWeight: '500',
 				textAlign: 'center',
-				color: '#fff',
+				color: '#FFFFFF',
 				fontFamily: 'Roboto-Medium',
 				letterSpacing: 0,
 			},

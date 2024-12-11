@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, Platform} from 'react-native';
 import {StyleSheet} from 'react-native';
 import LayoutWithBottomButtons from 'molecules/LayoutWithBottomButtons';
-import {palette} from 'theme/palette';
+import palette from 'theme/palette';
 
 export default {
 	title: 'Components/LayoutWithBottomButtons',
@@ -20,7 +20,7 @@ const isWeb = Platform.OS === 'web';
 
 const buttonsStyleFromWeb = () => (isWeb ? {flexGrow: 1} : {});
 const screenStyleFromWeb = () =>
-	isWeb ? {maxWidth: 300, height: 400, backgroundColor: palette.grey[300]} : {};
+	isWeb ? {maxWidth: 300, height: 400, backgroundColor: palette.greyScale['04']} : {};
 
 const styles = StyleSheet.create({
 	screenStyle: {
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
 	textStyle: {
 		fontSize: 30,
 		textTransform: 'capitalize',
-		color: palette.primary.main,
+		color: palette.primary.blue.normal,
 	},
 	contentStyle: {
 		flex: 1,
@@ -79,7 +79,7 @@ export const LayoutWithBottomButtonsComponent = (props) => {
 LayoutWithBottomButtonsComponent.args = {
 	buttons: layoutButtons,
 	variant: 'squared',
-	buttonBackgroundColor: palette.white.light,
+	buttonBackgroundColor: '#F4F5FB',
 };
 
 LayoutWithBottomButtonsComponent.storyName = 'render with buttons;';

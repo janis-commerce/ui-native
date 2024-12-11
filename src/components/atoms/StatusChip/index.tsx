@@ -1,6 +1,6 @@
 import React, {ReactElement, isValidElement} from 'react';
 import {StyleSheet, ViewProps, View} from 'react-native';
-import {base, grey, primary} from 'theme/palette';
+import palette from 'theme/palette';
 import Typography from 'atoms/Typography';
 import {horizontalScale, moderateScale, scaledForDevice} from 'scale';
 
@@ -25,9 +25,9 @@ const styles = ({background}: StatusChipProps) =>
 			paddingLeft: validPadding,
 			paddingRight: validPadding,
 			borderRadius: validBorderRadius,
-			backgroundColor: background ?? base.white,
+			backgroundColor: background ?? palette.greyScale.white,
 			borderWidth: validBorderWidth,
-			borderColor: background ?? grey['300'],
+			borderColor: background ?? palette.greyScale['04'],
 		},
 		TextStyles: {
 			fontSize: validFontSize,
@@ -35,7 +35,7 @@ const styles = ({background}: StatusChipProps) =>
 			fontFamily: 'Roboto',
 			fontWeight: '900',
 			textAlign: 'center',
-			color: background ? base.white : primary.main,
+			color: background ? palette.greyScale.white : palette.primary.blue.normal,
 		},
 	});
 

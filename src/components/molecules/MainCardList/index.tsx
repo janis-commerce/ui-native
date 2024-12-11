@@ -2,7 +2,7 @@ import BaseCardList from 'atoms/BaseCardList';
 import Text from 'atoms/Text';
 import React, {FC, ReactNode} from 'react';
 import {StyleSheet, View, ViewProps} from 'react-native';
-import {palette} from 'theme/palette';
+import palette from 'theme/palette';
 
 export interface Block {
 	component: ReactNode;
@@ -36,16 +36,16 @@ const MainCardList: FC<MainCardListProps> = ({
 		},
 		blockWithSeparator: {
 			borderTopWidth: 1,
-			borderTopColor: palette.white.main,
+			borderTopColor: palette.secondary.grey.normal,
 		},
 		displayIdText: {
 			fontFamily: 'Roboto',
 			fontWeight: '700',
 			fontSize: 18,
-			color: palette.black.main,
+			color: palette.secondary.black.normal,
 		},
 		selectedDisplayIdText: {
-			color: palette.primary.main,
+			color: palette.primary.blue.normal,
 		},
 		childrenContainer: {
 			marginTop: 4,

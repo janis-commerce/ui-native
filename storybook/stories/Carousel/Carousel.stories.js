@@ -2,7 +2,7 @@ import React, {useRef, useState} from 'react';
 import {Button, Image, View} from 'react-native';
 import Text from 'atoms/Text';
 import Carousel from 'molecules/Carousel';
-import {white} from 'theme/palette';
+import palette from 'theme/palette';
 import {StyleSheet} from 'react-native';
 
 const TextComponent = ({text}) => (
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
 		width: 300,
 		padding: 30,
 		borderRadius: 4,
-		backgroundColor: white.main,
+		backgroundColor: palette.secondary.grey.normal,
 		alignItems: 'center',
 	},
 	image: {

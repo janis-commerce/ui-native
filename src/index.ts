@@ -34,7 +34,7 @@ import FullScreenMessage from 'organisms/FullScreenMessage';
 import SwipeItemSelectionList from 'organisms/SwipeItemSelectionList';
 
 // Misc
-import {palette} from 'theme/palette';
+import palette from 'theme/palette';
 import * as getScale from 'scale';
 
 export {

@@ -3,7 +3,7 @@ import RadioButton from 'atoms/RadioButton';
 import CheckBox from 'atoms/CheckBox';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import Text from 'atoms/Text';
-import {palette} from 'theme/palette';
+import palette from 'theme/palette';
 import {horizontalScale, moderateScale, scaledForDevice, verticalScale} from 'scale';
 
 export interface ItemSelectionButtonProps {
@@ -38,12 +38,12 @@ const styles = StyleSheet.create({
 	text: {
 		fontSize: 16,
 		fontWeight: '400',
-		color: palette.black.main,
+		color: palette.secondary.black.normal,
 		textTransform: 'capitalize',
 	},
 	separator: {
 		alignSelf: 'center',
-		borderBottomColor: palette.grey[200],
+		borderBottomColor: palette.greyScale['03'],
 		borderBottomWidth: verticalScale(1),
 		width: '90%',
 	},

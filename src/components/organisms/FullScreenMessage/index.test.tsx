@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, Modal} from 'react-native';
 import {create} from 'react-test-renderer';
 import FullsCreenMessage, {animationTypes} from './index';
-import {base, primary} from 'theme/palette';
+import palette from 'theme/palette';
 import Icon from 'atoms/Icon';
 
 const spyUseEffect = jest.spyOn(React, 'useEffect');
@@ -17,12 +17,12 @@ const onEndDurarionMock = jest.fn();
 
 const validData = {
 	isVisible: true,
-	backgroundColor: primary.main,
+	backgroundColor: palette.primary.blue.normal,
 	title: 'Title mock',
 	subtitle: 'Subtitle mock',
 	iconName: 'logo_janis',
-	textsColor: base.white,
-	iconColor: base.white,
+	textsColor: palette.greyScale.white,
+	iconColor: palette.greyScale.white,
 	animationType: animationTypes.Fade,
 	duration: 1500,
 	onEndDuration: onEndDurarionMock,

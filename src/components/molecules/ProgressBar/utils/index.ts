@@ -1,4 +1,4 @@
-import {palette} from 'theme/palette';
+import palette from 'theme/palette';
 
 const THRESHOLD = {
 	warning: 25,
@@ -40,19 +40,19 @@ export const getPercentage = (value: number, totalValue: number): number => {
 
 export const getBarColor = (percentage: number): string => {
 	if (typeof percentage !== 'number') {
-		return palette.white.main;
+		return palette.secondary.grey.normal;
 	}
 
 	let barColor: string = '';
 
 	if (percentage >= THRESHOLD.success) {
-		barColor = palette.success.main;
+		barColor = palette.status.green.normal;
 	} else if (percentage >= THRESHOLD.alert) {
-		barColor = palette.alert.main;
+		barColor = palette.status.yellow.normal;
 	} else if (percentage >= THRESHOLD.warning) {
-		barColor = palette.warning.main;
+		barColor = palette.status.orange.normal;
 	} else {
-		barColor = palette.error.main;
+		barColor = palette.status.red.normal;
 	}
 
 	return barColor;

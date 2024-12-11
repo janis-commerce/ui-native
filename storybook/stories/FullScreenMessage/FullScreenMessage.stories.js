@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {TouchableHighlight, Text, StyleSheet} from 'react-native';
 import FullScreenMessage, {animationTypes} from 'organisms/FullScreenMessage';
-import {base, primary, success} from 'theme/palette';
+import palette from 'theme/palette';
 import Icon from 'atoms/Icon';
 
 export default {
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
 		paddingRight: 15,
 		height: 50,
 		borderRadius: 25,
-		backgroundColor: primary.main,
+		backgroundColor: palette.primary.blue.normal,
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
@@ -57,21 +57,21 @@ DefaultProps.storyName = 'default props';
 DefaultProps.args = {
 	animationType: animationTypes.Slide,
 	duration: 3000,
-	backgroundColor: primary.main,
+	backgroundColor: palette.primary.blue.normal,
 	title: 'Janis',
 	subtitle: 'Subtitle text',
 	iconName: 'iso_janis',
-	textsColor: base.white,
-	iconColor: base.white,
+	textsColor: palette.greyScale.white,
+	iconColor: palette.greyScale.white,
 	children: null,
 };
 
 const Children = (
 	<>
-		<Text style={styles.Title} color={base.main}>
+		<Text style={styles.Title} color={'#000'}>
 			Fizzmod Custom Text
 		</Text>
-		<Icon color={base.white} size={160} name="logo_fizzmod" />
+		<Icon color={palette.greyScale.white} size={160} name="logo_fizzmod" />
 	</>
 );
 
@@ -95,6 +95,6 @@ WithChildren.storyName = 'with children prop';
 WithChildren.args = {
 	duration: 3000,
 	animationType: animationTypes.Fade,
-	backgroundColor: success.main,
+	backgroundColor: palette.status.green.normal,
 	children: Children,
 };

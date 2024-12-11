@@ -3,7 +3,7 @@ import React from 'react';
 import {create} from 'react-test-renderer';
 import StatusChip from './index';
 import Typography from 'atoms/Typography';
-import {primary} from 'theme/palette';
+import palette from 'theme/palette';
 
 describe('StatusChip component', () => {
 	describe('return error because is not a valid children', () => {
@@ -20,7 +20,9 @@ describe('StatusChip component', () => {
 		});
 
 		it('if a background is passed', () => {
-			const {toJSON} = create(<StatusChip background={primary.main}>Delivered</StatusChip>);
+			const {toJSON} = create(
+				<StatusChip background={palette.primary.blue.normal}>Delivered</StatusChip>
+			);
 			expect(toJSON()).toMatchSnapshot();
 		});
 

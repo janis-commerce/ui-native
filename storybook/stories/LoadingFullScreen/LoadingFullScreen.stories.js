@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {TouchableHighlight, Text, StyleSheet} from 'react-native';
 import LoadingFullScreen from 'organisms/LoadingFullScreen';
-import {primary} from 'theme/palette';
+import palette from 'theme/palette';
 
 export default {
 	title: 'Components/LoadingFullScreen',
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
 		paddingRight: 15,
 		height: 50,
 		borderRadius: 25,
-		backgroundColor: primary.main,
+		backgroundColor: palette.primary.blue.normal,
 		justifyContent: 'center',
 		alignItems: 'center',
 	},

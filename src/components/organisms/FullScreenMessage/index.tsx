@@ -1,7 +1,7 @@
 import React, {FC, ReactElement, useEffect} from 'react';
 import {Modal, StyleSheet, View} from 'react-native';
 import {moderateScale, scaledForDevice} from 'scale';
-import {base, primary} from 'theme/palette';
+import palette from 'theme/palette';
 import Icon from 'atoms/Icon';
 import Typography from 'atoms/Typography';
 
@@ -26,13 +26,13 @@ interface Props {
 }
 
 const FullScreenMessage: FC<Props> = ({
-	backgroundColor = primary.main,
+	backgroundColor = palette.primary.blue.normal,
 	title = '',
 	isVisible = false,
 	subtitle = '',
 	iconName = '',
-	textsColor = base.white,
-	iconColor = base.white,
+	textsColor = palette.greyScale.white,
+	iconColor = palette.greyScale.white,
 	animationType = animationTypes.Slide,
 	duration = 3000,
 	onEndDuration = () => {},

@@ -3,7 +3,7 @@ import {TextStyle, TouchableOpacity, View} from 'react-native';
 import {StyleSheet} from 'react-native';
 import {moderateScale, scaledForDevice} from 'scale';
 import {defaultIcon} from './utils';
-import {base, black} from 'theme/palette';
+import palette from 'theme/palette';
 import BaseToast, {BaseToastProps} from 'atoms/BaseToast';
 import ToastAction from 'react-native-toast-message';
 import Typography from 'atoms/Typography';
@@ -40,7 +40,7 @@ const Toast: FC<ToastProps> = ({type, text1, text2, style, props}) => {
 		iconStyle = {},
 	} = props || {};
 
-	const validColor = type === 'warning' ? black.main : base.white;
+	const validColor = type === 'warning' ? palette.secondary.black.normal : palette.greyScale.white;
 
 	const defaultIconName = defaultIcon[type] || defaultIcon.notice;
 	const selectedIconName = customIcon || defaultIconName;

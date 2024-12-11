@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {View, StyleSheet, TouchableOpacity, ScrollView, Text} from 'react-native';
-import {base, black, grey, primary, white} from 'theme/palette';
+import palette from 'theme/palette';
 import {CustomOptionComponent, DropdownMeasures, Option, VariantOptions} from '../../';
 import SwitcherComponent from '../SwitcherComponent';
 
@@ -47,8 +47,8 @@ const Options: FC<OptionsProps> = (props) => {
 			position: !isModal ? 'absolute' : 'relative',
 			maxHeight: 168,
 			minHeight: 'auto',
-			borderColor: grey[200],
-			backgroundColor: base.white,
+			borderColor: palette.greyScale['03'],
+			backgroundColor: palette.greyScale.white,
 			width: '100%',
 			top: !isModal ? 60 : 0,
 			marginBottom: 20,
@@ -63,11 +63,11 @@ const Options: FC<OptionsProps> = (props) => {
 			paddingLeft: 8,
 		},
 		optionText: {
-			color: black.main,
+			color: palette.secondary.black.normal,
 			fontWeight: '400',
 		},
 		noOptionText: {
-			color: grey[500],
+			color: palette.greyScale['06'],
 			fontWeight: '400',
 			paddingLeft: 8,
 			paddingVertical: 10,
@@ -78,10 +78,13 @@ const Options: FC<OptionsProps> = (props) => {
 		filteredOptions?.length &&
 		filteredOptions.map((option) => {
 			const isSelectedOption = selectedOptions.some((selected) => selected.label === option.label);
-			const styleText = {...styles.optionText, ...(isSelectedOption && {color: primary.main})};
+			const styleText = {
+				...styles.optionText,
+				...(isSelectedOption && {color: palette.primary.blue.normal}),
+			};
 			const styleOption = {
 				...styles.option,
-				...(isSelectedOption && {backgroundColor: white.light}),
+				...(isSelectedOption && {backgroundColor: '#F4F5FB'}),
 			};
 
 			const customProps = {

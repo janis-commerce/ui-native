@@ -1,7 +1,7 @@
 /* istanbul ignore file */
 import React, {FC, useState, useEffect, useRef, useCallback} from 'react';
 import {Keyboard, Pressable, StyleSheet, Text, TextInput, View} from 'react-native';
-import {black, grey, primary} from 'theme/palette';
+import palette from 'theme/palette';
 import {formatPlaceholderMulti} from './utils';
 import Options from './Components/Options';
 import Icon from 'atoms/Icon';
@@ -207,7 +207,8 @@ const Select: FC<SelectProps> = ({
 		},
 		label: {
 			position: 'absolute',
-			color: isMoveLabel && !isDisabled ? primary.main : black.main,
+			color:
+				isMoveLabel && !isDisabled ? palette.primary.blue.normal : palette.secondary.black.normal,
 			fontSize: validFontSize,
 			lineHeight: validHeightLabel,
 			letterSpacing: 0,
@@ -223,8 +224,8 @@ const Select: FC<SelectProps> = ({
 			lineHeight: validHeightLabel,
 			letterSpacing: 0,
 			borderBottomWidth: validBorderBottomWidth,
-			color: black.main,
-			borderBottomColor: isShowedOptions ? primary.main : grey[200],
+			color: palette.secondary.black.normal,
+			borderBottomColor: isShowedOptions ? palette.primary.blue.normal : palette.greyScale['03'],
 		},
 		arrowIcon: {
 			position: 'absolute',
@@ -248,11 +249,15 @@ const Select: FC<SelectProps> = ({
 			<View style={styles.wrapperInput}>
 				{isMulti && showDeleteIcon && (
 					<Pressable onPress={handleResetOptions} style={styles.deleteIcon}>
-						<Icon size={20} color={black.main} name="cross_circle_flat" />
+						<Icon size={20} color={palette.secondary.black.normal} name="cross_circle_flat" />
 					</Pressable>
 				)}
 				<Pressable style={styles.arrowIcon} onPress={handleCloseDropdown}>
-					<Icon size={20} color={isDisabled ? black.main : primary.main} name="chevron_down" />
+					<Icon
+						size={20}
+						color={isDisabled ? palette.secondary.black.normal : palette.primary.blue.normal}
+						name="chevron_down"
+					/>
 				</Pressable>
 
 				<Text style={styles.label}>{label}</Text>

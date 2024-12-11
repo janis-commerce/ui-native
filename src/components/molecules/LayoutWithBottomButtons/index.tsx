@@ -1,6 +1,6 @@
 import React, {ReactElement} from 'react';
 import {StyleSheet, ViewProps, View} from 'react-native';
-import {palette} from 'theme/palette';
+import palette from 'theme/palette';
 import {moderateScale, scaledForDevice} from 'scale';
 import {validVariants, parseButtonsStyles, buttonWrapperVariantStyles} from './utils';
 import type {IlayoutButtons} from './utils';
@@ -29,7 +29,7 @@ const LayoutWithBottomButtons = ({
 
 	const selectedVariant = validVariants[variant] || validVariants.default;
 	const parsedButtons = parseButtonsStyles(buttons, selectedVariant);
-	const validBtnBgColor = buttonBackgroundColor || palette.base.white;
+	const validBtnBgColor = buttonBackgroundColor || palette.greyScale.white;
 
 	if (!(parsedButtons instanceof Array) || !parsedButtons.length) {
 		return null;

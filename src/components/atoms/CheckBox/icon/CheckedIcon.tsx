@@ -1,6 +1,6 @@
 import React from 'react';
 import {View} from 'react-native';
-import {base} from 'theme/palette';
+import palette from 'theme/palette';
 import Svg, {Path} from 'react-native-svg';
 
 interface IconProps {
@@ -20,7 +20,7 @@ const CheckedIcon = ({color, size}: IconProps) => (
 );
 
 CheckedIcon.defaultProps = {
-	color: base.white,
+	color: palette.greyScale.white,
 	size: 16,
 };
 

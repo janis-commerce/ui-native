@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, TouchableOpacity, StyleSheet, ViewStyle} from 'react-native';
-import {base, grey, primary} from 'theme/palette';
+import palette from 'theme/palette';
 import {moderateScale, horizontalScale, scaledForDevice} from 'scale';
 import Icon from './icon/CheckedIcon';
 
@@ -21,9 +21,9 @@ const getCheckBoxScale = (size: number, divisor: number): number => size / divis
 const CheckBox = ({
 	checked,
 	customSize = 16,
-	checkOnColor = primary.main,
-	checkOffColor = grey[500],
-	iconCheckColor = base.white,
+	checkOnColor = palette.primary.blue.normal,
+	checkOffColor = palette.greyScale['06'],
+	iconCheckColor = palette.greyScale.white,
 	borderRadius,
 	disabled = false,
 	style,
@@ -46,14 +46,14 @@ const CheckBox = ({
 			display: 'flex',
 			justifyContent: 'center',
 			alignItems: 'center',
-			backgroundColor: !disabled ? checkOnColor : grey[200],
+			backgroundColor: !disabled ? checkOnColor : palette.greyScale['03'],
 			width: validWidth,
 			height: validHeight,
 			borderRadius: validBorderRadius,
 		},
 		checkOff: {
 			borderWidth: getCheckBoxScale(customSize, 16),
-			borderColor: !disabled ? checkOffColor : grey[200],
+			borderColor: !disabled ? checkOffColor : palette.greyScale['03'],
 			width: validWidth,
 			height: validHeight,
 			borderRadius: hasBorderRadius,

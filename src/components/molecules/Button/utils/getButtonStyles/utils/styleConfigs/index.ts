@@ -1,61 +1,61 @@
 import {moderateScale, scaledForDevice} from 'scale';
-import {base, black, grey, white} from 'theme/palette';
+import palette from 'theme/palette';
 import {SelectedColor} from '../../../../types';
 
 export const colorConfig = (selectedColor: SelectedColor) => {
 	return {
 		main: {
 			background: {
-				contained: selectedColor.main,
-				outlined: base.white,
+				contained: selectedColor.normal,
+				outlined: palette.greyScale.white,
 				text: 'transparent',
 			},
 			border: {
 				contained: 'transparent',
-				outlined: grey[300],
+				outlined: palette.greyScale['04'],
 				text: 'transparent',
 			},
 			text: {
 				main: {
-					contained: base.white,
-					outlined: black.main,
-					text: black.main,
+					contained: palette.greyScale.white,
+					outlined: palette.secondary.black.normal,
+					text: palette.secondary.black.normal,
 				},
 				secondary: {
-					contained: base.white,
-					outlined: selectedColor.main,
-					text: selectedColor.main,
+					contained: palette.greyScale.white,
+					outlined: selectedColor.normal,
+					text: selectedColor.normal,
 				},
 			},
 		},
 		pressed: {
 			background: {
-				contained: selectedColor.dark,
-				outlined: base.white,
-				text: white.main,
+				contained: selectedColor.pressed,
+				outlined: palette.greyScale.white,
+				text: palette.secondary.grey.normal,
 			},
 			border: {
 				contained: 'transparent',
-				outlined: selectedColor.main,
+				outlined: selectedColor.normal,
 				text: 'transparent',
 			},
 			text: {
 				main: {
-					contained: base.white,
-					outlined: black.main,
-					text: black.main,
+					contained: palette.greyScale.white,
+					outlined: palette.secondary.black.normal,
+					text: palette.secondary.black.normal,
 				},
 				secondary: {
-					contained: base.white,
-					outlined: selectedColor.main,
-					text: selectedColor.dark,
+					contained: palette.greyScale.white,
+					outlined: selectedColor.normal,
+					text: selectedColor.pressed,
 				},
 			},
 		},
 		disabled: {
 			background: {
-				contained: grey[200],
-				outlined: grey[100],
+				contained: palette.greyScale['03'],
+				outlined: palette.greyScale['02'],
 				text: 'transparent',
 			},
 			border: {
@@ -66,20 +66,20 @@ export const colorConfig = (selectedColor: SelectedColor) => {
 				},
 				secondary: {
 					contained: 'transparent',
-					outlined: grey[300],
+					outlined: palette.greyScale['04'],
 					text: 'transparent',
 				},
 			},
 			text: {
 				main: {
-					contained: grey[400],
-					outlined: grey[300],
-					text: grey[300],
+					contained: palette.greyScale['05'],
+					outlined: palette.greyScale['04'],
+					text: palette.greyScale['04'],
 				},
 				secondary: {
-					contained: grey[400],
-					outlined: grey[300],
-					text: grey[300],
+					contained: palette.greyScale['05'],
+					outlined: palette.greyScale['04'],
+					text: palette.greyScale['04'],
 				},
 			},
 		},

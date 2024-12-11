@@ -1,6 +1,16 @@
-import {palette} from 'theme/palette';
+import palette from 'theme/palette';
 
-export type Status = keyof typeof palette;
+const color = {
+	primary: 'primary',
+	black: 'black',
+	success: 'success',
+	error: 'error',
+	warning: 'warning',
+	alert: 'alert',
+};
+
+export type inputColor = typeof color;
+export type Status = keyof inputColor;
 
 interface getBorderColorProps {
 	inputState: string;
@@ -24,6 +34,15 @@ interface raiseLabelProps {
 	inputState: string;
 }
 
+const parseColor = {
+	primary: palette.primary.blue,
+	black: palette.secondary.black,
+	success: palette.status.green,
+	error: palette.status.red,
+	warning: palette.status.orange,
+	alert: palette.status.yellow,
+};
+
 export const getInputInitialState = (value: string) => {
 	if (!value) {
 		return 'incomplete';
@@ -41,14 +60,11 @@ export const getBorderColor = ({
 		return inputColor;
 	}
 	if (hasMessage) {
-		const colorPalette = palette[status];
-		if ('main' in colorPalette) {
-			return colorPalette.main;
-		}
-		return palette.error.main;
+		const colorPalette = parseColor[status]?.normal || palette.status.red.normal;
+		return colorPalette;
 	}
 
-	return palette.grey[500];
+	return palette.greyScale['06'];
 };
 
 export const getLabelColor = ({
@@ -60,7 +76,7 @@ export const getLabelColor = ({
 	status,
 }: getLabelColorProps) => {
 	if (disabled || readOnly) {
-		return palette.grey[500];
+		return palette.greyScale['06'];
 	}
 
 	if (inputState === 'focus') {
@@ -68,13 +84,11 @@ export const getLabelColor = ({
 	}
 
 	if (statusMessage) {
-		const colorPalette = palette[status];
-		if ('main' in colorPalette) {
-			return colorPalette.main;
-		}
+		const colorPalette = parseColor[status]?.normal || palette.greyScale['06'];
+		return colorPalette;
 	}
 
-	return palette.grey[500];
+	return palette.greyScale['06'];
 };
 
 export const raiseLabel = ({disabled, hasMessage, inputState}: raiseLabelProps) =>
@@ -84,11 +98,6 @@ export const showStatusMessage = (hasMessage: boolean, inputState: string) =>
 	!!hasMessage && inputState !== 'focus';
 
 export const getStatusMessageColor = (status: Status) => {
-	const colorPalette = palette[status];
-
-	if ('main' in colorPalette) {
-		return colorPalette.main;
-	}
-
-	return palette.error.main;
+	const colorPalette = parseColor[status]?.normal || palette.status.red.normal;
+	return colorPalette;
 };

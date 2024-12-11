@@ -1,8 +1,8 @@
 import React, {FC, ReactNode} from 'react';
 import {StyleSheet, View, ViewStyle} from 'react-native';
 import {BaseToastProps as Props} from 'react-native-toast-message';
-import {black, palette} from 'theme/palette';
-import {parseType} from './utils';
+import palette from 'theme/palette';
+import {parseTypeToColor} from './utils';
 
 export enum Types {
 	Success = 'success',
@@ -25,14 +25,13 @@ const BaseToast: FC<BaseToastProps> = ({children, style, type = defaultType, ...
 		return null;
 	}
 
-	const selectedType = parseType[type];
-	const backgroundColor = palette[selectedType]?.main || palette[defaultType]?.main;
+	const backgroundColor = parseTypeToColor[type] || palette.primary.blue.normal;
 
 	const styles = StyleSheet.create({
 		container: {
 			backgroundColor,
 			elevation: 5,
-			shadowColor: black.shadow,
+			shadowColor: '#00000096',
 		},
 	});
 

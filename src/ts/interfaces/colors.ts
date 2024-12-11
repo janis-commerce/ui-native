@@ -1,53 +1,52 @@
-export interface GreyScale {
-	[key: string]: string;
-	100: string;
-	200: string;
-	300: string;
-	400: string;
-	500: string;
-	600: string;
-	700: string;
-}
-export interface Env {
-	[key: string]: string;
-	qa: string;
-	beta: string;
-}
-export interface Base {
-	[key: string]: string;
-	black: string;
-	white: string;
-}
 export interface gamaColor {
 	[key: string]: string;
-	main: string;
-	dark: string;
+	normal: string;
+	pressed: string;
 }
 
-export interface Success extends gamaColor {}
-export interface Error extends gamaColor {}
-export interface Warning extends gamaColor {}
-export interface Alert extends gamaColor {}
-export interface Primary extends gamaColor {
+export interface statusColor extends gamaColor {
 	light: string;
 }
-export interface White extends Primary {
-	semiTransparent: string;
+
+export interface Primary {
+	blue: gamaColor;
 }
-export interface Black extends gamaColor {
-	semiTransparent: string;
+export interface Secondary {
+	blue: gamaColor;
+	grey: gamaColor;
+	black: gamaColor;
 }
 
-export interface Palette {
+export interface GreyScale {
+	[key: string]: string;
+	white: string;
+	'00': string;
+	'01': string;
+	'02': string;
+	'03': string;
+	'04': string;
+	'05': string;
+	'06': string;
+	'07': string;
+	'08': string;
+}
+
+export interface Status {
+	green: statusColor;
+	lightGreen: statusColor;
+	aqua: statusColor;
+	yellow: statusColor;
+	orange: statusColor;
+	red: statusColor;
+	pink: statusColor;
+	violet: statusColor;
+	lightBlue: statusColor;
+}
+
+export type Palette = {
 	[key: string]: any;
 	primary: Primary;
-	black: Black;
-	white: White;
-	grey: GreyScale;
-	base: Base;
-	success: Success;
-	error: Error;
-	warning: Warning;
-	alert: Alert;
-	environment: Env;
-}
+	secondary: Secondary;
+	greyScale: GreyScale;
+	status: Status;
+};

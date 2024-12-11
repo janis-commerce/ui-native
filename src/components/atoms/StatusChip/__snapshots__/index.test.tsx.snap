@@ -5,7 +5,7 @@ exports[`StatusChip component render correct a valid component is passed 1`] = `
   style={
     Object {
       "alignItems": "center",
-      "backgroundColor": "#fff",
+      "backgroundColor": "#FFFFFF",
       "borderColor": "#C4C6CC",
       "borderRadius": 25,
       "borderWidth": 2,
@@ -54,7 +54,7 @@ exports[`StatusChip component render correct if a background is passed 1`] = `
     style={
       Array [
         Object {
-          "color": "#fff",
+          "color": "#FFFFFF",
           "fontFamily": "Roboto",
           "fontSize": 27,
           "fontWeight": "900",
@@ -79,7 +79,7 @@ exports[`StatusChip component render correct text is passed 1`] = `
   style={
     Object {
       "alignItems": "center",
-      "backgroundColor": "#fff",
+      "backgroundColor": "#FFFFFF",
       "borderColor": "#C4C6CC",
       "borderRadius": 25,
       "borderWidth": 2,

@@ -1,8 +1,8 @@
 import type {keyColor, keyIconPosition, keyType, keyVariant} from '../';
 
 export interface SelectedColor {
-	main: string;
-	dark: string;
+	normal: string;
+	pressed: string;
 }
 
 export interface Params {
