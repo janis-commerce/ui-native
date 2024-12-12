@@ -35,6 +35,7 @@ import SwipeItemSelectionList from 'organisms/SwipeItemSelectionList';
 
 // Misc
 import palette from 'theme/palette';
+import getColor from 'theme/utils/getColor';
 import * as getScale from 'scale';
 
 export {
@@ -48,6 +49,7 @@ export {
 	StatusChip,
 	Input,
 	palette,
+	getColor,
 	LoadingFullScreen,
 	RadioButton,
 	Select,
