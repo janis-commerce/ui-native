@@ -6,10 +6,25 @@ export default {
 	component: Input,
 	argTypes: {
 		type: {
-			control: {
-				type: 'select',
-				options: ['currency', 'number', 'text', 'email', 'phone'],
+			options: {
+				keyboard: 'keyboard',
+				currency: 'currency',
+				number: 'number',
+				text: 'text',
+				email: 'email',
+				phone: 'phone',
 			},
+			control: {type: 'select'},
+		},
+		variant: {
+			options: {
+				default: 'default',
+				weightable: 'weightable',
+				amountTotal: 'amountTotal',
+				currency: 'currency',
+				numeric: 'numeric',
+			},
+			control: {type: 'select'},
 		},
 	},
 };
@@ -22,4 +37,6 @@ DefaultProps.storyName = 'With a placeholder example';
 
 DefaultProps.args = {
 	placeholder: 'Placeholder example',
+	type: 'text',
+	variant: 'default',
 };
