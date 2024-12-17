@@ -1,5 +1,6 @@
 import React from 'react';
 import Text from 'atoms/Text';
+import DeprecationNotice from '../../decorators/DeprecationNotice';
 
 const fontFamilies = [
 	'normal',
@@ -54,6 +55,13 @@ export default {
 			control: {type: 'color'},
 		},
 	},
+	decorators: [
+		(Story) => (
+			<DeprecationNotice>
+				<Story />
+			</DeprecationNotice>
+		),
+	],
 };
 
 export const DefaultProps = ({

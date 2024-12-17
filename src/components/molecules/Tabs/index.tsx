@@ -4,7 +4,7 @@ import {StyleSheet, View, ViewStyle, ScrollView, FlatList} from 'react-native';
 import {moderateScale, scaledForDevice, viewportWidth} from 'scale';
 import {base, black, grey, primary} from 'theme/palette';
 import BaseButton from 'atoms/BaseButton';
-import Text from 'atoms/Text';
+import Typography from 'atoms/Typography';
 import {isObject} from 'utils';
 
 type Data = Scene[] | null | undefined;
@@ -149,9 +149,12 @@ const Tabs: FC<TabsProps> = ({
 				style={{...styles.tabButton, borderBottomColor}}
 				disabled={disabled}
 				onPress={() => handleOnPress(index)}>
-				<Text style={{...styles.title, color: textColor}} selectable={false} numberOfLines={1}>
+				<Typography
+					style={{...styles.title, color: textColor}}
+					selectable={false}
+					numberOfLines={1}>
 					{title}
-				</Text>
+				</Typography>
 			</BaseButton>
 		);
 	};
