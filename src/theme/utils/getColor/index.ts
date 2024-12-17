@@ -6,7 +6,7 @@ type PrimaryKey = keyof Primary;
 type SecondaryKey = keyof Secondary;
 type StatusKey = keyof Status;
 
-type GetColorArgs =
+export type GetColorArgs =
 	| ['primary', PrimaryKey, 'normal' | 'pressed']
 	| ['secondary', SecondaryKey, 'normal' | 'pressed']
 	| ['greyScale', 'white' | '01' | '02' | '03' | '04' | '05' | '06' | '07' | '08']
@@ -19,11 +19,11 @@ const getColor = (...keys: GetColorArgs): string => {
 		if (current && typeof current === 'object' && key in current) {
 			current = current[key];
 		} else {
-			return palette.greyScale?.white || '#FFFFFF';
+			return palette.greyScale.white;
 		}
 	}
 
-	return typeof current === 'string' ? current : palette.greyScale?.white || '#FFFFFF';
+	return current;
 };
 
 export default getColor;
