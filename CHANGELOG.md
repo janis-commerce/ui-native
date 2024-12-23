@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- A typography error with full screen loading component - [JUIP-164](https://janiscommerce.atlassian.net/browse/JUIP-164)
+
 ### Added
 
 - Added typography component
