@@ -8,8 +8,9 @@ export default {
 		type: {
 			control: {
 				type: 'select',
-				options: ['currency', 'number', 'text', 'email', 'phone'],
 			},
+			options: ['currency', 'number', 'text', 'email', 'phone'],
+			defaultValue: 'currency',
 		},
 	},
 };
