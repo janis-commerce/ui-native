@@ -1,7 +1,7 @@
 import React from 'react';
 import {create} from 'react-test-renderer';
 import SwipeList from './';
-import Text from 'atoms/Text';
+import Typography from 'atoms/Typography';
 import SwipeUp from 'atoms/SwipeUp';
 
 describe('SwipeList component', () => {
@@ -16,7 +16,7 @@ describe('SwipeList component', () => {
 		it('as it does not have actions nor header', () => {
 			const {root} = create(
 				<SwipeList>
-					<Text>Hola</Text>
+					<Typography>Hola</Typography>
 				</SwipeList>
 			);
 
@@ -28,12 +28,12 @@ describe('SwipeList component', () => {
 		});
 
 		it('as it has all its possible props', () => {
-			const renderHeader = () => <Text>Header</Text>;
+			const renderHeader = () => <Typography>Header</Typography>;
 			const actions = [{value: 'Continuar'}];
 
 			const {root} = create(
 				<SwipeList renderHeader={renderHeader} actions={actions}>
-					<Text>Hola</Text>
+					<Typography>Hola</Typography>
 				</SwipeList>
 			);
 

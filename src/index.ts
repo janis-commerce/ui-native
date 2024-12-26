@@ -12,6 +12,7 @@ import SwipeUp from 'atoms/SwipeUp';
 import {SwipeUpFlatList, SwipeUpScrollView, SwipeUpView} from 'atoms/SwipeUp/childComponents';
 import Text from 'atoms/Text';
 import BaseInput from 'atoms/BaseInput';
+import Typography from 'atoms/Typography';
 
 // Molecules
 import Avatar from 'molecules/Avatar';
@@ -69,4 +70,5 @@ export {
 	SwipeItemSelectionList,
 	MainCardList,
 	BaseInput,
+	Typography,
 };

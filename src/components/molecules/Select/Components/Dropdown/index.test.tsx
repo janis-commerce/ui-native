@@ -1,13 +1,13 @@
 import React from 'react';
 import {create} from 'react-test-renderer';
 import Dropdown from './';
-import Text from 'atoms/Text';
+import Typography from 'atoms/Typography';
 import {Pressable} from 'react-native';
 
 const validData = {
 	show: true,
 	setShow: () => {},
-	children: <Text>Option 1</Text>,
+	children: <Typography>Option 1</Typography>,
 	measures: {
 		width: 0,
 		pageY: 0,
