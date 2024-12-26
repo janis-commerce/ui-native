@@ -6,7 +6,7 @@ type VariantLogic = Record<InputVariant, (value: string) => string>;
 const variantLogicMapper: VariantLogic = {
 	default: (value) => value,
 	weightable: (value) => value.replace(',', '.').replace(/[^0-9.]/g, ''),
-	amountTotal: (value) => value.replace(/[^0-9.,]/g, ''),
+	amountTotal: (value) => value.replace(',', '.').replace(/[^0-9.]/g, ''),
 	currency: (value) => value.replace(/[^0-9.,]/g, ''),
 	numeric: (value) => value.replace(/[^0-9.,]/g, ''),
 };
