@@ -10,7 +10,6 @@ export default {
 				type: 'select',
 			},
 			options: ['currency', 'number', 'text', 'email', 'phone'],
-			defaultValue: 'currency',
 		},
 		variant: {
 			control: {type: 'select'},
@@ -21,7 +20,6 @@ export default {
 				currency: 'currency',
 				numeric: 'numeric',
 			},
-			defaultValue: 'default',
 		},
 	},
 };
