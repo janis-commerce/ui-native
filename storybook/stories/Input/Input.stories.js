@@ -6,17 +6,14 @@ export default {
 	component: Input,
 	argTypes: {
 		type: {
-			options: {
-				keyboard: 'keyboard',
-				currency: 'currency',
-				number: 'number',
-				text: 'text',
-				email: 'email',
-				phone: 'phone',
+			control: {
+				type: 'select',
 			},
-			control: {type: 'select'},
+			options: ['currency', 'number', 'text', 'email', 'phone'],
+			defaultValue: 'currency',
 		},
 		variant: {
+			control: {type: 'select'},
 			options: {
 				default: 'default',
 				weightable: 'weightable',
@@ -24,7 +21,7 @@ export default {
 				currency: 'currency',
 				numeric: 'numeric',
 			},
-			control: {type: 'select'},
+			defaultValue: 'default',
 		},
 	},
 };

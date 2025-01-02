@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.12.0] - 2025-01-02
+
+### Added
+
+- Base input component - [JUIP-162](https://janiscommerce.atlassian.net/browse/JUIP-162)
+
+### Fixed
+
+- A typography error with full screen loading component - [JUIP-164](https://janiscommerce.atlassian.net/browse/JUIP-164)
+
 ### Added
 
 - Added typography component

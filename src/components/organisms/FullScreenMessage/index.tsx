@@ -94,8 +94,16 @@ const FullScreenMessage: FC<Props> = ({
 			<View style={styles.container}>
 				{children ?? (
 					<>
-						{validTitle && <Typography style={styles.title}>{title}</Typography>}
-						{validSubtitle && <Typography style={styles.subtitle}>{subtitle}</Typography>}
+						{validTitle && (
+							<Typography style={styles.title} type="heading" size="large">
+								{title}
+							</Typography>
+						)}
+						{validSubtitle && (
+							<Typography style={styles.subtitle} type="body" size="large">
+								{subtitle}
+							</Typography>
+						)}
 						{validIconName && <Icon color={iconColor} size={130} name={iconName} />}
 					</>
 				)}
