@@ -1,5 +1,4 @@
 import {StyleSheet, TextStyle} from 'react-native';
-import {moderateScale, scaledForDevice} from 'scale';
 import typography, {Typography} from 'theme/typography';
 
 type TypographyType = keyof Typography;
@@ -11,7 +10,7 @@ const validSizes: TypographySize[] = ['large', 'medium', 'small'];
 export const defaultStyles = StyleSheet.create<{typography: TextStyle}>({
 	typography: {
 		fontWeight: typography.body.medium.weight,
-		fontSize: scaledForDevice(typography.body.medium.size, moderateScale),
+		fontSize: typography.body.medium.size,
 		lineHeight: typography.body.medium.lineHeight,
 	},
 });
@@ -31,7 +30,7 @@ const getStyleByTypography = (type: TypographyType | string, size: TypographySiz
 		return StyleSheet.create({
 			typography: {
 				fontWeight: typography.display.weight,
-				fontSize: scaledForDevice(typography.display.size, moderateScale),
+				fontSize: typography.display.size,
 				lineHeight: typography.display.lineHeight,
 			},
 		});
@@ -41,7 +40,7 @@ const getStyleByTypography = (type: TypographyType | string, size: TypographySiz
 		return StyleSheet.create({
 			typography: {
 				fontWeight: typography.overline.large.weight,
-				fontSize: scaledForDevice(typography.overline.large.size, moderateScale),
+				fontSize: typography.overline.large.size,
 				lineHeight: typography.overline.large.lineHeight,
 				letterSpacing: typography.overline.large.spacing,
 			},
@@ -55,7 +54,7 @@ const getStyleByTypography = (type: TypographyType | string, size: TypographySiz
 		return StyleSheet.create({
 			typography: {
 				fontWeight: typographyStyle.weight,
-				fontSize: scaledForDevice(typographyStyle.size, moderateScale),
+				fontSize: typographyStyle.size,
 				lineHeight: typographyStyle.lineHeight,
 				letterSpacing: typographyStyle.spacing,
 			},

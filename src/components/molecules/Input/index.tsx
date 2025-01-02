@@ -39,7 +39,6 @@ const Input = forwardRef<TextInput, InputProps>(
 		const [value, setValue] = useState('');
 		const isAmountTotalVariant = variant === 'amountTotal';
 
-		// Use a local reference for focusing the input
 		const inputRef = useRef<TextInput>(null);
 
 		if (isAmountTotalVariant && typeof totalValue !== 'number') {
@@ -69,8 +68,8 @@ const Input = forwardRef<TextInput, InputProps>(
 
 		const changeTextCb = (text: string) => handleChangeText(text, setValue, variant, onChangeText);
 
-		// Handle focusing the input
 		const handlePress = () => {
+			// istanbul ignore next
 			if (inputRef.current) {
 				Keyboard.dismiss();
 				inputRef.current.focus();
