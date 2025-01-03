@@ -8,25 +8,25 @@
 		"jsx": "react-native",
 		"declaration": true,
 		"outDir": "dist",
+		"rootDir": "src",
 		"isolatedModules": true,
 		"strict": true,
 		"moduleResolution": "node",
 		"allowSyntheticDefaultImports": true,
 		"esModuleInterop": true,
 		"skipLibCheck": true,
-		"baseUrl": ".",
+		"baseUrl": "./src",
 		"types": ["react", "react-native", "jest", "node"],
 		"paths": {
-			"react": ["./node_modules/@types/react"],
-			"atoms/*": ["src/components/atoms/*"],
-			"molecules/*": ["src/components/molecules/*"],
-			"organisms/*": ["src/components/organisms/*"],
-			"templates/*": ["src/components/templates/*"],
-			"scale": ["src/scale"],
-			"theme/*": ["src/theme/*"],
-			"ts/*": ["src/ts/*"],
-			"utils/*": ["src/utils/*"],
-			"utils": ["src/utils"]
+			"react": ["../node_modules/@types/react"],
+			"atoms/*": ["./components/atoms/*"],
+			"molecules/*": ["./components/molecules/*"],
+			"organisms/*": ["./components/organisms/*"],
+			"templates/*": ["./components/templates/*"],
+			"scale": ["./scale"],
+			"theme/*": ["./theme/*"],
+			"ts/*": ["./ts/*"],
+			"utils/*": ["./utils/*"]
 		}
 	},
 	"exclude": [
@@ -37,7 +37,7 @@
 		"src/**/*.spec.ts",
 		"src/**/*.spec.tsx"
 	],
-	"include": ["src/**/*", "App.tsx"],
+	"include": ["src/**/*"],
 	"ts-node": {
 		"require": ["tsconfig-paths/register"]
 	}
