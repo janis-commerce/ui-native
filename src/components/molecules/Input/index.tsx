@@ -9,30 +9,49 @@ import Typography from 'atoms/Typography';
 enum InputType {
 	currency = 'numeric',
 	number = 'numeric',
+	default = 'default',
 	text = 'default',
 	email = 'email-address',
 	phone = 'phone-pad',
+	weightable = 'numeric',
+	amountTotal = 'numeric',
+	numeric = 'numeric',
 }
 
 export type InputVariant = 'default' | 'weightable' | 'amountTotal' | 'currency' | 'numeric';
 
 interface BaseInputPropsExtended extends BaseInputProps {
-	type: 'currency' | 'number' | 'text' | 'email' | 'phone';
+	type?: 'currency' | 'number' | 'text' | 'email' | 'phone';
 	variant?: InputVariant;
 	onChangeText?: (text: string) => void;
+	totalValue?: number;
 }
 
-type InputProps =
-	| (BaseInputPropsExtended & {variant: 'amountTotal'; totalValue: number})
-	| (BaseInputPropsExtended & {variant?: Exclude<InputVariant, 'amountTotal'>; totalValue?: never});
+type AmountTotalProps = BaseInputPropsExtended & {
+	variant: 'amountTotal';
+	totalValue: number;
+};
 
-function setRef<T>(ref: React.Ref<T>, value: T | null) {
+type OtherVariantProps = BaseInputPropsExtended & {
+	variant: Exclude<InputVariant, 'amountTotal'>;
+	totalValue?: never;
+};
+
+type DefaultProps = BaseInputPropsExtended & {
+	variant?: never;
+	type: 'currency' | 'number' | 'text' | 'email' | 'phone';
+	totalValue?: never;
+};
+
+export type InputProps = AmountTotalProps | OtherVariantProps | DefaultProps;
+
+const setRef = <T,>(ref: React.Ref<T>, value: T | null) => {
 	if (typeof ref === 'function') {
 		ref(value);
 	} else if (ref && 'current' in ref) {
 		(ref as React.MutableRefObject<T | null>).current = value;
 	}
-}
+};
 
 const Input = forwardRef<TextInput, InputProps>(
 	({style, type, variant = 'default', totalValue, onChangeText, ...props}, ref) => {
@@ -76,18 +95,27 @@ const Input = forwardRef<TextInput, InputProps>(
 			}
 		};
 
+		const resolvedKeyboardType = (() => {
+			if (type && type in InputType) {
+				return InputType[type];
+			}
+			if (variant && variant in InputType) {
+				return InputType[variant];
+			}
+			return InputType.default;
+		})();
+
 		return (
 			<TouchableWithoutFeedback onPress={handlePress}>
 				<View style={styles.container}>
 					<BaseInput
-						editable
 						style={[styles.input, style]}
 						ref={(instance) => {
 							setRef(inputRef, instance);
 							setRef(ref, instance);
 						}}
 						value={value}
-						keyboardType={InputType[type]}
+						keyboardType={resolvedKeyboardType}
 						onChangeText={changeTextCb}
 						{...props}
 					/>

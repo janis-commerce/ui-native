@@ -1,6 +1,6 @@
 import React from 'react';
 import {render, fireEvent} from '@testing-library/react-native';
-import Input from './index';
+import Input, {InputProps} from './index';
 
 describe('Input Component', () => {
 	describe('it does not render', () => {
@@ -75,12 +75,22 @@ describe('Input Component', () => {
 		it('and call ref function with the input instance', () => {
 			const refMock = jest.fn();
 
-			render(<Input placeholder="Enter text" type="text" ref={refMock} />);
+			render(<Input placeholder="Enter text" variant="default" ref={refMock} />);
 
 			expect(refMock).toHaveBeenCalled();
 
 			expect(refMock.mock.calls[0][0]).toBeTruthy();
 			expect(refMock.mock.calls[0][0]).toHaveProperty('focus');
+		});
+
+		it('when keyboardType is default as no valid combination of variant nor type is passed', () => {
+			const {getByPlaceholderText} = render(
+				<Input placeholder="Enter text" {...({variant: 'test'} as unknown as InputProps)} />
+			);
+
+			const input = getByPlaceholderText('Enter text');
+
+			expect(input.props.keyboardType).toBe('default');
 		});
 	});
 });
