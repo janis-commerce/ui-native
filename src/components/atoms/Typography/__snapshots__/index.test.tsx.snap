@@ -6,7 +6,7 @@ exports[`Typography component render correct match snapshot with default typogra
     Array [
       undefined,
       Object {
-        "fontSize": 14,
+        "fontSize": 29,
         "fontWeight": "400",
         "lineHeight": 18,
       },
