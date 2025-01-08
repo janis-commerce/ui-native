@@ -1,5 +1,3 @@
-import {mockAccordion} from './__mocks__/react-native-collapsible';
-
 /* eslint-disable no-undef */
 jest.mock('react', () => {
 	const react = jest.requireActual('react');
@@ -13,8 +11,6 @@ jest.mock('react', () => {
 
 jest.mock('react-native-reanimated', () => {
 	const Reanimated = require('react-native-reanimated/mock');
-
-	// Mock `call` as it is used in Reanimated.
 	Reanimated.default.call = () => {};
 
 	return Reanimated;
@@ -36,10 +32,3 @@ jest.mock('react-native-toast-message', () => ({
 	hide: jest.fn(),
 	setRef: jest.fn(),
 }));
-
-jest.mock('react-native-collapsible/Accordion', () => {
-	return {
-		__esModule: true,
-		default: mockAccordion,
-	};
-});
