@@ -6,7 +6,7 @@ import {defaultIcon} from './utils';
 import {base, black} from 'theme/palette';
 import BaseToast, {BaseToastProps} from 'atoms/BaseToast';
 import ToastAction from 'react-native-toast-message';
-import Text from 'atoms/Text';
+import Typography from 'atoms/Typography';
 import Icon from 'atoms/Icon';
 
 export interface ToastProps extends BaseToastProps {
@@ -114,8 +114,8 @@ const Toast: FC<ToastProps> = ({type, text1, text2, style, props}) => {
 			)}
 
 			<View style={styles.textWrapper}>
-				{validTitle && <Text style={styles.title}>{text1}</Text>}
-				{validMessage && <Text style={styles.message}>{text2}</Text>}
+				{validTitle && <Typography style={styles.title}>{text1}</Typography>}
+				{validMessage && <Typography style={styles.message}>{text2}</Typography>}
 			</View>
 
 			<View style={styles.feedbackWrapper}>
@@ -124,7 +124,7 @@ const Toast: FC<ToastProps> = ({type, text1, text2, style, props}) => {
 						style={styles.actionWrapper}
 						onPress={handleActionCb}
 						activeOpacity={0.6}>
-						<Text style={styles.actionTitle}>{actionTitle}</Text>
+						<Typography style={styles.actionTitle}>{actionTitle}</Typography>
 					</TouchableOpacity>
 				)}
 				{showCloseIcon && (

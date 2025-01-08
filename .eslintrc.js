@@ -18,6 +18,6 @@ module.exports = {
 		'react/jsx-props-no-spreading': 'off',
 		'no-param-reassign': 'off',
 		'no-shadow': 'off',
-		'no-console': 'error',
+		'no-console': 'off',
 	},
 };

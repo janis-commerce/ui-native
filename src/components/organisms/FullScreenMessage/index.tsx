@@ -3,7 +3,7 @@ import {Modal, StyleSheet, View} from 'react-native';
 import {moderateScale, scaledForDevice} from 'scale';
 import {base, primary} from 'theme/palette';
 import Icon from 'atoms/Icon';
-import Text from 'atoms/Text';
+import Typography from 'atoms/Typography';
 
 export enum animationTypes {
 	Slide = 'slide',
@@ -94,8 +94,16 @@ const FullScreenMessage: FC<Props> = ({
 			<View style={styles.container}>
 				{children ?? (
 					<>
-						{validTitle && <Text style={styles.title}>{title}</Text>}
-						{validSubtitle && <Text style={styles.subtitle}>{subtitle}</Text>}
+						{validTitle && (
+							<Typography style={styles.title} type="heading" size="large">
+								{title}
+							</Typography>
+						)}
+						{validSubtitle && (
+							<Typography style={styles.subtitle} type="body" size="large">
+								{subtitle}
+							</Typography>
+						)}
 						{validIconName && <Icon color={iconColor} size={130} name={iconName} />}
 					</>
 				)}
