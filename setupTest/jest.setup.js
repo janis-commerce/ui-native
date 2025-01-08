@@ -11,9 +11,14 @@ jest.mock('react', () => {
 	};
 });
 
-jest.mock('react-native-reanimated', () =>
-	jest.requireActual('../node_modules/react-native-reanimated/mock')
-);
+jest.mock('react-native-reanimated', () => {
+	const Reanimated = require('react-native-reanimated/mock');
+
+	// Mock `call` as it is used in Reanimated.
+	Reanimated.default.call = () => {};
+
+	return Reanimated;
+});
 
 jest.mock('@gorhom/bottom-sheet', () => {
 	const react = require('react-native');
