@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.13.0] - 2025-01-10
+
 ### Added
 
 - Input types - [APPSRN-314](https://janiscommerce.atlassian.net/browse/APPSRN-314)
