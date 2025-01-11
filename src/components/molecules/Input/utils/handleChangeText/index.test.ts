@@ -1,49 +1,51 @@
 import {InputVariant} from 'molecules/Input';
 import handleChangeText from './';
 
-const mockSetValue = jest.fn();
-const mockOnChangeText = jest.fn();
-
 describe('Input handleChangeText util', () => {
 	describe('returns untransformed text', () => {
 		it('as there is an invalid variant', () => {
-			handleChangeText('ABC', mockSetValue, 'invalid' as InputVariant, mockOnChangeText);
+			const initialValue = 'ABC';
+			const transformedValue = handleChangeText(initialValue, 'invalid' as InputVariant);
 
-			expect(mockSetValue).toBeCalledWith('ABC');
-			expect(mockOnChangeText).toBeCalled();
+			expect(transformedValue).toEqual(initialValue);
 		});
 	});
 
 	describe('returns transformed text', () => {
 		it('as it is a weightable variant', () => {
-			handleChangeText('10,0', mockSetValue, 'weightable');
+			const initialValue = '10,0';
+			const transformedValue = handleChangeText(initialValue, 'weightable');
 
-			expect(mockSetValue).toBeCalledWith('10.0');
+			const expectedValue = '10.0';
+
+			expect(transformedValue).toEqual(expectedValue);
 		});
 
 		it('as it is a amountTotal variant', () => {
-			handleChangeText('10', mockSetValue, 'amountTotal');
+			const initialValue = '10';
+			const transformedValue = handleChangeText(initialValue, 'amountTotal');
 
-			expect(mockSetValue).toBeCalledWith('10');
+			const expectedValue = '10';
+
+			expect(transformedValue).toEqual(expectedValue);
 		});
 
 		it('as it is a currency variant', () => {
-			handleChangeText('10', mockSetValue, 'currency');
+			const initialValue = '10';
+			const transformedValue = handleChangeText(initialValue, 'currency');
 
-			expect(mockSetValue).toBeCalledWith('10');
+			const expectedValue = '10';
+
+			expect(transformedValue).toEqual(expectedValue);
 		});
 
 		it('as it is a numeric variant', () => {
-			handleChangeText('10', mockSetValue, 'numeric');
+			const initialValue = '10';
+			const transformedValue = handleChangeText(initialValue, 'numeric');
 
-			expect(mockSetValue).toBeCalledWith('10');
-		});
+			const expectedValue = '10';
 
-		it('as there is a valid variant and a valid onChangeText', () => {
-			handleChangeText('10,0', mockSetValue, 'weightable', mockOnChangeText);
-
-			expect(mockSetValue).toBeCalledWith('10.0');
-			expect(mockOnChangeText).toBeCalled();
+			expect(transformedValue).toEqual(expectedValue);
 		});
 	});
 });

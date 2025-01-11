@@ -45,20 +45,13 @@ type DefaultProps = BaseInputPropsExtended & {
 
 export type InputProps = AmountTotalProps | OtherVariantProps | DefaultProps;
 
-const setRef = <T,>(ref: React.Ref<T>, value: T | null) => {
-	if (typeof ref === 'function') {
-		ref(value);
-	} else if (ref && 'current' in ref) {
-		(ref as React.MutableRefObject<T | null>).current = value;
-	}
-};
-
 const Input = forwardRef<TextInput, InputProps>(
 	({style, type, variant = 'default', totalValue, onChangeText, ...props}, ref) => {
 		const [value, setValue] = useState('');
 		const isAmountTotalVariant = variant === 'amountTotal';
 
-		const inputRef = useRef<TextInput>(null);
+		const internalRef = useRef<TextInput>(null);
+		const inputRef = ref ?? internalRef;
 
 		if (isAmountTotalVariant && typeof totalValue !== 'number') {
 			return null;
@@ -85,11 +78,17 @@ const Input = forwardRef<TextInput, InputProps>(
 			},
 		});
 
-		const changeTextCb = (text: string) => handleChangeText(text, setValue, variant, onChangeText);
+		const changeTextCb = (text: string) => {
+			const transformedText = handleChangeText(text, variant);
+			setValue(transformedText);
+			if (onChangeText) {
+				onChangeText(transformedText);
+			}
+		};
 
 		const handlePress = () => {
 			// istanbul ignore next
-			if (inputRef.current) {
+			if (inputRef && 'current' in inputRef && inputRef.current) {
 				Keyboard.dismiss();
 				inputRef.current.focus();
 			}
@@ -110,10 +109,7 @@ const Input = forwardRef<TextInput, InputProps>(
 				<View style={styles.container}>
 					<BaseInput
 						style={[styles.input, style]}
-						ref={(instance) => {
-							setRef(inputRef, instance);
-							setRef(ref, instance);
-						}}
+						ref={inputRef}
 						value={value}
 						keyboardType={resolvedKeyboardType}
 						onChangeText={changeTextCb}

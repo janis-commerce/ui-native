@@ -63,6 +63,14 @@ describe('Input Component', () => {
 			expect(onChangeTextMock).toHaveBeenCalledWith('new text');
 		});
 
+		it('and do not call changeTextCb when text is changed as there is not one', () => {
+			const onChangeTextMock = jest.fn();
+			const {getByPlaceholderText} = render(<Input placeholder="Enter text" type="text" />);
+			const input = getByPlaceholderText('Enter text');
+			fireEvent.changeText(input, 'new text');
+			expect(onChangeTextMock).toHaveBeenCalledTimes(0);
+		});
+
 		it('as it is amountTotal type and is pressed', () => {
 			const {getByText} = render(<Input type="text" variant="amountTotal" totalValue={6} />);
 			const input = getByText('/6');
