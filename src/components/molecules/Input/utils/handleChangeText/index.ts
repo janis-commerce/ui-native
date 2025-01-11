@@ -1,5 +1,4 @@
 import {InputVariant} from 'molecules/Input';
-import {Dispatch, SetStateAction} from 'react';
 
 type VariantLogic = Record<InputVariant, (value: string) => string>;
 
@@ -16,19 +15,10 @@ const transformText = (text: string, variant: InputVariant): string => {
 	return transform(text);
 };
 
-const handleChangeText = (
-	text: string,
-	setValue: Dispatch<SetStateAction<string>>,
-	variant: InputVariant,
-	onChangeText?: (text: string) => void
-): void => {
+const handleChangeText = (text: string, variant: InputVariant): string => {
 	const transformedText = transformText(text, variant);
 
-	setValue(transformedText);
-
-	if (onChangeText) {
-		onChangeText(transformedText);
-	}
+	return transformedText;
 };
 
 export default handleChangeText;

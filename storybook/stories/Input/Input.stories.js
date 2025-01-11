@@ -34,4 +34,5 @@ DefaultProps.args = {
 	placeholder: 'Placeholder example',
 	type: 'text',
 	variant: 'default',
+	totalValue: 6,
 };
