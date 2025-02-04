@@ -1,3 +1,4 @@
+import List from 'atoms/List';
 import React, {useState} from 'react';
 import {StyleSheet, View, LayoutChangeEvent, Pressable, ViewStyle} from 'react-native';
 import Animated, {
@@ -9,8 +10,8 @@ import Animated, {
 
 interface CollapsibleProps<HeaderProps = {}, ContentProps = {}> {
 	header: React.ComponentType<HeaderProps>;
-	content: React.ComponentType<ContentProps>;
-	data?: object;
+	content: React.ComponentType<ContentProps & {index: number}>;
+	data?: Record<string, any>[];
 	pressableComponent?: React.ComponentType;
 	duration?: number;
 	onPressCallback?: null | (() => void);
@@ -20,7 +21,7 @@ interface CollapsibleProps<HeaderProps = {}, ContentProps = {}> {
 const Collapsible: React.FC<CollapsibleProps<{isOpen: boolean}, {isOpen?: boolean}>> = ({
 	header: Header,
 	content: Content,
-	data = {},
+	data = [],
 	onPressCallback = null,
 	pressableComponent: PressableComponent = Pressable,
 	duration = 500,
@@ -72,14 +73,24 @@ const Collapsible: React.FC<CollapsibleProps<{isOpen: boolean}, {isOpen?: boolea
 		},
 	});
 
+	const renderContent = (contentData: any) => {
+		const {item, index} = contentData;
+
+		return <Content {...item} index={index} isOpen={isOpen} />;
+	};
+
 	return (
 		<View style={[wrapperStyle, styles.wrapperView]}>
 			<PressableComponent onPress={handleOnPress}>
-				<Header isOpen={open} {...data} />
+				<Header isOpen={open} />
 			</PressableComponent>
 			<Animated.View style={[styles.animatedView, bodyStyle]}>
 				<View onLayout={handleContentLayout} style={styles.contentView}>
-					<Content isOpen={open} {...data} />
+					<List
+						data={data}
+						renderComponent={renderContent}
+						keyExtractor={(_, index) => String(index)}
+					/>
 				</View>
 			</Animated.View>
 		</View>

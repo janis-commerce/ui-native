@@ -9,8 +9,10 @@ const mockedFunction = jest.fn();
 
 describe('Collapsible component', () => {
 	it('should render correctly when receive expected components', () => {
+		const data = [{name: 'Item 1'}, {name: 'Item 2'}, {name: 'Item 3'}];
+
 		const {root: CollapsibleComp, toJSON} = create(
-			<Collapsible header={HeaderMock} content={ContentMock} />
+			<Collapsible header={HeaderMock} content={ContentMock} data={data} />
 		);
 
 		const PressableComp = CollapsibleComp.findByType(Pressable);
