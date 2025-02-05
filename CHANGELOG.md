@@ -7,6 +7,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.13.3] - 2025-01-24
+
+### Fixed
+
+- Fixed utils coverage
+
+## [1.13.2] - 2025-01-24
+
+### Changed
+
+- Removed Text console.warn()
+
+## [1.13.1] - 2025-01-22
+
+### Fixed
+
+- An error with input types - [APPSRN-359](https://janiscommerce.atlassian.net/browse/APPSRN-359)
+
+## [1.13.0] - 2025-01-10
+
+### Added
+
+- Input types - [APPSRN-314](https://janiscommerce.atlassian.net/browse/APPSRN-314)
+
 ## [1.12.0] - 2025-01-02
 
 ### Added

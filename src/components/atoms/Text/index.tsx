@@ -7,7 +7,6 @@ import {
 	TextStyle,
 } from 'react-native';
 import {moderateScale, scaledForDevice} from 'scale';
-import {isDevEnv} from 'utils/index';
 
 export interface TextProps extends TextComponentProps {
 	children?: ReactElement | string;
@@ -28,10 +27,6 @@ const Text = ({children, style, ...props}: TextProps) => {
 		},
 	});
 
-	// istanbul ignore next
-	if (isDevEnv()) {
-		console.warn('This component is going to be deprecated soon.');
-	}
 	return (
 		<TextComponent style={[styles.TextStyles, style]} {...props}>
 			{children}
