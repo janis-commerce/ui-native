@@ -1,7 +1,7 @@
 import React from 'react';
 import Collapsible from './index';
 import {Pressable, View} from 'react-native';
-import {create} from 'react-test-renderer';
+import {create, act} from 'react-test-renderer';
 
 const HeaderMock = () => <View />;
 const ContentMock = () => <View />;
@@ -18,7 +18,7 @@ describe('Collapsible component', () => {
 		const PressableComp = CollapsibleComp.findByType(Pressable);
 		const {onPress} = PressableComp.props;
 
-		onPress();
+		act(() => onPress());
 
 		expect(mockedFunction).not.toHaveBeenCalled();
 		expect(toJSON()).toBeTruthy();
@@ -36,7 +36,7 @@ describe('Collapsible component', () => {
 		).root;
 
 		const PressableComp = CollapsibleComp.findByType(Pressable);
-		const [, , , , ViewLayoutWrapper] = CollapsibleComp.findAllByType(View);
+		const [, , , ViewLayoutWrapper] = CollapsibleComp.findAllByType(View);
 
 		const {onLayout} = ViewLayoutWrapper.props;
 
@@ -49,8 +49,9 @@ describe('Collapsible component', () => {
 				},
 			},
 		};
-		onLayout(event);
-		onPress();
+
+		act(() => onLayout(event));
+		act(() => onPress());
 
 		expect(mockedFunction).toHaveBeenCalled();
 	});

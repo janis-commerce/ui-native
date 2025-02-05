@@ -1,12 +1,7 @@
 import List from 'atoms/List';
 import React, {useState} from 'react';
 import {StyleSheet, View, LayoutChangeEvent, Pressable, ViewStyle} from 'react-native';
-import Animated, {
-	useAnimatedStyle,
-	useDerivedValue,
-	useSharedValue,
-	withTiming,
-} from 'react-native-reanimated';
+import Animated, {useAnimatedStyle, useSharedValue, withTiming} from 'react-native-reanimated';
 
 interface CollapsibleProps<HeaderProps = {}, ContentProps = {}> {
 	header: React.ComponentType<HeaderProps>;
@@ -28,70 +23,79 @@ const Collapsible: React.FC<CollapsibleProps<{isOpen: boolean}, {isOpen?: boolea
 	wrapperStyle = {},
 }) => {
 	const isOpen = useSharedValue(false);
-	const handleOpen = () => {
-		isOpen.value = !isOpen.value;
-		setOpen(!isOpen.value);
-	};
-
-	const [open, setOpen] = useState(isOpen.value);
-
+	const [measuredHeight, setMeasuredHeight] = useState(0);
 	const contentHeight = useSharedValue(0);
-	const derivedHeight = useDerivedValue(() =>
-		withTiming(contentHeight.value * Number(isOpen.value), {
-			duration,
-		})
-	);
+	const hasHeightBeenMeasured = !!measuredHeight;
 
-	const bodyStyle = useAnimatedStyle(() => ({
-		height: derivedHeight.value,
-	}));
+	const handleOpen = () => {
+		// istanbul ignore next
+		if (!isOpen.value && measuredHeight > 0) {
+			contentHeight.value = measuredHeight;
+		}
+		isOpen.value = !isOpen.value;
 
-	const handleOnPress = () => {
 		if (onPressCallback) {
 			onPressCallback();
 		}
-		handleOpen();
 	};
 
 	const handleContentLayout = (e: LayoutChangeEvent): void => {
-		contentHeight.value = e.nativeEvent.layout.height;
+		// istanbul ignore next
+		if (measuredHeight === 0) {
+			const newHeight = e.nativeEvent.layout.height;
+			setMeasuredHeight(newHeight);
+			contentHeight.value = newHeight;
+		}
 	};
+
+	// istanbul ignore next
+	const bodyStyle = useAnimatedStyle(() => ({
+		maxHeight: withTiming(isOpen.value ? contentHeight.value : 0, {duration}),
+		overflow: 'hidden',
+	}));
 
 	const styles = StyleSheet.create({
 		wrapperView: {
 			flex: 1,
-			flexDirection: 'column',
 			width: '100%',
 		},
 		animatedView: {
 			overflow: 'hidden',
 			width: '100%',
 		},
-		contentView: {
-			width: '100%',
+		contentWrapper: {
 			position: 'absolute',
+			opacity: 0,
 		},
 	});
 
 	const renderContent = (contentData: any) => {
 		const {item, index} = contentData;
-
 		return <Content {...item} index={index} isOpen={isOpen} />;
 	};
 
 	return (
 		<View style={[wrapperStyle, styles.wrapperView]}>
-			<PressableComponent onPress={handleOnPress}>
-				<Header isOpen={open} />
+			<PressableComponent onPress={handleOpen}>
+				<Header isOpen={isOpen.value} />
 			</PressableComponent>
-			<Animated.View style={[styles.animatedView, bodyStyle]}>
-				<View onLayout={handleContentLayout} style={styles.contentView}>
+			{!hasHeightBeenMeasured && (
+				<View style={styles.contentWrapper} onLayout={handleContentLayout}>
 					<List
 						data={data}
 						renderComponent={renderContent}
 						keyExtractor={(_, index) => String(index)}
+						showsVerticalScrollIndicator={false}
 					/>
 				</View>
+			)}
+			<Animated.View style={[styles.animatedView, bodyStyle]}>
+				<List
+					data={data}
+					renderComponent={renderContent}
+					keyExtractor={(_, index) => String(index)}
+					showsVerticalScrollIndicator={false}
+				/>
 			</Animated.View>
 		</View>
 	);
