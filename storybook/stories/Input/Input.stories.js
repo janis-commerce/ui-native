@@ -10,7 +10,16 @@ export default {
 				type: 'select',
 			},
 			options: ['currency', 'number', 'text', 'email', 'phone'],
-			defaultValue: 'currency',
+		},
+		variant: {
+			control: {type: 'select'},
+			options: {
+				default: 'default',
+				weightable: 'weightable',
+				amountTotal: 'amountTotal',
+				currency: 'currency',
+				numeric: 'numeric',
+			},
 		},
 	},
 };
@@ -23,4 +32,7 @@ DefaultProps.storyName = 'With a placeholder example';
 
 DefaultProps.args = {
 	placeholder: 'Placeholder example',
+	type: 'text',
+	variant: 'default',
+	totalValue: 6,
 };
