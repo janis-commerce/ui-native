@@ -1,4 +1,4 @@
-import {isObject, isDevEnv} from './';
+import {isArray, isObject, isDevEnv} from './';
 
 describe('isObject', () => {
 	it('is true when is object type', () => {
@@ -9,6 +9,13 @@ describe('isObject', () => {
 	it('is false when is object type', () => {
 		const response = isObject([]);
 		expect(response).toBe(false);
+	});
+});
+
+describe('isArray', () => {
+	it('is true when is array instance', () => {
+		const response = isArray([]);
+		expect(response).toBe(true);
 	});
 });
 

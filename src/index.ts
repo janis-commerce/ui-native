@@ -13,6 +13,7 @@ import {SwipeUpFlatList, SwipeUpScrollView, SwipeUpView} from 'atoms/SwipeUp/chi
 import Text from 'atoms/Text';
 import BaseInput from 'atoms/BaseInput';
 import Typography from 'atoms/Typography';
+import Collapsible from 'atoms/Collapsible';
 
 // Molecules
 import Avatar from 'molecules/Avatar';
@@ -71,4 +72,5 @@ export {
 	MainCardList,
 	BaseInput,
 	Typography,
+	Collapsible,
 };

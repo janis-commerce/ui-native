@@ -5,3 +5,5 @@ export const isDevEnv = () => {
 	const {NODE_ENV} = env;
 	return NODE_ENV !== 'production';
 };
+
+export const isArray = (arr: any[]) => !!(arr instanceof Array);
