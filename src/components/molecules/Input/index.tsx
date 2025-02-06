@@ -25,6 +25,7 @@ interface BaseInputPropsExtended extends BaseInputProps {
 	variant?: InputVariant;
 	onChangeText?: (text: string) => void;
 	totalValue?: number;
+	placeholder?: string;
 }
 
 type AmountTotalProps = BaseInputPropsExtended & {
@@ -46,8 +47,9 @@ type DefaultProps = BaseInputPropsExtended & {
 export type InputProps = AmountTotalProps | OtherVariantProps | DefaultProps;
 
 const Input = forwardRef<TextInput, InputProps>(
-	({style, type, variant = 'default', totalValue, onChangeText, ...props}, ref) => {
+	({style, type, variant = 'default', totalValue, placeholder, onChangeText, ...props}, ref) => {
 		const [value, setValue] = useState('');
+		const isPlaceholderBeingShown = !value;
 		const isAmountTotalVariant = variant === 'amountTotal';
 
 		const internalRef = useRef<TextInput>(null);
@@ -68,13 +70,24 @@ const Input = forwardRef<TextInput, InputProps>(
 				justifyContent: 'center',
 				alignItems: 'center',
 				flexDirection: 'row',
+				position: 'relative',
 			},
 			input: {
 				color: palette.black.main,
 				fontSize: scaledForDevice(42, moderateScale),
+				height: '100%',
+				textAlign: 'center',
+				textAlignVertical: 'center',
+				includeFontPadding: false,
+				paddingVertical: 0,
+				...(isPlaceholderBeingShown && {marginLeft: scaledForDevice(-12, moderateScale)}),
 			},
 			totalValue: {
 				color: palette.primary.main,
+			},
+			placeholder: {
+				color: '#A8AAAC',
+				marginLeft: scaledForDevice(-12, moderateScale),
 			},
 		});
 
@@ -104,10 +117,23 @@ const Input = forwardRef<TextInput, InputProps>(
 			return InputType.default;
 		})();
 
+		const renderPlaceholder = () => {
+			if (value.length > 0) {
+				return null;
+			}
+
+			return (
+				<Typography type="display" size="large" style={styles.placeholder}>
+					{placeholder}
+				</Typography>
+			);
+		};
+
 		return (
 			<TouchableWithoutFeedback onPress={handlePress}>
 				<View style={styles.container}>
 					<BaseInput
+						testID="input"
 						style={[styles.input, style]}
 						ref={inputRef}
 						value={value}
@@ -115,6 +141,7 @@ const Input = forwardRef<TextInput, InputProps>(
 						onChangeText={changeTextCb}
 						{...props}
 					/>
+					{renderPlaceholder()}
 					{isAmountTotalVariant && (
 						<Typography style={styles.totalValue} type="display" size="medium">
 							{`/${totalValue?.toString()}`}
