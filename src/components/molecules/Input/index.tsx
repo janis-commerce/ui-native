@@ -1,10 +1,19 @@
 import React, {forwardRef, useState, useRef} from 'react';
-import {StyleSheet, TextInput, View, TouchableWithoutFeedback, Keyboard} from 'react-native';
+import {
+	StyleSheet,
+	TextInput,
+	View,
+	TouchableWithoutFeedback,
+	Keyboard,
+	Platform,
+} from 'react-native';
 import BaseInput, {BaseInputProps} from 'atoms/BaseInput';
 import {palette} from 'theme/palette';
 import {moderateScale, scaledForDevice} from 'scale';
 import handleChangeText from './utils/handleChangeText';
 import Typography from 'atoms/Typography';
+
+const isWeb = Platform.OS === 'web';
 
 enum InputType {
 	currency = 'numeric',
@@ -81,6 +90,7 @@ const Input = forwardRef<TextInput, InputProps>(
 				includeFontPadding: false,
 				paddingVertical: 0,
 				...(isPlaceholderBeingShown && {marginLeft: scaledForDevice(-12, moderateScale)}),
+				...(isWeb && {flex: 1, maxWidth: isPlaceholderBeingShown ? '1%' : undefined}),
 			},
 			totalValue: {
 				color: palette.primary.main,
@@ -123,7 +133,7 @@ const Input = forwardRef<TextInput, InputProps>(
 			}
 
 			return (
-				<Typography type="display" size="large" style={styles.placeholder}>
+				<Typography type="display" style={styles.placeholder}>
 					{placeholder}
 				</Typography>
 			);
@@ -134,7 +144,7 @@ const Input = forwardRef<TextInput, InputProps>(
 				<View style={styles.container}>
 					<BaseInput
 						testID="input"
-						style={[styles.input, style]}
+						style={[styles.input, style].filter(Boolean)}
 						ref={inputRef}
 						value={value}
 						keyboardType={resolvedKeyboardType}
@@ -143,7 +153,7 @@ const Input = forwardRef<TextInput, InputProps>(
 					/>
 					{renderPlaceholder()}
 					{isAmountTotalVariant && (
-						<Typography style={styles.totalValue} type="display" size="medium">
+						<Typography style={styles.totalValue} type="display">
 							{`/${totalValue?.toString()}`}
 						</Typography>
 					)}

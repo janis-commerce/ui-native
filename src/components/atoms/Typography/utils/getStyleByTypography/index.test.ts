@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 import getStyleByTypography, {defaultStyles} from './';
-import typography from 'theme/typography';
+import typography, {Typography} from 'theme/typography';
 
 describe('getStyleByType function', () => {
 	describe('returns default typography', () => {
@@ -23,31 +23,32 @@ describe('getStyleByType function', () => {
 		});
 	});
 
+	it('as the type exists but size is missing in typography object', () => {
+		const originalBody = typography.body;
+
+		typography.body = {
+			medium: {
+				fontSize: 14,
+				fontWeight: '400',
+				lineHeight: 18,
+			},
+		} as unknown as Typography['body'];
+
+		const styles = getStyleByTypography('body', 'small');
+
+		expect(styles).toEqual(defaultStyles);
+
+		typography.body = originalBody;
+	});
+
 	describe('returns typography correctly', () => {
 		it('as there is display type', () => {
-			const styles = getStyleByTypography('display', 'medium');
+			const styles = getStyleByTypography('display', 'default');
 
 			expect(styles).toEqual(
 				StyleSheet.create({
 					typography: {
-						fontWeight: typography.display.weight,
-						fontSize: typography.display.size,
-						lineHeight: typography.display.lineHeight,
-					},
-				})
-			);
-		});
-
-		it('as there is overline type with invalid size', () => {
-			const styles = getStyleByTypography('overline', 'medium');
-
-			expect(styles).toEqual(
-				StyleSheet.create({
-					typography: {
-						fontWeight: typography.overline.large.weight,
-						fontSize: typography.overline.large.size,
-						lineHeight: typography.overline.large.lineHeight,
-						letterSpacing: typography.overline.large.spacing,
+						...typography.display.default,
 					},
 				})
 			);
@@ -59,9 +60,7 @@ describe('getStyleByType function', () => {
 			expect(styles).toEqual(
 				StyleSheet.create({
 					typography: {
-						fontWeight: typography.title.large.weight,
-						fontSize: typography.title.large.size,
-						lineHeight: typography.title.large.lineHeight,
+						...typography.title.large,
 					},
 				})
 			);

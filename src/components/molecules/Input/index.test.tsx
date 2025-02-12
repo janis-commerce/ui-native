@@ -2,6 +2,11 @@ import React from 'react';
 import {render, fireEvent} from '@testing-library/react-native';
 import Input, {InputProps} from './index';
 
+jest.mock('react-native/Libraries/Utilities/Platform', () => ({
+	OS: 'web',
+	select: () => null,
+}));
+
 describe('Input Component', () => {
 	describe('it does not render', () => {
 		it('as it is amountTotal type and no valid totalValue is passed', () => {
