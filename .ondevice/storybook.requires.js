@@ -74,6 +74,7 @@ const getStories = () => {
 		'./storybook/stories/Tabs/Tabs.stories.js': require('../storybook/stories/Tabs/Tabs.stories.js'),
 		'./storybook/stories/Text/Text.stories.js': require('../storybook/stories/Text/Text.stories.js'),
 		'./storybook/stories/Toast/Toast.stories.js': require('../storybook/stories/Toast/Toast.stories.js'),
+		'./storybook/stories/Typography/Typography.stories.js': require('../storybook/stories/Typography/Typography.stories.js'),
 	};
 };
 

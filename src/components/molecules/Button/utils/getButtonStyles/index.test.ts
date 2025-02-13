@@ -27,8 +27,8 @@ describe('getMixedButtonStyles util', () => {
 		expect(response).toEqual({
 			container: {
 				borderWidth: 1,
-				borderColor: '#C4C6CC',
-				backgroundColor: '#DDDFE2',
+				borderColor: '#D5D7DB',
+				backgroundColor: '#fff',
 				paddingHorizontal: 16.5,
 				paddingVertical: 21,
 			},
@@ -41,7 +41,7 @@ describe('getMixedButtonStyles util', () => {
 			text: {
 				fontWeight: '500',
 				textAlign: 'center',
-				color: '#C4C6CC',
+				color: '#D5D7DB',
 				fontFamily: 'Roboto-Medium',
 				letterSpacing: 0,
 				fontSize: 29,
@@ -51,7 +51,7 @@ describe('getMixedButtonStyles util', () => {
 				fontFamily: 'Roboto-Medium',
 				letterSpacing: 0,
 				textAlign: 'center',
-				color: '#C4C6CC',
+				color: '#D5D7DB',
 			},
 			loadingColor: '#2979FF',
 		});
