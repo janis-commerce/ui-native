@@ -56,7 +56,6 @@ const Collapsible: React.FC<CollapsibleProps<{isOpen: boolean}, {isOpen?: boolea
 
 	const styles = StyleSheet.create({
 		wrapperView: {
-			flex: 1,
 			width: '100%',
 		},
 		animatedView: {

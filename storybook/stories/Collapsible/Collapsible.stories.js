@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import Collapsible from 'atoms/Collapsible';
 import {StyleSheet, View, Text, TouchableOpacity, Image, ScrollView} from 'react-native';
@@ -27,13 +28,50 @@ export const CollapsibleWithText = ({headerTitle, duration}) => {
 	];
 
 	return (
-		<Collapsible
-			header={() => Header({headerTitle})}
-			content={ContentWithText}
-			data={data}
-			duration={duration}
-			pressableComponent={TouchableOpacity}
-		/>
+		<>
+			<Collapsible
+				header={() => Header({headerTitle})}
+				content={ContentWithText}
+				data={data}
+				duration={duration}
+				pressableComponent={TouchableOpacity}
+				wrapperStyle={{
+					paddingBottom: 10,
+				}}
+			/>
+			<Collapsible
+				header={() => Header({headerTitle})}
+				content={ContentWithText}
+				data={data}
+				duration={duration}
+				pressableComponent={TouchableOpacity}
+				wrapperStyle={{
+					paddingBottom: 10,
+				}}
+			/>
+
+			<Collapsible
+				header={() => Header({headerTitle})}
+				content={ContentWithText}
+				data={data}
+				duration={duration}
+				pressableComponent={TouchableOpacity}
+				wrapperStyle={{
+					paddingBottom: 10,
+				}}
+			/>
+
+			<Collapsible
+				header={() => Header({headerTitle})}
+				content={ContentWithText}
+				data={data}
+				duration={duration}
+				pressableComponent={TouchableOpacity}
+				wrapperStyle={{
+					paddingBottom: 10,
+				}}
+			/>
+		</>
 	);
 };
 
@@ -132,8 +170,6 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		backgroundColor: 'white',
 		borderWidth: 1,
-		borderBottomLeftRadius: 15,
-		borderBottomRightRadius: 15,
 	},
 	title: {
 		fontSize: 18,
