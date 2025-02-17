@@ -2,52 +2,66 @@ import {StyleSheet, TextStyle} from 'react-native';
 import typography, {Typography, TypographyItem} from 'theme/typography';
 
 type TypographyType = keyof Typography;
-type TypographySize = 'large' | 'medium' | 'small' | 'default';
+type TypographySize = 'large' | 'medium' | 'small';
 
 const validTypes: TypographyType[] = Object.keys(typography) as TypographyType[];
-const validSizes: TypographySize[] = ['large', 'medium', 'small', 'default'];
+const validSizes: TypographySize[] = ['large', 'medium', 'small'];
 
-export const defaultStyles = StyleSheet.create<{typography: TextStyle}>({
-	typography: {
-		fontWeight: typography.body.medium.fontWeight,
-		fontSize: typography.body.medium.fontSize,
-		lineHeight: typography.body.medium.lineHeight,
-	},
-});
+export const getDefaultStyles = (color?: string) =>
+	StyleSheet.create<{typography: TextStyle}>({
+		typography: {
+			fontWeight: typography.body.medium.fontWeight,
+			fontSize: typography.body.medium.fontSize,
+			lineHeight: typography.body.medium.lineHeight,
+			...(color && {color}),
+		},
+	});
+
+const hasSizes = (category: any): category is Record<TypographySize, TypographyItem> => {
+	return 'large' in category && 'medium' in category && 'small' in category;
+};
+
+const hasDefault = (category: any): category is {default: TypographyItem} => {
+	return 'default' in category;
+};
 
 const getStyleByTypography = (
 	type: TypographyType | string,
-	size: TypographySize | string = 'default'
+	size: TypographySize | string = 'default',
+	color?: string
 ) => {
-	if (
-		!validTypes.includes(type as TypographyType) ||
-		!validSizes.includes(size as TypographySize)
-	) {
-		return defaultStyles;
+	if (!type || !validTypes.includes(type as TypographyType)) {
+		return getDefaultStyles(color);
 	}
 
 	const typographyType = type as TypographyType;
-	const typographySize = size as TypographySize;
-
 	const typographyCategory = typography[typographyType];
 
-	if (typographySize === 'default' && 'default' in typographyCategory) {
+	if (hasDefault(typographyCategory)) {
 		return StyleSheet.create({
 			typography: {
-				...(typographyCategory.default as TypographyItem),
-			},
-		});
-	} else if (typographySize in typographyCategory) {
-		return StyleSheet.create({
-			typography: {
-				...(typographyCategory[
-					typographySize as keyof typeof typographyCategory
-				] as TypographyItem),
+				...typographyCategory.default,
+				...(color && {color}),
 			},
 		});
 	}
 
-	return defaultStyles;
+	if (!size || !validSizes.includes(size as TypographySize)) {
+		return getDefaultStyles(color);
+	}
+
+	const typographySize = size as TypographySize;
+
+	if (hasSizes(typographyCategory)) {
+		return StyleSheet.create({
+			typography: {
+				...typographyCategory[typographySize],
+				...(color && {color}),
+			},
+		});
+	}
+
+	return getDefaultStyles(color);
 };
 
 export default getStyleByTypography;

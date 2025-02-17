@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import getStyleByTypography, {defaultStyles} from './';
+import getStyleByTypography, {getDefaultStyles} from './';
 import typography, {Typography} from 'theme/typography';
 
 describe('getStyleByType function', () => {
@@ -7,19 +7,19 @@ describe('getStyleByType function', () => {
 		it('as there is no valid type', () => {
 			const styles = getStyleByTypography('invalid', 'invalid');
 
-			expect(styles).toEqual(defaultStyles);
+			expect(styles).toEqual(getDefaultStyles());
 		});
 
 		it('as there is no valid size', () => {
 			const styles = getStyleByTypography('body', 'invalid');
 
-			expect(styles).toEqual(defaultStyles);
+			expect(styles).toEqual(getDefaultStyles());
 		});
 
 		it('as there is title type with invalid size', () => {
 			const styles = getStyleByTypography('title', 'invalid');
 
-			expect(styles).toEqual(defaultStyles);
+			expect(styles).toEqual(getDefaultStyles());
 		});
 	});
 
@@ -36,7 +36,7 @@ describe('getStyleByType function', () => {
 
 		const styles = getStyleByTypography('body', 'small');
 
-		expect(styles).toEqual(defaultStyles);
+		expect(styles).toEqual(getDefaultStyles());
 
 		typography.body = originalBody;
 	});
