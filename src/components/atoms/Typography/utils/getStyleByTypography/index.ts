@@ -27,7 +27,7 @@ const hasDefault = (category: any): category is {default: TypographyItem} => {
 
 const getStyleByTypography = (
 	type: TypographyType | string,
-	size: TypographySize | string = 'default',
+	size: TypographySize | string,
 	color?: string
 ) => {
 	if (!type || !validTypes.includes(type as TypographyType)) {
