@@ -57,13 +57,14 @@ describe('getStyleByType function', () => {
 			);
 		});
 
-		it('as there is title type with valid large size', () => {
-			const styles = getStyleByTypography('title', 'large');
+		it('as there is title type with valid large size and color', () => {
+			const styles = getStyleByTypography('title', 'large', 'red');
 
 			expect(styles).toEqual(
 				StyleSheet.create({
 					typography: {
 						...typography.title.large,
+						color: 'red',
 					},
 				})
 			);
