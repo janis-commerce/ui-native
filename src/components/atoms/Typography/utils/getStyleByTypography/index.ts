@@ -1,67 +1,34 @@
-import {StyleSheet, TextStyle} from 'react-native';
+import {StyleSheet} from 'react-native';
 import typography, {Typography, TypographyItem} from 'theme/typography';
 
 type TypographyType = keyof Typography;
 type TypographySize = 'large' | 'medium' | 'small';
 
-const validTypes: TypographyType[] = Object.keys(typography) as TypographyType[];
-const validSizes: TypographySize[] = ['large', 'medium', 'small'];
-
-export const getDefaultStyles = (color?: string) =>
-	StyleSheet.create<{typography: TextStyle}>({
-		typography: {
-			fontWeight: typography.body.medium.fontWeight,
-			fontSize: typography.body.medium.fontSize,
-			lineHeight: typography.body.medium.lineHeight,
-			...(color && {color}),
-		},
-	});
-
-const hasSizes = (category: any): category is Record<TypographySize, TypographyItem> => {
-	return 'large' in category && 'medium' in category && 'small' in category;
-};
-
-const hasDefault = (category: any): category is {default: TypographyItem} => {
-	return 'default' in category;
+const hasSizes = (category: object): category is Record<TypographySize, TypographyItem> => {
+	return 'large' in category || 'medium' in category || 'small' in category;
 };
 
 const getStyleByTypography = (
-	type: TypographyType | string,
-	size: TypographySize | string,
+	type: TypographyType | string = 'body',
+	size: TypographySize | string = 'medium',
 	color?: string
 ) => {
-	if (!type || !validTypes.includes(type as TypographyType)) {
-		return getDefaultStyles(color);
-	}
-
 	const typographyType = type as TypographyType;
-	const typographyCategory = typography[typographyType];
-
-	if (hasDefault(typographyCategory)) {
-		return StyleSheet.create({
-			typography: {
-				...typographyCategory.default,
-				...(color && {color}),
-			},
-		});
-	}
-
-	if (!size || !validSizes.includes(size as TypographySize)) {
-		return getDefaultStyles(color);
-	}
-
 	const typographySize = size as TypographySize;
 
-	if (hasSizes(typographyCategory)) {
-		return StyleSheet.create({
-			typography: {
-				...typographyCategory[typographySize],
-				...(color && {color}),
-			},
-		});
-	}
+	const defaultCategory = typography.body;
+	const typographyCategory = typography[typographyType] || defaultCategory;
 
-	return getDefaultStyles(color);
+	const typographyData = hasSizes(typographyCategory)
+		? typographyCategory[typographySize] || defaultCategory.medium
+		: defaultCategory.medium;
+
+	return StyleSheet.create({
+		typography: {
+			...typographyData,
+			...(color && {color}),
+		},
+	});
 };
 
 export default getStyleByTypography;

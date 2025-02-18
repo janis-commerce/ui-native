@@ -10,7 +10,7 @@ export type TypographyItem = {
 };
 
 export type Typography = {
-	display: {default: TypographyItem};
+	display: {medium: TypographyItem};
 	heading: {
 		large: TypographyItem;
 		medium: TypographyItem;
@@ -39,7 +39,7 @@ export type Typography = {
 
 const typography: Typography = {
 	display: {
-		default: {
+		medium: {
 			fontSize: scaleSize(42),
 			fontWeight: '400',
 			lineHeight: 50,

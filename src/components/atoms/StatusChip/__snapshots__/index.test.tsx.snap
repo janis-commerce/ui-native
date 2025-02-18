@@ -21,7 +21,7 @@ exports[`StatusChip component render correct a valid component is passed 1`] = `
       Array [
         undefined,
         Object {
-          "color": "black",
+          "color": "#000000",
           "fontSize": 29,
           "fontWeight": "400",
           "lineHeight": 18,
@@ -63,7 +63,7 @@ exports[`StatusChip component render correct if a background is passed 1`] = `
           "textAlign": "center",
         },
         Object {
-          "color": "black",
+          "color": "#000000",
           "fontSize": 29,
           "fontWeight": "400",
           "lineHeight": 18,
@@ -104,7 +104,7 @@ exports[`StatusChip component render correct text is passed 1`] = `
           "textAlign": "center",
         },
         Object {
-          "color": "black",
+          "color": "#000000",
           "fontSize": 29,
           "fontWeight": "400",
           "lineHeight": 18,
