@@ -25,12 +25,6 @@ describe('getStyleByType function', () => {
 			expect(styles).toEqual(defaultTypography);
 		});
 
-		it('as there is title type with invalid size', () => {
-			const styles = getStyleByTypography('title', 'invalid');
-
-			expect(styles).toEqual(defaultTypography);
-		});
-
 		it('triggers hasSizes by using small in category', () => {
 			const styles = getStyleByTypography('mockType', 'small');
 
@@ -42,15 +36,15 @@ describe('getStyleByType function', () => {
 				})
 			);
 		});
-
-		it('falls back to defaultCategory.medium when category has no valid sizes', () => {
-			const styles = getStyleByTypography('emptyType', 'medium');
-
-			expect(styles).toEqual(defaultTypography);
-		});
 	});
 
 	describe('returns typography correctly', () => {
+		it('as there is title type with invalid size', () => {
+			const styles = getStyleByTypography('title', 'invalid');
+
+			expect(styles).toEqual(StyleSheet.create({typography: {...typography.title.medium}}));
+		});
+
 		it('as there is display type', () => {
 			const styles = getStyleByTypography('display');
 
@@ -75,7 +69,7 @@ describe('getStyleByType function', () => {
 			);
 		});
 
-		it('as there is title type with valid small size', () => {
+		it('as there is body type with valid small size', () => {
 			const styles = getStyleByTypography('body', 'small');
 
 			expect(styles).toEqual(

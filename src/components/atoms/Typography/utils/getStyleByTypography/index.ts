@@ -1,31 +1,30 @@
-import {StyleSheet} from 'react-native';
-import typography, {Typography, TypographyItem} from 'theme/typography';
-
+import {StyleSheet, TextStyle} from 'react-native';
+import typography, {Typography} from 'theme/typography';
 type TypographyType = keyof Typography;
 type TypographySize = 'large' | 'medium' | 'small';
-
-const hasSizes = (category: object): category is Record<TypographySize, TypographyItem> => {
-	return 'large' in category || 'medium' in category || 'small' in category;
-};
-
+interface TypographyStyle {
+	[key: string]: TextStyle;
+}
 const getStyleByTypography = (
 	type: TypographyType | string = 'body',
 	size: TypographySize | string = 'medium',
 	color?: string
-) => {
-	const typographyType = type as TypographyType;
-	const typographySize = size as TypographySize;
+): {typography: TextStyle} => {
+	const validType: TypographyType = Object.keys(typography).includes(type)
+		? (type as TypographyType)
+		: 'body';
 
-	const defaultCategory = typography.body;
-	const typographyCategory = typography[typographyType] || defaultCategory;
+	const typographyCategory: TypographyStyle = typography[validType];
 
-	const typographyData = hasSizes(typographyCategory)
-		? typographyCategory[typographySize] || defaultCategory.medium
-		: defaultCategory.medium;
+	const validSize: TypographySize = Object.keys(typographyCategory).includes(size)
+		? (size as TypographySize)
+		: 'medium';
+
+	const typographyStyle: TextStyle = typographyCategory[validSize];
 
 	return StyleSheet.create({
 		typography: {
-			...typographyData,
+			...typographyStyle,
 			...(color && {color}),
 		},
 	});
