@@ -14,14 +14,7 @@ interface TypographyProps extends TextProps {
 	color?: string;
 }
 
-const Typography = ({
-	children,
-	style,
-	type,
-	size,
-	color = '#000000',
-	...props
-}: TypographyProps) => {
+const Typography = ({children, style, type, size, color, ...props}: TypographyProps) => {
 	if (!children) {
 		return null;
 	}
