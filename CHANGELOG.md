@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.15.1] - 2025-02-19
+
+### Fixed
+
+- Storybooks doc publish on github page
+
 ## [1.15.0] - 2025-02-19
 
 ### Added
