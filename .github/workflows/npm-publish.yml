@@ -2,7 +2,7 @@ name: NPM Publish
 
 on:
   push:
-    tags: ['push']
+    tags: ['*']
 
 jobs:
   build:
@@ -16,36 +16,36 @@ jobs:
       - run: npm run lint
       - run: npm run test:coverage
 
-  # publish-npm:
-  #   needs: build
-  #   runs-on: ubuntu-latest
+  publish-npm:
+    needs: build
+    runs-on: ubuntu-latest
 
-  #   steps:
-  #     - uses: actions/checkout@v4
-  #     - uses: actions/setup-node@v4
-  #       with:
-  #         node-version: 16.x
-  #         registry-url: https://registry.npmjs.org/
-  #     - run: npm install
-  #     - run: npm run build
-  #     - run: npm publish --access public
-  #       env:
-  #         NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 16.x
+          registry-url: https://registry.npmjs.org/
+      - run: npm install
+      - run: npm run build
+      - run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
 
-  # send-slack-message:
-  #   needs: publish-npm
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v4
-  #     - uses: actions/setup-node@v4
-  #       with:
-  #         node-version: 16.x
-  #     - run: bash ./scripts/release-notes.sh
-  #       env:
-  #         RELEASE_SLACK_WEBHOOK_URL: ${{secrets.RELEASE_SLACK_WEBHOOK_URL}}
+  send-slack-message:
+    needs: publish-npm
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 16.x
+      - run: bash ./scripts/release-notes.sh
+        env:
+          RELEASE_SLACK_WEBHOOK_URL: ${{secrets.RELEASE_SLACK_WEBHOOK_URL}}
 
   build-and-deploy-storybooks:
-    needs: build
+    needs: publish-npm
     runs-on: ubuntu-latest
 
     environment:
@@ -80,9 +80,9 @@ jobs:
           path: './docs/'
           name: docs
 
-      # - name: Deploy to GitHub Pages
-      #   id: deployment
-      #   uses: actions/deploy-pages@v4
-      #   with:
-      #     artifact_name: 'docs'
-      #     github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+        with:
+          artifact_name: 'docs'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
