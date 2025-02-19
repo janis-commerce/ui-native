@@ -56,7 +56,7 @@ type DefaultProps = BaseInputPropsExtended & {
 export type InputProps = AmountTotalProps | OtherVariantProps | DefaultProps;
 
 const Input = forwardRef<TextInput, InputProps>(
-	({style, type, variant = 'default', totalValue, placeholder, onChangeText, ...props}, ref) => {
+	({type, variant = 'default', totalValue, placeholder, onChangeText, ...props}, ref) => {
 		const [value, setValue] = useState('');
 		const isPlaceholderBeingShown = !value;
 		const isAmountTotalVariant = variant === 'amountTotal';
@@ -141,15 +141,14 @@ const Input = forwardRef<TextInput, InputProps>(
 
 		return (
 			<TouchableWithoutFeedback onPress={handlePress}>
-				<View style={styles.container}>
+				<View style={styles.container} {...props}>
 					<BaseInput
 						testID="input"
-						style={[styles.input, style].filter(Boolean)}
+						style={styles.input}
 						ref={inputRef}
 						value={value}
 						keyboardType={resolvedKeyboardType}
 						onChangeText={changeTextCb}
-						{...props}
 					/>
 					{renderPlaceholder()}
 					{isAmountTotalVariant && (
