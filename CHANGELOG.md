@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.15.3] - 2025-02-20
+
+### Fixed
+
+- Fixed Input props
+
 ## [1.15.2] - 2025-02-19
 
 ### Fixed
