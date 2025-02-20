@@ -4,7 +4,7 @@ import typography from 'theme/typography';
 
 const types = Array.from(Object.keys(typography));
 
-const sizes = ['large', 'medium', 'small'];
+const sizes = ['large', 'medium', 'small', 'default'];
 
 export default {
 	title: 'Components/Typography',

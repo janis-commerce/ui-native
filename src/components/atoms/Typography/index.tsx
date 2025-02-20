@@ -11,16 +11,18 @@ interface TypographyProps extends TextProps {
 	style?: StyleProp<TextStyle>;
 	type?: TypographyType;
 	size?: TypographySize;
+	color?: string;
 }
 
-const Typography = ({children, style, type, size, ...props}: TypographyProps) => {
+const Typography = ({children, style, type, size, color, ...props}: TypographyProps) => {
 	if (!children) {
 		return null;
 	}
 
 	const typographyStyles = getStyleByTypography(
 		type as TypographyType | 'string',
-		size as TypographySize | 'string'
+		size as TypographySize | 'string',
+		color
 	);
 
 	return (

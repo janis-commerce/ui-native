@@ -1,68 +1,33 @@
 import {StyleSheet, TextStyle} from 'react-native';
 import typography, {Typography} from 'theme/typography';
-
 type TypographyType = keyof Typography;
 type TypographySize = 'large' | 'medium' | 'small';
+interface TypographyStyle {
+	[key: string]: TextStyle;
+}
+const getStyleByTypography = (
+	type: TypographyType | string = 'body',
+	size: TypographySize | string = 'medium',
+	color?: string
+): {typography: TextStyle} => {
+	const validType: TypographyType = Object.keys(typography).includes(type)
+		? (type as TypographyType)
+		: 'body';
 
-const validTypes: TypographyType[] = Object.keys(typography) as TypographyType[];
-const validSizes: TypographySize[] = ['large', 'medium', 'small'];
+	const typographyCategory: TypographyStyle = typography[validType];
 
-export const defaultStyles = StyleSheet.create<{typography: TextStyle}>({
-	typography: {
-		fontWeight: typography.body.medium.weight,
-		fontSize: typography.body.medium.size,
-		lineHeight: typography.body.medium.lineHeight,
-	},
-});
+	const validSize: TypographySize = Object.keys(typographyCategory).includes(size)
+		? (size as TypographySize)
+		: 'medium';
 
-const getStyleByTypography = (type: TypographyType | string, size: TypographySize | string) => {
-	if (
-		!validTypes.includes(type as TypographyType) ||
-		!validSizes.includes(size as TypographySize)
-	) {
-		return defaultStyles;
-	}
+	const typographyStyle: TextStyle = typographyCategory[validSize];
 
-	const typographyType = type as TypographyType;
-	const typographySize = size as TypographySize;
-
-	if (typographyType === 'display') {
-		return StyleSheet.create({
-			typography: {
-				fontWeight: typography.display.weight,
-				fontSize: typography.display.size,
-				lineHeight: typography.display.lineHeight,
-			},
-		});
-	}
-
-	if (typographyType === 'overline' && typographySize === 'medium') {
-		return StyleSheet.create({
-			typography: {
-				fontWeight: typography.overline.large.weight,
-				fontSize: typography.overline.large.size,
-				lineHeight: typography.overline.large.lineHeight,
-				letterSpacing: typography.overline.large.spacing,
-			},
-		});
-	}
-
-	const typographyObject = typography[typographyType];
-	// istanbul ignore next
-	if (typographyObject && typographySize in typographyObject) {
-		const typographyStyle = typographyObject[typographySize as keyof typeof typographyObject];
-		return StyleSheet.create({
-			typography: {
-				fontWeight: typographyStyle.weight,
-				fontSize: typographyStyle.size,
-				lineHeight: typographyStyle.lineHeight,
-				letterSpacing: typographyStyle.spacing,
-			},
-		});
-	}
-
-	// istanbul ignore next
-	return defaultStyles;
+	return StyleSheet.create({
+		typography: {
+			...typographyStyle,
+			...(color && {color}),
+		},
+	});
 };
 
 export default getStyleByTypography;

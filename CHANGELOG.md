@@ -7,9 +7,40 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.15.3] - 2025-02-20
+
+### Fixed
+
+- Fixed Input props
+
+## [1.15.2] - 2025-02-19
+
+### Fixed
+
+- Fixed Input styles by props
+
+## [1.15.1] - 2025-02-19
+
+### Fixed
+
+- Storybooks doc publish on github page
+
+## [1.15.0] - 2025-02-19
+
+### Added
+
+- Storybook for typography types and sizes
+
+## [1.14.2] - 2025-02-18
+
+- Fixed coverage
+
+## [1.14.1] - 2025-02-18
+
 ### Fixed
 
 - Disable Button colors.
+- Fixed Input styles - [JUIP-166](https://janiscommerce.atlassian.net/browse/JUIP-166)
 
 ## [1.14.0] - 2025-02-05
 
