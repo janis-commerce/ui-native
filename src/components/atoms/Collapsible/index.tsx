@@ -22,17 +22,17 @@ const Collapsible: React.FC<CollapsibleProps<{isOpen: boolean}, {isOpen?: boolea
 	duration = 500,
 	wrapperStyle = {},
 }) => {
-	const isOpen = useSharedValue(false);
+	const [isOpen, setIsOpen] = useState(false);
 	const [measuredHeight, setMeasuredHeight] = useState(0);
 	const contentHeight = useSharedValue(0);
 	const hasHeightBeenMeasured = !!measuredHeight;
 
 	const handleOpen = () => {
 		// istanbul ignore next
-		if (!isOpen.value && measuredHeight > 0) {
+		if (!isOpen && measuredHeight > 0) {
 			contentHeight.value = measuredHeight;
 		}
-		isOpen.value = !isOpen.value;
+		setIsOpen(!isOpen);
 
 		if (onPressCallback) {
 			onPressCallback();
@@ -50,14 +50,12 @@ const Collapsible: React.FC<CollapsibleProps<{isOpen: boolean}, {isOpen?: boolea
 
 	// istanbul ignore next
 	const bodyStyle = useAnimatedStyle(() => ({
-		maxHeight: withTiming(isOpen.value ? contentHeight.value : 0, {duration}),
+		maxHeight: withTiming(isOpen ? contentHeight.value : 0, {duration}),
 		overflow: 'hidden',
 	}));
 
 	const styles = StyleSheet.create({
-		wrapperView: {
-			width: '100%',
-		},
+		wrapperView: {flex: 1, width: '100%'},
 		animatedView: {
 			overflow: 'hidden',
 			width: '100%',
@@ -76,7 +74,7 @@ const Collapsible: React.FC<CollapsibleProps<{isOpen: boolean}, {isOpen?: boolea
 	return (
 		<View style={[wrapperStyle, styles.wrapperView]}>
 			<PressableComponent onPress={handleOpen}>
-				<Header isOpen={isOpen.value} />
+				<Header isOpen={isOpen} />
 			</PressableComponent>
 			{!hasHeightBeenMeasured && (
 				<View style={styles.contentWrapper} onLayout={handleContentLayout}>
