@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.16.2] - 2025-02-24
+
+### Fixed
+
+- Test input
+
+### Changed
+
+- function to get text align from input
+
+## [1.16.1] - 2025-02-24
+
+### Fixed
+
+- Styles of input
+
 ## [1.16.0] - 2025-02-21
 
 ### Changed
