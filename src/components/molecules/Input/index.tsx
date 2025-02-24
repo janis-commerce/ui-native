@@ -1,19 +1,11 @@
 import React, {forwardRef, useState, useRef} from 'react';
-import {
-	StyleSheet,
-	TextInput,
-	View,
-	TouchableWithoutFeedback,
-	Keyboard,
-	Platform,
-} from 'react-native';
+import {StyleSheet, TextInput, View, TouchableWithoutFeedback, Keyboard} from 'react-native';
 import BaseInput, {BaseInputProps} from 'atoms/BaseInput';
 import {palette} from 'theme/palette';
 import {moderateScale, scaledForDevice} from 'scale';
 import handleChangeText from './utils/handleChangeText';
 import Typography from 'atoms/Typography';
-
-const isWeb = Platform.OS === 'web';
+import typography from 'theme/typography';
 
 enum InputType {
 	currency = 'numeric',
@@ -34,7 +26,6 @@ interface BaseInputPropsExtended extends BaseInputProps {
 	variant?: InputVariant;
 	onChangeText?: (text: string) => void;
 	totalValue?: number;
-	placeholder?: string;
 }
 
 type AmountTotalProps = BaseInputPropsExtended & {
@@ -56,9 +47,8 @@ type DefaultProps = BaseInputPropsExtended & {
 export type InputProps = AmountTotalProps | OtherVariantProps | DefaultProps;
 
 const Input = forwardRef<TextInput, InputProps>(
-	({style, type, variant = 'default', totalValue, placeholder, onChangeText, ...props}, ref) => {
+	({style, type, variant = 'default', totalValue, onChangeText, ...props}, ref) => {
 		const [value, setValue] = useState('');
-		const isPlaceholderBeingShown = !value;
 		const isAmountTotalVariant = variant === 'amountTotal';
 
 		const internalRef = useRef<TextInput>(null);
@@ -82,22 +72,16 @@ const Input = forwardRef<TextInput, InputProps>(
 				position: 'relative',
 			},
 			input: {
+				...typography.display.medium,
 				color: palette.black.main,
-				fontSize: scaledForDevice(42, moderateScale),
 				height: '100%',
 				textAlign: 'center',
 				textAlignVertical: 'center',
 				includeFontPadding: false,
 				paddingVertical: 0,
-				...(isPlaceholderBeingShown && {marginLeft: scaledForDevice(-12, moderateScale)}),
-				...(isWeb && {flex: 1, maxWidth: isPlaceholderBeingShown ? '1%' : undefined}),
 			},
 			totalValue: {
 				color: palette.primary.main,
-			},
-			placeholder: {
-				color: '#A8AAAC',
-				marginLeft: scaledForDevice(-12, moderateScale),
 			},
 		});
 
@@ -127,31 +111,19 @@ const Input = forwardRef<TextInput, InputProps>(
 			return InputType.default;
 		})();
 
-		const renderPlaceholder = () => {
-			if (value.length > 0) {
-				return null;
-			}
-
-			return (
-				<Typography type="display" style={styles.placeholder}>
-					{placeholder}
-				</Typography>
-			);
-		};
-
 		return (
 			<TouchableWithoutFeedback onPress={handlePress}>
 				<View style={styles.container}>
 					<BaseInput
 						testID="input"
 						style={[styles.input, style].filter(Boolean)}
+						textAlign={value ? 'center' : 'left'}
 						ref={inputRef}
 						value={value}
 						keyboardType={resolvedKeyboardType}
 						onChangeText={changeTextCb}
 						{...props}
 					/>
-					{renderPlaceholder()}
 					{isAmountTotalVariant && (
 						<Typography style={styles.totalValue} type="display">
 							{`/${totalValue?.toString()}`}
