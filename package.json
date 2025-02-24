@@ -25,7 +25,8 @@
 		"update-stories": "sb-rn-get-stories --config-path .ondevice",
 		"storybook-web": "node scripts/set-app-mode.js web && npm run storybook-web-build && start-storybook -p 6006 --config-dir ./.storybook",
 		"storybook-web-build": "node scripts/set-app-mode.js web && build-storybook --config-dir ./.storybook --output-dir ./.storybook_static",
-		"storybook-web-docs": "build-storybook --config-dir ./.storybook --output-dir ./docs"
+		"storybook-web-docs": "build-storybook --config-dir ./.storybook --output-dir ./docs",
+		"preversion": "npm run test:coverage"
 	},
 	"repository": {
 		"type": "git",
