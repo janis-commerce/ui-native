@@ -77,12 +77,16 @@ describe('Input Component', () => {
 		});
 
 		it('as it is amountTotal type and is pressed', () => {
-			const {getByText} = render(<Input type="text" variant="amountTotal" totalValue={6} />);
-			const input = getByText('/6');
+			const {getByText, getByTestId} = render(
+				<Input type="text" variant="amountTotal" totalValue={6} />
+			);
+			const inputContainer = getByText('/6');
+			const input = getByTestId('input');
 
 			fireEvent.press(input);
+			fireEvent.changeText(input, '5');
 
-			expect(input).toBeTruthy();
+			expect(inputContainer).toBeTruthy();
 		});
 
 		it('and call ref function with the input instance', () => {

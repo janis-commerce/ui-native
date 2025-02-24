@@ -50,7 +50,6 @@ const Input = forwardRef<TextInput, InputProps>(
 	({style, type, variant = 'default', totalValue, onChangeText, ...props}, ref) => {
 		const [value, setValue] = useState('');
 		const isAmountTotalVariant = variant === 'amountTotal';
-		const textAlignment = value ? (isAmountTotalVariant ? 'right' : 'center') : 'left';
 
 		const internalRef = useRef<TextInput>(null);
 		const inputRef = ref ?? internalRef;
@@ -87,6 +86,14 @@ const Input = forwardRef<TextInput, InputProps>(
 			},
 		});
 
+		const getTextAlignment = () => {
+			if (value) {
+				return isAmountTotalVariant ? 'right' : 'center';
+			}
+
+			return 'left';
+		};
+
 		const changeTextCb = (text: string) => {
 			const transformedText = handleChangeText(text, variant);
 			setValue(transformedText);
@@ -119,7 +126,7 @@ const Input = forwardRef<TextInput, InputProps>(
 					<BaseInput
 						testID="input"
 						style={styles.input}
-						textAlign={textAlignment}
+						textAlign={getTextAlignment()}
 						ref={inputRef}
 						value={value}
 						keyboardType={resolvedKeyboardType}
