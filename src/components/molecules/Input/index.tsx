@@ -70,6 +70,7 @@ const Input = forwardRef<TextInput, InputProps>(
 				alignItems: 'center',
 				flexDirection: 'row',
 				position: 'relative',
+				width: '100%',
 			},
 			input: {
 				...typography.display.medium,
@@ -113,10 +114,10 @@ const Input = forwardRef<TextInput, InputProps>(
 
 		return (
 			<TouchableWithoutFeedback onPress={handlePress}>
-				<View style={styles.container}>
+				<View style={[styles.container, style]}>
 					<BaseInput
 						testID="input"
-						style={[styles.input, style].filter(Boolean)}
+						style={styles.input}
 						textAlign={value ? 'center' : 'left'}
 						ref={inputRef}
 						value={value}

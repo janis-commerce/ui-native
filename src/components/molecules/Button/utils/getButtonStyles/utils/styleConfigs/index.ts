@@ -55,31 +55,31 @@ export const colorConfig = (selectedColor: SelectedColor) => {
 		disabled: {
 			background: {
 				contained: grey[200],
-				outlined: grey[100],
+				outlined: base.white,
 				text: 'transparent',
 			},
 			border: {
 				main: {
 					contained: 'transparent',
-					outlined: 'transparent',
+					outlined: grey[200],
 					text: 'transparent',
 				},
 				secondary: {
 					contained: 'transparent',
-					outlined: grey[300],
+					outlined: grey[200],
 					text: 'transparent',
 				},
 			},
 			text: {
 				main: {
-					contained: grey[400],
-					outlined: grey[300],
-					text: grey[300],
+					contained: base.white,
+					outlined: grey[200],
+					text: grey[200],
 				},
 				secondary: {
-					contained: grey[400],
-					outlined: grey[300],
-					text: grey[300],
+					contained: base.white,
+					outlined: grey[200],
+					text: grey[200],
 				},
 			},
 		},

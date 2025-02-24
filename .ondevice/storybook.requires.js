@@ -55,6 +55,7 @@ const getStories = () => {
 		'./storybook/stories/Collapsible/Collapsible.stories.js': require('../storybook/stories/Collapsible/Collapsible.stories.js'),
 		'./storybook/stories/DesignStystem/Colors.stories.js': require('../storybook/stories/DesignStystem/Colors.stories.js'),
 		'./storybook/stories/DesignStystem/Icons.stories.js': require('../storybook/stories/DesignStystem/Icons.stories.js'),
+		'./storybook/stories/DesignStystem/Typography.stories.js': require('../storybook/stories/DesignStystem/Typography.stories.js'),
 		'./storybook/stories/FullScreenMessage/FullScreenMessage.stories.js': require('../storybook/stories/FullScreenMessage/FullScreenMessage.stories.js'),
 		'./storybook/stories/Image/Image.stories.js': require('../storybook/stories/Image/Image.stories.js'),
 		'./storybook/stories/Input/Input.stories.js': require('../storybook/stories/Input/Input.stories.js'),
@@ -74,6 +75,7 @@ const getStories = () => {
 		'./storybook/stories/Tabs/Tabs.stories.js': require('../storybook/stories/Tabs/Tabs.stories.js'),
 		'./storybook/stories/Text/Text.stories.js': require('../storybook/stories/Text/Text.stories.js'),
 		'./storybook/stories/Toast/Toast.stories.js': require('../storybook/stories/Toast/Toast.stories.js'),
+		'./storybook/stories/Typography/Typography.stories.js': require('../storybook/stories/Typography/Typography.stories.js'),
 	};
 };
 
