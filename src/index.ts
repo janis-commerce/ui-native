@@ -33,6 +33,7 @@ import Input from 'molecules/Input';
 import LoadingFullScreen from 'organisms/LoadingFullScreen';
 import FullScreenMessage from 'organisms/FullScreenMessage';
 import SwipeItemSelectionList from 'organisms/SwipeItemSelectionList';
+import ErrorBoundary from 'organisms/ErrorBoundary';
 
 // Misc
 import {palette} from 'theme/palette';
@@ -73,4 +74,5 @@ export {
 	BaseInput,
 	Typography,
 	Collapsible,
+	ErrorBoundary,
 };
