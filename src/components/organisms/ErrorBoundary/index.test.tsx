@@ -1,5 +1,5 @@
 import React from 'react';
-import {render, fireEvent} from '@testing-library/react-native';
+import {render} from '@testing-library/react-native';
 import ErrorBoundary from './index';
 import {Text, Button} from 'react-native';
 
@@ -49,33 +49,40 @@ describe('ErrorBoundary', () => {
 		expect(onError).toHaveBeenCalled();
 	});
 
-	it('does not call onButtonPress prop when retry button is pressed as it was not passed', () => {
-		const onButtonPress = jest.fn();
+	it('calls renderErrorComponent prop when it is passed', () => {
+		const renderErrorComponent = jest.fn(() => (
+			<Text testID="custom-fallback">Custom fallback</Text>
+		));
 
-		const {getByText} = render(
-			<ErrorBoundary>
+		render(
+			<ErrorBoundary renderErrorComponent={renderErrorComponent}>
 				<ProblemChild />
 			</ErrorBoundary>
 		);
 
-		const retryButton = getByText('Try Again');
-		fireEvent.press(retryButton);
-
-		expect(onButtonPress).toBeCalledTimes(0);
+		expect(renderErrorComponent).toHaveBeenCalled();
 	});
 
-	it('calls onButtonPress prop when retry button is pressed', () => {
-		const onButtonPress = jest.fn();
+	it('calls renderErrorComponent with empty string if error message is undefined', () => {
+		const renderErrorComponent = jest.fn(() => <Text testID="fallback" />);
 
-		const {getByText} = render(
-			<ErrorBoundary onButtonPress={onButtonPress}>
-				<ProblemChild />
+		class NoMessageError extends Error {
+			constructor() {
+				super();
+				(this.message as any) = undefined;
+			}
+		}
+
+		const SilentCrash = () => {
+			throw new NoMessageError();
+		};
+
+		render(
+			<ErrorBoundary renderErrorComponent={renderErrorComponent}>
+				<SilentCrash />
 			</ErrorBoundary>
 		);
 
-		const retryButton = getByText('Try Again');
-		fireEvent.press(retryButton);
-
-		expect(onButtonPress).toHaveBeenCalled();
+		expect(renderErrorComponent).toHaveBeenCalledWith('');
 	});
 });

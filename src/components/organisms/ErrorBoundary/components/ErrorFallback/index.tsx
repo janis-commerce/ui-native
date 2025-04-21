@@ -1,14 +1,14 @@
 import React from 'react';
 import Collapsible from 'atoms/Collapsible';
 import Typography from 'atoms/Typography';
-import Button from 'molecules/Button';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import {palette} from 'theme/palette';
 
 interface ErrorFallbackProps {
 	error?: string;
 	errorDetails?: string;
-	onButtonPress: () => void;
+	isDebug?: boolean;
+	errorMessage?: string;
 }
 
 const styles = StyleSheet.create({
@@ -25,6 +25,10 @@ const styles = StyleSheet.create({
 		shadowOpacity: 0.2,
 		shadowRadius: 4,
 		elevation: 5,
+	},
+	errorMessageText: {
+		textAlign: 'center',
+		color: palette.error.main,
 	},
 	showErrorButton: {
 		paddingVertical: 10,
@@ -52,7 +56,12 @@ const styles = StyleSheet.create({
 	},
 });
 
-const ErrorFallback: React.FC<ErrorFallbackProps> = ({error, errorDetails, onButtonPress}) => {
+const ErrorFallback: React.FC<ErrorFallbackProps> = ({
+	error,
+	errorDetails,
+	isDebug,
+	errorMessage,
+}) => {
 	const ShowErrorDetailsButton = () => {
 		return (
 			<View style={styles.showErrorButton}>
@@ -75,22 +84,31 @@ const ErrorFallback: React.FC<ErrorFallbackProps> = ({error, errorDetails, onBut
 		},
 	];
 
+	if (errorMessage) {
+		return (
+			<View style={styles.container}>
+				<Typography type="heading" size="large" style={styles.errorMessageText}>
+					{errorMessage}
+				</Typography>
+			</View>
+		);
+	}
+
 	return (
 		<View style={styles.container}>
 			<Typography type="heading" size="large" style={styles.heading}>
 				Oops! Something went wrong.
 			</Typography>
 			{error && <Typography color={palette.error.main}>{error}</Typography>}
-			<Collapsible
-				wrapperStyle={styles.collapsibleWrapper}
-				header={() => ShowErrorDetailsButton()}
-				content={ErrorDetails}
-				data={data}
-				pressableComponent={TouchableOpacity}
-			/>
-			<View style={styles.goBackButtonWrapper}>
-				<Button value="Go Back" onPress={onButtonPress} />
-			</View>
+			{isDebug && (
+				<Collapsible
+					wrapperStyle={styles.collapsibleWrapper}
+					header={() => ShowErrorDetailsButton()}
+					content={ErrorDetails}
+					data={data}
+					pressableComponent={TouchableOpacity}
+				/>
+			)}
 		</View>
 	);
 };

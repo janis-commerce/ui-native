@@ -3,8 +3,10 @@ import ErrorFallback from 'organisms/ErrorBoundary/components/ErrorFallback';
 
 interface ErrorBoundaryProps {
 	children: ReactNode;
+	isDebug?: boolean;
+	errorMessage?: string;
+	renderErrorComponent?: (errorMessage: string) => ReactNode;
 	onError?: (error: Error, errorInfo: React.ErrorInfo) => void;
-	onButtonPress?: () => void;
 }
 
 interface ErrorBoundaryState {
@@ -35,19 +37,18 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
 		}
 	}
 
-	handleRetry = () => {
-		this.setState({hasError: false, error: null, errorInfo: null}, () => {
-			if (this.props.onButtonPress) {
-				this.props.onButtonPress();
-			}
-		});
-	};
-
 	render() {
 		if (this.state.hasError) {
+			const {renderErrorComponent} = this.props;
+
+			if (typeof renderErrorComponent === 'function') {
+				return renderErrorComponent(this.state.error?.message || '');
+			}
+
 			return (
 				<ErrorFallback
-					onButtonPress={this.handleRetry}
+					isDebug={this.props.isDebug}
+					errorMessage={this.props.errorMessage}
 					error={this.state.error?.message}
 					errorDetails={this.state.errorInfo?.componentStack}
 				/>
