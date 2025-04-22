@@ -27,14 +27,17 @@ describe('ErrorBoundary', () => {
 		expect(getByTestId('no-error')).toBeTruthy();
 	});
 
-	it('renders fallback when an error is thrown', () => {
+	it('renders fallback when an error is thrown and calls onMount', () => {
+		const onMount = jest.fn();
+
 		const {getByTestId} = render(
-			<ErrorBoundary>
+			<ErrorBoundary onMount={onMount}>
 				<ProblemChild />
 			</ErrorBoundary>
 		);
 
 		expect(getByTestId('error-fallback')).toBeTruthy();
+		expect(onMount).toHaveBeenCalled();
 	});
 
 	it('calls onError prop when an error is caught', () => {
