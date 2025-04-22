@@ -17,10 +17,10 @@ interface UIModalProps extends NativeModalProps {
 	showCloseButton?: boolean;
 	fullScreen?: boolean;
 	modalContainerStyle?: ViewStyle;
+	canClose?: boolean;
 }
 
 interface RefProps {
-	isOpen?: boolean;
 	showModal?: () => void;
 	closeModal?: () => void;
 }
@@ -31,6 +31,7 @@ const Modal = forwardRef<RefProps, UIModalProps>(
 			children = null,
 			customClose = undefined,
 			showCloseButton = false,
+			canClose = true,
 			animationType = 'fade',
 			transparent = true,
 			fullScreen = false,
@@ -51,9 +52,6 @@ const Modal = forwardRef<RefProps, UIModalProps>(
 		};
 
 		useImperativeHandle(ref, () => ({
-			get isOpen() {
-				return isVisible;
-			},
 			openModal: () => setIsVisible(true),
 			closeModal: () => setIsVisible(false),
 		}));
@@ -104,11 +102,15 @@ const Modal = forwardRef<RefProps, UIModalProps>(
 			<NativeModal
 				visible={isVisible}
 				transparent={transparent}
-				onRequestClose={handleClose}
 				animationType={animationType}
-				{...props}>
+				{...props}
+				{...(canClose && {
+					onRequestClose: handleClose,
+				})}>
 				<View style={styles.Overlay}>
-					{!fullScreen && <Pressable style={StyleSheet.absoluteFill} onPress={handleClose} />}
+					{!fullScreen && (
+						<Pressable style={StyleSheet.absoluteFill} disabled={!canClose} onPress={handleClose} />
+					)}
 					<View
 						style={
 							fullScreen

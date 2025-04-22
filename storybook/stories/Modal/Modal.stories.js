@@ -105,11 +105,13 @@ export const FullScreenModal = ({...props}) => {
 DefaultModal.args = {
 	animationType: 'fade',
 	transparent: true,
+	canClose: true,
 };
 
 FullScreenModal.args = {
 	animationType: 'fade',
 	showCloseButton: true,
+	canClose: true,
 };
 
 export default {
