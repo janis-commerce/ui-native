@@ -88,46 +88,11 @@ export const FullScreenModal = ({...props}) => {
 	return (
 		<View style={styles.centeredView}>
 			<OpenModal onPress={handleOpenModal} />
-			<Modal ref={ModalRef} {...props} fullScreen>
+			<Modal ref={ModalRef} {...props}>
 				<View style={styles.fullScreenView}>
 					<View>
-						<Text style={styles.modalText}>{text}</Text>
+						<Text style={styles.modalText}>{text + text}</Text>
 						<Pressable style={[styles.button, styles.buttonClose]} onPress={handleCloseModal}>
-							<Text style={styles.textStyle}>Hide Modal</Text>
-						</Pressable>
-					</View>
-				</View>
-			</Modal>
-		</View>
-	);
-};
-
-export const CustomCloseModal = ({...props}) => {
-	const ModalRef = useRef(null);
-
-	const handleOpenModal = () => {
-		ModalRef.current.openModal();
-	};
-
-	const handleCloseModal = () => {
-		ModalRef.current.closeModal();
-	};
-
-	const openAlert = () => {
-		return Alert.alert('¿cerrar modal?', 'Confirme el cierre del modal', [
-			{text: 'cancel', onPress: () => null},
-			{text: 'confirm', onPress: handleCloseModal},
-		]);
-	};
-
-	return (
-		<View style={styles.centeredView}>
-			<OpenModal onPress={handleOpenModal} />
-			<Modal ref={ModalRef} customCloseBehavior={openAlert} {...props}>
-				<View style={styles.fullScreenView}>
-					<View>
-						<Text style={styles.modalText}>{text + text + text}</Text>
-						<Pressable style={[styles.button, styles.buttonClose]} onPress={openAlert}>
 							<Text style={styles.textStyle}>Hide Modal</Text>
 						</Pressable>
 					</View>
@@ -147,13 +112,7 @@ FullScreenModal.args = {
 	animationType: 'fade',
 	showCloseButton: true,
 	canClose: true,
-};
-
-CustomCloseModal.args = {
-	animationType: 'fade',
-	showCloseButton: true,
-	fullScreen: false,
-	canClose: true,
+	fullScreen: true,
 };
 
 export default {
