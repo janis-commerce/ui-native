@@ -13,7 +13,8 @@ import {verticalScale} from 'scale';
 import {palette} from 'theme/palette';
 
 interface UIModalProps extends NativeModalProps {
-	customClose?: () => void;
+	customCloseBehavior?: () => void;
+	onCloseCallback?: () => void;
 	showCloseButton?: boolean;
 	fullScreen?: boolean;
 	modalContainerStyle?: ViewStyle;
@@ -29,7 +30,8 @@ const Modal = forwardRef<RefProps, UIModalProps>(
 	(
 		{
 			children = null,
-			customClose = undefined,
+			onCloseCallback = undefined,
+			customCloseBehavior = undefined,
 			showCloseButton = false,
 			canClose = true,
 			animationType = 'fade',
@@ -44,11 +46,14 @@ const Modal = forwardRef<RefProps, UIModalProps>(
 		const renderCloseButton = fullScreen && showCloseButton;
 
 		const handleClose = () => {
-			if (!customClose) {
-				return setIsVisible(false);
+			if (customCloseBehavior) {
+				return customCloseBehavior();
+			}
+			if (onCloseCallback) {
+				onCloseCallback();
 			}
 
-			customClose();
+			setIsVisible(false);
 		};
 
 		useImperativeHandle(ref, () => ({
