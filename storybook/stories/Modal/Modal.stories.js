@@ -88,10 +88,10 @@ export const FullScreenModal = ({...props}) => {
 	return (
 		<View style={styles.centeredView}>
 			<OpenModal onPress={handleOpenModal} />
-			<Modal ref={ModalRef} {...props} fullScreen>
+			<Modal ref={ModalRef} {...props}>
 				<View style={styles.fullScreenView}>
 					<View>
-						<Text style={styles.modalText}>{text + text + text}</Text>
+						<Text style={styles.modalText}>{text + text}</Text>
 						<Pressable style={[styles.button, styles.buttonClose]} onPress={handleCloseModal}>
 							<Text style={styles.textStyle}>Hide Modal</Text>
 						</Pressable>
@@ -112,6 +112,7 @@ FullScreenModal.args = {
 	animationType: 'fade',
 	showCloseButton: true,
 	canClose: true,
+	fullScreen: true,
 };
 
 export default {

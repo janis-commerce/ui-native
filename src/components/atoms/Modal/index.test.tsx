@@ -19,7 +19,7 @@ describe('Modal component', () => {
 
 	it('render full screen modal', () => {
 		const mockFn = jest.fn();
-		const ModalComp = create(<Modal fullScreen showCloseButton customClose={mockFn} />);
+		const ModalComp = create(<Modal fullScreen showCloseButton oncloseCallback={mockFn} />);
 		const renderedModal = ModalComp.root.findByType(NativeModal);
 		renderedModal.props.onRequestClose();
 
