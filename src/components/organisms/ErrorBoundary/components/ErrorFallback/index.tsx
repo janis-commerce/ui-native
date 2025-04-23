@@ -56,28 +56,28 @@ const styles = StyleSheet.create({
 	},
 });
 
+const ShowErrorDetailsButton = () => {
+	return (
+		<View style={styles.showErrorButton}>
+			<Typography color={palette.base.white}>Show error details</Typography>
+		</View>
+	);
+};
+
+const ErrorDetails = ({errorDetails}: any) => {
+	return (
+		<View style={styles.errorDetails}>
+			<Typography color={palette.error.main}>{errorDetails}</Typography>
+		</View>
+	);
+};
+
 const ErrorFallback: React.FC<ErrorFallbackProps> = ({
 	error,
 	errorDetails,
 	isDebug,
 	errorMessage,
 }) => {
-	const ShowErrorDetailsButton = () => {
-		return (
-			<View style={styles.showErrorButton}>
-				<Typography color={palette.base.white}>Show error details</Typography>
-			</View>
-		);
-	};
-
-	const ErrorDetails = ({errorDetails}: any) => {
-		return (
-			<View style={styles.errorDetails}>
-				<Typography color={palette.error.main}>{errorDetails}</Typography>
-			</View>
-		);
-	};
-
 	const data = [
 		{
 			errorDetails,
@@ -103,7 +103,7 @@ const ErrorFallback: React.FC<ErrorFallbackProps> = ({
 			{isDebug && (
 				<Collapsible
 					wrapperStyle={styles.collapsibleWrapper}
-					header={() => ShowErrorDetailsButton()}
+					header={ShowErrorDetailsButton}
 					content={ErrorDetails}
 					data={data}
 					pressableComponent={TouchableOpacity}
