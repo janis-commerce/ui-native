@@ -116,7 +116,7 @@ const Modal = forwardRef<RefProps, UIModalProps>(
 								? styles.FullScreen
 								: [styles.ModalWrapper, styles.Shadow, modalContainerStyle]
 						}>
-						{renderCloseButton && (
+						{renderCloseButton && canClose && (
 							<Pressable onPress={handleClose} style={styles.CloseButton}>
 								<Icon name="cross_light" size={24} color={palette.black.main} />
 							</Pressable>
