@@ -9,7 +9,7 @@ import {
 	ViewStyle,
 } from 'react-native';
 import {horizontalScale} from 'scale';
-import {verticalScale} from 'scale';
+import {verticalScale, moderateScale} from 'scale';
 import {palette} from 'theme/palette';
 
 export interface UIModalProps extends NativeModalProps {
@@ -89,11 +89,18 @@ const Modal = forwardRef<RefProps, UIModalProps>(
 				backgroundColor: palette.base.white,
 				zIndex: 2,
 			},
+			HeaderWrapper: {
+				flexDirection: 'row',
+				justifyContent: 'flex-end',
+				alignItems: 'center',
+				zIndex: 3,
+				minHeight: verticalScale(52),
+				backgroundColor: palette.base.white,
+			},
 			CloseButton: {
 				position: 'absolute',
-				top: verticalScale(5),
-				right: horizontalScale(5),
-				zIndex: 3,
+				top: moderateScale(12),
+				right: moderateScale(12),
 			},
 		});
 
@@ -117,8 +124,13 @@ const Modal = forwardRef<RefProps, UIModalProps>(
 								: [styles.ModalWrapper, styles.Shadow, modalContainerStyle]
 						}>
 						{renderCloseButton && canClose && (
-							<Pressable onPress={handleClose} style={styles.CloseButton}>
-								<Icon name="cross_light" size={24} color={palette.black.main} />
+							<Pressable onPress={handleClose} style={styles.HeaderWrapper}>
+								<Icon
+									name="cross_light"
+									size={24}
+									color={palette.black.main}
+									style={styles.CloseButton}
+								/>
 							</Pressable>
 						)}
 						{children}
