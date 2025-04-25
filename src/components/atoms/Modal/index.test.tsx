@@ -29,23 +29,30 @@ describe('Modal component', () => {
 
 	describe('should allow access to modal methods', () => {
 		it('for open modal', () => {
-			const ModalRef = createRef<any>();
+			const ModalRef = createRef<{
+				open: () => void;
+				close: () => void;
+			}>();
 
-			render(<Modal ref={ModalRef} />);
+			const {getByTestId} = render(<Modal ref={ModalRef} testID="modal-component" />);
 
 			act(() => {
-				ModalRef.current.openModal();
+				ModalRef.current?.open();
 			});
 
 			expect(ModalRef.current).toBeDefined();
+			expect(getByTestId('modal-component').props.visible).toBe(true);
 		});
 		it('for close modal', () => {
-			const ModalRef = createRef<any>();
+			const ModalRef = createRef<{
+				open: () => void;
+				close: () => void;
+			}>();
 
 			render(<Modal ref={ModalRef} />);
 
 			act(() => {
-				ModalRef.current.closeModal();
+				ModalRef.current?.close();
 			});
 
 			expect(ModalRef.current).toBeDefined();

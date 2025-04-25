@@ -52,11 +52,11 @@ export const DefaultModal = ({...props}) => {
 	const ModalRef = useRef(null);
 
 	const handleOpenModal = () => {
-		ModalRef.current.openModal();
+		ModalRef.current.open();
 	};
 
 	const handleCloseModal = () => {
-		ModalRef.current.closeModal();
+		ModalRef.current.close();
 	};
 
 	return (
@@ -78,11 +78,11 @@ export const FullScreenModal = ({...props}) => {
 	const ModalRef = useRef(null);
 
 	const handleOpenModal = () => {
-		ModalRef.current.openModal();
+		ModalRef.current.open();
 	};
 
 	const handleCloseModal = () => {
-		ModalRef.current.closeModal();
+		ModalRef.current.close();
 	};
 
 	return (

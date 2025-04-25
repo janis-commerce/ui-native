@@ -21,9 +21,58 @@ export interface UIModalProps extends NativeModalProps {
 }
 
 interface RefProps {
-	showModal?: () => void;
-	closeModal?: () => void;
+	open?: () => void;
+	close?: () => void;
 }
+
+const styles = StyleSheet.create({
+	Overlay: {
+		flex: 1,
+		backgroundColor: 'rgba(0,0,0,0.6)',
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	ModalWrapper: {
+		backgroundColor: palette.base.white,
+		alignItems: 'center',
+		justifyContent: 'center',
+		elevation: 12,
+		minWidth: horizontalScale(50),
+		width: horizontalScale(280),
+		marginHorizontal: horizontalScale(20),
+		borderRadius: verticalScale(18),
+		zIndex: 1,
+	},
+	Shadow: {
+		shadowOffset: {
+			width: 0,
+			height: 2,
+		},
+		shadowOpacity: 0.25,
+	},
+	FullScreen: {
+		position: 'absolute',
+		top: 0,
+		bottom: 0,
+		left: 0,
+		right: 0,
+		backgroundColor: palette.base.white,
+		zIndex: 2,
+	},
+	HeaderWrapper: {
+		flexDirection: 'row',
+		justifyContent: 'flex-end',
+		alignItems: 'center',
+		zIndex: 3,
+		minHeight: verticalScale(52),
+		backgroundColor: palette.base.white,
+	},
+	CloseButton: {
+		position: 'absolute',
+		top: moderateScale(12),
+		right: moderateScale(12),
+	},
+});
 
 const Modal = forwardRef<RefProps, UIModalProps>(
 	(
@@ -51,58 +100,9 @@ const Modal = forwardRef<RefProps, UIModalProps>(
 		};
 
 		useImperativeHandle(ref, () => ({
-			openModal: () => setIsVisible(true),
-			closeModal: () => setIsVisible(false),
+			open: () => setIsVisible(true),
+			close: () => setIsVisible(false),
 		}));
-
-		const styles = StyleSheet.create({
-			Overlay: {
-				flex: 1,
-				backgroundColor: fullScreen ? 'transparent' : 'rgba(0,0,0,0.6)',
-				justifyContent: 'center',
-				alignItems: 'center',
-			},
-			ModalWrapper: {
-				backgroundColor: palette.base.white,
-				alignItems: 'center',
-				justifyContent: 'center',
-				elevation: 12,
-				minWidth: horizontalScale(50),
-				width: horizontalScale(280),
-				marginHorizontal: horizontalScale(20),
-				borderRadius: verticalScale(18),
-				zIndex: 1,
-			},
-			Shadow: {
-				shadowOffset: {
-					width: 0,
-					height: 2,
-				},
-				shadowOpacity: 0.25,
-			},
-			FullScreen: {
-				position: 'absolute',
-				top: 0,
-				bottom: 0,
-				left: 0,
-				right: 0,
-				backgroundColor: palette.base.white,
-				zIndex: 2,
-			},
-			HeaderWrapper: {
-				flexDirection: 'row',
-				justifyContent: 'flex-end',
-				alignItems: 'center',
-				zIndex: 3,
-				minHeight: verticalScale(52),
-				backgroundColor: palette.base.white,
-			},
-			CloseButton: {
-				position: 'absolute',
-				top: moderateScale(12),
-				right: moderateScale(12),
-			},
-		});
 
 		return (
 			<NativeModal
@@ -124,7 +124,11 @@ const Modal = forwardRef<RefProps, UIModalProps>(
 								: [styles.ModalWrapper, styles.Shadow, modalContainerStyle]
 						}>
 						{renderCloseButton && canClose && (
-							<Pressable onPress={handleClose} style={styles.HeaderWrapper}>
+							<Pressable
+								onPress={handleClose}
+								style={styles.HeaderWrapper}
+								accessibilityLabel="Close modal"
+								accessibilityRole="button">
 								<Icon
 									name="cross_light"
 									size={24}
