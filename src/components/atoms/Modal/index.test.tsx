@@ -49,13 +49,14 @@ describe('Modal component', () => {
 				close: () => void;
 			}>();
 
-			render(<Modal ref={ModalRef} />);
+			const {getByTestId} = render(<Modal ref={ModalRef} testID="modal-component" />);
 
 			act(() => {
 				ModalRef.current?.close();
 			});
 
 			expect(ModalRef.current).toBeDefined();
+			expect(getByTestId('modal-component').props.visible).toBe(false);
 		});
 	});
 });
