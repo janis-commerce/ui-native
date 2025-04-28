@@ -1,6 +1,6 @@
 import React, {useRef} from 'react';
 import Modal from 'atoms/Modal';
-import {View, Text, Pressable, StyleSheet, Alert} from 'react-native';
+import {View, Text, Pressable, StyleSheet, ScrollView} from 'react-native';
 
 const text =
 	"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
@@ -35,8 +35,8 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 	},
 	fullScreenView: {
-		marginTop: 45,
 		marginHorizontal: 10,
+		paddingBottom: 10,
 	},
 });
 
@@ -52,11 +52,11 @@ export const DefaultModal = ({...props}) => {
 	const ModalRef = useRef(null);
 
 	const handleOpenModal = () => {
-		ModalRef.current.openModal();
+		ModalRef.current.open();
 	};
 
 	const handleCloseModal = () => {
-		ModalRef.current.closeModal();
+		ModalRef.current.close();
 	};
 
 	return (
@@ -78,25 +78,23 @@ export const FullScreenModal = ({...props}) => {
 	const ModalRef = useRef(null);
 
 	const handleOpenModal = () => {
-		ModalRef.current.openModal();
+		ModalRef.current.open();
 	};
 
 	const handleCloseModal = () => {
-		ModalRef.current.closeModal();
+		ModalRef.current.close();
 	};
 
 	return (
 		<View style={styles.centeredView}>
 			<OpenModal onPress={handleOpenModal} />
 			<Modal ref={ModalRef} {...props}>
-				<View style={styles.fullScreenView}>
-					<View>
-						<Text style={styles.modalText}>{text + text}</Text>
-						<Pressable style={[styles.button, styles.buttonClose]} onPress={handleCloseModal}>
-							<Text style={styles.textStyle}>Hide Modal</Text>
-						</Pressable>
-					</View>
-				</View>
+				<ScrollView contentContainerStyle={styles.fullScreenView}>
+					<Text style={styles.modalText}>{text + text}</Text>
+					<Pressable style={[styles.button, styles.buttonClose]} onPress={handleCloseModal}>
+						<Text style={styles.textStyle}>Hide Modal</Text>
+					</Pressable>
+				</ScrollView>
 			</Modal>
 		</View>
 	);

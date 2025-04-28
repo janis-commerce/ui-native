@@ -1,7 +1,4 @@
-import BaseDetailModal from "./BaseDetailModal";
-import BaseDetailSwipe from "./BaseDetailSwipe";
+import BaseDetailModal from './BaseDetailModal';
+import BaseDetailSwipe from './BaseDetailSwipe';
 
-export {
-    BaseDetailModal,
-    BaseDetailSwipe
-}
+export {BaseDetailModal, BaseDetailSwipe};

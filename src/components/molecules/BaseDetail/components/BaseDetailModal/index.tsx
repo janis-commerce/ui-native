@@ -1,17 +1,19 @@
-import { Ref } from "react"
-import { BaseModalProps } from "../../types"
-import Modal from "atoms/Modal";
-import { ScrollView } from "react-native";
-const BaseDetailModal = (props: BaseModalProps, ref : Ref<any>) => {
-    const {children, scrollProps = {}, ...modalProps} = props;
+import React from 'react';
+import {forwardRef} from 'react';
+import {BaseModalProps} from '../../types';
+import Modal, {ModalMethods} from 'atoms/Modal';
+import {ScrollView} from 'react-native';
 
-    return (
-        <Modal ref={ref} {...modalProps}>
-            <ScrollView showsVerticalScrollIndicator={false} {...scrollProps}>
-                {children}
-            </ScrollView>
-        </Modal>
-    );
-}
+const BaseDetailModal = forwardRef<ModalMethods, BaseModalProps>((props, ref) => {
+	const {children, scrollProps = {}, ...rest} = props;
+
+	return (
+		<Modal ref={ref} {...rest}>
+			<ScrollView showsVerticalScrollIndicator={false} {...scrollProps}>
+				{children}
+			</ScrollView>
+		</Modal>
+	);
+});
 
 export default BaseDetailModal;

@@ -78,5 +78,5 @@ export {
 	Collapsible,
 	Modal,
 	BaseDetail,
-	ProductDetail
+	ProductDetail,
 };

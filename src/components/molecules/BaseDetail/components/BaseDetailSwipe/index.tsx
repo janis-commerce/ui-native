@@ -1,18 +1,20 @@
-import SwipeUp from "atoms/SwipeUp";
-import { BaseSwipeUpProps } from "molecules/BaseDetail/types"
-import { Ref } from "react"
-import { SwipeUpScrollView } from "atoms/SwipeUp/childComponents";
+import React from 'react';
+import SwipeUp from 'atoms/SwipeUp';
+import {BaseSwipeUpProps} from 'molecules/BaseDetail/types';
+import {forwardRef} from 'react';
+import {SwipeUpScrollView} from 'atoms/SwipeUp/childComponents';
+import BottomSheet from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheet/BottomSheet';
 
-const BaseDetailSwipe = (props: BaseSwipeUpProps, ref: Ref<any>) => {
-    const {children, scrollProps = {}, ...swipeProps} = props;
+const BaseDetailSwipe = forwardRef<BottomSheet, BaseSwipeUpProps>((props, ref) => {
+	const {children, scrollProps = {}, ...rest} = props;
 
-    return (
-        <SwipeUp ref={ref} {...swipeProps}>
-            <SwipeUpScrollView showsVerticalScrollIndicator={false} {...scrollProps}>
-                {children}
-            </SwipeUpScrollView>
-        </SwipeUp>
-    )
-}
+	return (
+		<SwipeUp ref={ref} {...rest}>
+			<SwipeUpScrollView showsVerticalScrollIndicator={false} {...scrollProps}>
+				{children}
+			</SwipeUpScrollView>
+		</SwipeUp>
+	);
+});
 
-export default BaseDetailSwipe
+export default BaseDetailSwipe;
