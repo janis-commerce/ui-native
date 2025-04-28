@@ -64,6 +64,7 @@ const getStories = () => {
 		'./storybook/stories/Loading/Loading.stories.js': require('../storybook/stories/Loading/Loading.stories.js'),
 		'./storybook/stories/LoadingFullScreen/LoadingFullScreen.stories.js': require('../storybook/stories/LoadingFullScreen/LoadingFullScreen.stories.js'),
 		'./storybook/stories/MainCardList/MainCardList.stories.js': require('../storybook/stories/MainCardList/MainCardList.stories.js'),
+		'./storybook/stories/Modal/Modal.stories.js': require('../storybook/stories/Modal/Modal.stories.js'),
 		'./storybook/stories/ProgressBar/ProgressBar.stories.js': require('../storybook/stories/ProgressBar/ProgressBar.stories.js'),
 		'./storybook/stories/RadioButton/RadioButton.stories.js': require('../storybook/stories/RadioButton/RadioButton.stories.js'),
 		'./storybook/stories/Select/Select.stories.js': require('../storybook/stories/Select/Select.stories.js'),
