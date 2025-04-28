@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
 	},
 	productInfo: {
 		height: 'auto',
+		width: moderateScale(312),
 		marginTop: verticalScale(24),
 	},
 	productName: {
