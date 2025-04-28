@@ -10,7 +10,7 @@ const IconComponent = createIconSetFromIcoMoon(
 	'janis-font-icon.ttf'
 );
 
-interface Props {
+export interface Props {
 	name: string;
 	color?: string;
 	size?: number;

@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.18.0] - 2025-04-28
+
+### Added
+
+- Modal component
+
+### Changed
+
+- Image to use FastImage and show placeholder when there is an error
+
+## [1.17.0] - 2025-04-23
+
+### Added
+
+- Added ErrorBoundary
+
 ## [1.16.2] - 2025-02-24
 
 ### Fixed
