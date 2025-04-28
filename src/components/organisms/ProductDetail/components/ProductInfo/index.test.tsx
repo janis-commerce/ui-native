@@ -13,6 +13,9 @@ describe('ProductInfo', () => {
 		const ImageComp = ProductInfoComp.findByType(Image);
 
 		expect(ImageComp).toBeTruthy();
+		expect(ImageComp.props.source).toEqual({
+			uri: 'https://avatars.githubusercontent.com/u/49998302?s=200&v=4',
+		});
 		expect(ProductInfoComp).toBeTruthy();
 	});
 

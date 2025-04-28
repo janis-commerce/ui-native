@@ -1,7 +1,6 @@
-import React from 'react';
+import React, {forwardRef} from 'react';
 import SwipeUp from 'atoms/SwipeUp';
 import {BaseSwipeUpProps} from 'molecules/BaseDetail/types';
-import {forwardRef} from 'react';
 import {SwipeUpScrollView} from 'atoms/SwipeUp/childComponents';
 import BottomSheet from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheet/BottomSheet';
 

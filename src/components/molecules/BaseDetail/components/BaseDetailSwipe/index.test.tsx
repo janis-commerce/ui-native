@@ -6,9 +6,7 @@ import {SwipeUpScrollView} from 'atoms/SwipeUp/childComponents';
 describe('BaseDetailSwipe', () => {
 	it('should return Scrolleable Swipe with nested children', () => {
 		const BaseDetailSwipeComp = create(
-			<BaseDetailSwipe componentType="swipe">
-				<></>
-			</BaseDetailSwipe>
+			<BaseDetailSwipe componentType="swipe">{null}</BaseDetailSwipe>
 		).root;
 
 		const ScrolleableComp = BaseDetailSwipeComp.findByType(SwipeUpScrollView);

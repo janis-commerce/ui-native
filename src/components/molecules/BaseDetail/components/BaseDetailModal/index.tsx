@@ -1,5 +1,4 @@
-import React from 'react';
-import {forwardRef} from 'react';
+import React, {forwardRef} from 'react';
 import {BaseModalProps} from '../../types';
 import Modal, {ModalMethods} from 'atoms/Modal';
 import {ScrollView} from 'react-native';

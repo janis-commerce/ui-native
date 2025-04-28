@@ -1,8 +1,7 @@
-import React from 'react';
+import React, {forwardRef} from 'react';
 import {BaseModalProps, BaseSwipeUpProps} from 'molecules/BaseDetail/types';
 import BaseDetail from 'molecules/BaseDetail';
 import ProductInfo, {ProductProps} from './components/ProductInfo';
-import {forwardRef} from 'react';
 import {ModalMethods} from 'atoms/Modal';
 import {BottomSheetMethods} from '@gorhom/bottom-sheet/lib/typescript/types';
 

@@ -2,8 +2,7 @@ import React from 'react';
 import Image from 'atoms/Image';
 import Typography from 'atoms/Typography';
 import {View, StyleSheet} from 'react-native';
-import {horizontalScale, moderateScale} from 'scale';
-import {verticalScale} from 'scale';
+import {horizontalScale, moderateScale, verticalScale} from 'scale';
 import {palette} from 'theme/palette';
 
 export interface ProductProps {

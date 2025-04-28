@@ -1,12 +1,11 @@
-import React from 'react';
-import {forwardRef} from 'react';
+import React, {forwardRef} from 'react';
 import {BaseModalProps, BaseSwipeUpProps} from './types';
 import {BaseDetailModal, BaseDetailSwipe} from './components';
 import {ModalMethods} from 'atoms/Modal';
 import {BottomSheetMethods} from '@gorhom/bottom-sheet/lib/typescript/types';
 
 type BaseDetailProps = BaseModalProps | BaseSwipeUpProps;
-type BaseDetailMethods = ModalMethods & BottomSheetMethods;
+export type BaseDetailMethods = ModalMethods & BottomSheetMethods;
 
 const BaseDetail = forwardRef<BaseDetailMethods, BaseDetailProps>((props, ref) => {
 	if (props.componentType === 'swipe') {
