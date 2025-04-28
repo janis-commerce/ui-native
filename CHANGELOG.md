@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Modal component
+
+## [1.17.0] - 2025-04-23
+
+### Added
+
+- Added ErrorBoundary
+
 ## [1.16.2] - 2025-02-24
 
 ### Fixed

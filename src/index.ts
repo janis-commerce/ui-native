@@ -14,6 +14,7 @@ import Text from 'atoms/Text';
 import BaseInput from 'atoms/BaseInput';
 import Typography from 'atoms/Typography';
 import Collapsible from 'atoms/Collapsible';
+import Modal from 'atoms/Modal';
 
 // Molecules
 import Avatar from 'molecules/Avatar';
@@ -33,6 +34,7 @@ import Input from 'molecules/Input';
 import LoadingFullScreen from 'organisms/LoadingFullScreen';
 import FullScreenMessage from 'organisms/FullScreenMessage';
 import SwipeItemSelectionList from 'organisms/SwipeItemSelectionList';
+import ErrorBoundary from 'organisms/ErrorBoundary';
 
 // Misc
 import {palette} from 'theme/palette';
@@ -73,4 +75,6 @@ export {
 	BaseInput,
 	Typography,
 	Collapsible,
+	ErrorBoundary,
+	Modal,
 };
