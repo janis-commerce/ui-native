@@ -20,7 +20,7 @@ export interface UIModalProps extends NativeModalProps {
 	canClose?: boolean;
 }
 
-interface RefProps {
+export interface ModalMethods {
 	open?: () => void;
 	close?: () => void;
 }
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
 	},
 });
 
-const Modal = forwardRef<RefProps, UIModalProps>(
+const Modal = forwardRef<ModalMethods, UIModalProps>(
 	(
 		{
 			children = null,

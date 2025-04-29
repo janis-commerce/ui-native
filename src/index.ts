@@ -29,12 +29,14 @@ import SwipeList from 'molecules/SwipeList';
 import ItemSelectionButton from 'molecules/ItemSelectionButton';
 import MainCardList from 'molecules/MainCardList';
 import Input from 'molecules/Input';
+import BaseDetail from 'molecules/BaseDetail';
 
 // Organisms
 import LoadingFullScreen from 'organisms/LoadingFullScreen';
 import FullScreenMessage from 'organisms/FullScreenMessage';
 import SwipeItemSelectionList from 'organisms/SwipeItemSelectionList';
 import ErrorBoundary from 'organisms/ErrorBoundary';
+import ProductDetail from 'organisms/ProductDetail';
 
 // Misc
 import {palette} from 'theme/palette';
@@ -77,4 +79,6 @@ export {
 	Collapsible,
 	ErrorBoundary,
 	Modal,
+	BaseDetail,
+	ProductDetail,
 };
