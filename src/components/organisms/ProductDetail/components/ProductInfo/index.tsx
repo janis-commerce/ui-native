@@ -16,18 +16,17 @@ const styles = StyleSheet.create({
 	Wrapper: {
 		flex: 1,
 		alignItems: 'center',
-		paddingBottom: verticalScale(12),
+		marginBottom: verticalScale(12),
 		marginHorizontal: horizontalScale(24),
 	},
 	productImage: {
-		height: moderateScale(312),
-		width: moderateScale(312),
-		marginTop: verticalScale(16),
+		width: moderateScale(280),
+		aspectRatio: 1,
 	},
 	productInfo: {
-		height: 'auto',
-		width: moderateScale(312),
-		marginTop: verticalScale(24),
+		width: '100%',
+		maxWidth: moderateScale(312),
+		marginTop: verticalScale(16),
 	},
 	productName: {
 		marginTop: verticalScale(16),
@@ -40,7 +39,9 @@ const styles = StyleSheet.create({
 const ProductInfo = ({brand, productName, refId, image}: ProductProps) => {
 	return (
 		<View style={styles.Wrapper}>
-			{!!image && <Image source={{uri: String(image)}} style={styles.productImage} />}
+			{!!image && (
+				<Image source={{uri: String(image)}} style={styles.productImage} resizeMode="contain" />
+			)}
 			<View style={styles.productInfo}>
 				{!!brand && (
 					<Typography color={palette.primary.main} type="overline" size="large">
