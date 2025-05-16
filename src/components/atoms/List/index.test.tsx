@@ -8,6 +8,8 @@ const data = [
 	{id: 2, nombre: 'nombre2'},
 ];
 
+const dataWithoutId = [{nombre: 'nombre1'}, {nombre: 'nombre2'}];
+
 const renderComponent = ({item}: any) => (
 	<View key={item.id}>
 		<Text>{item.nombre}</Text>
@@ -24,7 +26,7 @@ describe('List component', () => {
 
 	describe('render correctlt when', () => {
 		it('data is array type and type is flatList per default', () => {
-			const {toJSON} = create(<List data={data} renderComponent={renderComponent} />);
+			const {toJSON} = create(<List data={dataWithoutId} renderComponent={renderComponent} />);
 			expect(toJSON()).toBeTruthy();
 		});
 
