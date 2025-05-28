@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
 const LoadingFullScreen = ({
 	text,
 	isLoading,
-	svgName = 'janis-logo',
+	svgName = 'new-janis-logo',
 	spinnerDuration = 2000,
 	style,
 	...props
