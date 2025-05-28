@@ -13,6 +13,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - New janis logo svg
 
+## [1.19.1] - 2025-05-08
+
+### Fixed
+
+- Fixed ProductDetail styles for small screens.
+
 ## [1.19.0] - 2025-04-29
 
 ### Added
