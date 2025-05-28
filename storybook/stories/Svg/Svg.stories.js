@@ -12,6 +12,7 @@ export default {
 				'janis-logo-color',
 				'login-illustration',
 				'no-notifications',
+				'new-janis-logo',
 			],
 			control: {type: 'select'},
 		},

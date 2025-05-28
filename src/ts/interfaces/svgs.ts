@@ -8,6 +8,7 @@ export const svgsNames = [
 	'janis-logo-color',
 	'login-illustration',
 	'no-notifications',
+	'new-janis-logo',
 ] as const;
 
 export type Names = (typeof svgsNames)[number];
