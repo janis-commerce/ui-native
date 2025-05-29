@@ -7,7 +7,6 @@ import JanisLogo from './svgs/JanisLogo';
 import JanisLogoColor from './svgs/JanisLogoColor';
 import LoginIllustration from './svgs/LoginIllustration';
 import NoNotifications from './svgs/NoNotifications';
-import NewJanisLogo from './svgs/NewJanisLogo';
 import {horizontalScale, moderateScale, scaledForDevice} from 'scale';
 
 const svgs = {
@@ -17,7 +16,6 @@ const svgs = {
 	'janis-logo-color': JanisLogoColor,
 	'login-illustration': LoginIllustration,
 	'no-notifications': NoNotifications,
-	'new-janis-logo': NewJanisLogo,
 };
 
 const Svg = ({name, width, height, size, ...props}: Isvg) => {
