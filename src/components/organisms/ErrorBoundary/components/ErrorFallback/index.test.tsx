@@ -16,8 +16,8 @@ describe('ErrorFallback', () => {
 		expect(getByText('Show error details')).toBeTruthy();
 	});
 
-	it('renders error message if provided', () => {
-		const {getByText} = render(<ErrorFallback error="This is an error" />);
+	it('renders error message if provided and user is in debug mode', () => {
+		const {getByText} = render(<ErrorFallback error="This is an error" isDebug />);
 
 		expect(getByText('This is an error')).toBeTruthy();
 	});
