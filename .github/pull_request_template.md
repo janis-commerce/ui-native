@@ -8,8 +8,6 @@
 
 ## NIVEL PRUEBAS * ### (Marcar con X)
 
-[Documentación y ejemplos](#)
-
 | MARCAR | NIVEL                     | DESCRIPCIÓN                                                                                                                                  |
 |--------|---------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
 | [ ]    | **CRÍTICO: Cambios Mayores**  | Implementación de nuevas librerías o modificación de configuración en las existentes, grandes ajustes a componentes de tipo átomo que puedan ser usados por muchos más componentes
