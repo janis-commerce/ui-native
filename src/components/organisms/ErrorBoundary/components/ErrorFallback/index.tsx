@@ -99,7 +99,7 @@ const ErrorFallback: React.FC<ErrorFallbackProps> = ({
 			<Typography type="heading" size="large" style={styles.heading}>
 				Oops! Something went wrong.
 			</Typography>
-			{error && <Typography color={palette.error.main}>{error}</Typography>}
+			{error && isDebug && <Typography color={palette.error.main}>{error}</Typography>}
 			{isDebug && (
 				<Collapsible
 					wrapperStyle={styles.collapsibleWrapper}
