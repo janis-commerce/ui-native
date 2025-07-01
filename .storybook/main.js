@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
 	stories: ['../storybook/stories/**/*.stories.@(js|jsx|ts|tsx)'],
 	addons: [
@@ -20,4 +22,11 @@ module.exports = {
 	},
 	typescript: {reactDocgen: false},
 	staticDirs: ['../src/fonts/'],
+	webpackFinal: async (config) => {
+		config.resolve.alias = {
+			...(config.resolve.alias || {}),
+			'react-native-fast-image': path.resolve(__dirname, './mocks/fast-image-mock.js'),
+		};
+		return config;
+	},
 };
