@@ -13,12 +13,12 @@ describe('Svg component', () => {
 
 	describe('render correct', () => {
 		it('pased a valid name', () => {
-			const {toJSON} = create(<Svg name="janis-logo-color" />);
+			const {toJSON} = create(<Svg name="janis-commerce-logo" />);
 			expect(toJSON()).toMatchSnapshot();
 		});
 
 		it('pased size', () => {
-			const {toJSON} = create(<Svg name="janis-logo-color" size={120} />);
+			const {toJSON} = create(<Svg name="janis-commerce-logo" size={120} />);
 			expect(toJSON()).toMatchSnapshot();
 		});
 	});

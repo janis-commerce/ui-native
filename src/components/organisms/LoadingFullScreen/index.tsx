@@ -3,7 +3,7 @@ import {StyleSheet, Modal, ModalProps, Text, View, ViewStyle} from 'react-native
 import Loading from 'atoms/Loading';
 import Svg from 'atoms/Svg';
 import {grey, white} from 'theme/palette';
-import {Names} from 'ts/interfaces/svgs';
+import {Names} from 'atoms/Svg';
 import {moderateScale, horizontalScale, scaledForDevice} from 'scale';
 
 interface ILoadingFullScreen extends ModalProps {
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
 const LoadingFullScreen = ({
 	text,
 	isLoading,
-	svgName = 'janis-logo',
+	svgName = 'janis-iso',
 	spinnerDuration = 2000,
 	style,
 	...props

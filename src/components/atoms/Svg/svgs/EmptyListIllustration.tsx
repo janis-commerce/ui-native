@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {View} from 'react-native';
 import Svg, {Path, Defs, LinearGradient, Stop} from 'react-native-svg';
-import type {Isvg} from 'ts/interfaces/svgs';
+import type {Isvg} from 'atoms/Svg';
 
 const EmptyListIllustration = ({...props}: Isvg) => (
 	<View {...props}>

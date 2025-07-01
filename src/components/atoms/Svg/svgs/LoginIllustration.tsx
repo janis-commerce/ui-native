@@ -1,7 +1,7 @@
 import Svg, {G, Stop, Path, Defs, LinearGradient} from 'react-native-svg';
 import React from 'react';
 import {View} from 'react-native';
-import type {Isvg} from 'ts/interfaces/svgs';
+import type {Isvg} from 'atoms/Svg';
 
 const LoginIllustration = ({...props}: Isvg) => (
 	<View {...props}>

@@ -1,9 +1,9 @@
 import Svg, {Path, Defs, LinearGradient, Stop} from 'react-native-svg';
 import React from 'react';
 import {View} from 'react-native';
-import type {Isvg} from 'ts/interfaces/svgs';
+import type {Isvg} from 'atoms/Svg';
 
-const JanisLogo = ({...props}: Isvg) => (
+const JanisIso = ({...props}: Isvg) => (
 	<View {...props}>
 		<Svg
 			width="60"
@@ -64,4 +64,4 @@ const JanisLogo = ({...props}: Isvg) => (
 	</View>
 );
 
-export default JanisLogo;
+export default JanisIso;

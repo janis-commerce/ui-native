@@ -1,28 +1,39 @@
 import React from 'react';
 import {View} from 'react-native';
-import {svgsNames, Isvg} from 'ts/interfaces/svgs';
-import EmptyIllustration from './svgs/EmptyIllustration';
-import EmptyListIllustration from './svgs/EmptyListIllustration';
-import JanisLogo from './svgs/JanisLogo';
-import JanisLogoColor from './svgs/JanisLogoColor';
-import LoginIllustration from './svgs/LoginIllustration';
-import NoNotifications from './svgs/NoNotifications';
+import svgIcons from './svgs';
 import {horizontalScale, moderateScale, scaledForDevice} from 'scale';
 
-const svgs = {
-	'empty-illustration': EmptyIllustration,
-	'empty-list-illustration': EmptyListIllustration,
-	'janis-logo': JanisLogo,
-	'janis-logo-color': JanisLogoColor,
-	'login-illustration': LoginIllustration,
-	'no-notifications': NoNotifications,
+import type {SvgProps} from 'react-native-svg';
+import {ViewProps} from 'react-native';
+
+const svgsMapping = {
+	'empty-illustration': svgIcons.EmptyIllustration,
+	'empty-list-illustration': svgIcons.EmptyListIllustration,
+	'janis-iso': svgIcons.JanisIso,
+	'janis-commerce-logo': svgIcons.JanisCommerceLogo,
+	'janis-commerce-logo-qa': svgIcons.JanisCommerceLogoQa,
+	'janis-commerce-logo-beta': svgIcons.JanisCommerceLogoBeta,
+	'login-illustration': svgIcons.LoginIllustration,
+	'no-notifications': svgIcons.EmptyNotifications,
 };
+
+export type Names = keyof typeof svgsMapping;
+
+export const svgsNames = Object.keys(svgsMapping) as Names[];
+
+export interface Isvg extends SvgProps, ViewProps {
+	name?: Names;
+	width?: number;
+	height?: number;
+	size?: number;
+	xmlns?: string;
+}
 
 const Svg = ({name, width, height, size, ...props}: Isvg) => {
 	if (!name || !svgsNames.includes(name)) {
 		return null;
 	}
-	const SvgSelected = svgs[name];
+	const SvgSelected = svgsMapping[name];
 	const selectedWidth = size ?? width;
 	const selectedHeight = size ?? height;
 	const parseSelectedWidth = selectedWidth || 0;
