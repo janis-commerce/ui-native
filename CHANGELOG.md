@@ -7,9 +7,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.21.0] - 2025-07-07
+
 ### Added
 
-- template pull request
+- Added new SVG components: `JanisIso`, `JanisCommerceLogo`, `JanisCommerceLogoQa`, `JanisCommerceLogoBeta`, `LoginIllustration`, `EmptyNotifications`, `EmptyListIllustration`, `EmptyIllustration`.
+- Added new SVG icons to the `svgsMapping` object in the Svg component.
+- Added exclusion for `src/components/atoms/Svg/svgs/**` in `jest.config.json` to ignore coverage for specific SVG files.
+
+### Changed
+
+- Renamed `JanisLogo` to `JanisIso` and updated its import path.
+- Renamed `JanisLogoColor` to `JanisCommerceLogo` and updated its import path.
+- Renamed `Notification` to `EmptyNotifications` and updated its import path.
+- Updated the Svg component to use a mapping object (`svgsMapping`) for SVG icons.
+- Updated tests and stories to use the new SVG icon names and mapping.
+- Updated import paths for SVG interfaces and components to reflect the new structure.
+- Changed the default value for the `svgName` prop from `janis-logo` to `janis-iso` in the `LoadingFullScreen` component.
+
+### Removed
+
+- Removed old SVG components: `JanisLogoColor`, `Notification`.
+- Removed unused SVG interface file: `src/ts/interfaces/svgs.ts`.
+- Removed test files for deleted or renamed SVG components: `JanisLogo`, `JanisLogoColor`, `Notification`, `EmptyIllustration`, `EmptyListIllustration`, `LoginIllustration`, `NoNotifications`.
 
 ## [1.20.1] - 2025-05-28
 

@@ -3,7 +3,7 @@ import React from 'react';
 import {View} from 'react-native';
 import type {Isvg} from 'atoms/Svg';
 
-const Notification = ({...props}: Isvg) => (
+const EmptyNotifications = ({...props}: Isvg) => (
 	<View {...props}>
 		<Svg width="81" height="117" viewBox="0 0 81 117" xmlns="http://www.w3.org/2000/svg" {...props}>
 			<G id="Bienvenida-(A)" stroke="none" stroke-width="1" fill="none" fillRule="evenodd">
@@ -33,4 +33,4 @@ const Notification = ({...props}: Isvg) => (
 	</View>
 );
 
-export default Notification;
+export default EmptyNotifications;
