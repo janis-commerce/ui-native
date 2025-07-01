@@ -24,7 +24,8 @@
 		"!**/env/**",
 		"!<rootDir>/index.js",
 		"!<rootDir>/coverage",
-		"!**/jestMocks/**"
+		"!**/jestMocks/**",
+		"!src/components/atoms/Svg/svgs/**"
 	],
 	"coveragePathIgnorePatterns": ["/node_modules/", "<rootDir>/index.js"],
 	"coverageThreshold": {
@@ -48,5 +49,5 @@
 	},
 	"transformIgnorePatterns": [
 		"node_modules/(?!(react-native|react-native-reanimated|@react-native)/)"
-	  ]
+	]
 }

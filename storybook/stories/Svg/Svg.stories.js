@@ -1,18 +1,11 @@
 import React from 'react';
-import Svg from 'atoms/Svg';
+import Svg, {svgsNames} from 'atoms/Svg';
 
 export default {
 	title: 'Components/Svg',
 	argTypes: {
 		name: {
-			options: [
-				'empty-illustration',
-				'empty-list-illustration',
-				'janis-logo',
-				'janis-logo-color',
-				'login-illustration',
-				'no-notifications',
-			],
+			options: svgsNames,
 			control: {type: 'select'},
 		},
 		size: {
@@ -37,7 +30,7 @@ export const DefaultProps = ({name, size, width, height}) => (
 DefaultProps.storyName = 'only displayed if the name of svg is passed';
 
 DefaultProps.args = {
-	name: 'janis-logo-color',
+	name: 'janis-commerce-logo',
 	size: 50,
 	width: 0,
 	height: 0,
