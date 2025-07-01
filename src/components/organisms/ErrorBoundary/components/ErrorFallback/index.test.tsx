@@ -21,4 +21,9 @@ describe('ErrorFallback', () => {
 
 		expect(getByText('This is an error')).toBeTruthy();
 	});
+
+	it('does NOT render error message when NOT in debug mode', () => {
+		const {queryByText} = render(<ErrorFallback error="This is an error" />);
+		expect(queryByText('This is an error')).toBeNull();
+	});
 });
