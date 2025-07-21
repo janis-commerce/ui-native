@@ -9,7 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- an error with list component in which props were not passing properly - [JUIP-171](https://janiscommerce.atlassian.net/browse/JUIP-171)
+- An error with list component in which props were not passing properly - [JUIP-171](https://janiscommerce.atlassian.net/browse/JUIP-171)
+- ErrorBoundary component showing error to regular user when it is not supposed to - [JUIP-176](https://janiscommerce.atlassian.net/browse/JUIP-176)
 
 ## [1.21.0] - 2025-07-07
 
