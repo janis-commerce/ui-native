@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Updated janis font icon
+
 ### Fixed
 
 - An error with list component in which props were not passing properly - [JUIP-171](https://janiscommerce.atlassian.net/browse/JUIP-171)
