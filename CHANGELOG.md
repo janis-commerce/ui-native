@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.23.0] - 2025-08-13
+
+### Added
+
+- Possibility to render RadioButton component without children prop
+
 ## [1.22.0] - 2025-07-25
 
 ### Changed

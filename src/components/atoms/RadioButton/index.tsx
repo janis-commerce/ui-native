@@ -18,7 +18,7 @@ type sizeType = typeof CheckSizeValues;
 type sizeKeys = keyof sizeType;
 
 interface RadioButtonProps {
-	children: React.ReactNode | string;
+	children?: React.ReactNode | string;
 	selected?: boolean;
 	onPress?: () => {};
 	checkPosition?: positions;
@@ -65,10 +65,6 @@ const RadioButton = ({
 	style,
 	...props
 }: RadioButtonProps) => {
-	if (!children) {
-		return null;
-	}
-
 	const {container, row, reverseRow, checkToLeft, checkToRight} = styles;
 	const isStringChild = typeof children === 'string';
 	const checkLeft = checkPosition === 'left';
@@ -88,7 +84,7 @@ const RadioButton = ({
 				onPress={onPress}
 			/>
 			<View style={checkLeft ? checkToLeft : checkToRight}>
-				{isStringChild ? <Typography>{children}</Typography> : children}
+				{children && (isStringChild ? <Typography>{children}</Typography> : children)}
 			</View>
 		</TouchableOpacity>
 	);

@@ -5,10 +5,14 @@ import Typography from 'atoms/Typography';
 import {TouchableOpacity} from 'react-native';
 
 describe('radioButton component', () => {
-	it('not rendered when not receive a valid text', () => {
-		const {toJSON} = create(<RadioButton children="" />);
+	it('should render correctly without children', () => {
+		const {toJSON} = create(<RadioButton />);
+		expect(toJSON()).toBeTruthy();
+	});
 
-		expect(toJSON()).toStrictEqual(null);
+	it('should render correctly with empty string children', () => {
+		const {toJSON} = create(<RadioButton children="" />);
+		expect(toJSON()).toBeTruthy();
 	});
 
 	it('should render correctly when receives a valid text as child', () => {
@@ -27,6 +31,18 @@ describe('radioButton component', () => {
 		const onPressFunc = jest.fn();
 
 		const {root} = create(<RadioButton onPress={onPressFunc}>Example text</RadioButton>);
+
+		const [pressableText] = root.findAllByType(TouchableOpacity);
+
+		pressableText.props.onPress();
+
+		expect(onPressFunc).toBeCalled();
+	});
+
+	it('should execute the onPress function when it is received without children', () => {
+		const onPressFunc = jest.fn();
+
+		const {root} = create(<RadioButton onPress={onPressFunc} />);
 
 		const [pressableText] = root.findAllByType(TouchableOpacity);
 

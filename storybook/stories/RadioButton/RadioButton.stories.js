@@ -55,3 +55,14 @@ WithChildComponent.args = {
 	selected: false,
 	disabled: false,
 };
+
+export const WithoutChildren = (props) => <RadioButton {...props} />;
+
+WithoutChildren.storyName = 'without children component';
+
+WithoutChildren.args = {
+	checkSize: 'lg',
+	checkPosition: 'right',
+	selected: true,
+	disabled: false,
+};
