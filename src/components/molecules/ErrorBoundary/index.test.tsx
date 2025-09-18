@@ -14,7 +14,7 @@ const ErrorFallbackMock = ({onButtonPress}: {onButtonPress: () => void}) => (
 	</>
 );
 
-jest.mock('organisms/ErrorBoundary/components/ErrorFallback', () => ErrorFallbackMock);
+jest.mock('./components/ErrorFallback', () => ErrorFallbackMock);
 
 describe('ErrorBoundary', () => {
 	it('renders children when there is no error', () => {
@@ -27,16 +27,25 @@ describe('ErrorBoundary', () => {
 		expect(getByTestId('no-error')).toBeTruthy();
 	});
 
-	it('renders fallback when an error is thrown and calls onMount', () => {
-		const onMount = jest.fn();
-
+	it('renders fallback when an error is thrown', () => {
 		const {getByTestId} = render(
-			<ErrorBoundary onMount={onMount}>
+			<ErrorBoundary>
 				<ProblemChild />
 			</ErrorBoundary>
 		);
 
 		expect(getByTestId('error-fallback')).toBeTruthy();
+	});
+
+	it('calls onMount when component mounts', () => {
+		const onMount = jest.fn();
+
+		render(
+			<ErrorBoundary onMount={onMount}>
+				<Text testID="no-error">All good</Text>
+			</ErrorBoundary>
+		);
+
 		expect(onMount).toHaveBeenCalled();
 	});
 

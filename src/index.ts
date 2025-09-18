@@ -35,7 +35,7 @@ import BaseDetail from 'molecules/BaseDetail';
 import LoadingFullScreen from 'organisms/LoadingFullScreen';
 import FullScreenMessage from 'organisms/FullScreenMessage';
 import SwipeItemSelectionList from 'organisms/SwipeItemSelectionList';
-import ErrorBoundary from 'organisms/ErrorBoundary';
+import ErrorBoundary from 'molecules/ErrorBoundary';
 import ProductDetail from 'organisms/ProductDetail';
 
 // Misc
