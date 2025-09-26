@@ -3,6 +3,15 @@ import React, {useState} from 'react';
 import {StyleSheet, View, LayoutChangeEvent, Pressable, ViewStyle} from 'react-native';
 import Animated, {useAnimatedStyle, useSharedValue, withTiming} from 'react-native-reanimated';
 
+interface CollapsibleHeaderProps {
+	isOpen: boolean;
+}
+
+interface CollapsibleContentProps {
+	index: number;
+	isOpen?: boolean;
+}
+
 interface CollapsibleProps<HeaderProps = {}, ContentProps = {}> {
 	header: React.ComponentType<HeaderProps>;
 	content: React.ComponentType<ContentProps & {index: number}>;
@@ -11,9 +20,10 @@ interface CollapsibleProps<HeaderProps = {}, ContentProps = {}> {
 	duration?: number;
 	onPressCallback?: null | (() => void);
 	wrapperStyle?: ViewStyle;
+	isDefaultOpen?: boolean;
 }
 
-const Collapsible: React.FC<CollapsibleProps<{isOpen: boolean}, {isOpen?: boolean}>> = ({
+const Collapsible: React.FC<CollapsibleProps<CollapsibleHeaderProps, CollapsibleContentProps>> = ({
 	header: Header,
 	content: Content,
 	data = [],
@@ -21,8 +31,9 @@ const Collapsible: React.FC<CollapsibleProps<{isOpen: boolean}, {isOpen?: boolea
 	pressableComponent: PressableComponent = Pressable,
 	duration = 500,
 	wrapperStyle = {},
+	isDefaultOpen = false,
 }) => {
-	const [isOpen, setIsOpen] = useState(false);
+	const [isOpen, setIsOpen] = useState(isDefaultOpen);
 	const [measuredHeight, setMeasuredHeight] = useState(0);
 	const contentHeight = useSharedValue(0);
 	const hasHeightBeenMeasured = !!measuredHeight;
@@ -66,8 +77,7 @@ const Collapsible: React.FC<CollapsibleProps<{isOpen: boolean}, {isOpen?: boolea
 		},
 	});
 
-	const renderContent = (contentData: any) => {
-		const {item, index} = contentData;
+	const renderContent = ({item, index}: {item: any; index: number}) => {
 		return <Content {...item} index={index} isOpen={isOpen} />;
 	};
 
@@ -83,6 +93,7 @@ const Collapsible: React.FC<CollapsibleProps<{isOpen: boolean}, {isOpen?: boolea
 						renderComponent={renderContent}
 						keyExtractor={(_, index) => String(index)}
 						showsVerticalScrollIndicator={false}
+						nestedScrollEnabled={true}
 					/>
 				</View>
 			)}
@@ -92,6 +103,7 @@ const Collapsible: React.FC<CollapsibleProps<{isOpen: boolean}, {isOpen?: boolea
 					renderComponent={renderContent}
 					keyExtractor={(_, index) => String(index)}
 					showsVerticalScrollIndicator={false}
+					nestedScrollEnabled={true}
 				/>
 			</Animated.View>
 		</View>
@@ -99,3 +111,4 @@ const Collapsible: React.FC<CollapsibleProps<{isOpen: boolean}, {isOpen?: boolea
 };
 
 export default Collapsible;
+export type {CollapsibleHeaderProps, CollapsibleContentProps};
