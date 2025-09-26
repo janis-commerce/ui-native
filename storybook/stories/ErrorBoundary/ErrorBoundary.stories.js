@@ -1,20 +1,14 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {FlatList, StyleSheet, Text, View} from 'react-native';
 import Typography from 'atoms/Typography';
-import ErrorBoundary from 'components/organisms/ErrorBoundary';
+import ErrorBoundary from 'components/molecules/ErrorBoundary';
 import {palette} from 'theme/palette';
 
 export default {
 	title: 'Components/ErrorBoundary',
 	argTypes: {
-		isDebug: {
-			control: {type: 'boolean'},
-		},
 		error: {
 			control: {type: 'boolean'},
-		},
-		errorMessage: {
-			control: {type: 'text'},
 		},
 	},
 };
@@ -31,12 +25,27 @@ const SafeComponent = () => (
 	</View>
 );
 
-export const Default = ({error, isDebug, errorMessage}) => {
+const renderItem = ({item}) => {
+	return (
+		<View style={styles.container}>
+			<ErrorBoundary>
+				<Text>{item}</Text>
+			</ErrorBoundary>
+		</View>
+	);
+};
+
+export const Default = ({error}) => {
+	const errorItem = error ? <ThrowError /> : 4;
+	const dataToRender = [1, 2, 3, errorItem, 5, 6];
+
 	return (
 		<View>
-			<ErrorBoundary isDebug={isDebug} errorMessage={errorMessage}>
-				{error ? <ThrowError /> : <SafeComponent />}
-			</ErrorBoundary>
+			<FlatList
+				data={dataToRender}
+				renderItem={renderItem}
+				keyExtractor={(item) => item.toString()}
+			/>
 		</View>
 	);
 };
@@ -45,8 +54,6 @@ Default.storyName = 'default';
 
 Default.args = {
 	error: false,
-	isDebug: true,
-	errorMessage: '',
 };
 
 const styles = StyleSheet.create({
@@ -55,6 +62,10 @@ const styles = StyleSheet.create({
 		backgroundColor: 'white',
 		alignItems: 'center',
 		justifyContent: 'center',
+	},
+	container: {
+		justifyContent: 'center',
+		alignItems: 'center',
 	},
 });
 
@@ -72,13 +83,10 @@ const renderCustomComponent = (errorMessage) => (
 	</View>
 );
 
-export const WithCustomComponent = ({error, isDebug, errorMessage}) => {
+export const WithCustomComponent = ({error}) => {
 	return (
 		<View>
-			<ErrorBoundary
-				isDebug={isDebug}
-				errorMessage={errorMessage}
-				renderErrorComponent={renderCustomComponent}>
+			<ErrorBoundary renderErrorComponent={renderCustomComponent}>
 				{error ? <ThrowError /> : <SafeComponent />}
 			</ErrorBoundary>
 		</View>
@@ -89,6 +97,4 @@ WithCustomComponent.storyName = 'custom component';
 
 WithCustomComponent.args = {
 	error: false,
-	isDebug: true,
-	errorMessage: '',
 };

@@ -1,10 +1,8 @@
 import React, {ReactNode} from 'react';
-import ErrorFallback from 'organisms/ErrorBoundary/components/ErrorFallback';
+import ErrorFallback from 'molecules/ErrorBoundary/components/ErrorFallback';
 
 interface ErrorBoundaryProps {
 	children: ReactNode;
-	isDebug?: boolean;
-	errorMessage?: string;
 	renderErrorComponent?: (errorMessage: string) => ReactNode;
 	onError?: (error: Error, errorInfo: React.ErrorInfo) => void;
 	onMount?: () => void;
@@ -52,14 +50,7 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
 				return renderErrorComponent(this.state.error?.message || '');
 			}
 
-			return (
-				<ErrorFallback
-					isDebug={this.props.isDebug}
-					errorMessage={this.props.errorMessage}
-					error={this.state.error?.message}
-					errorDetails={this.state.errorInfo?.componentStack}
-				/>
-			);
+			return <ErrorFallback />;
 		}
 
 		return this.props.children;
