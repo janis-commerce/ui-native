@@ -7,6 +7,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.24.0] - 2025-10-22
+
+### Changed
+
+- Migrated ErrorBoundary from organisms to molecules layer
+- Simplified ErrorFallback component to render fixed error message
+- Updated import paths throughout codebase
+- Updated tests to match new implementation
+
+### Removed
+
+- ErrorFallback props: errorMessage, isDebug, error
+- Debug mode functionality from ErrorFallback
+
+## [1.24.0] - 2025-09-26
+
+### Added
+
+- New Collapsible prop isDefaultOpen.
+
 ## [1.23.0] - 2025-08-13
 
 ### Added
