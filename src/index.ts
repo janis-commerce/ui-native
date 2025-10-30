@@ -24,7 +24,7 @@ import LayoutWithBottomButtons from 'molecules/LayoutWithBottomButtons';
 import ProgressBar from 'molecules/ProgressBar';
 import Select from 'molecules/Select';
 import Toast from 'react-native-toast-message';
-import {configToast} from 'molecules/Toast/utils';
+import {configToast} from 'molecules/Toast';
 import SwipeList from 'molecules/SwipeList';
 import ItemSelectionButton from 'molecules/ItemSelectionButton';
 import MainCardList from 'molecules/MainCardList';
