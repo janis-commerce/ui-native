@@ -44,8 +44,8 @@
 	},
 	"homepage": "https://github.com/janis-commerce/ui-native#readme",
 	"peerDependencies": {
-		"react": ">=17.0.2",
-		"react-native": ">=0.67.5",
+		"react": ">=17.0.2 <19.0.0",
+		"react-native": ">=0.67.5 <0.75.0",
 		"react-native-gesture-handler": ">=2.9.0",
 		"react-native-fast-image": "^8.5.11",
 		"react-native-reanimated": "2.17.0",
@@ -63,6 +63,7 @@
 		"@storybook/addon-ondevice-controls": "^6.5.4",
 		"@storybook/addon-react-native-web": "0.0.20",
 		"@storybook/builder-webpack5": "^6.5.4",
+		"@storybook/cli": "^6.5.4",
 		"@storybook/manager-webpack5": "^6.5.4",
 		"@storybook/react": "^6.5.4",
 		"@storybook/react-native": "^6.5.4",
@@ -99,6 +100,7 @@
 		"react-native": "0.67.5",
 		"react-native-fast-image": "^8.5.11",
 		"react-native-svg-transformer": "^1.0.0",
+		"react-native-web": "^0.15.0",
 		"react-test-renderer": "17.0.2",
 		"setup-env": "^2.0.0",
 		"storybook": "^6.5.4",
@@ -126,14 +128,12 @@
 		"@react-native-async-storage/async-storage": "^1.19.0",
 		"@react-native-community/datetimepicker": "^7.4.0",
 		"@react-native-community/slider": "^4.4.2",
-		"@storybook/cli": "^6.5.4",
 		"babel-plugin-module-resolver": "^5.0.2",
 		"react-native-gesture-handler": ">=2.9.0",
 		"react-native-reanimated": "2.17.0",
 		"react-native-safe-area-context": "^4.6.4",
 		"react-native-svg": "12.1.1",
 		"react-native-toast-message": ">=1.6.0",
-		"react-native-vector-icons": "^9.2.0",
-		"react-native-web": "^0.15.0"
+		"react-native-vector-icons": "^9.2.0"
 	}
 }
