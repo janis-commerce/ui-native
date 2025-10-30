@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from 'molecules/Button';
 import Toast from 'react-native-toast-message';
-import {configToast} from 'molecules/Toast/utils';
+import {configToast} from 'molecules/Toast';
 
 export default {
 	title: 'Components/Toast',

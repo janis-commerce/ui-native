@@ -1,7 +1,7 @@
 import React from 'react';
 import {TouchableOpacity} from 'react-native';
 import {create} from 'react-test-renderer';
-import Toast from './';
+import Toast, {configToast} from './';
 import {Types} from 'atoms/BaseToast';
 import Typography from 'atoms/Typography';
 
@@ -85,6 +85,40 @@ describe('Toast', () => {
 					props={props2}
 				/>
 			);
+			expect(toJSON()).toBeTruthy();
+		});
+	});
+
+	describe('configToast', () => {
+		const mockProps = {
+			text1: 'Test Title',
+			text2: 'Test message',
+			type: Types.Success,
+			children: <Typography>Test</Typography>,
+		};
+
+		it('should render success Toast correctly', () => {
+			const {toJSON} = create(configToast.success(mockProps));
+			expect(toJSON()).toBeTruthy();
+		});
+
+		it('should render notice Toast correctly', () => {
+			const {toJSON} = create(configToast.notice({...mockProps, type: Types.Notice}));
+			expect(toJSON()).toBeTruthy();
+		});
+
+		it('should render warning Toast correctly', () => {
+			const {toJSON} = create(configToast.warning({...mockProps, type: Types.Warning}));
+			expect(toJSON()).toBeTruthy();
+		});
+
+		it('should render error Toast correctly', () => {
+			const {toJSON} = create(configToast.error({...mockProps, type: Types.Error}));
+			expect(toJSON()).toBeTruthy();
+		});
+
+		it('should render action Toast correctly', () => {
+			const {toJSON} = create(configToast.action({...mockProps, type: Types.Action}));
 			expect(toJSON()).toBeTruthy();
 		});
 	});
