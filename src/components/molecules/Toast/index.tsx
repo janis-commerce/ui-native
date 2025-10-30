@@ -139,4 +139,13 @@ const Toast: FC<ToastProps> = ({type, text1, text2, style, props}) => {
 		</BaseToast>
 	);
 };
+
+export const configToast = {
+	success: (props: ToastProps) => <Toast {...props} />,
+	notice: (props: ToastProps) => <Toast {...props} />,
+	warning: (props: ToastProps) => <Toast {...props} />,
+	error: (props: ToastProps) => <Toast {...props} />,
+	action: (props: ToastProps) => <Toast {...props} />,
+};
+
 export default Toast;
