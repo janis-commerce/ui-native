@@ -24,6 +24,7 @@ import LayoutWithBottomButtons from 'molecules/LayoutWithBottomButtons';
 import ProgressBar from 'molecules/ProgressBar';
 import Select from 'molecules/Select';
 import Toast from 'react-native-toast-message';
+import ToastComponent from 'molecules/Toast';
 import {configToast} from 'molecules/Toast';
 import SwipeList from 'molecules/SwipeList';
 import ItemSelectionButton from 'molecules/ItemSelectionButton';
@@ -69,6 +70,7 @@ export {
 	LayoutWithBottomButtons,
 	FullScreenMessage,
 	Toast,
+	ToastComponent,
 	configToast,
 	SwipeList,
 	ItemSelectionButton,

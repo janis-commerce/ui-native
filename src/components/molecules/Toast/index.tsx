@@ -60,23 +60,18 @@ const Toast: FC<ToastProps> = ({type, text1, text2, style, props}) => {
 			alignItems: horizontalAlign,
 			width: '95%',
 			borderRadius: scaledForDevice(4, moderateScale),
-			paddingHorizontal: scaledForDevice(16, moderateScale),
-			paddingVertical: scaledForDevice(16, moderateScale),
+			padding: 16,
 		},
 		textWrapper: {
 			flex: 1,
 		},
 		title: {
 			fontFamily: 'Roboto-Bold',
-			fontSize: scaledForDevice(18, moderateScale),
-			lineHeight: scaledForDevice(22, moderateScale),
-			marginBottom: scaledForDevice(10, moderateScale),
+			marginBottom: 8,
 			color: validColor,
 		},
 		message: {
 			fontFamily: 'Roboto-Regular',
-			fontSize: scaledForDevice(14, moderateScale),
-			lineHeight: scaledForDevice(20, moderateScale),
 			color: validColor,
 		},
 		icon: {
@@ -91,16 +86,9 @@ const Toast: FC<ToastProps> = ({type, text1, text2, style, props}) => {
 			padding: scaledForDevice(10, moderateScale),
 		},
 		actionTitle: {
-			marginRight: scaledForDevice(5, moderateScale),
-			marginLeft: scaledForDevice(10, moderateScale),
-			fontFamily: 'Roboto-Medium',
-			fontSize: scaledForDevice(14, moderateScale),
-			lineHeight: scaledForDevice(16, moderateScale),
 			color: validColor,
 		},
-		actionWrapper: {
-			padding: scaledForDevice(10, moderateScale),
-		},
+		actionWrapper: {},
 	});
 	return (
 		<BaseToast type={type} style={[styles.container, style]}>
@@ -114,8 +102,16 @@ const Toast: FC<ToastProps> = ({type, text1, text2, style, props}) => {
 			)}
 
 			<View style={styles.textWrapper}>
-				{validTitle && <Typography style={styles.title}>{text1}</Typography>}
-				{validMessage && <Typography style={styles.message}>{text2}</Typography>}
+				{validTitle && (
+					<Typography type="title" size="medium" style={styles.title}>
+						{text1}
+					</Typography>
+				)}
+				{validMessage && (
+					<Typography type="body" size="medium" style={styles.message}>
+						{text2}
+					</Typography>
+				)}
 			</View>
 
 			<View style={styles.feedbackWrapper}>
@@ -124,7 +120,9 @@ const Toast: FC<ToastProps> = ({type, text1, text2, style, props}) => {
 						style={styles.actionWrapper}
 						onPress={handleActionCb}
 						activeOpacity={0.6}>
-						<Typography style={styles.actionTitle}>{actionTitle}</Typography>
+						<Typography type="label" size="medium" style={styles.actionTitle}>
+							{actionTitle}
+						</Typography>
 					</TouchableOpacity>
 				)}
 				{showCloseIcon && (
