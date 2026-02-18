@@ -8,4 +8,10 @@ describe('CheckedIcon component', () => {
 
 		expect(toJSON()).toBeTruthy();
 	});
+
+	it('render correctly with default props', () => {
+		const {toJSON} = create(<CheckedIcon />);
+
+		expect(toJSON()).toBeTruthy();
+	});
 });

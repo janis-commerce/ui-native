@@ -8,7 +8,7 @@ interface IconProps {
 	size?: number;
 }
 
-const CheckedIcon = ({color, size}: IconProps) => (
+const CheckedIcon = ({color = base.white, size = 16}: IconProps) => (
 	<View>
 		<Svg width={size} height={size} viewBox="0 0 16 16" fill="none">
 			<Path
@@ -18,10 +18,5 @@ const CheckedIcon = ({color, size}: IconProps) => (
 		</Svg>
 	</View>
 );
-
-CheckedIcon.defaultProps = {
-	color: base.white,
-	size: 16,
-};
 
 export default CheckedIcon;
