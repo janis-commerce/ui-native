@@ -2,7 +2,11 @@ name: NPM Publish
 
 on:
   push:
-    tags: ['*']
+    tags:
+      - '*'
+      - '!*-beta*'
+      - '!*-alpha*'
+      - '!*-rc*'
 
 jobs:
   build:
