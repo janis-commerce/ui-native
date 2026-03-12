@@ -5,13 +5,6 @@ import Text from 'atoms/Text';
 import {View} from 'react-native';
 
 describe('MainCardList component', () => {
-	describe('does not render', () => {
-		it('as it does not have a displayId', () => {
-			const {toJSON} = create(<MainCardList displayId={null as unknown as string} />);
-			expect(toJSON()).toBeNull();
-		});
-	});
-
 	describe('renders properly', () => {
 		it('as it has a displayId', () => {
 			const {root} = create(<MainCardList displayId="123456" />);

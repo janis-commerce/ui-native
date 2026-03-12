@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.26.1] - 2026-03-12
+
+### Changed
+
+- MainCardList no longer require displayId prop.
+
 ## [1.26.0] - 2025-11-21
 
 ### Added
