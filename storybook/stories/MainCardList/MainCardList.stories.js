@@ -34,7 +34,7 @@ export const DefaultProps = (props) => {
 
 	return (
 		<View>
-			<MainCardList displayId={100} blocks={blocks} {...props}>
+			<MainCardList blocks={blocks} {...props}>
 				{showChildren && (
 					<Text style={{color: palette.grey['600'], fontSize: 16, fontFamily: 'Roboto'}}>
 						{childrenText}
