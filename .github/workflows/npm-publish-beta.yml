@@ -47,10 +47,12 @@ jobs:
 
             - name: Determine npm tag
               id: npm-tag
+              env:
+                  REF_NAME: ${{ github.ref_name }}
               run: |
-                  if [[ ${{ github.ref_name }} == *"-alpha"* ]]; then
+                  if [[ "$REF_NAME" == *"-alpha"* ]]; then
                     echo "tag=alpha" >> $GITHUB_OUTPUT
-                  elif [[ ${{ github.ref_name }} == *"-rc"* ]]; then
+                  elif [[ "$REF_NAME" == *"-rc"* ]]; then
                     echo "tag=rc" >> $GITHUB_OUTPUT
                   else
                     echo "tag=beta" >> $GITHUB_OUTPUT

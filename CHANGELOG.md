@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- Moved react-native-gesture-handler, react-native-reanimated, react-native-svg, react-native-safe-area-context and @react-native-async-storage/async-storage from dependencies to peerDependencies
+- Updated react-native-reanimated requirement from pinned 2.17.0 to >=3.16.0
+- Replaced CheckedIcon.defaultProps with default parameters for React 19 compatibility
+- Widened react-native peer dependency range to >=0.71.5 <0.82.0
+- Widened react peer dependency range to >=17.0.2 <20.0.0
+- Modernized Android build.gradle with safeExtGet pattern, compileSdk 35 and Java 17
+- Standardized Node.js to v22 in .nvmrc and all CI workflows
+- Upgraded GitHub Actions to v4 (checkout, setup-node)
+
+### Added
+- Test for CheckedIcon rendering with default props
+- Beta publish workflow for pre-release branches
+
 ## [1.26.0] - 2025-11-21
 
 ### Added
