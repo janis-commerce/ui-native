@@ -10,7 +10,7 @@ export interface Block {
 }
 
 export interface MainCardListProps extends ViewProps {
-	displayId: string;
+	displayId?: string;
 	children?: ReactNode;
 	blocks?: Block[];
 	isSelected?: boolean;
@@ -24,10 +24,6 @@ const MainCardList: FC<MainCardListProps> = ({
 	style,
 	...props
 }) => {
-	if (!displayId || typeof displayId !== 'string') {
-		return null;
-	}
-
 	const styles = StyleSheet.create({
 		innerContainer: {},
 		blockContainer: {
@@ -81,7 +77,7 @@ const MainCardList: FC<MainCardListProps> = ({
 	return (
 		<BaseCardList isSelected={isSelected} style={style && style} {...props}>
 			<View>
-				<Text style={activeDisplayIdStyles}>{displayId}</Text>
+				{displayId && <Text style={activeDisplayIdStyles}>{displayId}</Text>}
 				{children && <View style={styles.childrenContainer}>{children}</View>}
 				<View>{renderBlocks()}</View>
 			</View>
