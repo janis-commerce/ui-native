@@ -40,6 +40,8 @@ import FullScreenMessage from 'organisms/FullScreenMessage';
 import SwipeItemSelectionList from 'organisms/SwipeItemSelectionList';
 import ErrorBoundary from 'molecules/ErrorBoundary';
 import ProductDetail from 'organisms/ProductDetail';
+import Menu from 'organisms/Menu';
+import Drawer from 'organisms/Drawer';
 
 // Misc
 import {palette} from 'theme/palette';
@@ -87,4 +89,6 @@ export {
 	ProductDetail,
 	MenuButton,
 	MenuItem,
+	Menu,
+	Drawer,
 };
