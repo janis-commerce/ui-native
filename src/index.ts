@@ -43,6 +43,9 @@ import ProductDetail from 'organisms/ProductDetail';
 import Menu from 'organisms/Menu';
 import Drawer from 'organisms/Drawer';
 
+// Templates
+import HomeTemplate from 'templates/HomeTemplate';
+
 // Misc
 import {palette} from 'theme/palette';
 import * as getScale from 'scale';
@@ -91,4 +94,5 @@ export {
 	MenuItem,
 	Menu,
 	Drawer,
+	HomeTemplate,
 };
