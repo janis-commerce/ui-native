@@ -36,9 +36,7 @@ describe('MenuButton component', () => {
 	});
 
 	it('renders with custom style', () => {
-		const {toJSON} = create(
-			<MenuButton onPress={jest.fn()} style={{marginLeft: 10}} />,
-		);
+		const {toJSON} = create(<MenuButton onPress={jest.fn()} style={{marginLeft: 10}} />);
 		expect(toJSON()).toBeTruthy();
 	});
 });
