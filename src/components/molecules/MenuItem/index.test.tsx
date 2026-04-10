@@ -69,4 +69,13 @@ describe('MenuItem component', () => {
 		const pressable = root.findByType(Pressable);
 		expect(pressable.props.disabled).toBe(true);
 	});
+
+	it('applies pressed style when pressed', () => {
+		const {root} = create(<MenuItem {...defaultProps} />);
+		const pressable = root.findByType(Pressable);
+		const styleFn = pressable.props.style;
+		const pressedStyles = styleFn({pressed: true});
+		const unpressedStyles = styleFn({pressed: false});
+		expect(pressedStyles).not.toEqual(unpressedStyles);
+	});
 });
