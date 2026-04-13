@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.27.0-beta.2] - 2026-04-13
+
 ### Changed
 - Moved react-native-gesture-handler, react-native-reanimated, react-native-svg, react-native-safe-area-context and @react-native-async-storage/async-storage from dependencies to peerDependencies
 - Updated react-native-reanimated requirement from pinned 2.17.0 to >=3.16.0
