@@ -1,12 +1,15 @@
 {
 	"name": "@janiscommerce/ui-native",
-	"version": "1.27.0-beta.2",
+	"version": "1.27.0-beta.3",
 	"description": "components library for Janis app",
 	"main": "dist/index.js",
 	"typings": "dist/index.d.ts",
 	"files": [
 		"dist"
 	],
+	"engines": {
+		"node": "22.x"
+	},
 	"scripts": {
 		"android": "node scripts/set-app-mode.js app && react-native run-android",
 		"ios": "node scripts/set-app-mode.js app && react-native run-ios",
@@ -46,7 +49,7 @@
 	"peerDependencies": {
 		"react": ">=17.0.2 <20.0.0",
 		"react-native": ">=0.71.5 <0.82.0",
-		"react-native-gesture-handler": ">=2.9.0",
+		"react-native-gesture-handler": ">=2.18.0",
 		"react-native-fast-image": "^8.5.11",
 		"react-native-reanimated": ">=3.16.0",
 		"react-native-toast-message": ">=1.6.0",
@@ -102,7 +105,7 @@
 		"react-dom": "^17.0.2",
 		"react-native": "0.67.5",
 		"react-native-fast-image": "^8.5.11",
-		"react-native-gesture-handler": ">=2.9.0",
+		"react-native-gesture-handler": ">=2.18.0",
 		"react-native-reanimated": "3.16.0",
 		"react-native-toast-message": ">=1.6.0",
 		"react-native-svg": "12.1.1",
