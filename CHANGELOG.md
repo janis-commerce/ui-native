@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.27.0-beta.4] - 2026-05-12
+
+### Added
+- `BaseButton`/`Button` accept an `isGestureHandler` boolean prop (default `false`) to opt into `react-native-gesture-handler`'s `Pressable`. Use it on buttons rendered inside Modalize/Swipeable/native-stack on Android with new architecture (RN 0.74+) where the core `Pressable` cancels `onPress` mid-tap.
+
+### Changed
+- Reverted unconditional use of gesture-handler `Pressable` in `BaseButton` introduced in 1.27.0-beta.3. Default behavior is again RN core `Pressable`; gesture-handler is now opt-in via `isGestureHandler`.
+
 ## [1.27.0-beta.2] - 2026-04-13
 
 ### Changed
