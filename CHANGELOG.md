@@ -7,29 +7,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.27.0-beta.4] - 2026-05-12
+## [2.0.0] - 2026-05-22
+
+### BREAKING CHANGES
+- Minimum supported React Native is now `0.71.5` (peer dependency range `>=0.71.5 <0.82.0`).
+- The following native modules moved from `dependencies` to `peerDependencies` — consumers must install them explicitly:
+  - `react-native-gesture-handler` (`>=2.18.0`)
+  - `react-native-reanimated` (`>=3.16.0`) — minimum bumped from pinned `2.17.0`
+  - `react-native-svg` (`>=12.0.0`)
+  - `react-native-safe-area-context` (`>=4.6.0`)
+  - `@react-native-async-storage/async-storage` (`>=1.19.0`)
+- React peer dependency range widened to `>=17.0.2 <20.0.0`.
+- Node.js 22 is now required for development and CI.
 
 ### Added
+- React Native 0.80.2 support.
 - `BaseButton`/`Button` accept an `isGestureHandler` boolean prop (default `false`) to opt into `react-native-gesture-handler`'s `Pressable`. Use it on buttons rendered inside Modalize/Swipeable/native-stack on Android with new architecture (RN 0.74+) where the core `Pressable` cancels `onPress` mid-tap.
+- Beta publish workflow (`npm-publish-beta.yml`) for pre-release branches; `npm-publish.yml` now ignores `beta`/`alpha`/`rc` tags.
+- Test for `CheckedIcon` rendering with default props.
 
 ### Changed
-- Reverted unconditional use of gesture-handler `Pressable` in `BaseButton` introduced in 1.27.0-beta.3. Default behavior is again RN core `Pressable`; gesture-handler is now opt-in via `isGestureHandler`.
+- Modernized Android `build.gradle` with `safeExtGet` pattern, `compileSdk 35` and Java 17.
+- Replaced `CheckedIcon.defaultProps` with default parameters for React 19 compatibility.
+- Standardized Node.js to v22 in `.nvmrc`, `package.json` engines and all CI workflows.
+- Upgraded GitHub Actions to v4 (`checkout`, `setup-node`).
 
-## [1.27.0-beta.2] - 2026-04-13
-
-### Changed
-- Moved react-native-gesture-handler, react-native-reanimated, react-native-svg, react-native-safe-area-context and @react-native-async-storage/async-storage from dependencies to peerDependencies
-- Updated react-native-reanimated requirement from pinned 2.17.0 to >=3.16.0
-- Replaced CheckedIcon.defaultProps with default parameters for React 19 compatibility
-- Widened react-native peer dependency range to >=0.71.5 <0.82.0
-- Widened react peer dependency range to >=17.0.2 <20.0.0
-- Modernized Android build.gradle with safeExtGet pattern, compileSdk 35 and Java 17
-- Standardized Node.js to v22 in .nvmrc and all CI workflows
-- Upgraded GitHub Actions to v4 (checkout, setup-node)
-
-### Added
-- Test for CheckedIcon rendering with default props
-- Beta publish workflow for pre-release branches
+### Fixed
+- Shell injection vulnerability in CI workflows.
+- Lint block in CI.
 
 ## [1.26.1] - 2026-03-12
 
