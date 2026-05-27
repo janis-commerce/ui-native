@@ -6,6 +6,7 @@ import LoginIllustration from './LoginIllustration';
 import EmptyNotifications from './EmptyNotifications';
 import EmptyListIllustration from './EmptyListIllustration';
 import EmptyIllustration from './EmptyIllustration';
+import ContainersIllustration from './ContainersIllustration';
 
 const Icons = {
 	JanisIso,
@@ -16,6 +17,7 @@ const Icons = {
 	EmptyNotifications,
 	EmptyListIllustration,
 	EmptyIllustration,
+	ContainersIllustration,
 };
 
 export default Icons;
