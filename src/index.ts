@@ -33,6 +33,7 @@ import Input from 'molecules/Input';
 import BaseDetail from 'molecules/BaseDetail';
 
 // Organisms
+import ActionBar from 'organisms/ActionBar';
 import LoadingFullScreen from 'organisms/LoadingFullScreen';
 import FullScreenMessage from 'organisms/FullScreenMessage';
 import SwipeItemSelectionList from 'organisms/SwipeItemSelectionList';
@@ -44,6 +45,7 @@ import {palette} from 'theme/palette';
 import * as getScale from 'scale';
 
 export {
+	ActionBar,
 	Text,
 	Avatar,
 	CheckBox,
