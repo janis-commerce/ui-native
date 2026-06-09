@@ -40,11 +40,15 @@ const styles = StyleSheet.create({
 	},
 });
 
+const Content = () => (
+	<View style={styles.content}>
+		<Text style={styles.contentText}>Content</Text>
+	</View>
+);
+
 const Screen = ({children}) => (
 	<View style={styles.screen}>
-		<View style={styles.content}>
-			<Text style={styles.contentText}>Content</Text>
-		</View>
+		<Content />
 		{children}
 	</View>
 );
@@ -144,6 +148,22 @@ export const Grid2x2 = (props) => (
 			]}
 		/>
 	</Screen>
+);
+
+export const TopPlacement = (props) => (
+	<View style={styles.screen}>
+		<ActionBar
+			{...props}
+			withSafeArea={false}
+			actions={[
+				[
+					{value: 'Filtrar', variant: 'outlined', onPress: () => {}},
+					{value: 'Ordenar', variant: 'outlined', onPress: () => {}},
+				],
+			]}
+		/>
+		<Content />
+	</View>
 );
 
 export const Composition = (props) => (
