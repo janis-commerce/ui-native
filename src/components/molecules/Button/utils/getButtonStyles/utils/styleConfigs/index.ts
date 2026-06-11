@@ -9,22 +9,26 @@ export const colorConfig = (selectedColor: SelectedColor) => {
 				contained: selectedColor.main,
 				outlined: base.white,
 				text: 'transparent',
+				white: base.white,
 			},
 			border: {
 				contained: 'transparent',
 				outlined: grey[300],
 				text: 'transparent',
+				white: selectedColor.main,
 			},
 			text: {
 				main: {
 					contained: base.white,
 					outlined: black.main,
 					text: black.main,
+					white: selectedColor.main,
 				},
 				secondary: {
 					contained: base.white,
 					outlined: selectedColor.main,
 					text: selectedColor.main,
+					white: selectedColor.main,
 				},
 			},
 		},
@@ -33,22 +37,26 @@ export const colorConfig = (selectedColor: SelectedColor) => {
 				contained: selectedColor.dark,
 				outlined: base.white,
 				text: white.main,
+				white: grey[100],
 			},
 			border: {
 				contained: 'transparent',
 				outlined: selectedColor.main,
 				text: 'transparent',
+				white: selectedColor.main,
 			},
 			text: {
 				main: {
 					contained: base.white,
 					outlined: black.main,
 					text: black.main,
+					white: selectedColor.main,
 				},
 				secondary: {
 					contained: base.white,
 					outlined: selectedColor.main,
 					text: selectedColor.dark,
+					white: selectedColor.main,
 				},
 			},
 		},
@@ -57,17 +65,20 @@ export const colorConfig = (selectedColor: SelectedColor) => {
 				contained: grey[200],
 				outlined: base.white,
 				text: 'transparent',
+				white: base.white,
 			},
 			border: {
 				main: {
 					contained: 'transparent',
 					outlined: grey[200],
 					text: 'transparent',
+					white: grey[200],
 				},
 				secondary: {
 					contained: 'transparent',
 					outlined: grey[200],
 					text: 'transparent',
+					white: grey[200],
 				},
 			},
 			text: {
@@ -75,11 +86,13 @@ export const colorConfig = (selectedColor: SelectedColor) => {
 					contained: base.white,
 					outlined: grey[200],
 					text: grey[200],
+					white: grey[200],
 				},
 				secondary: {
 					contained: base.white,
 					outlined: grey[200],
 					text: grey[200],
+					white: grey[200],
 				},
 			},
 		},

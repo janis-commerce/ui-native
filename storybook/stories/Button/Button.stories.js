@@ -27,6 +27,7 @@ export default {
 				Contained: 'contained',
 				Outlined: 'outlined',
 				Text: 'text',
+				White: 'white',
 			},
 		},
 		iconPosition: {
@@ -95,6 +96,22 @@ CameraButtonProps.args = {
 	variant: 'contained',
 	iconPosition: 'left',
 	color: 'black',
+	isLoading: false,
+	disabled: false,
+	style: {flex: 1},
+};
+
+export const WhiteButtonProps = (props) => <Button {...props} />;
+
+WhiteButtonProps.storyName = 'White Button';
+
+WhiteButtonProps.args = {
+	value: 'White button press',
+	icon: 'box',
+	type: 'main',
+	variant: 'white',
+	iconPosition: 'left',
+	color: 'primary',
 	isLoading: false,
 	disabled: false,
 	style: {flex: 1},

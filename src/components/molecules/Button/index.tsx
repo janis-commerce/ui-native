@@ -15,6 +15,7 @@ export const variant = {
 	contained: 'contained',
 	outlined: 'outlined',
 	text: 'text',
+	white: 'white',
 };
 
 export const color = {
