@@ -71,9 +71,9 @@ describe('getMixedButtonStyles util', () => {
 		// @ts-ignore — TS infiere string en lugar de los literal types de Params (keyType, keyVariant, keyColor)
 		const {container, pressed, text, icon} = getButtonStyles(whiteVariantParams);
 		expect(container).toEqual(
-			expect.objectContaining({backgroundColor: '#fff', borderColor: '#2979FF'})
+			expect.objectContaining({backgroundColor: '#fff', borderColor: '#D5D7DB'})
 		);
-		expect(pressed).toEqual({backgroundColor: '#DDDFE2', borderColor: '#2979FF'});
+		expect(pressed).toEqual({backgroundColor: '#DDDFE2', borderColor: '#D5D7DB'});
 		expect(text).toEqual(expect.objectContaining({color: '#2979FF'}));
 		expect(icon).toEqual(expect.objectContaining({color: '#2979FF'}));
 	});

@@ -15,7 +15,7 @@ export const colorConfig = (selectedColor: SelectedColor) => {
 				contained: 'transparent',
 				outlined: grey[300],
 				text: 'transparent',
-				white: selectedColor.main,
+				white: grey[200],
 			},
 			text: {
 				main: {
@@ -43,7 +43,7 @@ export const colorConfig = (selectedColor: SelectedColor) => {
 				contained: 'transparent',
 				outlined: selectedColor.main,
 				text: 'transparent',
-				white: selectedColor.main,
+				white: grey[200],
 			},
 			text: {
 				main: {
