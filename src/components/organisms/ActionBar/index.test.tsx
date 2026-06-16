@@ -1,13 +1,10 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {create, ReactTestRendererJSON} from 'react-test-renderer';
-import {SafeAreaInsetsContext} from 'react-native-safe-area-context';
 import ActionBar from './index';
 import Button from 'molecules/Button';
 import {chromePadding, rowGap} from './utils';
 import {palette} from 'theme/palette';
-
-const insets = {top: 0, right: 0, bottom: 34, left: 0};
 
 const containerStyle = (root: ReturnType<typeof create>['root']) =>
 	StyleSheet.flatten(root.findByType(View).props.style);
@@ -76,7 +73,6 @@ describe('ActionBar component', () => {
 			const style = containerStyle(root);
 
 			expect(style.padding).toBe(chromePadding('rounded'));
-			expect(style.paddingBottom).toBe(chromePadding('rounded'));
 			expect(style.gap).toBe(rowGap('rounded'));
 			expect(style.backgroundColor).toBe(palette.base.white);
 		});
@@ -86,7 +82,6 @@ describe('ActionBar component', () => {
 			const style = containerStyle(root);
 
 			expect(style.padding).toBe(0);
-			expect(style.paddingBottom).toBe(0);
 			expect(style.gap).toBe(0);
 		});
 
@@ -98,28 +93,6 @@ describe('ActionBar component', () => {
 
 			expect(style.backgroundColor).toBe('#EEE');
 			expect(style.marginTop).toBe(4);
-		});
-	});
-
-	describe('safe area', () => {
-		it('adds the bottom inset to the padding when there is a provider', () => {
-			const {root} = create(
-				<SafeAreaInsetsContext.Provider value={insets}>
-					<ActionBar actions={[{value: 'A'}]} />
-				</SafeAreaInsetsContext.Provider>
-			);
-
-			expect(containerStyle(root).paddingBottom).toBe(chromePadding('rounded') + insets.bottom);
-		});
-
-		it('ignores the inset when withSafeArea is false', () => {
-			const {root} = create(
-				<SafeAreaInsetsContext.Provider value={insets}>
-					<ActionBar withSafeArea={false} actions={[{value: 'A'}]} />
-				</SafeAreaInsetsContext.Provider>
-			);
-
-			expect(containerStyle(root).paddingBottom).toBe(chromePadding('rounded'));
 		});
 	});
 });

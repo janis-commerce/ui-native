@@ -13,9 +13,6 @@ export default {
 		backgroundColor: {
 			control: {type: 'color'},
 		},
-		withSafeArea: {
-			control: {type: 'boolean'},
-		},
 	},
 };
 
@@ -153,7 +150,6 @@ export const TopPlacement = (props) => (
 	<View style={styles.screen}>
 		<ActionBar
 			{...props}
-			withSafeArea={false}
 			actions={[
 				[
 					{value: 'Filtrar', variant: 'outlined', onPress: () => {}},
