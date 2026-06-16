@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import {create} from 'react-test-renderer';
+import {create, ReactTestRendererJSON} from 'react-test-renderer';
 import {SafeAreaInsetsContext} from 'react-native-safe-area-context';
 import ActionBar from './index';
 import Button from 'molecules/Button';
@@ -12,9 +12,12 @@ const insets = {top: 0, right: 0, bottom: 34, left: 0};
 const containerStyle = (root: ReturnType<typeof create>['root']) =>
 	StyleSheet.flatten(root.findByType(View).props.style);
 
+const itemStyleOf = (button: ReturnType<typeof create>['root']) =>
+	StyleSheet.flatten(button.parent?.props.style);
+
 describe('ActionBar component', () => {
 	describe('returns null', () => {
-		it('when there are no actions nor children', () => {
+		it('when there are no actions', () => {
 			expect(create(<ActionBar />).toJSON()).toBeNull();
 		});
 
@@ -25,12 +28,16 @@ describe('ActionBar component', () => {
 
 	describe('config API', () => {
 		it('renders one row per entry, where a nested array is a multi-item row', () => {
-			const {root} = create(
+			const tree = create(
 				<ActionBar actions={[[{value: 'Choose'}, {value: 'Postpone'}], {value: 'Start'}]} />
 			);
+			const container = tree.toJSON() as ReactTestRendererJSON;
+			const [firstRow, secondRow] = container.children as ReactTestRendererJSON[];
 
-			expect(root.findAllByType(ActionBar.Row)).toHaveLength(2);
-			expect(root.findAllByType(Button)).toHaveLength(3);
+			expect(container.children).toHaveLength(2);
+			expect(firstRow.children).toHaveLength(2);
+			expect(secondRow.children).toHaveLength(1);
+			expect(tree.root.findAllByType(Button)).toHaveLength(3);
 		});
 
 		it('uses flex for the item slot and passes the rest of the props to the Button', () => {
@@ -45,49 +52,21 @@ describe('ActionBar component', () => {
 				/>
 			);
 
-			const [callItem, confirmItem] = root.findAllByType(ActionBar.Item);
-			expect(callItem.props.flex).toBe(0);
-			expect(confirmItem.props.flex).toBe(2);
-
 			const [callButton, confirmButton] = root.findAllByType(Button);
+			expect(itemStyleOf(callButton).flexGrow).toBe(0);
+			expect(itemStyleOf(callButton).flexShrink).toBe(0);
+			expect(itemStyleOf(confirmButton).flex).toBe(2);
+
 			expect(callButton.props.value).toBe('Call');
 			expect(callButton.props.flex).toBeUndefined();
 			expect(confirmButton.props.disabled).toBe(true);
 		});
 
-		it('takes precedence over children', () => {
-			const {root} = create(
-				<ActionBar actions={[{value: 'Config'}]}>
-					<ActionBar.Row>
-						<ActionBar.Item>
-							<Button value="Composed" />
-						</ActionBar.Item>
-					</ActionBar.Row>
-				</ActionBar>
-			);
+		it('grows the item with flex 1 by default', () => {
+			const {root} = create(<ActionBar actions={[{value: 'A'}]} />);
+			const [button] = root.findAllByType(Button);
 
-			const buttons = root.findAllByType(Button);
-			expect(buttons).toHaveLength(1);
-			expect(buttons[0].props.value).toBe('Config');
-		});
-	});
-
-	describe('composition API', () => {
-		it('renders Row/Item children when no actions are given', () => {
-			const {root} = create(
-				<ActionBar>
-					<ActionBar.Row>
-						<ActionBar.Item flex={0}>
-							<Button value="Scan" />
-						</ActionBar.Item>
-						<ActionBar.Item>
-							<Button value="Start" />
-						</ActionBar.Item>
-					</ActionBar.Row>
-				</ActionBar>
-			);
-
-			expect(root.findAllByType(Button)).toHaveLength(2);
+			expect(itemStyleOf(button).flex).toBe(1);
 		});
 	});
 
@@ -142,65 +121,5 @@ describe('ActionBar component', () => {
 
 			expect(containerStyle(root).paddingBottom).toBe(chromePadding('rounded'));
 		});
-	});
-});
-
-describe('ActionBar.Row component', () => {
-	it('returns null without children', () => {
-		expect(create(<ActionBar.Row />).toJSON()).toBeNull();
-	});
-
-	it('lays out its children in a row with the variant gap', () => {
-		const {root} = create(
-			<ActionBar.Row>
-				<Button value="A" />
-			</ActionBar.Row>
-		);
-		const style = StyleSheet.flatten(root.findByType(View).props.style);
-
-		expect(style.flexDirection).toBe('row');
-		expect(style.gap).toBe(rowGap('rounded'));
-	});
-
-	it('uses no gap inside a flush ActionBar', () => {
-		const {root} = create(
-			<ActionBar variant="flush">
-				<ActionBar.Row>
-					<Button value="A" />
-				</ActionBar.Row>
-			</ActionBar>
-		);
-		const rowView = root.findByType(ActionBar.Row).findByType(View);
-
-		expect(StyleSheet.flatten(rowView.props.style).gap).toBe(0);
-	});
-});
-
-describe('ActionBar.Item component', () => {
-	it('returns null without children', () => {
-		expect(create(<ActionBar.Item />).toJSON()).toBeNull();
-	});
-
-	it('grows with flex 1 by default', () => {
-		const {root} = create(
-			<ActionBar.Item>
-				<Button value="A" />
-			</ActionBar.Item>
-		);
-
-		expect(StyleSheet.flatten(root.findByType(View).props.style).flex).toBe(1);
-	});
-
-	it('keeps the intrinsic width with flex 0', () => {
-		const {root} = create(
-			<ActionBar.Item flex={0}>
-				<Button value="A" />
-			</ActionBar.Item>
-		);
-		const style = StyleSheet.flatten(root.findByType(View).props.style);
-
-		expect(style.flex).toBeUndefined();
-		expect(style.flexGrow).toBe(0);
-		expect(style.flexShrink).toBe(0);
 	});
 });

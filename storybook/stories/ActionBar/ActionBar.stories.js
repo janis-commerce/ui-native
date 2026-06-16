@@ -1,7 +1,6 @@
 import React from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 import ActionBar from 'organisms/ActionBar';
-import Button from 'molecules/Button';
 import {palette} from 'theme/palette';
 
 export default {
@@ -164,19 +163,4 @@ export const TopPlacement = (props) => (
 		/>
 		<Content />
 	</View>
-);
-
-export const Composition = (props) => (
-	<Screen>
-		<ActionBar {...props}>
-			<ActionBar.Row>
-				<ActionBar.Item flex={0}>
-					<Button icon="camera" color="black" onPress={() => {}} />
-				</ActionBar.Item>
-				<ActionBar.Item>
-					<Button value="Confirmar Pedido" color="success" onPress={() => {}} />
-				</ActionBar.Item>
-			</ActionBar.Row>
-		</ActionBar>
-	</Screen>
 );
