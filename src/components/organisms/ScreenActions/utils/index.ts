@@ -13,6 +13,10 @@ export type ActionsRows = Array<SkippableAction | SkippableAction[]>;
 export const rowGap = (variant: ScreenActionsVariant) =>
 	variant === 'rounded' ? scaledForDevice(8, moderateScale) : 0;
 
+// Floor width for icon-only actions so they read as a pill instead of
+// collapsing into a circle (Button height is 50). Tune against Figma.
+export const iconButtonMinWidth = scaledForDevice(64, moderateScale);
+
 export const chromePadding = (variant: ScreenActionsVariant) =>
 	variant === 'rounded' ? scaledForDevice(16, moderateScale) : 0;
 
