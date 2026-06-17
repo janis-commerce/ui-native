@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {create, ReactTestRendererJSON} from 'react-test-renderer';
-import ActionBar from './index';
+import ScreenActions from './index';
 import Button from 'molecules/Button';
 import {chromePadding, rowGap} from './utils';
 import {palette} from 'theme/palette';
@@ -12,21 +12,21 @@ const containerStyle = (root: ReturnType<typeof create>['root']) =>
 const itemStyleOf = (button: ReturnType<typeof create>['root']) =>
 	StyleSheet.flatten(button.parent?.props.style);
 
-describe('ActionBar component', () => {
+describe('ScreenActions component', () => {
 	describe('returns null', () => {
 		it('when there are no actions', () => {
-			expect(create(<ActionBar />).toJSON()).toBeNull();
+			expect(create(<ScreenActions />).toJSON()).toBeNull();
 		});
 
 		it('when actions only contains falsy entries', () => {
-			expect(create(<ActionBar actions={[false, null, [undefined]]} />).toJSON()).toBeNull();
+			expect(create(<ScreenActions actions={[false, null, [undefined]]} />).toJSON()).toBeNull();
 		});
 	});
 
 	describe('config API', () => {
 		it('renders one row per entry, where a nested array is a multi-item row', () => {
 			const tree = create(
-				<ActionBar actions={[[{value: 'Choose'}, {value: 'Postpone'}], {value: 'Start'}]} />
+				<ScreenActions actions={[[{value: 'Choose'}, {value: 'Postpone'}], {value: 'Start'}]} />
 			);
 			const container = tree.toJSON() as ReactTestRendererJSON;
 			const [firstRow, secondRow] = container.children as ReactTestRendererJSON[];
@@ -39,7 +39,7 @@ describe('ActionBar component', () => {
 
 		it('uses flex for the item slot and passes the rest of the props to the Button', () => {
 			const {root} = create(
-				<ActionBar
+				<ScreenActions
 					actions={[
 						[
 							{value: 'Call', flex: 0},
@@ -60,7 +60,7 @@ describe('ActionBar component', () => {
 		});
 
 		it('grows the item with flex 1 by default', () => {
-			const {root} = create(<ActionBar actions={[{value: 'A'}]} />);
+			const {root} = create(<ScreenActions actions={[{value: 'A'}]} />);
 			const [button] = root.findAllByType(Button);
 
 			expect(itemStyleOf(button).flex).toBe(1);
@@ -69,7 +69,7 @@ describe('ActionBar component', () => {
 
 	describe('chrome', () => {
 		it('applies rounded padding and gap by default, with white background', () => {
-			const {root} = create(<ActionBar actions={[{value: 'A'}]} />);
+			const {root} = create(<ScreenActions actions={[{value: 'A'}]} />);
 			const style = containerStyle(root);
 
 			expect(style.padding).toBe(chromePadding('rounded'));
@@ -78,7 +78,7 @@ describe('ActionBar component', () => {
 		});
 
 		it('applies no spacing for the flush variant', () => {
-			const {root} = create(<ActionBar variant="flush" actions={[{value: 'A'}]} />);
+			const {root} = create(<ScreenActions variant="flush" actions={[{value: 'A'}]} />);
 			const style = containerStyle(root);
 
 			expect(style.padding).toBe(0);
@@ -87,7 +87,7 @@ describe('ActionBar component', () => {
 
 		it('supports a custom background color and custom styles', () => {
 			const {root} = create(
-				<ActionBar actions={[{value: 'A'}]} backgroundColor="#EEE" style={{marginTop: 4}} />
+				<ScreenActions actions={[{value: 'A'}]} backgroundColor="#EEE" style={{marginTop: 4}} />
 			);
 			const style = containerStyle(root);
 

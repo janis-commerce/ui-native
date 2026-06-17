@@ -1,10 +1,10 @@
 import React from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
-import ActionBar from 'organisms/ActionBar';
+import ScreenActions from 'organisms/ScreenActions';
 import {palette} from 'theme/palette';
 
 export default {
-	title: 'Components/ActionBar',
+	title: 'Components/ScreenActions',
 	argTypes: {
 		variant: {
 			options: ['rounded', 'flush'],
@@ -51,7 +51,7 @@ const Screen = ({children}) => (
 
 export const SingleAction = (props) => (
 	<Screen>
-		<ActionBar
+		<ScreenActions
 			{...props}
 			actions={[{value: 'Iniciar Picking', color: 'success', onPress: () => {}}]}
 		/>
@@ -60,7 +60,7 @@ export const SingleAction = (props) => (
 
 export const TwoStacked = (props) => (
 	<Screen>
-		<ActionBar
+		<ScreenActions
 			{...props}
 			actions={[
 				{value: 'Confirmar Reemplazos', color: 'success', onPress: () => {}},
@@ -72,7 +72,7 @@ export const TwoStacked = (props) => (
 
 export const UnevenPair = (props) => (
 	<Screen>
-		<ActionBar
+		<ScreenActions
 			{...props}
 			actions={[
 				[
@@ -86,7 +86,7 @@ export const UnevenPair = (props) => (
 
 export const IconPlusMain = (props) => (
 	<Screen>
-		<ActionBar
+		<ScreenActions
 			{...props}
 			actions={[
 				[
@@ -100,7 +100,7 @@ export const IconPlusMain = (props) => (
 
 export const TwoPlusFullWidth = (props) => (
 	<Screen>
-		<ActionBar
+		<ScreenActions
 			{...props}
 			actions={[
 				[
@@ -115,7 +115,7 @@ export const TwoPlusFullWidth = (props) => (
 
 export const ThreeIcons = (props) => (
 	<Screen>
-		<ActionBar
+		<ScreenActions
 			{...props}
 			actions={[
 				[
@@ -130,7 +130,7 @@ export const ThreeIcons = (props) => (
 
 export const Grid2x2 = (props) => (
 	<Screen>
-		<ActionBar
+		<ScreenActions
 			{...props}
 			actions={[
 				[
@@ -148,7 +148,7 @@ export const Grid2x2 = (props) => (
 
 export const TopPlacement = (props) => (
 	<View style={styles.screen}>
-		<ActionBar
+		<ScreenActions
 			{...props}
 			actions={[
 				[

@@ -3,33 +3,33 @@ import {StyleSheet, View, ViewProps} from 'react-native';
 import {palette} from 'theme/palette';
 import Button from 'molecules/Button';
 import {chromePadding, normalizeActions, rowGap} from './utils';
-import type {ActionBarVariant, ActionsRows} from './utils';
+import type {ScreenActionsVariant, ActionsRows} from './utils';
 
-export interface ActionBarProps extends ViewProps {
+export interface ScreenActionsProps extends ViewProps {
 	actions?: ActionsRows;
-	variant?: ActionBarVariant;
+	variant?: ScreenActionsVariant;
 	backgroundColor?: string;
 }
 
 const itemStyle = (flex = 1) => (flex > 0 ? {flex} : {flexGrow: 0, flexShrink: 0});
 
 /**
- * Bottom bar of action buttons. Layouts are declared through the `actions`
- * config, where a nested array is a row and its items share the width by flex
- * weights (`flex={0}` keeps a button's intrinsic width). It only owns the bar
- * chrome (padding, gap, background); the visual hierarchy of each action
- * belongs to the Button itself.
+ * Bottom bar of screen action buttons. Layouts are declared through the
+ * `actions` config, where a nested array is a row and its items share the width
+ * by flex weights (`flex={0}` keeps a button's intrinsic width). It only owns
+ * the bar chrome (padding, gap, background); the visual hierarchy of each
+ * action belongs to the Button itself.
  *
  * The bottom safe-area inset is owned by the screen/app root (a SafeAreaView
  * with the `bottom` edge): reading it here too would add the inset twice.
  */
-const ActionBar = ({
+const ScreenActions = ({
 	actions,
 	variant = 'rounded',
 	backgroundColor,
 	style,
 	...props
-}: ActionBarProps) => {
+}: ScreenActionsProps) => {
 	const rows = normalizeActions(actions);
 
 	if (!rows.length) {
@@ -67,4 +67,4 @@ const ActionBar = ({
 	);
 };
 
-export default ActionBar;
+export default ScreenActions;
