@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.27.0] - 2026-06-17
+
 ### Added
 
 - Add `shirt`, `backpack` and `shoe` icons to the `janis-font-icon` font
