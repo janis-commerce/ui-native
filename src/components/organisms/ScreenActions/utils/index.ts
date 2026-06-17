@@ -26,7 +26,9 @@ export const normalizeActions = (actions?: ActionsRows): ActionConfig[][] => {
 	}
 
 	return actions
-		.map((row) => (Array.isArray(row) ? row : [row]))
-		.map((row) => row.filter((action): action is ActionConfig => !!action))
+		.map((row) => {
+			const items = Array.isArray(row) ? row : [row];
+			return items.filter((action): action is ActionConfig => !!action);
+		})
 		.filter((row) => row.length > 0);
 };
