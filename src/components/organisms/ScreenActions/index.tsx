@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, View, ViewProps} from 'react-native';
 import {palette} from 'theme/palette';
 import Button from 'molecules/Button';
-import {chromePadding, iconButtonMinWidth, normalizeActions, rowGap} from './utils';
+import {barPadding, iconButtonMinWidth, normalizeActions, rowGap} from './utils';
 import type {ScreenActionsVariant, ActionsRows} from './utils';
 
 export interface ScreenActionsProps extends ViewProps {
@@ -17,7 +17,7 @@ const itemStyle = (flex = 1) => (flex > 0 ? {flex} : {flexGrow: 0, flexShrink: 0
  * Bottom bar of screen action buttons. Layouts are declared through the
  * `actions` config, where a nested array is a row and its items share the width
  * by flex weights (`flex={0}` keeps a button's intrinsic width). It owns the bar
- * chrome (padding, gap, background) and gives icon-only actions a minimum width
+ * framing (padding, gap, background) and gives icon-only actions a minimum width
  * so they read as a pill instead of a circle; the rest of each action's visual
  * hierarchy belongs to the Button itself.
  *
@@ -26,7 +26,7 @@ const itemStyle = (flex = 1) => (flex > 0 ? {flex} : {flexGrow: 0, flexShrink: 0
  */
 const ScreenActions = ({
 	actions,
-	variant = 'rounded',
+	variant = 'spaced',
 	backgroundColor,
 	style,
 	...props
@@ -37,7 +37,7 @@ const ScreenActions = ({
 		return null;
 	}
 
-	const padding = chromePadding(variant);
+	const padding = barPadding(variant);
 	const gap = rowGap(variant);
 
 	const styles = StyleSheet.create({

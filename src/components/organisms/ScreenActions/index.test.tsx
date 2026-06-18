@@ -3,7 +3,7 @@ import {StyleSheet, View} from 'react-native';
 import {create, ReactTestRendererJSON} from 'react-test-renderer';
 import ScreenActions from './index';
 import Button from 'molecules/Button';
-import {chromePadding, iconButtonMinWidth, rowGap} from './utils';
+import {barPadding, iconButtonMinWidth, rowGap} from './utils';
 import {palette} from 'theme/palette';
 
 const containerStyle = (root: ReturnType<typeof create>['root']) =>
@@ -91,13 +91,13 @@ describe('ScreenActions component', () => {
 		});
 	});
 
-	describe('chrome', () => {
-		it('applies rounded padding and gap by default, with white background', () => {
+	describe('bar spacing', () => {
+		it('applies spaced padding and gap by default, with white background', () => {
 			const {root} = create(<ScreenActions actions={[{value: 'A'}]} />);
 			const style = containerStyle(root);
 
-			expect(style.padding).toBe(chromePadding('rounded'));
-			expect(style.gap).toBe(rowGap('rounded'));
+			expect(style.padding).toBe(barPadding('spaced'));
+			expect(style.gap).toBe(rowGap('spaced'));
 			expect(style.backgroundColor).toBe(palette.base.white);
 		});
 

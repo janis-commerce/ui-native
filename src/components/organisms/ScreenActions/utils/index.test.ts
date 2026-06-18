@@ -1,4 +1,4 @@
-import {chromePadding, normalizeActions, rowGap} from './index';
+import {barPadding, normalizeActions, rowGap} from './index';
 import {moderateScale, scaledForDevice} from 'scale';
 
 describe('normalizeActions', () => {
@@ -27,14 +27,14 @@ describe('normalizeActions', () => {
 	});
 });
 
-describe('chrome helpers', () => {
-	it('returns spacing for the rounded variant', () => {
-		expect(rowGap('rounded')).toBe(scaledForDevice(8, moderateScale));
-		expect(chromePadding('rounded')).toBe(scaledForDevice(16, moderateScale));
+describe('bar spacing helpers', () => {
+	it('returns spacing for the spaced variant', () => {
+		expect(rowGap('spaced')).toBe(scaledForDevice(8, moderateScale));
+		expect(barPadding('spaced')).toBe(scaledForDevice(16, moderateScale));
 	});
 
 	it('returns no spacing for the flush variant', () => {
 		expect(rowGap('flush')).toBe(0);
-		expect(chromePadding('flush')).toBe(0);
+		expect(barPadding('flush')).toBe(0);
 	});
 });
