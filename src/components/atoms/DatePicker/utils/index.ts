@@ -1,6 +1,7 @@
 import {Platform} from 'react-native';
 import {DatePickerProps as RNDatePickerProps} from 'react-native-date-picker';
 import {palette} from 'theme/palette';
+import {isDevEnv} from 'utils/index';
 
 export type SharedDatePickerProps = Pick<
 	RNDatePickerProps,
@@ -44,14 +45,14 @@ export const getSharedProps = ({
 	timeZoneOffsetInMinutes,
 	testID,
 }: SharedDatePickerProps): RNDatePickerProps => {
-	if (minimumDate && maximumDate && minimumDate > maximumDate) {
+	if (minimumDate && maximumDate && minimumDate > maximumDate && isDevEnv()) {
 		console.warn('DatePicker: `minimumDate` is greater than `maximumDate`.');
 	}
 
 	// buttonColor and dividerColor are Android-only props.
 	const androidTint = Platform.select({
 		android: {buttonColor: palette.primary.main, dividerColor: palette.grey[300]},
-		default: undefined,
+		default: {},
 	});
 
 	return {
