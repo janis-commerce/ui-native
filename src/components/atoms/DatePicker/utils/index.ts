@@ -19,6 +19,7 @@ export type SharedDatePickerProps = Pick<
 
 export interface DatePickerProps extends SharedDatePickerProps {
 	onDateChange: (date: Date) => void;
+	onStateChange?: (state: 'spinning' | 'idle') => void;
 }
 
 export interface DatePickerModalProps extends SharedDatePickerProps {
