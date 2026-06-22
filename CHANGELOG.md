@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- `DatePicker` inline component wrapping `react-native-date-picker` with Janis palette theming [APPSRN-523](https://janiscommerce.atlassian.net/browse/APPSRN-523)
+- `DatePickerModal` component with imperative ref API (`open`/`close`) and `onConfirm`/`onCancel` callbacks [APPSRN-523](https://janiscommerce.atlassian.net/browse/APPSRN-523)
+
+### Removed
+
+- Removed orphan `@react-native-community/datetimepicker` direct dependency [APPSRN-523](https://janiscommerce.atlassian.net/browse/APPSRN-523)
+
 ## [2.3.0] 2026-06-19
 
 ### Changed
