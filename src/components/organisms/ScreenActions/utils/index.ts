@@ -1,24 +1,13 @@
 import {moderateScale, scaledForDevice} from 'scale';
-import type {ButtonProps} from 'molecules/Button';
+import type {ActionConfig, ActionsRows} from '../';
 
-export type ScreenActionsVariant = 'spaced' | 'flush';
-
-export interface ActionConfig extends ButtonProps {
-	flex?: number;
-}
-
-type SkippableAction = ActionConfig | null | false | undefined;
-export type ActionsRows = Array<SkippableAction | SkippableAction[]>;
-
-export const rowGap = (variant: ScreenActionsVariant) =>
-	variant === 'spaced' ? scaledForDevice(8, moderateScale) : 0;
+export const rowGap = scaledForDevice(8, moderateScale);
 
 // Floor width for icon-only actions so they read as a pill instead of
 // collapsing into a circle. From Figma: 72px over the 48px button height.
 export const iconButtonMinWidth = scaledForDevice(72, moderateScale);
 
-export const barPadding = (variant: ScreenActionsVariant) =>
-	variant === 'spaced' ? scaledForDevice(16, moderateScale) : 0;
+export const barPadding = scaledForDevice(16, moderateScale);
 
 export const normalizeActions = (actions?: ActionsRows): ActionConfig[][] => {
 	if (!Array.isArray(actions)) {

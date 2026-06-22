@@ -27,14 +27,9 @@ describe('normalizeActions', () => {
 	});
 });
 
-describe('bar spacing helpers', () => {
-	it('returns spacing for the spaced variant', () => {
-		expect(rowGap('spaced')).toBe(scaledForDevice(8, moderateScale));
-		expect(barPadding('spaced')).toBe(scaledForDevice(16, moderateScale));
-	});
-
-	it('returns no spacing for the flush variant', () => {
-		expect(rowGap('flush')).toBe(0);
-		expect(barPadding('flush')).toBe(0);
+describe('bar spacing', () => {
+	it('exposes the scaled row gap and bar padding', () => {
+		expect(rowGap).toBe(scaledForDevice(8, moderateScale));
+		expect(barPadding).toBe(scaledForDevice(16, moderateScale));
 	});
 });

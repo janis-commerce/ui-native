@@ -92,21 +92,13 @@ describe('ScreenActions component', () => {
 	});
 
 	describe('bar spacing', () => {
-		it('applies spaced padding and gap by default, with white background', () => {
+		it('applies padding and gap, with white background', () => {
 			const {root} = create(<ScreenActions actions={[{value: 'A'}]} />);
 			const style = containerStyle(root);
 
-			expect(style.padding).toBe(barPadding('spaced'));
-			expect(style.gap).toBe(rowGap('spaced'));
+			expect(style.padding).toBe(barPadding);
+			expect(style.gap).toBe(rowGap);
 			expect(style.backgroundColor).toBe(palette.base.white);
-		});
-
-		it('applies no spacing for the flush variant', () => {
-			const {root} = create(<ScreenActions variant="flush" actions={[{value: 'A'}]} />);
-			const style = containerStyle(root);
-
-			expect(style.padding).toBe(0);
-			expect(style.gap).toBe(0);
 		});
 
 		it('supports a custom background color and custom styles', () => {

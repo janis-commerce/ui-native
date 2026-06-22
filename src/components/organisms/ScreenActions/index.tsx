@@ -1,17 +1,23 @@
 import React from 'react';
-import {StyleSheet, View, ViewProps} from 'react-native';
+import {StyleSheet, View, ViewProps, ViewStyle} from 'react-native';
 import {palette} from 'theme/palette';
 import Button from 'molecules/Button';
+import type {ButtonProps} from 'molecules/Button';
 import {barPadding, iconButtonMinWidth, normalizeActions, rowGap} from './utils';
-import type {ScreenActionsVariant, ActionsRows} from './utils';
+
+export interface ActionConfig extends ButtonProps {
+	flex?: number;
+}
+
+type SkippableAction = ActionConfig | null | false | undefined;
+export type ActionsRows = Array<SkippableAction | SkippableAction[]>;
 
 export interface ScreenActionsProps extends ViewProps {
 	actions?: ActionsRows;
-	variant?: ScreenActionsVariant;
 	backgroundColor?: string;
 }
 
-const itemStyle = (flex = 1) => (flex > 0 ? {flex} : {flexGrow: 0, flexShrink: 0});
+const itemStyle = (flex = 1): ViewStyle => (flex > 0 ? {flex} : {flexGrow: 0, flexShrink: 0});
 
 /**
  * Bottom bar of screen action buttons. Layouts are declared through the
@@ -24,32 +30,23 @@ const itemStyle = (flex = 1) => (flex > 0 ? {flex} : {flexGrow: 0, flexShrink: 0
  * The bottom safe-area inset is owned by the screen/app root (a SafeAreaView
  * with the `bottom` edge): reading it here too would add the inset twice.
  */
-const ScreenActions = ({
-	actions,
-	variant = 'spaced',
-	backgroundColor,
-	style,
-	...props
-}: ScreenActionsProps) => {
+const ScreenActions = ({actions, backgroundColor, style, ...props}: ScreenActionsProps) => {
 	const rows = normalizeActions(actions);
 
 	if (!rows.length) {
 		return null;
 	}
 
-	const padding = barPadding(variant);
-	const gap = rowGap(variant);
-
 	const styles = StyleSheet.create({
 		container: {
-			padding,
-			gap,
+			padding: barPadding,
+			gap: rowGap,
 			backgroundColor: backgroundColor || palette.base.white,
 		},
 		row: {
 			flexDirection: 'row',
 			alignItems: 'stretch',
-			gap,
+			gap: rowGap,
 		},
 		iconButton: {
 			minWidth: iconButtonMinWidth,
