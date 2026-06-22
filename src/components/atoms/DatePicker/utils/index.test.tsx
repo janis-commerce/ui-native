@@ -2,46 +2,47 @@ import {Platform} from 'react-native';
 import {palette} from 'theme/palette';
 import {getSharedProps} from './index';
 
+const testDate = new Date('2026-06-18T12:00:00Z');
+
 describe('getSharedProps', () => {
 	it('should keep the date when provided', () => {
-		const date = new Date('2026-06-18T12:00:00Z');
-		expect(getSharedProps({date}).date).toBe(date);
-	});
-
-	it('should use "today" when date is null', () => {
-		expect(getSharedProps({date: null}).date).toBeInstanceOf(Date);
-	});
-
-	it('should use "today" when date is not provided', () => {
-		expect(getSharedProps({}).date).toBeInstanceOf(Date);
+		expect(getSharedProps({date: testDate}).date).toBe(testDate);
 	});
 
 	it('should apply the default mode "date"', () => {
-		expect(getSharedProps({}).mode).toBe('date');
+		expect(getSharedProps({date: testDate}).mode).toBe('date');
 	});
 
 	it('should respect the provided mode', () => {
-		expect(getSharedProps({mode: 'time'}).mode).toBe('time');
+		expect(getSharedProps({date: testDate, mode: 'time'}).mode).toBe('time');
 	});
 
 	it('should apply the default theme "auto"', () => {
-		expect(getSharedProps({}).theme).toBe('auto');
+		expect(getSharedProps({date: testDate}).theme).toBe('auto');
 	});
 
 	it('should warn when minimumDate is greater than maximumDate', () => {
-		getSharedProps({minimumDate: new Date('2026-12-31'), maximumDate: new Date('2026-01-01')});
+		getSharedProps({
+			date: testDate,
+			minimumDate: new Date('2026-12-31'),
+			maximumDate: new Date('2026-01-01'),
+		});
 		expect(console.warn).toHaveBeenCalledWith(
 			'DatePicker: `minimumDate` is greater than `maximumDate`.'
 		);
 	});
 
 	it('should not warn when the range is valid', () => {
-		getSharedProps({minimumDate: new Date('2026-01-01'), maximumDate: new Date('2026-12-31')});
+		getSharedProps({
+			date: testDate,
+			minimumDate: new Date('2026-01-01'),
+			maximumDate: new Date('2026-12-31'),
+		});
 		expect(console.warn).not.toHaveBeenCalled();
 	});
 
 	it('should not warn when only minimumDate is provided', () => {
-		getSharedProps({minimumDate: new Date('2026-01-01')});
+		getSharedProps({date: testDate, minimumDate: new Date('2026-01-01')});
 		expect(console.warn).not.toHaveBeenCalled();
 	});
 

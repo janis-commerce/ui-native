@@ -3,7 +3,7 @@ import {create, act, ReactTestRenderer} from 'react-test-renderer';
 import RNDatePicker from 'react-native-date-picker';
 import DatePicker from './DatePicker';
 import DatePickerModal from './DatePickerModal';
-import {DatePickerModalRef} from './utils';
+import {DatePickerModalRef} from './types';
 
 const getPickerProps = (renderer: ReactTestRenderer) =>
 	renderer.root.findByType(RNDatePicker).props as Record<string, any>;
@@ -36,6 +36,12 @@ describe('DatePicker (inline)', () => {
 		expect(getPickerProps(renderer).date).toBeInstanceOf(Date);
 		expect(onDateChange).not.toHaveBeenCalled();
 	});
+
+	it('should default the date to today when date is not provided', () => {
+		const renderer = create(<DatePicker onDateChange={jest.fn()} />);
+
+		expect(getPickerProps(renderer).date).toBeInstanceOf(Date);
+	});
 });
 
 describe('DatePickerModal', () => {
@@ -45,6 +51,12 @@ describe('DatePickerModal', () => {
 		expect(renderer.toJSON()).toBeTruthy();
 		expect(getPickerProps(renderer).modal).toBe(true);
 		expect(getPickerProps(renderer).open).toBe(false);
+	});
+
+	it('should default the date to today when date is null', () => {
+		const renderer = create(<DatePickerModal date={null} onConfirm={jest.fn()} />);
+
+		expect(getPickerProps(renderer).date).toBeInstanceOf(Date);
 	});
 
 	it('should open and close the modal imperatively via ref', () => {

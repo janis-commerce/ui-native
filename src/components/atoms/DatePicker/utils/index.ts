@@ -2,43 +2,10 @@ import {Platform} from 'react-native';
 import {DatePickerProps as RNDatePickerProps} from 'react-native-date-picker';
 import {palette} from 'theme/palette';
 import {isDevEnv} from 'utils/index';
-
-export type SharedDatePickerProps = Pick<
-	RNDatePickerProps,
-	| 'mode'
-	| 'minimumDate'
-	| 'maximumDate'
-	| 'locale'
-	| 'minuteInterval'
-	| 'timeZoneOffsetInMinutes'
-	| 'theme'
-	| 'dividerColor'
-	| 'buttonColor'
-> & {
-	date?: Date | null;
-	testID?: string;
-};
-
-export interface DatePickerProps extends SharedDatePickerProps {
-	onDateChange: (date: Date) => void;
-	onStateChange?: (state: 'spinning' | 'idle') => void;
-}
-
-export interface DatePickerModalProps extends SharedDatePickerProps {
-	onConfirm: (date: Date) => void;
-	onCancel?: () => void;
-	title?: string;
-	confirmText?: string;
-	cancelText?: string;
-}
-
-export interface DatePickerModalRef {
-	open: () => void;
-	close: () => void;
-}
+import {SharedDatePickerProps} from '../types';
 
 export const getSharedProps = ({
-	date = null,
+	date,
 	mode = 'date',
 	theme = 'auto',
 	minimumDate,
@@ -49,7 +16,7 @@ export const getSharedProps = ({
 	testID,
 	dividerColor,
 	buttonColor,
-}: SharedDatePickerProps): RNDatePickerProps => {
+}: Omit<SharedDatePickerProps, 'date'> & {date: Date}): RNDatePickerProps => {
 	if (minimumDate && maximumDate && minimumDate > maximumDate && isDevEnv()) {
 		console.warn('DatePicker: `minimumDate` is greater than `maximumDate`.');
 	}
@@ -64,7 +31,7 @@ export const getSharedProps = ({
 	});
 
 	return {
-		date: date ?? new Date(),
+		date,
 		mode,
 		theme,
 		minimumDate,
