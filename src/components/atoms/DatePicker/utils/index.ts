@@ -12,6 +12,8 @@ export type SharedDatePickerProps = Pick<
 	| 'minuteInterval'
 	| 'timeZoneOffsetInMinutes'
 	| 'theme'
+	| 'dividerColor'
+	| 'buttonColor'
 > & {
 	date?: Date | null;
 	testID?: string;
@@ -45,6 +47,8 @@ export const getSharedProps = ({
 	minuteInterval,
 	timeZoneOffsetInMinutes,
 	testID,
+	dividerColor,
+	buttonColor,
 }: SharedDatePickerProps): RNDatePickerProps => {
 	if (minimumDate && maximumDate && minimumDate > maximumDate && isDevEnv()) {
 		console.warn('DatePicker: `minimumDate` is greater than `maximumDate`.');
@@ -52,7 +56,10 @@ export const getSharedProps = ({
 
 	// buttonColor and dividerColor are Android-only props.
 	const androidTint = Platform.select({
-		android: {buttonColor: palette.primary.main, dividerColor: palette.grey[300]},
+		android: {
+			buttonColor: buttonColor ?? palette.primary.main,
+			dividerColor: dividerColor ?? palette.grey[300],
+		},
 		default: {},
 	});
 
