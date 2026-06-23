@@ -9,8 +9,8 @@ export interface ActionConfig extends ButtonProps {
 	flex?: number;
 }
 
-type SkippableAction = ActionConfig | null | false | undefined;
-export type ActionsRows = Array<SkippableAction | SkippableAction[]>;
+type Action = ActionConfig | null | false | undefined;
+export type ActionsRows = Array<Action | Action[]>;
 
 export interface ScreenActionsProps extends ViewProps {
 	actions?: ActionsRows;
