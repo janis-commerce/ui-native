@@ -9,6 +9,11 @@ export interface ActionConfig extends ButtonProps {
 	flex?: number;
 }
 
+/**
+ * A row slot: an action config, or a falsy value that gets filtered out. The
+ * falsy union lets callers inline conditionals (`canDelete && deleteAction`),
+ * the same way React accepts a falsy `ReactNode` child.
+ */
 type Action = ActionConfig | null | false | undefined;
 export type ActionsRows = Array<Action | Action[]>;
 
@@ -22,8 +27,9 @@ const itemStyle = (flex = 1): ViewStyle => (flex > 0 ? {flex} : {flexGrow: 0, fl
 /**
  * Bottom bar of screen action buttons. Layouts are declared through the
  * `actions` config, where a nested array is a row and its items share the width
- * by flex weights (`flex={0}` keeps a button's intrinsic width). It owns the bar
- * framing (padding, gap, background) and gives icon-only actions a minimum width
+ * by flex weights (`flex={0}` keeps a button's intrinsic width). Falsy entries
+ * are skipped, so callers can inline conditional actions without extra ternaries.
+ * It owns the bar framing (padding, gap, background) and gives icon-only actions a minimum width
  * so they read as a pill instead of a circle; the rest of each action's visual
  * hierarchy belongs to the Button itself.
  *

@@ -6,10 +6,6 @@ import {palette} from 'theme/palette';
 export default {
 	title: 'Components/ScreenActions',
 	argTypes: {
-		variant: {
-			options: ['rounded', 'flush'],
-			control: {type: 'select'},
-		},
 		backgroundColor: {
 			control: {type: 'color'},
 		},
@@ -160,3 +156,23 @@ export const TopPlacement = (props) => (
 		<Content />
 	</View>
 );
+
+export const ConditionalActions = ({canCancel, ...props}) => (
+	<Screen>
+		<ScreenActions
+			{...props}
+			actions={[
+				{value: 'Confirmar', color: 'success', onPress: () => {}},
+				canCancel && {value: 'Cancelar', variant: 'outlined', onPress: () => {}},
+			]}
+		/>
+	</Screen>
+);
+
+ConditionalActions.args = {
+	canCancel: false,
+};
+
+ConditionalActions.argTypes = {
+	canCancel: {control: {type: 'boolean'}},
+};
