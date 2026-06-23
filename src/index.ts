@@ -15,6 +15,7 @@ import BaseInput from 'atoms/BaseInput';
 import Typography from 'atoms/Typography';
 import Collapsible from 'atoms/Collapsible';
 import Modal from 'atoms/Modal';
+import {DatePicker, DatePickerModal} from 'atoms/DatePicker';
 
 // Molecules
 import Avatar from 'molecules/Avatar';
@@ -85,4 +86,6 @@ export {
 	Modal,
 	BaseDetail,
 	ProductDetail,
+	DatePicker,
+	DatePickerModal,
 };

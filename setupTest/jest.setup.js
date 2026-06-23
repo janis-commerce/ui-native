@@ -68,4 +68,13 @@ jest.mock('react-native-toast-message', () => ({
 	setRef: jest.fn(),
 }));
 
+jest.mock('react-native-date-picker', () => {
+	const React = require('react');
+	const MockDatePicker = (props) => React.createElement('RNDatePicker', props);
+	return {
+		__esModule: true,
+		default: MockDatePicker,
+	};
+});
+
 jest.spyOn(console, 'warn').mockImplementation(() => {});
