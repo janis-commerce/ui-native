@@ -68,6 +68,61 @@ You will need to have the following dependencies pre-installed:
 
 **IMPORTANT:** react-native-reanimated/plugin **has to be listed last**.
 
+## DatePicker component installation
+
+The `DatePicker` and `DatePickerModal` components wrap [`react-native-date-picker`](https://github.com/henninghall/react-native-date-picker), a native module. The consuming app must install it as a peer dependency.
+
+### Step 1 - Install the peer dependency
+
+```sh
+ npm i react-native-date-picker
+```
+
+### Step 2 - Install pods (iOS) and rebuild
+
+```sh
+ cd ios && pod install && cd ..
+```
+
+Then rebuild the native binary (`npx react-native run-android` / `run-ios`). A JS reload is not enough because it is a native module.
+
+### Usage
+
+```js
+import React, {useRef, useState} from 'react';
+import {DatePicker, DatePickerModal} from '@janiscommerce/ui-native';
+
+// Inline: the wheel is always visible, emits on every change
+const Inline = () => {
+	const [date, setDate] = useState(new Date());
+	return <DatePicker date={date} mode="date" onDateChange={setDate} />;
+};
+
+// Modal: opened imperatively via ref, no need to manage visibility state
+const Modal = () => {
+	const ref = useRef(null);
+	const [date, setDate] = useState(null);
+	return (
+		<>
+			<Pressable onPress={() => ref.current.open()}>
+				<Text>{date ? date.toISOString() : 'Select date'}</Text>
+			</Pressable>
+			<DatePickerModal ref={ref} date={date} onConfirm={setDate} />
+		</>
+	);
+};
+```
+
+### Notes
+
+- **Value & backend (ISO 8601):** both components return a raw `Date`. To send it to the backend use `date.toISOString()` (UTC). Beware of the off-by-one-day shift: if you only care about the calendar date, pass `timeZoneOffsetInMinutes={0}` so "what the user picks is what gets sent".
+- **Theming:** `theme` (`'light' | 'dark' | 'auto'`, default `'auto'`) is the only cross-platform appearance control. On **Android** the Janis palette tint is applied to buttons and dividers; on **iOS** only `theme` applies (library limitation).
+- **`date={null}`:** the wheel starts at "today" without emitting changes until the user interacts (inline) or confirms (modal). Confirming always emits the displayed value; distinguishing "no selection" is up to the consumer (keep your own `null` state until the first `onConfirm`).
+- **`mode='time'` with `minimumDate`/`maximumDate`:** the library compares only the time portion, which can behave unexpectedly across different dates.
+- **`minuteInterval`:** valid values are `1, 2, 3, 4, 5, 6, 10, 12, 15, 20, 30`.
+- **Changing `date` while the modal is open:** the library reacts to the `date` prop and repositions the wheel.
+- **Web / Storybook web:** `react-native-date-picker` is a native-only module (no `react-native-web` implementation), so the component does not render in the web Storybook. Preview it in the on-device Storybook (Android/iOS).
+
 ## Usage Example
 
 A quick example of how to import a component and start using **@janiscommerce/ui-native**:
