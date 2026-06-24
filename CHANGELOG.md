@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.5.0] 2026-06-19
+
+- Add `ScreenActions` organism: config-only API for composing multi-row, flex-weighted action bars; replaces local forks of `LayoutWithBottomButtons` [APPSRN-512](https://janiscommerce.atlassian.net/browse/APPSRN-512)
+
+## [2.4.0] 2026-06-19
+
 ### Added
 
 - `DatePicker` inline component wrapping `react-native-date-picker` with Janis palette theming [APPSRN-523](https://janiscommerce.atlassian.net/browse/APPSRN-523)
