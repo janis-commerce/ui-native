@@ -1,7 +1,8 @@
 import React from 'react';
 import {View} from 'react-native';
 import Text from 'atoms/Text';
-import {black, palette} from 'theme/palette';
+import {colors} from 'theme/colors';
+import {palette} from 'theme/palette';
 import CenterScrollView from '../../decorators/CenterScrollView';
 
 export default {
@@ -37,7 +38,7 @@ const styles = {
 		backgroundColor: color,
 		width: 100,
 		height: 100,
-		borderColor: black.semiTransparent,
+		borderColor: colors.greyScale['02'],
 		borderWidth: 1,
 		marginRight: 10,
 	}),
@@ -46,50 +47,65 @@ const styles = {
 		textTransform: 'capitalize',
 		marginBottom: 30,
 	},
+	FamilyTitle: {
+		fontSize: 16,
+		marginBottom: 10,
+	},
 	Title: {
 		marginVertical: 5,
 	},
 };
 
-const colorsKeys = Object.keys(palette);
+const Swatch = ({title, value}) => (
+	<View>
+		<Text style={styles.Title}>{title}</Text>
+		<View style={styles.ColorSquare(value)} />
+		<Text style={styles.Title}>{value}</Text>
+	</View>
+);
 
-const renderColor = (colorData) => {
-	const colorObject = palette[colorData];
+const isToken = (value) => typeof value === 'string';
 
-	if (!colorObject || !Object.keys(colorObject).length) {
-		return null;
-	}
+const renderTokens = (tokens, path = []) => {
+	const entries = Object.entries(tokens);
+	const swatches = entries.filter(([, value]) => isToken(value));
+	const families = entries.filter(([, value]) => !isToken(value));
 
-	const arrayComponent = Object.keys(colorObject).reduce((acc, act) => {
-		if (!palette[colorData][act]) {
-			return acc;
-		}
-
-		return [...acc, {title: `${colorData}.${act}`, value: palette[colorData][act]}];
-	}, []);
-
-	return arrayComponent.map(({title, value}) => (
-		<View key={`${title}-${value}`} style={styles.ColorContainer}>
-			<Text style={styles.Title}>{title}</Text>
-			<View style={styles.ColorSquare(value)} />
-			<Text style={styles.Title}>{value}</Text>
-		</View>
-	));
-};
-
-export const Colors = () => {
 	return (
-		<View style={styles.Container}>
-			{colorsKeys.map((title) => {
-				return (
-					<View key={title}>
-						<Text style={[styles.TitleWrapper, styles.Base]}>{title}</Text>
-						<View style={styles.ColorWrapper}>
-							<>{renderColor(title)}</>
-						</View>
-					</View>
-				);
-			})}
+		<View>
+			{path.length > 1 && !!swatches.length && (
+				<Text style={[styles.FamilyTitle, styles.Base]}>{path.join('.')}</Text>
+			)}
+			<View style={styles.ColorWrapper}>
+				{swatches.map(([name, value]) => (
+					<Swatch key={name} title={[...path, name].join('.')} value={value} />
+				))}
+			</View>
+			{families.map(([name, value]) => (
+				<View key={name}>{renderTokens(value, [...path, name])}</View>
+			))}
 		</View>
 	);
 };
+
+const renderGroups = (groups) =>
+	Object.entries(groups).map(([groupName, group]) => (
+		<View key={groupName}>
+			<Text style={[styles.TitleWrapper, styles.Base]}>{groupName}</Text>
+			{renderTokens(group, [groupName])}
+		</View>
+	));
+
+export const Colors = () => <View style={styles.Container}>{renderGroups(colors)}</View>;
+
+export const PaletteDeprecated = () => (
+	<View style={styles.Container}>
+		<Text style={[styles.FamilyTitle, styles.Base]}>
+			⚠️ Deprecada: usar los tokens de Colors. Cada valor mapea 1:1 a un token nuevo (ver JSDoc en
+			theme/palette).
+		</Text>
+		{renderGroups(palette)}
+	</View>
+);
+
+PaletteDeprecated.storyName = 'Palette (deprecated)';
