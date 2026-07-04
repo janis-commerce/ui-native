@@ -43,6 +43,7 @@ import ProductDetail from 'organisms/ProductDetail';
 
 // Misc
 import {palette} from 'theme/palette';
+import {colors} from 'theme/colors';
 import * as getScale from 'scale';
 
 export {
@@ -57,6 +58,7 @@ export {
 	Svg,
 	StatusChip,
 	palette,
+	colors,
 	LoadingFullScreen,
 	RadioButton,
 	Select,
