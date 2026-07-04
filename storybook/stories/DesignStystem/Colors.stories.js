@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {View, Pressable} from 'react-native';
+import {Primary} from '@storybook/addon-docs';
 import Text from 'atoms/Text';
 import {colors} from 'theme/colors';
 import CenterScrollView from '../../decorators/CenterScrollView';
@@ -12,6 +13,8 @@ export default {
 				hidden: true,
 			},
 		},
+		// la DocsPage default agrega un ArgsTable, que sin args renderiza un "Nothing found"
+		docs: {page: () => <Primary />},
 	},
 	decorators: [
 		(Story) => (

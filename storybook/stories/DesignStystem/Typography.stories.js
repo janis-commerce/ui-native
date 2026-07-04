@@ -1,5 +1,6 @@
 import React from 'react';
 import {Text, View, StyleSheet} from 'react-native';
+import {Primary} from '@storybook/addon-docs';
 import typography from 'theme/typography';
 import TypographyComponent from 'atoms/Typography';
 import CenterScrollView from '../../decorators/CenterScrollView';
@@ -7,6 +8,10 @@ import {primary} from '../../../src/theme/palette';
 
 export default {
 	title: 'Design system/Typography',
+	parameters: {
+		// la DocsPage default agrega un ArgsTable, que sin args renderiza un "Nothing found"
+		docs: {page: () => <Primary />},
+	},
 	decorators: [
 		(Story) => (
 			<CenterScrollView>
