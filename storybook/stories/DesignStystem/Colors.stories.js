@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import {View, Pressable} from 'react-native';
 import Text from 'atoms/Text';
 import {colors} from 'theme/colors';
-import {palette} from 'theme/palette';
 import CenterScrollView from '../../decorators/CenterScrollView';
 
 export default {
@@ -118,19 +117,6 @@ const styles = {
 		color: isCopied ? colors.status.green.pressed : colors.greyScale['06'],
 		marginTop: 2,
 	}),
-	DeprecatedBanner: {
-		backgroundColor: colors.status.yellow.light,
-		borderColor: colors.status.yellow.normal,
-		borderWidth: 1,
-		borderRadius: 8,
-		padding: 12,
-		marginBottom: 24,
-	},
-	DeprecatedText: {
-		fontFamily: 'Roboto',
-		fontSize: 13,
-		color: colors.secondary.black.normal,
-	},
 };
 
 const byStateOrder = ([nameA], [nameB]) => {
@@ -244,20 +230,3 @@ export const Colors = () => (
 		}
 	/>
 );
-
-export const PaletteDeprecated = () => (
-	<TokensGallery
-		source={palette}
-		rootPath="palette"
-		header={
-			<View style={styles.DeprecatedBanner}>
-				<Text style={styles.DeprecatedText}>
-					⚠️ Paleta deprecada: usar los tokens de Colors. Cada valor mapea 1:1 a un token nuevo (ver
-					JSDoc en theme/palette).
-				</Text>
-			</View>
-		}
-	/>
-);
-
-PaletteDeprecated.storyName = 'Palette (deprecated)';
