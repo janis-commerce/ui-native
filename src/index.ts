@@ -19,6 +19,7 @@ import {DatePicker, DatePickerModal} from 'atoms/DatePicker';
 
 // Molecules
 import Avatar from 'molecules/Avatar';
+import Button from 'molecules/Button';
 import DeprecatedButton from 'molecules/DeprecatedButton';
 import Carousel from 'molecules/Carousel';
 import LayoutWithBottomButtons from 'molecules/LayoutWithBottomButtons';
@@ -70,9 +71,8 @@ export {
 	ProgressBar,
 	List,
 	BaseButton,
+	Button,
 	DeprecatedButton,
-	// alias temporal hasta el commit del Button nuevo: la API del package no se rompe a mitad de branch
-	DeprecatedButton as Button,
 	getScale,
 	LayoutWithBottomButtons,
 	FullScreenMessage,
