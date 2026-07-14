@@ -7,6 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.0] 2026-07-14
+
+### Added
+
+- `colors`: design system color tokens mirroring the Figma published styles 1:1 (primary/secondary/status families with normal/hover/pressed/light states, greyScale 00-08) [APPSRN-337](https://janiscommerce.atlassian.net/browse/APPSRN-337)
+- `styleVariants` internal helper (CVA pattern over plain RN styles) [APPSRN-337](https://janiscommerce.atlassian.net/browse/APPSRN-337)
+- Design system `Button`: `value`/`icon`/`iconPosition` (left|right), `size` (large|small), `variant` (contained|outlined|cleaned), `color` (primary|black|success|error), `shape` (oval|circle) [APPSRN-337](https://janiscommerce.atlassian.net/browse/APPSRN-337)
+- `Design system/Colors` storybook page rendering the token gallery [APPSRN-337](https://janiscommerce.atlassian.net/browse/APPSRN-337)
+
+### Changed (BREAKING)
+
+- `Button` is now the design system button. The previous `Button` is exported as `DeprecatedButton` with its API intact: renaming the import is the only change needed to keep the exact previous look. The new API drops `type` (main|secondary), `isLoading`, `variant='text'`, `iconPosition` top|bottom, colors warning|alert and the `pressedStyle`/`iconStyle`/`textStyle` overrides
+- `ScreenActions` renders the design system `Button` (icon-only actions get their pill width from the oval shape; `iconButtonMinWidth` workaround removed)
+
+### Deprecated
+
+- `DeprecatedButton`: kept for existing consumers; use the design system `Button` for new UI (mapping: `type='main'` → `size='large'`, `type='secondary'` → `size='small'`, `variant='text'` → `variant='cleaned'`)
+- `palette`: every value now points to its `colors` token equivalent (same hex values, zero visual change); use `colors` for new UI
+
 ## [2.5.0] 2026-06-19
 
 - Add `ScreenActions` organism: config-only API for composing multi-row, flex-weighted action bars; replaces local forks of `LayoutWithBottomButtons` [APPSRN-512](https://janiscommerce.atlassian.net/browse/APPSRN-512)
