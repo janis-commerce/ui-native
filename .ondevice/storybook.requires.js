@@ -49,6 +49,7 @@ const getStories = () => {
 	return {
 		'./storybook/stories/Avatar/Avatar.stories.js': require('../storybook/stories/Avatar/Avatar.stories.js'),
 		'./storybook/stories/BaseInput/BaseInput.stories.js': require('../storybook/stories/BaseInput/BaseInput.stories.js'),
+		'./storybook/stories/Button/Button.stories.js': require('../storybook/stories/Button/Button.stories.js'),
 		'./storybook/stories/Carousel/Carousel.stories.js': require('../storybook/stories/Carousel/Carousel.stories.js'),
 		'./storybook/stories/CheckBox/CheckBox.stories.js': require('../storybook/stories/CheckBox/CheckBox.stories.js'),
 		'./storybook/stories/Collapsible/Collapsible.stories.js': require('../storybook/stories/Collapsible/Collapsible.stories.js'),
