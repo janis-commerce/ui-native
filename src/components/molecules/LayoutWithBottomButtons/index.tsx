@@ -4,7 +4,7 @@ import {palette} from 'theme/palette';
 import {moderateScale, scaledForDevice} from 'scale';
 import {validVariants, parseButtonsStyles, buttonWrapperVariantStyles} from './utils';
 import type {IlayoutButtons} from './utils';
-import Button from 'molecules/Button';
+import Button from 'molecules/DeprecatedButton';
 
 interface LayoutWithBottomButtonsProps extends ViewProps {
 	children: ReactElement | string;

@@ -1,4 +1,4 @@
-import {keyColor} from 'molecules/Button';
+import {keyColor} from 'molecules/DeprecatedButton';
 import {PressableProps, ViewStyle, TextStyle} from 'react-native';
 import {moderateScale, scaledForDevice} from 'scale';
 import {palette} from 'theme/palette';

@@ -2,10 +2,10 @@ import {View, Text} from 'react-native';
 import React from 'react';
 import {render} from '@testing-library/react-native';
 import {create} from 'react-test-renderer';
-import Button from 'molecules/Button';
+import Button from 'molecules/DeprecatedButton';
 import LayoutWithBottomButtons from './index';
 import * as utils from './utils';
-import {keyColor} from 'molecules/Button';
+import {keyColor} from 'molecules/DeprecatedButton';
 
 describe('LayoutWithBottomButtons Layout', () => {
 	const parseButtonsStyles = jest.spyOn(utils, 'parseButtonsStyles');

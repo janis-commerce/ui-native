@@ -1,6 +1,6 @@
 import React, {FC, Ref} from 'react';
 import SwipeUp, {SwipeUpProps} from 'atoms/SwipeUp';
-import Button, {ButtonProps} from 'molecules/Button';
+import Button, {ButtonProps} from 'molecules/DeprecatedButton';
 import BottomSheet, {BottomSheetProps} from '@gorhom/bottom-sheet';
 import {SwipeUpScrollView} from 'atoms/SwipeUp/childComponents';
 import {StyleSheet, View} from 'react-native';

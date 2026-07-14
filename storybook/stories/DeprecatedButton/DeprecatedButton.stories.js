@@ -1,8 +1,8 @@
 import React from 'react';
-import Button from 'molecules/Button';
+import Button from 'molecules/DeprecatedButton';
 
 export default {
-	title: 'Components/Button',
+	title: 'Components/DeprecatedButton',
 	argTypes: {
 		icon: {
 			control: {type: 'select'},

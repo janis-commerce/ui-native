@@ -60,7 +60,13 @@ export interface ButtonProps extends BaseButtonProps {
 	textStyle?: TextStyle;
 }
 
-const Button: FC<ButtonProps> = ({
+/**
+ * @deprecated Botón de la paleta vieja, congelado para los consumidores existentes.
+ * Para UI nueva usar `molecules/Button` (design system v3). Mapeo: type='main' → size='large',
+ * type='secondary' → size='small', variant='text' → variant='cleaned'; sin equivalente para
+ * isLoading, iconPosition top/bottom, colores warning/alert ni pressedStyle/iconStyle/textStyle.
+ */
+const DeprecatedButton: FC<ButtonProps> = ({
 	type = 'main',
 	variant = 'contained',
 	color = 'primary',
@@ -114,4 +120,4 @@ const Button: FC<ButtonProps> = ({
 	);
 };
 
-export default Button;
+export default DeprecatedButton;

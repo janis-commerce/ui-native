@@ -1,8 +1,8 @@
 import React from 'react';
 import {StyleSheet, View, ViewProps, ViewStyle} from 'react-native';
 import {palette} from 'theme/palette';
-import Button from 'molecules/Button';
-import type {ButtonProps} from 'molecules/Button';
+import Button from 'molecules/DeprecatedButton';
+import type {ButtonProps} from 'molecules/DeprecatedButton';
 import {barPadding, iconButtonMinWidth, normalizeActions, rowGap} from './utils';
 
 export interface ActionConfig extends ButtonProps {
