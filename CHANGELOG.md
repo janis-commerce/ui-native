@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Add `store_filled` and `user_filled` icons to the `janis-font-icon` font [APPSRN-531](https://janiscommerce.atlassian.net/browse/APPSRN-531)
 
+### Changed
+
+- Rename `item_new` icon to `item` in the `janis-font-icon` font, matching the name used in the Views icon catalog
+
 ## [2.5.0] 2026-06-19
 
 - Add `ScreenActions` organism: config-only API for composing multi-row, flex-weighted action bars; replaces local forks of `LayoutWithBottomButtons` [APPSRN-512](https://janiscommerce.atlassian.net/browse/APPSRN-512)
