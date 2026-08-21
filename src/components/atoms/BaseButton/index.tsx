@@ -1,12 +1,18 @@
 import React, {FC, ReactNode} from 'react';
-import {Pressable, PressableProps, StyleSheet} from 'react-native';
+import {Pressable as RNPressable, PressableProps, StyleSheet} from 'react-native';
+import {Pressable as GHPressable} from 'react-native-gesture-handler';
 import {moderateScale, scaledForDevice} from 'scale';
+
+// Opt-in via `isGestureHandler` for cases where RN core Pressable loses `onPress` inside Modalize/Swipeable/native-stack on Android with new architecture (RN 0.74+).
+// Cast to RN Pressable's type so the public API of BaseButton/Button stays compatible — consumers keep typing `onPress` with GestureResponderEvent.
+const GestureHandlerPressable = GHPressable as unknown as typeof RNPressable;
 
 export interface BaseButtonProps extends PressableProps {
 	borderRadius?: number;
 	children?: ReactNode | null;
 	pressedStyle?: ReactNode;
 	style?: any;
+	isGestureHandler?: boolean;
 }
 
 const BaseButton: FC<BaseButtonProps> = ({
@@ -14,6 +20,7 @@ const BaseButton: FC<BaseButtonProps> = ({
 	children = null,
 	style,
 	pressedStyle,
+	isGestureHandler = false,
 	...props
 }) => {
 	if (!children) {
@@ -29,6 +36,8 @@ const BaseButton: FC<BaseButtonProps> = ({
 			borderRadius: validateBorderRadius,
 		},
 	});
+
+	const Pressable = isGestureHandler ? GestureHandlerPressable : RNPressable;
 
 	return (
 		<Pressable

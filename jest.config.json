@@ -3,7 +3,7 @@
 	"roots": ["<rootDir>"],
 	"setupFiles": ["<rootDir>/setupTest/jest.setup.js"],
 	"setupFilesAfterEnv": ["<rootDir>/setupTest/jest.setup.js"],
-	"verbose": true,
+	"verbose": false,
 	"moduleDirectories": ["node_modules", "src"],
 	"clearMocks": true,
 	"moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
@@ -47,6 +47,7 @@
 		"^theme/(.*)$": "<rootDir>/src/theme/$1",
 		"^ts/(.*)$": "<rootDir>/src/ts/$1"
 	},
+	"testPathIgnorePatterns": ["/node_modules/", "<rootDir>/dist/"],
 	"transformIgnorePatterns": [
 		"node_modules/(?!(react-native|react-native-reanimated|@react-native)/)"
 	]

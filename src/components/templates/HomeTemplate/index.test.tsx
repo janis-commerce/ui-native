@@ -111,12 +111,7 @@ describe('HomeTemplate component', () => {
 			{icon: 'round', title: 'Consolidation', onPress: jest.fn(), disabled: true},
 		];
 		const tree = create(
-			<HomeTemplate
-				{...defaultProps}
-				modules={modules}
-				initialShowDisabled={true}
-				testID="home"
-			/>
+			<HomeTemplate {...defaultProps} modules={modules} initialShowDisabled={true} testID="home" />
 		);
 
 		const json1 = JSON.stringify(tree.toJSON());
@@ -130,9 +125,7 @@ describe('HomeTemplate component', () => {
 	});
 
 	it('renders with appName in environment chip', () => {
-		const tree = create(
-			<HomeTemplate {...defaultProps} appName="Picking" environment="beta" />
-		);
+		const tree = create(<HomeTemplate {...defaultProps} appName="Picking" environment="beta" />);
 		const json = JSON.stringify(tree.toJSON());
 		expect(json).toContain('Picking BETA');
 	});

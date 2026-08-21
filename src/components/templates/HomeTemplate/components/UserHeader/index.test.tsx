@@ -97,9 +97,7 @@ describe('UserHeader component', () => {
 
 	it('renders illustration when provided', () => {
 		const MockIllustration = () => <View testID="illustration" />;
-		const {toJSON} = create(
-			<UserHeader {...defaultProps} illustration={MockIllustration} />
-		);
+		const {toJSON} = create(<UserHeader {...defaultProps} illustration={MockIllustration} />);
 		expect(toJSON()).toBeTruthy();
 	});
 });

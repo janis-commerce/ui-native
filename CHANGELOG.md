@@ -7,6 +7,82 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.6.0] 2026-08-13
+
+### Added
+
+- Add `store_filled` and `user_filled` icons to the `janis-font-icon` font [APPSRN-531](https://janiscommerce.atlassian.net/browse/APPSRN-531)
+
+### Changed
+
+- Rename `item_new` icon to `item` in the `janis-font-icon` font, matching the name used in the Views icon catalog
+
+## [2.5.0] 2026-06-19
+
+- Add `ScreenActions` organism: config-only API for composing multi-row, flex-weighted action bars; replaces local forks of `LayoutWithBottomButtons` [APPSRN-512](https://janiscommerce.atlassian.net/browse/APPSRN-512)
+
+## [2.4.0] 2026-06-19
+
+### Added
+
+- `DatePicker` inline component wrapping `react-native-date-picker` with Janis palette theming [APPSRN-523](https://janiscommerce.atlassian.net/browse/APPSRN-523)
+- `DatePickerModal` component with imperative ref API (`open`/`close`) and `onConfirm`/`onCancel` callbacks [APPSRN-523](https://janiscommerce.atlassian.net/browse/APPSRN-523)
+
+### Removed
+
+- Removed orphan `@react-native-community/datetimepicker` direct dependency [APPSRN-523](https://janiscommerce.atlassian.net/browse/APPSRN-523)
+
+## [2.3.0] 2026-06-19
+
+### Changed
+
+- Rename `shirt` icon to `apparel` in the `janis-font-icon` font
+
+## [2.2.0] 2026-06-16
+
+### Added
+
+- Add `shirt`, `backpack` and `shoe` icons to the `janis-font-icon` font
+
+## [2.1.0] 2026-05-29
+
+### Added
+
+- container illustration svg
+
+## [2.0.0] - 2026-05-24
+
+### BREAKING CHANGES
+
+- Minimum supported React Native is now `0.71.5` (peer dependency range `>=0.71.5 <0.82.0`).
+- The following native modules moved from `dependencies` to `peerDependencies` — consumers must install them explicitly:
+  - `react-native-gesture-handler` (`>=2.18.0`)
+  - `react-native-reanimated` (`>=3.16.0`) — minimum bumped from pinned `2.17.0`
+  - `react-native-svg` (`>=12.0.0`)
+  - `react-native-safe-area-context` (`>=4.6.0`)
+  - `@react-native-async-storage/async-storage` (`>=1.19.0`)
+- React peer dependency range widened to `>=17.0.2 <20.0.0`.
+- Node.js 22 is now required for development and CI.
+
+### Added
+
+- React Native 0.80.2 support.
+- `BaseButton`/`Button` accept an `isGestureHandler` boolean prop (default `false`) to opt into `react-native-gesture-handler`'s `Pressable`. Use it on buttons rendered inside Modalize/Swipeable/native-stack on Android with new architecture (RN 0.74+) where the core `Pressable` cancels `onPress` mid-tap.
+- Beta publish workflow (`npm-publish-beta.yml`) for pre-release branches; `npm-publish.yml` now ignores `beta`/`alpha`/`rc` tags.
+- Test for `CheckedIcon` rendering with default props.
+
+### Changed
+
+- Modernized Android `build.gradle` with `safeExtGet` pattern, `compileSdk 35` and Java 17.
+- Replaced `CheckedIcon.defaultProps` with default parameters for React 19 compatibility.
+- Standardized Node.js to v22 in `.nvmrc`, `package.json` engines and all CI workflows.
+- Upgraded GitHub Actions to v4 (`checkout`, `setup-node`).
+
+### Fixed
+
+- Shell injection vulnerability in CI workflows.
+- Lint block in CI.
+
 ## [1.26.1] - 2026-03-12
 
 ### Changed

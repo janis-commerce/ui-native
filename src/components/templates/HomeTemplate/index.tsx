@@ -106,9 +106,13 @@ const HomeTemplate: FC<HomeTemplateProps> = ({
 	const hasDisabledModules = useMemo(() => modules?.some((mod) => mod.disabled), [modules]);
 
 	const visibleModules = useMemo(() => {
-		if (!modules) return [];
+		if (!modules) {
+			return [];
+		}
 		const enabled = modules.filter((mod) => !mod.disabled);
-		if (!showDisabled) return enabled;
+		if (!showDisabled) {
+			return enabled;
+		}
 		const disabled = modules.filter((mod) => mod.disabled);
 		return [...enabled, ...disabled];
 	}, [modules, showDisabled]);

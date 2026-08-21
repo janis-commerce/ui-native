@@ -112,7 +112,7 @@ const SkeletonPulse: FC<{style?: ViewStyle; testID?: string}> = ({
 			Animated.sequence([
 				Animated.timing(opacity, {toValue: 1, duration: 800, useNativeDriver: true}),
 				Animated.timing(opacity, {toValue: 0.4, duration: 800, useNativeDriver: true}),
-			]),
+			])
 		);
 		animation.start();
 		return () => animation.stop();

@@ -15,6 +15,7 @@ const svgsMapping = {
 	'janis-commerce-logo-beta': svgIcons.JanisCommerceLogoBeta,
 	'login-illustration': svgIcons.LoginIllustration,
 	'no-notifications': svgIcons.EmptyNotifications,
+	'containers-illustration': svgIcons.ContainersIllustration,
 };
 
 export type Names = keyof typeof svgsMapping;

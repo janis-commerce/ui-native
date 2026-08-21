@@ -1,0 +1,114 @@
+import React from 'react';
+import {StyleSheet, View} from 'react-native';
+import {create, ReactTestRendererJSON} from 'react-test-renderer';
+import ScreenActions from './index';
+import Button from 'molecules/Button';
+import {barPadding, iconButtonMinWidth, rowGap} from './utils';
+import {palette} from 'theme/palette';
+
+const containerStyle = (root: ReturnType<typeof create>['root']) =>
+	StyleSheet.flatten(root.findByType(View).props.style);
+
+const itemStyleOf = (button: ReturnType<typeof create>['root']) =>
+	StyleSheet.flatten(button.parent?.props.style);
+
+const buttonStyleOf = (button: ReturnType<typeof create>['root']) =>
+	StyleSheet.flatten(button.props.style);
+
+describe('ScreenActions component', () => {
+	describe('returns null', () => {
+		it('when there are no actions', () => {
+			expect(create(<ScreenActions />).toJSON()).toBeNull();
+		});
+
+		it('when actions only contains falsy entries', () => {
+			expect(create(<ScreenActions actions={[false, null, [undefined]]} />).toJSON()).toBeNull();
+		});
+	});
+
+	describe('config API', () => {
+		it('renders one row per entry, where a nested array is a multi-item row', () => {
+			const tree = create(
+				<ScreenActions actions={[[{value: 'Choose'}, {value: 'Postpone'}], {value: 'Start'}]} />
+			);
+			const container = tree.toJSON() as ReactTestRendererJSON;
+			const [firstRow, secondRow] = container.children as ReactTestRendererJSON[];
+
+			expect(container.children).toHaveLength(2);
+			expect(firstRow.children).toHaveLength(2);
+			expect(secondRow.children).toHaveLength(1);
+			expect(tree.root.findAllByType(Button)).toHaveLength(3);
+		});
+
+		it('uses flex for the item slot and passes the rest of the props to the Button', () => {
+			const {root} = create(
+				<ScreenActions
+					actions={[
+						[
+							{value: 'Call', flex: 0},
+							{value: 'Confirm', flex: 2, disabled: true},
+						],
+					]}
+				/>
+			);
+
+			const [callButton, confirmButton] = root.findAllByType(Button);
+			expect(itemStyleOf(callButton).flexGrow).toBe(0);
+			expect(itemStyleOf(callButton).flexShrink).toBe(0);
+			expect(itemStyleOf(confirmButton).flex).toBe(2);
+
+			expect(callButton.props.value).toBe('Call');
+			expect(callButton.props.flex).toBeUndefined();
+			expect(confirmButton.props.disabled).toBe(true);
+		});
+
+		it('grows the item with flex 1 by default', () => {
+			const {root} = create(<ScreenActions actions={[{value: 'A'}]} />);
+			const [button] = root.findAllByType(Button);
+
+			expect(itemStyleOf(button).flex).toBe(1);
+		});
+	});
+
+	describe('icon-only actions', () => {
+		it('gives an icon-only action a minimum width and leaves the text one untouched', () => {
+			const {root} = create(
+				<ScreenActions actions={[[{icon: 'camera', flex: 0}, {value: 'Continuar'}]]} />
+			);
+			const [iconButton, textButton] = root.findAllByType(Button);
+
+			expect(buttonStyleOf(iconButton).minWidth).toBe(iconButtonMinWidth);
+			expect(buttonStyleOf(textButton).minWidth).toBeUndefined();
+		});
+
+		it('keeps the action own style alongside the icon min width', () => {
+			const {root} = create(<ScreenActions actions={[{icon: 'camera', style: {opacity: 0.5}}]} />);
+			const [iconButton] = root.findAllByType(Button);
+			const style = buttonStyleOf(iconButton);
+
+			expect(style.minWidth).toBe(iconButtonMinWidth);
+			expect(style.opacity).toBe(0.5);
+		});
+	});
+
+	describe('bar spacing', () => {
+		it('applies padding and gap, with white background', () => {
+			const {root} = create(<ScreenActions actions={[{value: 'A'}]} />);
+			const style = containerStyle(root);
+
+			expect(style.padding).toBe(barPadding);
+			expect(style.gap).toBe(rowGap);
+			expect(style.backgroundColor).toBe(palette.base.white);
+		});
+
+		it('supports a custom background color and custom styles', () => {
+			const {root} = create(
+				<ScreenActions actions={[{value: 'A'}]} backgroundColor="#EEE" style={{marginTop: 4}} />
+			);
+			const style = containerStyle(root);
+
+			expect(style.backgroundColor).toBe('#EEE');
+			expect(style.marginTop).toBe(4);
+		});
+	});
+});

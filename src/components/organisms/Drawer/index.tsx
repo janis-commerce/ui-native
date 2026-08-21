@@ -1,12 +1,5 @@
 import React, {FC, ReactElement, useEffect, useRef} from 'react';
-import {
-	View,
-	Animated,
-	Pressable,
-	StyleSheet,
-	useWindowDimensions,
-	ViewStyle,
-} from 'react-native';
+import {View, Animated, Pressable, StyleSheet, useWindowDimensions, ViewStyle} from 'react-native';
 import {base} from 'theme/palette';
 
 export type DrawerPosition = 'left' | 'right';
@@ -40,7 +33,7 @@ const Drawer: FC<DrawerProps> = ({
 	const drawerWidth = width || screenWidth * DEFAULT_WIDTH_RATIO;
 
 	const translateX = useRef(
-		new Animated.Value(position === 'left' ? -drawerWidth : screenWidth),
+		new Animated.Value(position === 'left' ? -drawerWidth : screenWidth)
 	).current;
 	const overlayOpacity = useRef(new Animated.Value(0)).current;
 
@@ -92,11 +85,7 @@ const Drawer: FC<DrawerProps> = ({
 			</Animated.View>
 
 			<Animated.View
-				style={[
-					styles.drawer,
-					{width: drawerWidth, transform: [{translateX}]},
-					style,
-				]}>
+				style={[styles.drawer, {width: drawerWidth, transform: [{translateX}]}, style]}>
 				{children}
 			</Animated.View>
 		</View>

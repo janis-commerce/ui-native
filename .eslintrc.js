@@ -19,5 +19,6 @@ module.exports = {
 		'no-param-reassign': 'off',
 		'no-shadow': 'off',
 		'no-console': 'off',
+		'no-spaced-func': 'off',
 	},
 };

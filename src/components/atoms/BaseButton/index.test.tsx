@@ -27,5 +27,14 @@ describe('BaseButton Component', () => {
 			);
 			expect(root).toBeTruthy();
 		});
+
+		it('renders using gesture-handler Pressable when isGestureHandler is true', () => {
+			const {root} = create(
+				<BaseButton borderRadius={validData.borderRadius} isGestureHandler>
+					{validData.children}
+				</BaseButton>
+			);
+			expect(root).toBeTruthy();
+		});
 	});
 });
