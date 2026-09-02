@@ -58,7 +58,7 @@ const typography: Typography = {
 		},
 		small: {
 			fontSize: scaleSize(24),
-			fontWeight: '400',
+			fontWeight: '500',
 			lineHeight: 28,
 		},
 	},
