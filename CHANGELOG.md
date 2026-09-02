@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.6.1] 2026-09-02
+
+### Fixed
+
+- Fix `heading.small` fontWeight (400 → 500) to match Design System spec
+
 ## [2.6.0] 2026-08-13
 
 ### Added
