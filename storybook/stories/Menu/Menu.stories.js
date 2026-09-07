@@ -39,7 +39,8 @@ Default.args = {
 	userInfo: defaultUserInfo,
 	menuItems: defaultMenuItems,
 	onLogout: () => {},
-	appVersion: '1.120.2.0',
+	logoutLabel: 'Cerrar sesión',
+	versionLabel: 'Versión 1.120.2.0',
 	loading: false,
 };
 
@@ -54,7 +55,8 @@ Loading.args = {
 	userInfo: defaultUserInfo,
 	menuItems: defaultMenuItems,
 	onLogout: () => {},
-	appVersion: '1.120.2.0',
+	logoutLabel: 'Cerrar sesión',
+	versionLabel: 'Versión 1.120.2.0',
 	loading: true,
 };
 
@@ -76,7 +78,8 @@ WithHeaderExtra.args = {
 	userInfo: defaultUserInfo,
 	menuItems: defaultMenuItems,
 	onLogout: () => {},
-	appVersion: '1.120.2.0',
+	logoutLabel: 'Cerrar sesión',
+	versionLabel: 'Versión 1.120.2.0',
 	loading: false,
 };
 
@@ -94,6 +97,7 @@ MinimalItems.args = {
 		{icon: 'gear', title: 'Configuración', onPress: () => {}},
 	],
 	onLogout: () => {},
-	appVersion: '2.0.0',
+	logoutLabel: 'Cerrar sesión',
+	versionLabel: 'Versión 2.0.0',
 	loading: false,
 };

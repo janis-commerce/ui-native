@@ -2,7 +2,7 @@ import React, {FC, ReactElement} from 'react';
 import {Pressable, View, StyleSheet, ViewStyle} from 'react-native';
 import Icon from 'atoms/Icon';
 import Typography from 'atoms/Typography';
-import {base, grey, primary, white} from 'theme/palette';
+import {badge as badgeColor, base, grey, primary, white} from 'theme/palette';
 import {moderateScale, horizontalScale, scaledForDevice} from 'scale';
 
 export interface MenuItemProps {
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
 		marginLeft: validTitleMargin,
 	},
 	badge: {
-		backgroundColor: '#F13B70',
+		backgroundColor: badgeColor.main,
 		borderRadius: scaledForDevice(50, moderateScale),
 		minWidth: validBadgeSize,
 		height: validBadgeSize,
@@ -92,7 +92,7 @@ const MenuItem: FC<MenuItemProps> = ({
 			<Typography type="body" size={textSize} color={base.black} style={styles.title}>
 				{title}
 			</Typography>
-			{!!badge && badge > 0 && (
+			{!!badge && (
 				<View style={styles.badge}>
 					<Typography type="label" size="small" color={base.white}>
 						{String(badge)}

@@ -39,8 +39,9 @@ describe('MenuItem component', () => {
 	});
 
 	it('renders badge when provided', () => {
-		const {toJSON} = create(<MenuItem {...defaultProps} badge={3} />);
-		expect(toJSON()).toBeTruthy();
+		const tree = create(<MenuItem {...defaultProps} badge={3} />);
+		const json = JSON.stringify(tree.toJSON());
+		expect(json).toContain('"3"');
 	});
 
 	it('does not render badge when badge is 0', () => {
@@ -60,8 +61,10 @@ describe('MenuItem component', () => {
 	});
 
 	it('does not render icon circle when showIconCircle is false', () => {
-		const tree = create(<MenuItem {...defaultProps} showIconCircle={false} />);
-		expect(tree.toJSON()).toBeTruthy();
+		const {root} = create(<MenuItem {...defaultProps} showIconCircle={false} />);
+		const views = root.findAllByType(View);
+		const circleView = views.find((view) => view.props.style?.borderRadius);
+		expect(circleView).toBeUndefined();
 	});
 
 	it('renders with disabled state', () => {

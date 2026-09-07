@@ -45,14 +45,18 @@ describe('ModuleCard component', () => {
 	});
 
 	it('renders loading skeleton when loading is true', () => {
-		const {root} = create(<ModuleCard {...defaultProps} loading testID="module" />);
-		const loadingView = root.findByProps({testID: 'module-skeleton'});
+		const tree = create(<ModuleCard {...defaultProps} loading testID="module" />);
+		const loadingView = tree.root.findByProps({testID: 'module-skeleton'});
 		expect(loadingView).toBeTruthy();
+		act(() => {
+			tree.unmount();
+		});
 	});
 
 	it('renders badge when provided', () => {
-		const {toJSON} = create(<ModuleCard {...defaultProps} badge={5} />);
-		expect(toJSON()).toBeTruthy();
+		const tree = create(<ModuleCard {...defaultProps} badge={5} />);
+		const json = JSON.stringify(tree.toJSON());
+		expect(json).toContain('"5"');
 	});
 
 	it('does not render badge when badge is 0', () => {
@@ -62,12 +66,25 @@ describe('ModuleCard component', () => {
 	});
 
 	it('renders subtitle when provided', () => {
-		const {toJSON} = create(<ModuleCard {...defaultProps} subtitle="Extra info" />);
-		expect(toJSON()).toBeTruthy();
+		const tree = create(<ModuleCard {...defaultProps} subtitle="Extra info" />);
+		const json = JSON.stringify(tree.toJSON());
+		expect(json).toContain('Extra info');
+	});
+
+	it('renders chevron by default', () => {
+		const {root} = create(<ModuleCard {...defaultProps} />);
+		expect(root.findAllByProps({name: 'chevron_right'}).length).toBeGreaterThan(0);
 	});
 
 	it('hides chevron when showChevron is false', () => {
-		const tree = create(<ModuleCard {...defaultProps} showChevron={false} />);
-		expect(tree.toJSON()).toBeTruthy();
+		const {root} = create(<ModuleCard {...defaultProps} showChevron={false} />);
+		expect(root.findAllByProps({name: 'chevron_right'})).toHaveLength(0);
+	});
+
+	it('applies pressed style when pressed', () => {
+		const {root} = create(<ModuleCard {...defaultProps} />);
+		const pressable = root.findByType(Pressable);
+		const styleFn = pressable.props.style;
+		expect(styleFn({pressed: true})).not.toEqual(styleFn({pressed: false}));
 	});
 });

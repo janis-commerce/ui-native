@@ -1,12 +1,14 @@
 import React, {FC, ComponentType, ReactElement, useState, useMemo, useCallback} from 'react';
-import {View, ScrollView, StyleSheet, Pressable, useWindowDimensions} from 'react-native';
+import {View, ScrollView, StyleSheet, Pressable} from 'react-native';
 import Typography from 'atoms/Typography';
 import Icon from 'atoms/Icon';
-import UserHeader from './components/UserHeader';
+import Header from './components/Header';
+import UserInfo from './components/UserInfo';
 import ModuleCard from './components/ModuleCard';
-import type {EnvironmentType} from './components/UserHeader';
+import type {EnvironmentType} from './components/EnvironmentChip';
 import {base, primary} from 'theme/palette';
 import {moderateScale, horizontalScale, scaledForDevice} from 'scale';
+import {composeTestID} from 'utils';
 
 export interface ModuleConfig {
 	icon: string;
@@ -19,6 +21,7 @@ export interface ModuleConfig {
 
 export interface HomeTemplateProps {
 	userName: string;
+	greeting: string;
 	appName?: string;
 	userAvatar?: string;
 	avatarPlaceholder?: string;
@@ -29,7 +32,7 @@ export interface HomeTemplateProps {
 	topBarLabelOnPress?: () => void;
 	showTopBarChevron?: boolean;
 	modules: ModuleConfig[];
-	sectionTitle?: string;
+	sectionTitle: string;
 	illustration?: ComponentType | null;
 	headerExtra?: ReactElement | null;
 	footerExtra?: ReactElement | null;
@@ -55,7 +58,11 @@ const styles = StyleSheet.create({
 	body: {
 		flex: 1,
 	},
+	bodyContent: {
+		flexGrow: 1,
+	},
 	gradient: {
+		flex: 1,
 		backgroundColor: `${primary.main}0F`,
 		borderTopLeftRadius: validGradientBorderRadius,
 		borderTopRightRadius: validGradientBorderRadius,
@@ -81,6 +88,7 @@ const styles = StyleSheet.create({
 
 const HomeTemplate: FC<HomeTemplateProps> = ({
 	userName,
+	greeting,
 	appName,
 	userAvatar,
 	avatarPlaceholder,
@@ -91,7 +99,7 @@ const HomeTemplate: FC<HomeTemplateProps> = ({
 	topBarLabelOnPress,
 	showTopBarChevron,
 	modules,
-	sectionTitle = 'Seleccioná un módulo',
+	sectionTitle,
 	illustration: Illustration = null,
 	headerExtra = null,
 	footerExtra = null,
@@ -100,7 +108,6 @@ const HomeTemplate: FC<HomeTemplateProps> = ({
 	initialShowDisabled = true,
 	testID,
 }) => {
-	const {height: screenHeight} = useWindowDimensions();
 	const [showDisabled, setShowDisabled] = useState(initialShowDisabled);
 
 	const hasDisabledModules = useMemo(() => modules?.some((mod) => mod.disabled), [modules]);
@@ -121,7 +128,7 @@ const HomeTemplate: FC<HomeTemplateProps> = ({
 		setShowDisabled((prev) => !prev);
 	}, []);
 
-	if (!userName || !modules) {
+	if (!modules) {
 		return null;
 	}
 
@@ -129,24 +136,29 @@ const HomeTemplate: FC<HomeTemplateProps> = ({
 
 	return (
 		<View style={styles.container} testID={testID}>
-			<UserHeader
+			<Header
+				onMenuPress={onMenuPress}
 				userName={userName}
-				appName={appName}
 				userAvatar={userAvatar}
 				avatarPlaceholder={avatarPlaceholder}
 				avatarBgColor={avatarBgColor}
-				environment={environment}
-				onMenuPress={onMenuPress}
 				topBarLabel={topBarLabel}
 				topBarLabelOnPress={topBarLabelOnPress}
 				showTopBarChevron={showTopBarChevron}
-				illustration={Illustration}
-				testID={`${testID}-header`}>
-				{headerExtra}
-			</UserHeader>
+				testID={composeTestID(testID, 'header')}
+			/>
 
-			<ScrollView style={styles.body}>
-				<View style={[styles.gradient, {minHeight: screenHeight}]}>
+			<UserInfo
+				greeting={greeting}
+				appName={appName}
+				environment={environment}
+				illustration={Illustration}
+				testID={composeTestID(testID, 'user-info')}>
+				{headerExtra}
+			</UserInfo>
+
+			<ScrollView style={styles.body} contentContainerStyle={styles.bodyContent}>
+				<View style={styles.gradient}>
 					<View style={styles.sectionHeader}>
 						<Typography type="title" size="medium">
 							{sectionTitle}
@@ -155,7 +167,7 @@ const HomeTemplate: FC<HomeTemplateProps> = ({
 							<Pressable
 								onPress={toggleVisibility}
 								style={styles.toggleButton}
-								testID={`${testID}-toggle-visibility`}>
+								testID={composeTestID(testID, 'toggle-visibility')}>
 								<Icon
 									name={showDisabled ? 'eye' : 'eye_slash'}
 									size={validToggleIconSize}

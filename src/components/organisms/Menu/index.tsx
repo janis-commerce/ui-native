@@ -7,6 +7,7 @@ import List, {TypeList} from 'atoms/List';
 import MenuItem from 'molecules/MenuItem';
 import {base, grey, white} from 'theme/palette';
 import {moderateScale, horizontalScale, scaledForDevice} from 'scale';
+import {composeTestID} from 'utils';
 
 export interface MenuUserInfo {
 	name: string;
@@ -29,9 +30,9 @@ export interface MenuProps {
 	userInfo: MenuUserInfo;
 	menuItems: MenuItemData[];
 	onLogout: () => void;
-	logoutLabel?: string;
+	logoutLabel: string;
 	logoutIcon?: string;
-	appVersion: string;
+	versionLabel: string;
 	headerExtra?: ReactElement | null;
 	loading?: boolean;
 	testID?: string;
@@ -149,9 +150,9 @@ const Menu: FC<MenuProps> = ({
 	userInfo,
 	menuItems,
 	onLogout,
-	logoutLabel = 'Cerrar sesión',
+	logoutLabel,
 	logoutIcon = 'arrow_alt_from_left',
-	appVersion,
+	versionLabel,
 	headerExtra = null,
 	loading = false,
 	testID,
@@ -225,14 +226,14 @@ const Menu: FC<MenuProps> = ({
 						title={logoutLabel}
 						onPress={onLogout}
 						showIconCircle={false}
-						testID={`${testID}-logout`}
+						testID={composeTestID(testID, 'logout')}
 					/>
 				)}
 				<View style={styles.divider} />
 				<View style={styles.brandFooter}>
 					<Svg name="janis-iso" size={validJanisLogoSize} />
 					<Typography type="body" size="small" color={grey[400]}>
-						{`Versión ${appVersion}`}
+						{versionLabel}
 					</Typography>
 				</View>
 			</View>

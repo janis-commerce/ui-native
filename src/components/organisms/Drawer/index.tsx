@@ -1,6 +1,15 @@
-import React, {FC, ReactElement, useEffect, useRef} from 'react';
-import {View, Animated, Pressable, StyleSheet, useWindowDimensions, ViewStyle} from 'react-native';
+import React, {FC, ReactElement, useEffect, useRef, useState} from 'react';
+import {
+	View,
+	Animated,
+	BackHandler,
+	Pressable,
+	StyleSheet,
+	useWindowDimensions,
+	ViewStyle,
+} from 'react-native';
 import {base} from 'theme/palette';
+import {composeTestID} from 'utils';
 
 export type DrawerPosition = 'left' | 'right';
 
@@ -31,6 +40,7 @@ const Drawer: FC<DrawerProps> = ({
 }) => {
 	const {width: screenWidth} = useWindowDimensions();
 	const drawerWidth = width || screenWidth * DEFAULT_WIDTH_RATIO;
+	const [isRendered, setIsRendered] = useState(isOpen);
 
 	const translateX = useRef(
 		new Animated.Value(position === 'left' ? -drawerWidth : screenWidth)
@@ -41,51 +51,64 @@ const Drawer: FC<DrawerProps> = ({
 		const openValue = position === 'left' ? 0 : screenWidth - drawerWidth;
 		const closedValue = position === 'left' ? -drawerWidth : screenWidth;
 
+		const slideTo = (translateTarget: number, opacityTarget: number) =>
+			Animated.parallel([
+				Animated.timing(translateX, {
+					toValue: translateTarget,
+					duration: animationDuration,
+					useNativeDriver: true,
+				}),
+				Animated.timing(overlayOpacity, {
+					toValue: opacityTarget,
+					duration: animationDuration,
+					useNativeDriver: true,
+				}),
+			]);
+
 		if (isOpen) {
-			Animated.parallel([
-				Animated.timing(translateX, {
-					toValue: openValue,
-					duration: animationDuration,
-					useNativeDriver: true,
-				}),
-				Animated.timing(overlayOpacity, {
-					toValue: 1,
-					duration: animationDuration,
-					useNativeDriver: true,
-				}),
-			]).start();
-		} else {
-			Animated.parallel([
-				Animated.timing(translateX, {
-					toValue: closedValue,
-					duration: animationDuration,
-					useNativeDriver: true,
-				}),
-				Animated.timing(overlayOpacity, {
-					toValue: 0,
-					duration: animationDuration,
-					useNativeDriver: true,
-				}),
-			]).start();
+			setIsRendered(true);
 		}
+
+		const animation = isOpen ? slideTo(openValue, 1) : slideTo(closedValue, 0);
+		animation.start(({finished}) => {
+			if (finished && !isOpen) {
+				setIsRendered(false);
+			}
+		});
+
+		return () => animation.stop();
 	}, [isOpen, translateX, overlayOpacity, position, drawerWidth, screenWidth, animationDuration]);
+
+	useEffect(() => {
+		if (!isOpen) {
+			return undefined;
+		}
+
+		const subscription = BackHandler.addEventListener('hardwareBackPress', () => {
+			onClose();
+			return true;
+		});
+
+		return () => subscription.remove();
+	}, [isOpen, onClose]);
 
 	return (
 		<View
-			style={[StyleSheet.absoluteFill, styles.container, !isOpen && styles.hidden]}
+			style={[StyleSheet.absoluteFill, styles.container, !isRendered && styles.hidden]}
 			testID={testID}
 			pointerEvents={isOpen ? 'auto' : 'none'}>
 			<Animated.View
-				style={[
-					StyleSheet.absoluteFill,
-					styles.overlay,
-					{backgroundColor: overlayColor, opacity: overlayOpacity},
-				]}>
-				<Pressable style={StyleSheet.absoluteFill} onPress={onClose} />
+				style={[StyleSheet.absoluteFill, {backgroundColor: overlayColor, opacity: overlayOpacity}]}>
+				<Pressable
+					style={StyleSheet.absoluteFill}
+					onPress={onClose}
+					testID={composeTestID(testID, 'overlay')}
+				/>
 			</Animated.View>
 
 			<Animated.View
-				style={[styles.drawer, {width: drawerWidth, transform: [{translateX}]}, style]}>
+				style={[styles.drawer, {width: drawerWidth, transform: [{translateX}]}, style]}
+				testID={composeTestID(testID, 'panel')}>
 				{children}
 			</Animated.View>
 		</View>
@@ -98,9 +121,8 @@ const styles = StyleSheet.create({
 		elevation: 1000,
 	},
 	hidden: {
-		zIndex: -1,
+		display: 'none',
 	},
-	overlay: {},
 	drawer: {
 		position: 'absolute',
 		top: 0,

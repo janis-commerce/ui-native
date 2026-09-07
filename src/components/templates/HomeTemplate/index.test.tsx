@@ -1,10 +1,12 @@
 import React from 'react';
-import {create} from 'react-test-renderer';
+import {create, act} from 'react-test-renderer';
 import {View, Text} from 'react-native';
 import HomeTemplate from './index';
 
 const defaultProps = {
 	userName: 'Juan Carlos',
+	greeting: 'Bienvenido,\nJuan Carlos',
+	sectionTitle: 'Seleccioná un módulo',
 	onMenuPress: jest.fn(),
 	modules: [
 		{icon: 'picking', title: 'Picking', onPress: jest.fn()},
@@ -24,9 +26,10 @@ describe('HomeTemplate component', () => {
 		expect(toJSON()).toBeTruthy();
 	});
 
-	it('returns null when userName is missing', () => {
-		const {toJSON} = create(<HomeTemplate {...defaultProps} userName="" />);
-		expect(toJSON()).toBeNull();
+	it('still renders the home when userName is empty', () => {
+		const tree = create(<HomeTemplate {...defaultProps} userName="" />);
+		const json = JSON.stringify(tree.toJSON());
+		expect(json).toContain('Picking');
 	});
 
 	it('returns null when modules is null', () => {
@@ -41,6 +44,12 @@ describe('HomeTemplate component', () => {
 		expect(json).toContain('Control');
 	});
 
+	it('renders the greeting it receives', () => {
+		const tree = create(<HomeTemplate {...defaultProps} greeting="Good morning, Juan" />);
+		const json = JSON.stringify(tree.toJSON());
+		expect(json).toContain('Good morning, Juan');
+	});
+
 	it('renders with custom section title', () => {
 		const tree = create(<HomeTemplate {...defaultProps} sectionTitle="Elige un modulo" />);
 		const json = JSON.stringify(tree.toJSON());
@@ -48,33 +57,39 @@ describe('HomeTemplate component', () => {
 	});
 
 	it('renders illustration when provided', () => {
-		const {toJSON} = create(<HomeTemplate {...defaultProps} illustration={MockIllustration} />);
-		expect(toJSON()).toBeTruthy();
+		const {root} = create(<HomeTemplate {...defaultProps} illustration={MockIllustration} />);
+		expect(root.findByProps({testID: 'illustration'})).toBeTruthy();
 	});
 
 	it('renders with environment chip', () => {
-		const {toJSON} = create(<HomeTemplate {...defaultProps} environment="qa" />);
-		expect(toJSON()).toBeTruthy();
+		const tree = create(<HomeTemplate {...defaultProps} environment="qa" />);
+		const json = JSON.stringify(tree.toJSON());
+		expect(json).toContain('QA');
 	});
 
 	it('renders header extra content', () => {
-		const {toJSON} = create(
+		const {root} = create(
 			<HomeTemplate {...defaultProps} headerExtra={<View testID="shift-chip" />} />
 		);
-		expect(toJSON()).toBeTruthy();
+		expect(root.findByProps({testID: 'shift-chip'})).toBeTruthy();
 	});
 
 	it('renders footer extra content', () => {
-		const {toJSON} = create(<HomeTemplate {...defaultProps} footerExtra={<Text>Footer</Text>} />);
-		expect(toJSON()).toBeTruthy();
+		const tree = create(<HomeTemplate {...defaultProps} footerExtra={<Text>Footer</Text>} />);
+		const json = JSON.stringify(tree.toJSON());
+		expect(json).toContain('Footer');
 	});
 
-	it('passes loading state to module cards', () => {
-		const {toJSON} = create(<HomeTemplate {...defaultProps} loading testID="home" />);
-		expect(toJSON()).toBeTruthy();
+	it('renders skeletons instead of module cards while loading', () => {
+		const tree = create(<HomeTemplate {...defaultProps} loading testID="home" />);
+		const json = JSON.stringify(tree.toJSON());
+		expect(json).not.toContain('Picking');
+		act(() => {
+			tree.unmount();
+		});
 	});
 
-	it('passes topBarLabel to UserHeader', () => {
+	it('passes topBarLabel to Header', () => {
 		const tree = create(<HomeTemplate {...defaultProps} topBarLabel="Disco Martinez" />);
 		const json = JSON.stringify(tree.toJSON());
 		expect(json).toContain('Disco Martinez');
@@ -118,7 +133,9 @@ describe('HomeTemplate component', () => {
 		expect(json1).toContain('Consolidation');
 
 		const toggleButton = tree.root.findByProps({testID: 'home-toggle-visibility'});
-		toggleButton.props.onPress();
+		act(() => {
+			toggleButton.props.onPress();
+		});
 
 		const json2 = JSON.stringify(tree.toJSON());
 		expect(json2).not.toContain('Consolidation');

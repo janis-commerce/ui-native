@@ -1,6 +1,7 @@
 import React from 'react';
 import {create, act} from 'react-test-renderer';
 import {Pressable} from 'react-native';
+import Icon from 'atoms/Icon';
 import MenuButton from './index';
 
 describe('MenuButton component', () => {
@@ -20,13 +21,13 @@ describe('MenuButton component', () => {
 	});
 
 	it('renders with custom color', () => {
-		const {toJSON} = create(<MenuButton onPress={jest.fn()} color="#FF0000" />);
-		expect(toJSON()).toBeTruthy();
+		const {root} = create(<MenuButton onPress={jest.fn()} color="#FF0000" />);
+		expect(root.findByType(Icon).props.color).toBe('#FF0000');
 	});
 
 	it('renders with custom size', () => {
-		const {toJSON} = create(<MenuButton onPress={jest.fn()} size={32} />);
-		expect(toJSON()).toBeTruthy();
+		const {root} = create(<MenuButton onPress={jest.fn()} size={32} />);
+		expect(root.findByType(Icon).props.size).toBe(32);
 	});
 
 	it('renders with testID', () => {

@@ -1,4 +1,14 @@
-import {isArray, isObject, isDevEnv} from './';
+import {isArray, isObject, isDevEnv, composeTestID} from './';
+
+describe('composeTestID', () => {
+	it('appends the suffix to the testID', () => {
+		expect(composeTestID('home', 'header')).toBe('home-header');
+	});
+
+	it('returns undefined when there is no testID', () => {
+		expect(composeTestID(undefined, 'header')).toBeUndefined();
+	});
+});
 
 describe('isObject', () => {
 	it('is true when is object type', () => {

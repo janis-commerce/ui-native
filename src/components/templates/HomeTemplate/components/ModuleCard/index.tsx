@@ -2,8 +2,9 @@ import React, {FC, useEffect, useRef} from 'react';
 import {Pressable, View, StyleSheet, ViewStyle, Animated} from 'react-native';
 import Icon from 'atoms/Icon';
 import Typography from 'atoms/Typography';
-import {base, grey, primary, white} from 'theme/palette';
+import {badge as badgeColor, base, grey, primary, white} from 'theme/palette';
 import {moderateScale, horizontalScale, scaledForDevice} from 'scale';
+import {composeTestID} from 'utils';
 
 export interface ModuleCardProps {
 	icon: string;
@@ -67,7 +68,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 	},
 	badge: {
-		backgroundColor: '#F13B70',
+		backgroundColor: badgeColor.main,
 		borderRadius: scaledForDevice(10, moderateScale),
 		minWidth: validBadgeSize,
 		height: validBadgeSize,
@@ -122,7 +123,7 @@ const SkeletonPulse: FC<{style?: ViewStyle; testID?: string}> = ({
 };
 
 const ModuleCardSkeleton: FC<{testID?: string}> = ({testID: skeletonTestID}) => (
-	<View style={styles.skeletonContainer} testID={`${skeletonTestID}-skeleton`}>
+	<View style={styles.skeletonContainer} testID={composeTestID(skeletonTestID, 'skeleton')}>
 		<SkeletonPulse style={styles.skeletonIcon} />
 		<View style={styles.content}>
 			<SkeletonPulse style={styles.skeletonTitle} />
@@ -176,7 +177,7 @@ const ModuleCard: FC<ModuleCardProps> = ({
 				)}
 			</View>
 
-			{!!badge && badge > 0 && (
+			{!!badge && (
 				<View style={styles.badge}>
 					<Typography type="label" size="small" color={base.white}>
 						{String(badge)}

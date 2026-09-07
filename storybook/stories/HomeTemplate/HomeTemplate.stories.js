@@ -67,6 +67,7 @@ export const Complete = (props) => <HomeTemplate {...props} />;
 Complete.storyName = 'Complete (Picking)';
 Complete.args = {
 	userName: 'Juan Carlos',
+	greeting: 'Bienvenido,\nJuan Carlos',
 	appName: 'Picking',
 	avatarPlaceholder: 'JC',
 	avatarBgColor: '#E8EAF6',
@@ -89,6 +90,7 @@ export const WithDisabledModules = (props) => <HomeTemplate {...props} />;
 WithDisabledModules.storyName = 'With Disabled Modules + Toggle';
 WithDisabledModules.args = {
 	userName: 'Pablo',
+	greeting: 'Bienvenido,\nPablo',
 	appName: 'Picking',
 	avatarPlaceholder: 'PO',
 	environment: 'qa',
@@ -105,6 +107,7 @@ export const LoadingState = (props) => <HomeTemplate {...props} />;
 LoadingState.storyName = 'Loading State';
 LoadingState.args = {
 	userName: 'Juan Carlos',
+	greeting: 'Bienvenido,\nJuan Carlos',
 	onMenuPress: () => {},
 	modules: defaultModules,
 	sectionTitle: 'Seleccioná un módulo',
@@ -116,6 +119,7 @@ export const Minimal = (props) => <HomeTemplate {...props} />;
 Minimal.storyName = 'Minimal (No extras)';
 Minimal.args = {
 	userName: 'Laura',
+	greeting: 'Bienvenida,\nLaura',
 	onMenuPress: () => {},
 	modules: [
 		{icon: 'shipping_big_truck', title: 'Delivery', onPress: () => {}},
@@ -131,6 +135,7 @@ export const WMSExample = (props) => <HomeTemplate {...props} />;
 WMSExample.storyName = 'WMS Example';
 WMSExample.args = {
 	userName: 'Carlos',
+	greeting: 'Bienvenido,\nCarlos',
 	appName: 'WMS',
 	avatarPlaceholder: 'CM',
 	environment: 'qa',
