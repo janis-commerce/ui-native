@@ -1,6 +1,8 @@
 import React from 'react';
 import {create, act} from 'react-test-renderer';
 import {View} from 'react-native';
+import Skeleton from 'atoms/Skeleton';
+import ClientSelector from 'molecules/ClientSelector';
 import Menu from './index';
 
 const defaultProps = {
@@ -10,8 +12,8 @@ const defaultProps = {
 		avatarPlaceholder: 'JC',
 	},
 	menuItems: [
-		{icon: 'bell', title: 'Notificaciones', onPress: jest.fn(), badge: 3},
-		{icon: 'gear', title: 'Configuración', onPress: jest.fn()},
+		{id: 'notifications', icon: 'bell', title: 'Notificaciones', onPress: jest.fn(), badge: 3},
+		{id: 'settings', icon: 'gear', title: 'Configuración', onPress: jest.fn()},
 	],
 	onLogout: jest.fn(),
 	logoutLabel: 'Cerrar sesión',
@@ -87,12 +89,42 @@ describe('Menu component', () => {
 		expect(toJSON()).toBeTruthy();
 	});
 
-	it('renders the skeleton while loading', () => {
+	it('renders the skeleton instead of the items while loading', () => {
 		const tree = create(<Menu {...defaultProps} loading />);
-		const json = JSON.stringify(tree.toJSON());
-		expect(json).not.toContain('Notificaciones');
+		expect(tree.root.findAllByType(Skeleton).length).toBeGreaterThan(0);
+		expect(JSON.stringify(tree.toJSON())).not.toContain('Notificaciones');
 		act(() => {
 			tree.unmount();
 		});
+	});
+
+	it('keeps the logout action while loading', () => {
+		const tree = create(<Menu {...defaultProps} loading testID="menu" />);
+		expect(tree.root.findByProps({testID: 'menu-logout'}).props.title).toBe('Cerrar sesión');
+		act(() => {
+			tree.unmount();
+		});
+	});
+
+	it('keeps the logout action when there are no items', () => {
+		const {root} = create(<Menu {...defaultProps} menuItems={[]} testID="menu" />);
+		expect(root.findByProps({testID: 'menu-logout'})).toBeTruthy();
+	});
+
+	it('renders the client selector below the user', () => {
+		const onPress = jest.fn();
+		const {root} = create(
+			<Menu {...defaultProps} client={{name: 'fizzmodarg', onPress}} testID="menu" />
+		);
+		const clientSelector = root.findByProps({testID: 'menu-client-selector'});
+		expect(clientSelector.props.name).toBe('fizzmodarg');
+
+		clientSelector.props.onPress();
+		expect(onPress).toHaveBeenCalledTimes(1);
+	});
+
+	it('does not render the client selector without a client name', () => {
+		const {root} = create(<Menu {...defaultProps} client={{name: ''}} />);
+		expect(root.findAllByType(ClientSelector)).toHaveLength(0);
 	});
 });

@@ -1,6 +1,7 @@
 import React from 'react';
-import {create, act} from 'react-test-renderer';
-import {View, Text} from 'react-native';
+import {create, act, ReactTestInstance} from 'react-test-renderer';
+import {View, Text, ScrollView} from 'react-native';
+import {ModuleCardSkeleton} from './components/ModuleCard';
 import HomeTemplate from './index';
 
 const defaultProps = {
@@ -9,10 +10,15 @@ const defaultProps = {
 	sectionTitle: 'Seleccioná un módulo',
 	onMenuPress: jest.fn(),
 	modules: [
-		{icon: 'picking', title: 'Picking', onPress: jest.fn()},
-		{icon: 'auditory', title: 'Control', onPress: jest.fn()},
+		{id: 'picking', icon: 'picking', title: 'Picking', onPress: jest.fn()},
+		{id: 'control', icon: 'auditory', title: 'Control', onPress: jest.fn()},
 	],
 };
+
+const modulesWithDisabled = [
+	{id: 'picking', icon: 'picking', title: 'Picking', onPress: jest.fn()},
+	{id: 'consolidation', icon: 'round', title: 'Consolidation', onPress: jest.fn(), disabled: true},
+];
 
 const MockIllustration = () => <View testID="illustration" />;
 
@@ -80,26 +86,51 @@ describe('HomeTemplate component', () => {
 		expect(json).toContain('Footer');
 	});
 
-	it('renders skeletons instead of module cards while loading', () => {
-		const tree = create(<HomeTemplate {...defaultProps} loading testID="home" />);
-		const json = JSON.stringify(tree.toJSON());
-		expect(json).not.toContain('Picking');
+	it('renders one skeleton per visible module while loading', () => {
+		const tree = create(<HomeTemplate {...defaultProps} loading />);
+		expect(tree.root.findAllByType(ModuleCardSkeleton)).toHaveLength(2);
+		expect(JSON.stringify(tree.toJSON())).not.toContain('Picking');
 		act(() => {
 			tree.unmount();
 		});
 	});
 
-	it('passes topBarLabel to Header', () => {
-		const tree = create(<HomeTemplate {...defaultProps} topBarLabel="Disco Martinez" />);
+	it('renders the default amount of skeletons on the first load, before the modules arrive', () => {
+		const tree = create(<HomeTemplate {...defaultProps} modules={[]} loading />);
+		expect(tree.root.findAllByType(ModuleCardSkeleton)).toHaveLength(4);
+		act(() => {
+			tree.unmount();
+		});
+	});
+
+	it('hides the toggle while loading', () => {
+		const tree = create(
+			<HomeTemplate {...defaultProps} modules={modulesWithDisabled} loading testID="home" />
+		);
+		expect(tree.root.findAllByProps({testID: 'home-toggle-visibility'})).toHaveLength(0);
+		act(() => {
+			tree.unmount();
+		});
+	});
+
+	it('keeps the section title outside the scrollable cards', () => {
+		const {root} = create(<HomeTemplate {...defaultProps} />);
+		const isSectionTitle = (node: ReactTestInstance) =>
+			node.props.children === defaultProps.sectionTitle;
+		expect(root.findAll(isSectionTitle).length).toBeGreaterThan(0);
+		expect(root.findByType(ScrollView).findAll(isSectionTitle)).toHaveLength(0);
+	});
+
+	it('passes the client to the header', () => {
+		const tree = create(
+			<HomeTemplate {...defaultProps} client={{name: 'Disco Martinez', onPress: jest.fn()}} />
+		);
 		const json = JSON.stringify(tree.toJSON());
 		expect(json).toContain('Disco Martinez');
 	});
 
 	it('renders disabled modules after enabled ones', () => {
-		const modules = [
-			{icon: 'round', title: 'Consolidation', onPress: jest.fn(), disabled: true},
-			{icon: 'picking', title: 'Picking', onPress: jest.fn()},
-		];
+		const modules = [...modulesWithDisabled].reverse();
 		const tree = create(<HomeTemplate {...defaultProps} modules={modules} />);
 		const json = JSON.stringify(tree.toJSON());
 		const pickingIdx = json.indexOf('Picking');
@@ -108,12 +139,8 @@ describe('HomeTemplate component', () => {
 	});
 
 	it('hides disabled modules when toggle is off', () => {
-		const modules = [
-			{icon: 'picking', title: 'Picking', onPress: jest.fn()},
-			{icon: 'round', title: 'Consolidation', onPress: jest.fn(), disabled: true},
-		];
 		const tree = create(
-			<HomeTemplate {...defaultProps} modules={modules} initialShowDisabled={false} />
+			<HomeTemplate {...defaultProps} modules={modulesWithDisabled} initialShowDisabled={false} />
 		);
 		const json = JSON.stringify(tree.toJSON());
 		expect(json).toContain('Picking');
@@ -121,12 +148,13 @@ describe('HomeTemplate component', () => {
 	});
 
 	it('toggles disabled modules visibility when eye button is pressed', () => {
-		const modules = [
-			{icon: 'picking', title: 'Picking', onPress: jest.fn()},
-			{icon: 'round', title: 'Consolidation', onPress: jest.fn(), disabled: true},
-		];
 		const tree = create(
-			<HomeTemplate {...defaultProps} modules={modules} initialShowDisabled={true} testID="home" />
+			<HomeTemplate
+				{...defaultProps}
+				modules={modulesWithDisabled}
+				initialShowDisabled={true}
+				testID="home"
+			/>
 		);
 
 		const json1 = JSON.stringify(tree.toJSON());

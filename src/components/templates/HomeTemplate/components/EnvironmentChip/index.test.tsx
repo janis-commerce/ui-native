@@ -19,10 +19,4 @@ describe('EnvironmentChip component', () => {
 		const json = JSON.stringify(tree.toJSON());
 		expect(json).toContain('Picking BETA');
 	});
-
-	it('renders dev environment', () => {
-		const tree = create(<EnvironmentChip environment="dev" testID="chip" />);
-		const json = JSON.stringify(tree.toJSON());
-		expect(json).toContain('DEV');
-	});
 });

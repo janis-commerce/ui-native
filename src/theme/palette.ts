@@ -60,9 +60,8 @@ const alert: Alert = {
 	dark: '#FFBA0C',
 };
 const environment: Env = {
-	qa: '#1DB779',
-	beta: '#F13B70',
-	dev: '#FFCE17',
+	qa: '#33415C',
+	beta: '#FF6E08',
 };
 const badge: Badge = {
 	main: '#F13B70',

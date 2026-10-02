@@ -67,12 +67,6 @@ describe('MenuItem component', () => {
 		expect(circleView).toBeUndefined();
 	});
 
-	it('renders with disabled state', () => {
-		const {root} = create(<MenuItem {...defaultProps} disabled />);
-		const pressable = root.findByType(Pressable);
-		expect(pressable.props.disabled).toBe(true);
-	});
-
 	it('applies pressed style when pressed', () => {
 		const {root} = create(<MenuItem {...defaultProps} />);
 		const pressable = root.findByType(Pressable);

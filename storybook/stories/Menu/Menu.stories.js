@@ -18,11 +18,13 @@ const defaultUserInfo = {
 };
 
 const defaultMenuItems = [
-	{icon: 'store', title: 'Palermo', onPress: () => {}},
-	{icon: 'stop', title: 'Terminar turno', onPress: () => {}},
-	{icon: 'bell', title: 'Notificaciones', onPress: () => {}, badge: 23},
-	{icon: 'gear', title: 'Configuración', onPress: () => {}},
+	{id: 'store', icon: 'store', title: 'Palermo', onPress: () => {}},
+	{id: 'end-shift', icon: 'stop', title: 'Terminar turno', onPress: () => {}},
+	{id: 'notifications', icon: 'bell', title: 'Notificaciones', onPress: () => {}, badge: 23},
+	{id: 'settings', icon: 'gear', title: 'Configuración', onPress: () => {}},
 ];
+
+const defaultClient = {name: 'fizzmodarg', onPress: () => {}};
 
 const Container = ({children}) => (
 	<View style={{flex: 1, width: 300, backgroundColor: '#fff'}}>{children}</View>
@@ -38,6 +40,7 @@ Default.storyName = 'Default';
 Default.args = {
 	userInfo: defaultUserInfo,
 	menuItems: defaultMenuItems,
+	client: defaultClient,
 	onLogout: () => {},
 	logoutLabel: 'Cerrar sesión',
 	versionLabel: 'Versión 1.120.2.0',
@@ -54,6 +57,7 @@ Loading.storyName = 'Loading State';
 Loading.args = {
 	userInfo: defaultUserInfo,
 	menuItems: defaultMenuItems,
+	client: defaultClient,
 	onLogout: () => {},
 	logoutLabel: 'Cerrar sesión',
 	versionLabel: 'Versión 1.120.2.0',
@@ -93,8 +97,8 @@ MinimalItems.storyName = 'Minimal Items';
 MinimalItems.args = {
 	userInfo: defaultUserInfo,
 	menuItems: [
-		{icon: 'bell', title: 'Notificaciones', onPress: () => {}},
-		{icon: 'gear', title: 'Configuración', onPress: () => {}},
+		{id: 'notifications', icon: 'bell', title: 'Notificaciones', onPress: () => {}},
+		{id: 'settings', icon: 'gear', title: 'Configuración', onPress: () => {}},
 	],
 	onLogout: () => {},
 	logoutLabel: 'Cerrar sesión',

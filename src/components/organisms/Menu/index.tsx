@@ -1,10 +1,12 @@
-import React, {FC, ReactElement, useEffect, useRef} from 'react';
-import {View, StyleSheet, SafeAreaView, Animated, ViewStyle} from 'react-native';
+import React, {FC, ReactElement} from 'react';
+import {View, StyleSheet} from 'react-native';
 import Typography from 'atoms/Typography';
 import Avatar from 'molecules/Avatar';
 import Svg from 'atoms/Svg';
 import List, {TypeList} from 'atoms/List';
-import MenuItem from 'molecules/MenuItem';
+import Skeleton from 'atoms/Skeleton';
+import MenuItem, {MenuItemProps} from 'molecules/MenuItem';
+import ClientSelector, {ClientInfo} from 'molecules/ClientSelector';
 import {base, grey, white} from 'theme/palette';
 import {moderateScale, horizontalScale, scaledForDevice} from 'scale';
 import {composeTestID} from 'utils';
@@ -17,14 +19,7 @@ export interface MenuUserInfo {
 	avatarBgColor?: string;
 }
 
-export interface MenuItemData {
-	icon: string;
-	title: string;
-	onPress: () => void;
-	badge?: number;
-	showIconCircle?: boolean;
-	disabled?: boolean;
-}
+export type MenuItemData = MenuItemProps & {id: string};
 
 export interface MenuProps {
 	userInfo: MenuUserInfo;
@@ -33,6 +28,7 @@ export interface MenuProps {
 	logoutLabel: string;
 	logoutIcon?: string;
 	versionLabel: string;
+	client?: ClientInfo;
 	headerExtra?: ReactElement | null;
 	loading?: boolean;
 	testID?: string;
@@ -108,42 +104,27 @@ const styles = StyleSheet.create({
 		width: scaledForDevice(36, moderateScale),
 		height: scaledForDevice(36, moderateScale),
 		borderRadius: scaledForDevice(18, moderateScale),
-		backgroundColor: grey[200],
 	},
 	skeletonText: {
 		height: scaledForDevice(14, moderateScale),
 		borderRadius: scaledForDevice(4, moderateScale),
-		backgroundColor: grey[200],
 		marginLeft: scaledForDevice(16, horizontalScale),
 	},
 });
 
-const DrawerSkeletonPulse: FC<{style?: ViewStyle | ViewStyle[]}> = ({style: pulseStyle}) => {
-	const opacity = useRef(new Animated.Value(0.4)).current;
-
-	useEffect(() => {
-		const animation = Animated.loop(
-			Animated.sequence([
-				Animated.timing(opacity, {toValue: 1, duration: 800, useNativeDriver: true}),
-				Animated.timing(opacity, {toValue: 0.4, duration: 800, useNativeDriver: true}),
-			])
-		);
-		animation.start();
-		return () => animation.stop();
-	}, [opacity]);
-
-	return <Animated.View style={[pulseStyle, {opacity}]} />;
-};
-
-const DrawerMenuSkeleton: FC = () => (
+const MenuSkeleton: FC = () => (
 	<>
 		{[0.7, 0.5, 0.6, 0.4].map((width, index) => (
 			<View key={index} style={styles.skeletonItem}>
-				<DrawerSkeletonPulse style={styles.skeletonIcon} />
-				<DrawerSkeletonPulse style={[styles.skeletonText, {width: `${width * 100}%`}]} />
+				<Skeleton style={styles.skeletonIcon} />
+				<Skeleton style={[styles.skeletonText, {width: `${width * 100}%`}]} />
 			</View>
 		))}
 	</>
+);
+
+const renderMenuItem = ({item: {id, ...menuItemProps}}: {item: MenuItemData}) => (
+	<MenuItem key={id} {...menuItemProps} />
 );
 
 const Menu: FC<MenuProps> = ({
@@ -153,6 +134,7 @@ const Menu: FC<MenuProps> = ({
 	logoutLabel,
 	logoutIcon = 'arrow_alt_from_left',
 	versionLabel,
+	client,
 	headerExtra = null,
 	loading = false,
 	testID,
@@ -162,7 +144,7 @@ const Menu: FC<MenuProps> = ({
 	}
 
 	return (
-		<SafeAreaView style={styles.container} testID={testID}>
+		<View style={styles.container} testID={testID}>
 			<View style={styles.header}>
 				<View style={styles.userRow}>
 					<Avatar
@@ -184,6 +166,17 @@ const Menu: FC<MenuProps> = ({
 
 			<View style={styles.divider} />
 
+			{!!client?.name && (
+				<>
+					<ClientSelector
+						{...client}
+						style={styles.headerExtra}
+						testID={composeTestID(testID, 'client-selector')}
+					/>
+					<View style={styles.divider} />
+				</>
+			)}
+
 			{headerExtra && (
 				<>
 					<View style={styles.headerExtra}>{headerExtra}</View>
@@ -191,44 +184,22 @@ const Menu: FC<MenuProps> = ({
 				</>
 			)}
 
-			{loading ? (
-				<View style={styles.menuItems}>
-					<DrawerMenuSkeleton />
-				</View>
-			) : (
-				<List
-					data={menuItems}
-					type={TypeList.ScrollView}
-					style={styles.menuItems}
-					renderComponent={({item}) => (
-						<MenuItem
-							key={item.title}
-							icon={item.icon}
-							title={item.title}
-							onPress={item.onPress}
-							badge={item.badge}
-							showIconCircle={item.showIconCircle}
-							disabled={item.disabled}
-						/>
-					)}
-				/>
-			)}
+			<View style={styles.menuItems}>
+				{loading ? (
+					<MenuSkeleton />
+				) : (
+					<List data={menuItems} type={TypeList.ScrollView} renderComponent={renderMenuItem} />
+				)}
+			</View>
 
 			<View style={styles.footer}>
-				{loading ? (
-					<View style={styles.skeletonItem}>
-						<DrawerSkeletonPulse style={styles.skeletonIcon} />
-						<DrawerSkeletonPulse style={[styles.skeletonText, {width: '50%'}]} />
-					</View>
-				) : (
-					<MenuItem
-						icon={logoutIcon}
-						title={logoutLabel}
-						onPress={onLogout}
-						showIconCircle={false}
-						testID={composeTestID(testID, 'logout')}
-					/>
-				)}
+				<MenuItem
+					icon={logoutIcon}
+					title={logoutLabel}
+					onPress={onLogout}
+					showIconCircle={false}
+					testID={composeTestID(testID, 'logout')}
+				/>
 				<View style={styles.divider} />
 				<View style={styles.brandFooter}>
 					<Svg name="janis-iso" size={validJanisLogoSize} />
@@ -237,7 +208,7 @@ const Menu: FC<MenuProps> = ({
 					</Typography>
 				</View>
 			</View>
-		</SafeAreaView>
+		</View>
 	);
 };
 

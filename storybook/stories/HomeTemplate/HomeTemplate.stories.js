@@ -8,9 +8,6 @@ export default {
 		loading: {
 			control: {type: 'boolean'},
 		},
-		showTopBarChevron: {
-			control: {type: 'boolean'},
-		},
 		showDisabledToggle: {
 			control: {type: 'boolean'},
 		},
@@ -21,16 +18,14 @@ export default {
 };
 
 const defaultModules = [
-	{icon: 'picking', title: 'Picking', onPress: () => {}},
-	{icon: 'auditory', title: 'Control', onPress: () => {}},
-	{icon: 'box', title: 'Repack', onPress: () => {}},
+	{id: 'picking', icon: 'picking', title: 'Picking', onPress: () => {}},
+	{id: 'control', icon: 'auditory', title: 'Control', onPress: () => {}},
+	{id: 'repack', icon: 'box', title: 'Repack', onPress: () => {}},
 ];
 
 const modulesWithDisabled = [
-	{icon: 'picking', title: 'Picking', onPress: () => {}},
-	{icon: 'auditory', title: 'Control', onPress: () => {}},
-	{icon: 'box', title: 'Repack', onPress: () => {}},
-	{icon: 'round', title: 'Consolidación', onPress: () => {}, disabled: true},
+	...defaultModules,
+	{id: 'consolidation', icon: 'round', title: 'Consolidación', onPress: () => {}, disabled: true},
 ];
 
 const MockIllustration = () => (
@@ -69,13 +64,10 @@ Complete.args = {
 	userName: 'Juan Carlos',
 	greeting: 'Bienvenido,\nJuan Carlos',
 	appName: 'Picking',
-	avatarPlaceholder: 'JC',
 	avatarBgColor: '#E8EAF6',
 	environment: 'beta',
 	onMenuPress: () => {},
-	topBarLabel: 'fizzmodarg',
-	topBarLabelOnPress: () => {},
-	showTopBarChevron: true,
+	client: {name: 'fizzmodarg', onPress: () => {}},
 	modules: defaultModules,
 	sectionTitle: 'Seleccioná un módulo',
 	illustration: MockIllustration,
@@ -89,10 +81,9 @@ export const WithDisabledModules = (props) => <HomeTemplate {...props} />;
 
 WithDisabledModules.storyName = 'With Disabled Modules + Toggle';
 WithDisabledModules.args = {
-	userName: 'Pablo',
+	userName: 'Pablo Ortiz',
 	greeting: 'Bienvenido,\nPablo',
 	appName: 'Picking',
-	avatarPlaceholder: 'PO',
 	environment: 'qa',
 	onMenuPress: () => {},
 	modules: modulesWithDisabled,
@@ -122,9 +113,9 @@ Minimal.args = {
 	greeting: 'Bienvenida,\nLaura',
 	onMenuPress: () => {},
 	modules: [
-		{icon: 'shipping_big_truck', title: 'Delivery', onPress: () => {}},
-		{icon: 'store', title: 'Pickup', onPress: () => {}},
-		{icon: 'box', title: 'Despacho', onPress: () => {}},
+		{id: 'delivery', icon: 'shipping_big_truck', title: 'Delivery', onPress: () => {}},
+		{id: 'pickup', icon: 'store', title: 'Pickup', onPress: () => {}},
+		{id: 'dispatch', icon: 'box', title: 'Despacho', onPress: () => {}},
 	],
 	sectionTitle: 'Seleccioná un módulo',
 	loading: false,
@@ -134,19 +125,33 @@ export const WMSExample = (props) => <HomeTemplate {...props} />;
 
 WMSExample.storyName = 'WMS Example';
 WMSExample.args = {
-	userName: 'Carlos',
+	userName: 'Carlos Martínez',
 	greeting: 'Bienvenido,\nCarlos',
 	appName: 'WMS',
-	avatarPlaceholder: 'CM',
 	environment: 'qa',
 	onMenuPress: () => {},
-	topBarLabel: 'Disco Martinez',
-	showTopBarChevron: true,
+	client: {name: 'Disco Martinez'},
 	modules: [
-		{icon: 'box_arrow_right', title: 'Ingreso de mercaderías', onPress: () => {}},
-		{icon: 'warehouse_origen', title: 'Recolección de pedidos', onPress: () => {}},
-		{icon: 'control_ingreso', title: 'Movimiento de pedidos', onPress: () => {}},
-		{icon: 'catalogue', title: 'Movimiento de SKUs', onPress: () => {}, disabled: true},
+		{id: 'reception', icon: 'box_arrow_right', title: 'Ingreso de mercaderías', onPress: () => {}},
+		{
+			id: 'collection',
+			icon: 'warehouse_origen',
+			title: 'Recolección de pedidos',
+			onPress: () => {},
+		},
+		{
+			id: 'order-movement',
+			icon: 'control_ingreso',
+			title: 'Movimiento de pedidos',
+			onPress: () => {},
+		},
+		{
+			id: 'sku-movement',
+			icon: 'catalogue',
+			title: 'Movimiento de SKUs',
+			onPress: () => {},
+			disabled: true,
+		},
 	],
 	sectionTitle: 'Seleccioná un módulo',
 	illustration: MockIllustration,

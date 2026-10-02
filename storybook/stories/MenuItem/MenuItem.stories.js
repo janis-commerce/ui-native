@@ -8,9 +8,6 @@ export default {
 		showIconCircle: {
 			control: {type: 'boolean'},
 		},
-		disabled: {
-			control: {type: 'boolean'},
-		},
 	},
 };
 
@@ -30,7 +27,6 @@ Default.args = {
 	title: 'Configuración',
 	onPress: () => {},
 	showIconCircle: true,
-	disabled: false,
 };
 
 export const WithBadge = (props) => (
@@ -60,21 +56,6 @@ WithoutCircle.args = {
 	title: 'Cerrar sesión',
 	onPress: () => {},
 	showIconCircle: false,
-};
-
-export const Disabled = (props) => (
-	<Container>
-		<MenuItem {...props} />
-	</Container>
-);
-
-Disabled.storyName = 'Disabled';
-Disabled.args = {
-	icon: 'store',
-	title: 'Palermo',
-	onPress: () => {},
-	disabled: true,
-	showIconCircle: true,
 };
 
 export const AllVariants = () => (

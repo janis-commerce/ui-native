@@ -65,4 +65,4 @@ const UserInfo: FC<UserInfoProps> = ({
 	</View>
 );
 
-export default UserInfo;
+export default React.memo(UserInfo);

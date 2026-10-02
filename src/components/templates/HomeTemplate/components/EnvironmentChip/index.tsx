@@ -4,7 +4,7 @@ import StatusChip from 'atoms/StatusChip';
 import {environment as environmentColors} from 'theme/palette';
 import {moderateScale, scaledForDevice} from 'scale';
 
-export type EnvironmentType = 'qa' | 'beta' | 'dev';
+export type EnvironmentType = 'qa' | 'beta';
 
 export interface EnvironmentChipProps {
 	environment?: EnvironmentType;

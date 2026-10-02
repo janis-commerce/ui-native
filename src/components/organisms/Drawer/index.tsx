@@ -1,13 +1,6 @@
 import React, {FC, ReactElement, useEffect, useRef, useState} from 'react';
-import {
-	View,
-	Animated,
-	BackHandler,
-	Pressable,
-	StyleSheet,
-	useWindowDimensions,
-	ViewStyle,
-} from 'react-native';
+import {Animated, Modal, Pressable, StyleSheet, useWindowDimensions, ViewStyle} from 'react-native';
+import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
 import {base} from 'theme/palette';
 import {composeTestID} from 'utils';
 
@@ -79,50 +72,39 @@ const Drawer: FC<DrawerProps> = ({
 		return () => animation.stop();
 	}, [isOpen, translateX, overlayOpacity, position, drawerWidth, screenWidth, animationDuration]);
 
-	useEffect(() => {
-		if (!isOpen) {
-			return undefined;
-		}
-
-		const subscription = BackHandler.addEventListener('hardwareBackPress', () => {
-			onClose();
-			return true;
-		});
-
-		return () => subscription.remove();
-	}, [isOpen, onClose]);
-
 	return (
-		<View
-			style={[StyleSheet.absoluteFill, styles.container, !isRendered && styles.hidden]}
-			testID={testID}
-			pointerEvents={isOpen ? 'auto' : 'none'}>
-			<Animated.View
-				style={[StyleSheet.absoluteFill, {backgroundColor: overlayColor, opacity: overlayOpacity}]}>
-				<Pressable
-					style={StyleSheet.absoluteFill}
-					onPress={onClose}
-					testID={composeTestID(testID, 'overlay')}
-				/>
-			</Animated.View>
+		<Modal
+			visible={isRendered}
+			transparent
+			animationType="none"
+			onRequestClose={onClose}
+			testID={testID}>
+			<SafeAreaProvider>
+				<Animated.View
+					style={[
+						StyleSheet.absoluteFill,
+						{backgroundColor: overlayColor, opacity: overlayOpacity},
+					]}>
+					<Pressable
+						style={StyleSheet.absoluteFill}
+						onPress={onClose}
+						testID={composeTestID(testID, 'overlay')}
+					/>
+				</Animated.View>
 
-			<Animated.View
-				style={[styles.drawer, {width: drawerWidth, transform: [{translateX}]}, style]}
-				testID={composeTestID(testID, 'panel')}>
-				{children}
-			</Animated.View>
-		</View>
+				<Animated.View
+					style={[styles.drawer, {width: drawerWidth, transform: [{translateX}]}, style]}
+					testID={composeTestID(testID, 'panel')}>
+					<SafeAreaView edges={['bottom']} style={styles.content}>
+						{children}
+					</SafeAreaView>
+				</Animated.View>
+			</SafeAreaProvider>
+		</Modal>
 	);
 };
 
 const styles = StyleSheet.create({
-	container: {
-		zIndex: 1000,
-		elevation: 1000,
-	},
-	hidden: {
-		display: 'none',
-	},
 	drawer: {
 		position: 'absolute',
 		top: 0,
@@ -133,6 +115,9 @@ const styles = StyleSheet.create({
 		shadowOpacity: 0.25,
 		shadowRadius: 8,
 		elevation: 16,
+	},
+	content: {
+		flex: 1,
 	},
 });
 

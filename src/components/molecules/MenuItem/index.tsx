@@ -2,7 +2,8 @@ import React, {FC, ReactElement} from 'react';
 import {Pressable, View, StyleSheet, ViewStyle} from 'react-native';
 import Icon from 'atoms/Icon';
 import Typography from 'atoms/Typography';
-import {badge as badgeColor, base, grey, primary, white} from 'theme/palette';
+import Badge from 'atoms/Badge';
+import {base, grey, primary, white} from 'theme/palette';
 import {moderateScale, horizontalScale, scaledForDevice} from 'scale';
 
 export interface MenuItemProps {
@@ -11,7 +12,6 @@ export interface MenuItemProps {
 	onPress: () => void;
 	badge?: number;
 	showIconCircle?: boolean;
-	disabled?: boolean;
 	rightElement?: ReactElement;
 	style?: ViewStyle;
 	testID?: string;
@@ -21,8 +21,6 @@ const validPaddingVertical = scaledForDevice(14, moderateScale);
 const validPaddingHorizontal = scaledForDevice(17, horizontalScale);
 const validIconSize = scaledForDevice(24, moderateScale);
 const validTitleMargin = scaledForDevice(14, horizontalScale);
-const validBadgeSize = scaledForDevice(20, moderateScale);
-const validBadgePadding = scaledForDevice(4, horizontalScale);
 const validCircleSize = scaledForDevice(36, moderateScale);
 const validCircleRadius = scaledForDevice(50, moderateScale);
 
@@ -48,15 +46,6 @@ const styles = StyleSheet.create({
 		flex: 1,
 		marginLeft: validTitleMargin,
 	},
-	badge: {
-		backgroundColor: badgeColor.main,
-		borderRadius: scaledForDevice(50, moderateScale),
-		minWidth: validBadgeSize,
-		height: validBadgeSize,
-		justifyContent: 'center',
-		alignItems: 'center',
-		paddingHorizontal: validBadgePadding,
-	},
 });
 
 const MenuItem: FC<MenuItemProps> = ({
@@ -65,7 +54,6 @@ const MenuItem: FC<MenuItemProps> = ({
 	onPress,
 	badge,
 	showIconCircle = true,
-	disabled = false,
 	rightElement,
 	style,
 	testID,
@@ -80,7 +68,6 @@ const MenuItem: FC<MenuItemProps> = ({
 		<Pressable
 			testID={testID}
 			onPress={onPress}
-			disabled={disabled}
 			style={({pressed}) => [styles.container, pressed && styles.pressed, style]}>
 			{showIconCircle ? (
 				<View style={styles.iconCircle}>
@@ -92,13 +79,7 @@ const MenuItem: FC<MenuItemProps> = ({
 			<Typography type="body" size={textSize} color={base.black} style={styles.title}>
 				{title}
 			</Typography>
-			{!!badge && (
-				<View style={styles.badge}>
-					<Typography type="label" size="small" color={base.white}>
-						{String(badge)}
-					</Typography>
-				</View>
-			)}
+			<Badge count={badge} />
 			{rightElement}
 		</Pressable>
 	);

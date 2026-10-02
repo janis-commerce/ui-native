@@ -7,13 +7,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Added
-
-- Apps can now build the redesigned Home from a single `HomeTemplate`: menu button, a tappable label for the current client or warehouse and the avatar on top, greeting with environment chip and illustration below, and a vertical list of module cards with badges, loading skeletons and a toggle that hides the disabled modules. The greeting and the section title are received already translated, so the template stays language-agnostic [APPSRN-494](https://janiscommerce.atlassian.net/browse/APPSRN-494)
-- Apps can now mount the redesigned side menu with `Drawer`, `Menu`, `MenuItem` and `MenuButton`: the drawer slides in from the left or the right and closes from the overlay or the Android back button; the menu shows the user, an optional extra slot below the user header (e.g. a warehouse selector), items with badges, the logout action and the version label, all received already translated [APPSRN-494](https://janiscommerce.atlassian.net/browse/APPSRN-494)
-- `palette` now includes `badge.main` for count badges and `environment.dev`, next to the existing `environment.qa` and `environment.beta` [APPSRN-494](https://janiscommerce.atlassian.net/browse/APPSRN-494)
-- **Internal** `composeTestID(testID, suffix)` in `utils` builds child `testID`s and returns `undefined` when the parent has none, so components stop emitting `undefined-*` ids [APPSRN-494](https://janiscommerce.atlassian.net/browse/APPSRN-494)
-
 ## [2.6.0] 2026-08-13
 
 ### Added

@@ -1,36 +1,28 @@
-import React, {FC, ComponentType, ReactElement, useState, useMemo, useCallback} from 'react';
+import React, {FC, ComponentType, ReactElement, useState} from 'react';
 import {View, ScrollView, StyleSheet, Pressable} from 'react-native';
 import Typography from 'atoms/Typography';
 import Icon from 'atoms/Icon';
+import type {ClientInfo} from 'molecules/ClientSelector';
 import Header from './components/Header';
 import UserInfo from './components/UserInfo';
-import ModuleCard from './components/ModuleCard';
+import {ModuleCard, ModuleCardSkeleton} from './components/ModuleCard';
+import type {ModuleCardProps} from './components/ModuleCard';
 import type {EnvironmentType} from './components/EnvironmentChip';
 import {base, primary} from 'theme/palette';
 import {moderateScale, horizontalScale, scaledForDevice} from 'scale';
 import {composeTestID} from 'utils';
 
-export interface ModuleConfig {
-	icon: string;
-	title: string;
-	onPress: () => void;
-	disabled?: boolean;
-	badge?: number;
-	subtitle?: string;
-}
+export type ModuleConfig = ModuleCardProps & {id: string};
 
 export interface HomeTemplateProps {
 	userName: string;
 	greeting: string;
 	appName?: string;
 	userAvatar?: string;
-	avatarPlaceholder?: string;
 	avatarBgColor?: string;
 	environment?: EnvironmentType;
 	onMenuPress: () => void;
-	topBarLabel?: string;
-	topBarLabelOnPress?: () => void;
-	showTopBarChevron?: boolean;
+	client?: ClientInfo;
 	modules: ModuleConfig[];
 	sectionTitle: string;
 	illustration?: ComponentType | null;
@@ -42,8 +34,11 @@ export interface HomeTemplateProps {
 	testID?: string;
 }
 
+const SKELETON_MODULES_COUNT = 4;
+
 const validBodyPadding = scaledForDevice(24, horizontalScale);
 const validBodyPaddingTop = scaledForDevice(20, moderateScale);
+const validBodyPaddingBottom = scaledForDevice(24, moderateScale);
 const validSectionTitleMarginBottom = scaledForDevice(16, moderateScale);
 const validGradientBorderRadius = scaledForDevice(30, moderateScale);
 const validToggleIconSize = scaledForDevice(20, moderateScale);
@@ -55,26 +50,27 @@ const styles = StyleSheet.create({
 		flex: 1,
 		backgroundColor: base.white,
 	},
-	body: {
-		flex: 1,
-	},
-	bodyContent: {
-		flexGrow: 1,
-	},
 	gradient: {
 		flex: 1,
 		backgroundColor: `${primary.main}0F`,
 		borderTopLeftRadius: validGradientBorderRadius,
 		borderTopRightRadius: validGradientBorderRadius,
-		paddingHorizontal: validBodyPadding,
 		paddingTop: validBodyPaddingTop,
-		paddingBottom: scaledForDevice(24, moderateScale),
 	},
 	sectionHeader: {
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		alignItems: 'center',
-		marginBottom: validSectionTitleMarginBottom,
+		minHeight: validToggleSize,
+		paddingHorizontal: validBodyPadding,
+	},
+	body: {
+		flex: 1,
+	},
+	bodyContent: {
+		paddingHorizontal: validBodyPadding,
+		paddingTop: validSectionTitleMarginBottom,
+		paddingBottom: validBodyPaddingBottom,
 	},
 	toggleButton: {
 		backgroundColor: base.white,
@@ -86,18 +82,27 @@ const styles = StyleSheet.create({
 	},
 });
 
+const splitByAvailability = (modules: ModuleConfig[]) => {
+	const enabledModules: ModuleConfig[] = [];
+	const disabledModules: ModuleConfig[] = [];
+	modules.forEach((moduleConfig) =>
+		(moduleConfig.disabled ? disabledModules : enabledModules).push(moduleConfig)
+	);
+	return {enabledModules, disabledModules};
+};
+
+const renderSkeletons = (count: number) =>
+	Array.from({length: count}, (_, index) => <ModuleCardSkeleton key={index} />);
+
 const HomeTemplate: FC<HomeTemplateProps> = ({
 	userName,
 	greeting,
 	appName,
 	userAvatar,
-	avatarPlaceholder,
 	avatarBgColor,
 	environment,
 	onMenuPress,
-	topBarLabel,
-	topBarLabelOnPress,
-	showTopBarChevron,
+	client,
 	modules,
 	sectionTitle,
 	illustration: Illustration = null,
@@ -110,29 +115,14 @@ const HomeTemplate: FC<HomeTemplateProps> = ({
 }) => {
 	const [showDisabled, setShowDisabled] = useState(initialShowDisabled);
 
-	const hasDisabledModules = useMemo(() => modules?.some((mod) => mod.disabled), [modules]);
-
-	const visibleModules = useMemo(() => {
-		if (!modules) {
-			return [];
-		}
-		const enabled = modules.filter((mod) => !mod.disabled);
-		if (!showDisabled) {
-			return enabled;
-		}
-		const disabled = modules.filter((mod) => mod.disabled);
-		return [...enabled, ...disabled];
-	}, [modules, showDisabled]);
-
-	const toggleVisibility = useCallback(() => {
-		setShowDisabled((prev) => !prev);
-	}, []);
-
 	if (!modules) {
 		return null;
 	}
 
-	const showToggle = showDisabledToggle && hasDisabledModules && !loading;
+	const {enabledModules, disabledModules} = splitByAvailability(modules);
+	const visibleModules = showDisabled ? [...enabledModules, ...disabledModules] : enabledModules;
+	const showToggle = showDisabledToggle && !!disabledModules.length && !loading;
+	const toggleVisibility = () => setShowDisabled((isShowingDisabled) => !isShowingDisabled);
 
 	return (
 		<View style={styles.container} testID={testID}>
@@ -140,11 +130,8 @@ const HomeTemplate: FC<HomeTemplateProps> = ({
 				onMenuPress={onMenuPress}
 				userName={userName}
 				userAvatar={userAvatar}
-				avatarPlaceholder={avatarPlaceholder}
 				avatarBgColor={avatarBgColor}
-				topBarLabel={topBarLabel}
-				topBarLabelOnPress={topBarLabelOnPress}
-				showTopBarChevron={showTopBarChevron}
+				client={client}
 				testID={composeTestID(testID, 'header')}
 			/>
 
@@ -157,42 +144,33 @@ const HomeTemplate: FC<HomeTemplateProps> = ({
 				{headerExtra}
 			</UserInfo>
 
-			<ScrollView style={styles.body} contentContainerStyle={styles.bodyContent}>
-				<View style={styles.gradient}>
-					<View style={styles.sectionHeader}>
-						<Typography type="title" size="medium">
-							{sectionTitle}
-						</Typography>
-						{showToggle && (
-							<Pressable
-								onPress={toggleVisibility}
-								style={styles.toggleButton}
-								testID={composeTestID(testID, 'toggle-visibility')}>
-								<Icon
-									name={showDisabled ? 'eye' : 'eye_slash'}
-									size={validToggleIconSize}
-									color={primary.main}
-								/>
-							</Pressable>
-						)}
-					</View>
+			<View style={styles.gradient}>
+				<View style={styles.sectionHeader}>
+					<Typography type="title" size="medium">
+						{sectionTitle}
+					</Typography>
+					{showToggle && (
+						<Pressable
+							onPress={toggleVisibility}
+							style={styles.toggleButton}
+							testID={composeTestID(testID, 'toggle-visibility')}>
+							<Icon
+								name={showDisabled ? 'eye' : 'eye_slash'}
+								size={validToggleIconSize}
+								color={primary.main}
+							/>
+						</Pressable>
+					)}
+				</View>
 
-					{visibleModules.map((mod) => (
-						<ModuleCard
-							key={mod.title}
-							icon={mod.icon}
-							title={mod.title}
-							onPress={mod.onPress}
-							disabled={mod.disabled}
-							badge={mod.badge}
-							subtitle={mod.subtitle}
-							loading={loading}
-						/>
-					))}
+				<ScrollView style={styles.body} contentContainerStyle={styles.bodyContent}>
+					{loading
+						? renderSkeletons(visibleModules.length || SKELETON_MODULES_COUNT)
+						: visibleModules.map(({id, ...cardProps}) => <ModuleCard key={id} {...cardProps} />)}
 
 					{footerExtra}
-				</View>
-			</ScrollView>
+				</ScrollView>
+			</View>
 		</View>
 	);
 };

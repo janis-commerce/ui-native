@@ -1,6 +1,6 @@
 import React from 'react';
 import {create, act, ReactTestInstance, ReactTestRenderer} from 'react-test-renderer';
-import {Animated, BackHandler, StyleSheet, Text, View} from 'react-native';
+import {Animated, Modal, StyleSheet, Text, View} from 'react-native';
 import Drawer from './index';
 
 const SCREEN_WIDTH = 750;
@@ -17,8 +17,7 @@ const findHost = (root: ReactTestInstance, testID: string) =>
 
 const flattenStyle = (instance: ReactTestInstance) => StyleSheet.flatten(instance.props.style);
 
-const containerDisplay = (root: ReactTestInstance) =>
-	flattenStyle(findHost(root, 'my-drawer')).display;
+const isVisible = (root: ReactTestInstance) => root.findByType(Modal).props.visible;
 
 const panelTranslateX = (root: ReactTestInstance) =>
 	flattenStyle(findHost(root, 'my-drawer-panel')).transform[0].translateX;
@@ -48,16 +47,15 @@ describe('Drawer component', () => {
 		jest.restoreAllMocks();
 	});
 
-	it('starts hidden and without pointer events when closed', () => {
-		const {root} = render(<Drawer {...defaultProps} testID="my-drawer" />);
-		expect(containerDisplay(root)).toBe('none');
-		expect(findHost(root, 'my-drawer').props.pointerEvents).toBe('none');
+	it('keeps the modal hidden and does not render the content while closed', () => {
+		const tree = render(<Drawer {...defaultProps} />);
+		expect(isVisible(tree.root)).toBe(false);
+		expect(JSON.stringify(tree.toJSON())).not.toContain('Drawer Content');
 	});
 
-	it('renders visible and interactive when open', () => {
-		const {root} = render(<Drawer {...defaultProps} isOpen testID="my-drawer" />);
-		expect(containerDisplay(root)).toBeUndefined();
-		expect(findHost(root, 'my-drawer').props.pointerEvents).toBe('auto');
+	it('shows the modal when open', () => {
+		const {root} = render(<Drawer {...defaultProps} isOpen />);
+		expect(isVisible(root)).toBe(true);
 	});
 
 	it('renders children content', () => {
@@ -77,12 +75,12 @@ describe('Drawer component', () => {
 	});
 
 	it('slides in from the left by default', () => {
-		const {root} = render(<Drawer {...defaultProps} testID="my-drawer" />);
+		const {root} = render(<Drawer {...defaultProps} isOpen testID="my-drawer" />);
 		expect(panelTranslateX(root)).toBe(-DEFAULT_WIDTH);
 	});
 
 	it('slides in from the right when position is right', () => {
-		const {root} = render(<Drawer {...defaultProps} position="right" testID="my-drawer" />);
+		const {root} = render(<Drawer {...defaultProps} isOpen position="right" testID="my-drawer" />);
 		expect(panelTranslateX(root)).toBe(SCREEN_WIDTH);
 	});
 
@@ -92,25 +90,25 @@ describe('Drawer component', () => {
 		expect(defaultProps.onClose).toHaveBeenCalledTimes(1);
 	});
 
-	it('keeps the panel rendered until the close animation finishes', () => {
-		const tree = render(<Drawer {...defaultProps} isOpen testID="my-drawer" />);
+	it('keeps the modal visible until the close animation finishes', () => {
+		const tree = render(<Drawer {...defaultProps} isOpen />);
 		const onOpenAnimationEnd = startAnimation.mock.calls[0][0];
 
 		act(() => onOpenAnimationEnd({finished: true}));
-		expect(containerDisplay(tree.root)).toBeUndefined();
+		expect(isVisible(tree.root)).toBe(true);
 
 		act(() => {
-			tree.update(<Drawer {...defaultProps} isOpen={false} testID="my-drawer" />);
+			tree.update(<Drawer {...defaultProps} isOpen={false} />);
 		});
 		const onCloseAnimationEnd = startAnimation.mock.calls[1][0];
 		expect(stopAnimation).toHaveBeenCalledTimes(1);
-		expect(containerDisplay(tree.root)).toBeUndefined();
+		expect(isVisible(tree.root)).toBe(true);
 
 		act(() => onCloseAnimationEnd({finished: false}));
-		expect(containerDisplay(tree.root)).toBeUndefined();
+		expect(isVisible(tree.root)).toBe(true);
 
 		act(() => onCloseAnimationEnd({finished: true}));
-		expect(containerDisplay(tree.root)).toBe('none');
+		expect(isVisible(tree.root)).toBe(false);
 	});
 
 	it('stops the running animation on unmount', () => {
@@ -121,23 +119,10 @@ describe('Drawer component', () => {
 		expect(stopAnimation).toHaveBeenCalledTimes(1);
 	});
 
-	it('closes with the hardware back button while open', () => {
-		const addListener = jest.spyOn(BackHandler, 'addEventListener');
-		const tree = render(<Drawer {...defaultProps} isOpen />);
-		const onHardwareBackPress = addListener.mock.calls[0][1];
-
-		expect(onHardwareBackPress()).toBe(true);
+	it('closes with the hardware back button', () => {
+		const {root} = render(<Drawer {...defaultProps} isOpen />);
+		root.findByType(Modal).props.onRequestClose();
 		expect(defaultProps.onClose).toHaveBeenCalledTimes(1);
-
-		act(() => {
-			tree.unmount();
-		});
-	});
-
-	it('does not listen to the hardware back button while closed', () => {
-		const addListener = jest.spyOn(BackHandler, 'addEventListener');
-		render(<Drawer {...defaultProps} />);
-		expect(addListener).not.toHaveBeenCalled();
 	});
 
 	it('renders with custom overlay color', () => {

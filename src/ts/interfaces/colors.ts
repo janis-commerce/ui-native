@@ -12,7 +12,6 @@ export interface Env {
 	[key: string]: string;
 	qa: string;
 	beta: string;
-	dev: string;
 }
 
 export interface Badge {

@@ -1,7 +1,8 @@
 import React from 'react';
 import {create, act} from 'react-test-renderer';
 import {Pressable} from 'react-native';
-import ModuleCard from './index';
+import Skeleton from 'atoms/Skeleton';
+import {ModuleCard, ModuleCardSkeleton} from './index';
 
 const defaultProps = {
 	icon: 'picking',
@@ -44,15 +45,6 @@ describe('ModuleCard component', () => {
 		expect(pressable.props.disabled).toBe(true);
 	});
 
-	it('renders loading skeleton when loading is true', () => {
-		const tree = create(<ModuleCard {...defaultProps} loading testID="module" />);
-		const loadingView = tree.root.findByProps({testID: 'module-skeleton'});
-		expect(loadingView).toBeTruthy();
-		act(() => {
-			tree.unmount();
-		});
-	});
-
 	it('renders badge when provided', () => {
 		const tree = create(<ModuleCard {...defaultProps} badge={5} />);
 		const json = JSON.stringify(tree.toJSON());
@@ -86,5 +78,16 @@ describe('ModuleCard component', () => {
 		const pressable = root.findByType(Pressable);
 		const styleFn = pressable.props.style;
 		expect(styleFn({pressed: true})).not.toEqual(styleFn({pressed: false}));
+	});
+});
+
+describe('ModuleCardSkeleton component', () => {
+	it('renders the icon and title placeholders', () => {
+		const tree = create(<ModuleCardSkeleton testID="module-skeleton" />);
+		expect(tree.root.findByProps({testID: 'module-skeleton'})).toBeTruthy();
+		expect(tree.root.findAllByType(Skeleton)).toHaveLength(2);
+		act(() => {
+			tree.unmount();
+		});
 	});
 });
