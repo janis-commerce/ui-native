@@ -13,6 +13,10 @@ export interface Env {
 	qa: string;
 	beta: string;
 }
+
+export interface Badge {
+	main: string;
+}
 export interface Base {
 	[key: string]: string;
 	black: string;
@@ -50,4 +54,5 @@ export interface Palette {
 	warning: Warning;
 	alert: Alert;
 	environment: Env;
+	badge: Badge;
 }

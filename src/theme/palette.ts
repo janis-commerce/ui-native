@@ -1,5 +1,6 @@
 import {
 	Alert,
+	Badge,
 	Base,
 	Black,
 	Env,
@@ -59,8 +60,11 @@ const alert: Alert = {
 	dark: '#FFBA0C',
 };
 const environment: Env = {
-	qa: '#1DB779',
-	beta: '#F13B70',
+	qa: '#33415C',
+	beta: '#FF6E08',
+};
+const badge: Badge = {
+	main: '#F13B70',
 };
 
 const palette: Palette = {
@@ -74,6 +78,20 @@ const palette: Palette = {
 	warning,
 	alert,
 	environment,
+	badge,
 };
 
-export {primary, black, white, grey, base, success, error, warning, alert, environment, palette};
+export {
+	primary,
+	black,
+	white,
+	grey,
+	base,
+	success,
+	error,
+	warning,
+	alert,
+	environment,
+	badge,
+	palette,
+};
