@@ -1,12 +1,11 @@
-import {Platform} from 'react-native';
-import {getStorybookUI} from '@storybook/react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {view} from '../.ondevice/storybook.requires';
 
-/* Local files */
-import '../.ondevice/storybook.requires';
-
-const StorybookUIRoot = getStorybookUI({
-	host: Platform.OS === 'android' ? '10.0.2.2' : '0.0.0.0',
-	enableWebsockets: true,
+const StorybookUIRoot = view.getStorybookUI({
+	storage: {
+		getItem: AsyncStorage.getItem,
+		setItem: AsyncStorage.setItem,
+	},
 });
 
 export default StorybookUIRoot;

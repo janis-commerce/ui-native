@@ -1,32 +1,10 @@
-const {getDefaultConfig} = require('metro-config');
+const path = require('path');
+const {getDefaultConfig, mergeConfig} = require('@react-native/metro-config');
+const {withStorybook} = require('@storybook/react-native/metro/withStorybook');
 
-/**
- * Metro configuration for React Native
- * https://github.com/facebook/react-native
- *
- *
- */
+const config = mergeConfig(getDefaultConfig(__dirname), {});
 
-const createMetroConfig = async () => {
-	const {
-		resolver: {sourceExts, assetExts},
-	} = await getDefaultConfig();
-
-	return {
-		transformer: {
-			getTransformOptions: async () => ({
-				transform: {
-					experimentalImportSupport: false,
-					inlineRequires: false,
-				},
-			}),
-			babelTransformerPath: require.resolve('react-native-svg-transformer'),
-		},
-		resolver: {
-			assetExts: assetExts.filter((ext) => ext !== 'svg'),
-			sourceExts: [...sourceExts, 'svg'],
-		},
-	};
-};
-
-module.exports = createMetroConfig();
+module.exports = withStorybook(config, {
+	configPath: path.resolve(__dirname, './.ondevice'),
+	useJs: true,
+});
