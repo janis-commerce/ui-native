@@ -82,7 +82,7 @@ const Button: FC<ButtonProps> = ({
 	const hasIconAndText = !!icon && !!value;
 	const borderRadius = variant === 'text' ? 6 : 50;
 
-	const buttonStyles = getButtonStyles({
+	const {loadingColor, ...buttonStyles} = getButtonStyles({
 		type,
 		variant,
 		color,
@@ -93,7 +93,7 @@ const Button: FC<ButtonProps> = ({
 	});
 	const styles = StyleSheet.create(buttonStyles);
 
-	const LoadingComponent = <Loading isLoading={isLoading} color={styles.loadingColor} size={24} />;
+	const LoadingComponent = <Loading isLoading={isLoading} color={loadingColor} size={24} />;
 
 	const WrapperComponent = (
 		<View style={styles.direction}>
