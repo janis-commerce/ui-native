@@ -3,15 +3,14 @@
 exports[`LoadingFullScreen component render correct render only the loading 1`] = `
 <Modal
   animationType="fade"
-  hardwareAccelerated={false}
   testID="loading modal"
   transparent={true}
   visible={true}
 >
   <View
     style={
-      Array [
-        Object {
+      [
+        {
           "alignItems": "center",
           "backgroundColor": "#ffffffbf",
           "flex": 1,
@@ -23,8 +22,8 @@ exports[`LoadingFullScreen component render correct render only the loading 1`] 
   >
     <View
       style={
-        Array [
-          Object {
+        [
+          {
             "alignItems": "center",
             "height": 133.5,
             "justifyContent": "center",
@@ -38,13 +37,13 @@ exports[`LoadingFullScreen component render correct render only the loading 1`] 
       <View
         collapsable={false}
         style={
-          Object {
+          {
             "alignItems": "center",
             "height": 64,
             "justifyContent": "center",
             "position": "absolute",
-            "transform": Array [
-              Object {
+            "transform": [
+              {
                 "rotateZ": "0deg",
               },
             ],
@@ -62,12 +61,12 @@ exports[`LoadingFullScreen component render correct render only the loading 1`] 
           minX={0}
           minY={0}
           style={
-            Array [
-              Object {
+            [
+              {
                 "backgroundColor": "transparent",
                 "borderWidth": 0,
               },
-              Object {
+              {
                 "flex": 0,
                 "height": 133,
                 "width": 133,
@@ -80,12 +79,19 @@ exports[`LoadingFullScreen component render correct render only the loading 1`] 
           x="0px"
           y="0px"
         >
-          <RNSVGGroup>
+          <RNSVGGroup
+            fill={
+              {
+                "payload": 4278190080,
+                "type": 0,
+              }
+            }
+          >
             <RNSVGPath
               d="M134.1,136.4c-30.3,29.1-78.5,28-107.5-2.3c-29.1-30.3-28-78.5,2.3-107.5s78.5-28,107.5,2.3"
               fill={null}
               propList={
-                Array [
+                [
                   "fill",
                   "stroke",
                   "strokeWidth",
@@ -93,7 +99,12 @@ exports[`LoadingFullScreen component render correct render only the loading 1`] 
                   "strokeLinejoin",
                 ]
               }
-              stroke={4291875811}
+              stroke={
+                {
+                  "payload": 4291875811,
+                  "type": 0,
+                }
+              }
               strokeLinecap={1}
               strokeLinejoin={1}
               strokeWidth="10.5546"
@@ -103,7 +114,7 @@ exports[`LoadingFullScreen component render correct render only the loading 1`] 
               fill={null}
               name="path-color"
               propList={
-                Array [
+                [
                   "fill",
                   "stroke",
                   "strokeWidth",
@@ -111,7 +122,12 @@ exports[`LoadingFullScreen component render correct render only the loading 1`] 
                   "strokeLinejoin",
                 ]
               }
-              stroke={4280908287}
+              stroke={
+                {
+                  "payload": 4280908287,
+                  "type": 0,
+                }
+              }
               strokeLinecap={1}
               strokeLinejoin={1}
               strokeWidth="10.5546"
@@ -135,12 +151,12 @@ exports[`LoadingFullScreen component render correct render only the loading 1`] 
             minX={0}
             minY={0}
             style={
-              Array [
-                Object {
+              [
+                {
                   "backgroundColor": "transparent",
                   "borderWidth": 0,
                 },
-                Object {
+                {
                   "flex": 0,
                   "height": 108,
                   "width": 156,
@@ -155,7 +171,7 @@ exports[`LoadingFullScreen component render correct render only the loading 1`] 
             <RNSVGGroup
               fill={null}
               propList={
-                Array [
+                [
                   "fill",
                 ]
               }
@@ -163,13 +179,13 @@ exports[`LoadingFullScreen component render correct render only the loading 1`] 
               <RNSVGPath
                 d="M34.58 37.8333L31.0014 41.3821C26.0518 46.2905 18.0148 46.2905 13.0652 41.3821L3.02961 31.4301C-0.403882 28.0252 -0.403884 22.4966 3.02961 19.0917L3.23893 18.8841C6.67242 15.4792 12.2475 15.4792 15.681 18.8841L34.58 37.6257C34.6378 37.6829 34.6378 37.776 34.58 37.8333Z"
                 fill={
-                  Array [
-                    1,
-                    "paint0_linear_27636_2339",
-                  ]
+                  {
+                    "brushRef": "paint0_linear_27636_2339",
+                    "type": 1,
+                  }
                 }
                 propList={
-                  Array [
+                  [
                     "fill",
                   ]
                 }
@@ -177,13 +193,13 @@ exports[`LoadingFullScreen component render correct render only the loading 1`] 
               <RNSVGPath
                 d="M31.9219 40.6336L44.2018 52.8112C47.6319 56.2127 53.2204 56.4646 56.7701 53.1861C60.4966 49.7441 60.5749 43.9559 57.0047 40.4155L45.1625 28.672C44.9262 28.3668 44.6756 28.0691 44.3938 27.7896L37.6527 21.1046C34.8015 17.6154 35.0114 12.4834 38.2845 9.2373L32.008 15.4616L31.9624 15.4618L31.9518 15.4722L31.9413 15.4618L25.4554 21.8937C22.0485 25.2722 22.0435 30.7483 25.4443 34.1329L31.9219 40.6336Z"
                 fill={
-                  Array [
-                    1,
-                    "paint1_linear_27636_2339",
-                  ]
+                  {
+                    "brushRef": "paint1_linear_27636_2339",
+                    "type": 1,
+                  }
                 }
                 propList={
-                  Array [
+                  [
                     "fill",
                   ]
                 }
@@ -191,13 +207,13 @@ exports[`LoadingFullScreen component render correct render only the loading 1`] 
               <RNSVGPath
                 d="M37.5668 46.2315C34.324 43.0157 35.0581 37.533 38.3224 34.2864L56.9837 15.7806C60.4773 12.3161 60.4773 6.69912 56.9837 3.23461C53.4901 -0.229897 47.8259 -0.229897 44.3323 3.23461L28.3167 19.0563L25.3305 22.0175C21.9914 25.3288 21.9844 30.7101 25.3291 34.0159L31.9099 40.6262"
                 fill={
-                  Array [
-                    1,
-                    "paint2_linear_27636_2339",
-                  ]
+                  {
+                    "brushRef": "paint2_linear_27636_2339",
+                    "type": 1,
+                  }
                 }
                 propList={
-                  Array [
+                  [
                     "fill",
                   ]
                 }
@@ -205,7 +221,7 @@ exports[`LoadingFullScreen component render correct render only the loading 1`] 
               <RNSVGDefs>
                 <RNSVGLinearGradient
                   gradient={
-                    Array [
+                    [
                       0,
                       -29424,
                       0.2371,
@@ -226,7 +242,7 @@ exports[`LoadingFullScreen component render correct render only the loading 1`] 
                 />
                 <RNSVGLinearGradient
                   gradient={
-                    Array [
+                    [
                       0.0004,
                       -15264001,
                       0.2994,
@@ -245,7 +261,7 @@ exports[`LoadingFullScreen component render correct render only the loading 1`] 
                 />
                 <RNSVGLinearGradient
                   gradient={
-                    Array [
+                    [
                       0,
                       -11300097,
                       0.4865,
@@ -275,15 +291,14 @@ exports[`LoadingFullScreen component render correct render only the loading 1`] 
 exports[`LoadingFullScreen component render correct renders well the loading next to the passed text 1`] = `
 <Modal
   animationType="fade"
-  hardwareAccelerated={false}
   testID="loading modal"
   transparent={true}
   visible={true}
 >
   <View
     style={
-      Array [
-        Object {
+      [
+        {
           "alignItems": "center",
           "backgroundColor": "#ffffffbf",
           "flex": 1,
@@ -295,8 +310,8 @@ exports[`LoadingFullScreen component render correct renders well the loading nex
   >
     <View
       style={
-        Array [
-          Object {
+        [
+          {
             "alignItems": "center",
             "height": 133.5,
             "justifyContent": "center",
@@ -310,13 +325,13 @@ exports[`LoadingFullScreen component render correct renders well the loading nex
       <View
         collapsable={false}
         style={
-          Object {
+          {
             "alignItems": "center",
             "height": 64,
             "justifyContent": "center",
             "position": "absolute",
-            "transform": Array [
-              Object {
+            "transform": [
+              {
                 "rotateZ": "0deg",
               },
             ],
@@ -334,12 +349,12 @@ exports[`LoadingFullScreen component render correct renders well the loading nex
           minX={0}
           minY={0}
           style={
-            Array [
-              Object {
+            [
+              {
                 "backgroundColor": "transparent",
                 "borderWidth": 0,
               },
-              Object {
+              {
                 "flex": 0,
                 "height": 133,
                 "width": 133,
@@ -352,12 +367,19 @@ exports[`LoadingFullScreen component render correct renders well the loading nex
           x="0px"
           y="0px"
         >
-          <RNSVGGroup>
+          <RNSVGGroup
+            fill={
+              {
+                "payload": 4278190080,
+                "type": 0,
+              }
+            }
+          >
             <RNSVGPath
               d="M134.1,136.4c-30.3,29.1-78.5,28-107.5-2.3c-29.1-30.3-28-78.5,2.3-107.5s78.5-28,107.5,2.3"
               fill={null}
               propList={
-                Array [
+                [
                   "fill",
                   "stroke",
                   "strokeWidth",
@@ -365,7 +387,12 @@ exports[`LoadingFullScreen component render correct renders well the loading nex
                   "strokeLinejoin",
                 ]
               }
-              stroke={4291875811}
+              stroke={
+                {
+                  "payload": 4291875811,
+                  "type": 0,
+                }
+              }
               strokeLinecap={1}
               strokeLinejoin={1}
               strokeWidth="10.5546"
@@ -375,7 +402,7 @@ exports[`LoadingFullScreen component render correct renders well the loading nex
               fill={null}
               name="path-color"
               propList={
-                Array [
+                [
                   "fill",
                   "stroke",
                   "strokeWidth",
@@ -383,7 +410,12 @@ exports[`LoadingFullScreen component render correct renders well the loading nex
                   "strokeLinejoin",
                 ]
               }
-              stroke={4280908287}
+              stroke={
+                {
+                  "payload": 4280908287,
+                  "type": 0,
+                }
+              }
               strokeLinecap={1}
               strokeLinejoin={1}
               strokeWidth="10.5546"
@@ -407,12 +439,12 @@ exports[`LoadingFullScreen component render correct renders well the loading nex
             minX={0}
             minY={0}
             style={
-              Array [
-                Object {
+              [
+                {
                   "backgroundColor": "transparent",
                   "borderWidth": 0,
                 },
-                Object {
+                {
                   "flex": 0,
                   "height": 108,
                   "width": 156,
@@ -427,7 +459,7 @@ exports[`LoadingFullScreen component render correct renders well the loading nex
             <RNSVGGroup
               fill={null}
               propList={
-                Array [
+                [
                   "fill",
                 ]
               }
@@ -435,13 +467,13 @@ exports[`LoadingFullScreen component render correct renders well the loading nex
               <RNSVGPath
                 d="M34.58 37.8333L31.0014 41.3821C26.0518 46.2905 18.0148 46.2905 13.0652 41.3821L3.02961 31.4301C-0.403882 28.0252 -0.403884 22.4966 3.02961 19.0917L3.23893 18.8841C6.67242 15.4792 12.2475 15.4792 15.681 18.8841L34.58 37.6257C34.6378 37.6829 34.6378 37.776 34.58 37.8333Z"
                 fill={
-                  Array [
-                    1,
-                    "paint0_linear_27636_2339",
-                  ]
+                  {
+                    "brushRef": "paint0_linear_27636_2339",
+                    "type": 1,
+                  }
                 }
                 propList={
-                  Array [
+                  [
                     "fill",
                   ]
                 }
@@ -449,13 +481,13 @@ exports[`LoadingFullScreen component render correct renders well the loading nex
               <RNSVGPath
                 d="M31.9219 40.6336L44.2018 52.8112C47.6319 56.2127 53.2204 56.4646 56.7701 53.1861C60.4966 49.7441 60.5749 43.9559 57.0047 40.4155L45.1625 28.672C44.9262 28.3668 44.6756 28.0691 44.3938 27.7896L37.6527 21.1046C34.8015 17.6154 35.0114 12.4834 38.2845 9.2373L32.008 15.4616L31.9624 15.4618L31.9518 15.4722L31.9413 15.4618L25.4554 21.8937C22.0485 25.2722 22.0435 30.7483 25.4443 34.1329L31.9219 40.6336Z"
                 fill={
-                  Array [
-                    1,
-                    "paint1_linear_27636_2339",
-                  ]
+                  {
+                    "brushRef": "paint1_linear_27636_2339",
+                    "type": 1,
+                  }
                 }
                 propList={
-                  Array [
+                  [
                     "fill",
                   ]
                 }
@@ -463,13 +495,13 @@ exports[`LoadingFullScreen component render correct renders well the loading nex
               <RNSVGPath
                 d="M37.5668 46.2315C34.324 43.0157 35.0581 37.533 38.3224 34.2864L56.9837 15.7806C60.4773 12.3161 60.4773 6.69912 56.9837 3.23461C53.4901 -0.229897 47.8259 -0.229897 44.3323 3.23461L28.3167 19.0563L25.3305 22.0175C21.9914 25.3288 21.9844 30.7101 25.3291 34.0159L31.9099 40.6262"
                 fill={
-                  Array [
-                    1,
-                    "paint2_linear_27636_2339",
-                  ]
+                  {
+                    "brushRef": "paint2_linear_27636_2339",
+                    "type": 1,
+                  }
                 }
                 propList={
-                  Array [
+                  [
                     "fill",
                   ]
                 }
@@ -477,7 +509,7 @@ exports[`LoadingFullScreen component render correct renders well the loading nex
               <RNSVGDefs>
                 <RNSVGLinearGradient
                   gradient={
-                    Array [
+                    [
                       0,
                       -29424,
                       0.2371,
@@ -498,7 +530,7 @@ exports[`LoadingFullScreen component render correct renders well the loading nex
                 />
                 <RNSVGLinearGradient
                   gradient={
-                    Array [
+                    [
                       0.0004,
                       -15264001,
                       0.2994,
@@ -517,7 +549,7 @@ exports[`LoadingFullScreen component render correct renders well the loading nex
                 />
                 <RNSVGLinearGradient
                   gradient={
-                    Array [
+                    [
                       0,
                       -11300097,
                       0.4865,
@@ -542,7 +574,7 @@ exports[`LoadingFullScreen component render correct renders well the loading nex
     </View>
     <Text
       style={
-        Object {
+        {
           "color": "#585858",
           "fontFamily": "Roboto",
           "fontSize": 33.5,

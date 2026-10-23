@@ -81,6 +81,7 @@ describe('Input', () => {
 			useStateSpy.mockReturnValueOnce(['', mockSetInputState]);
 
 			const InputComp = create(<Input label="Test" placeholder="Test" />).root;
+			mockSetInputState.mockClear();
 
 			const TextInputComp = InputComp.findByType(TextInput);
 			const {onChange, onEndEditing} = TextInputComp.props;
@@ -95,6 +96,7 @@ describe('Input', () => {
 			useStateSpy.mockReturnValueOnce(['', mockSetInputState]);
 
 			const InputComp = create(<Input label="Test" placeholder="Test" />).root;
+			mockSetInputState.mockClear();
 
 			const TextInputComp = InputComp.findByType(TextInput);
 			const {onSubmitEditing, onEndEditing} = TextInputComp.props;

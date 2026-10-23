@@ -1,9 +1,8 @@
 import 'react-native';
 import React from 'react';
-import {create} from 'react-test-renderer';
+import {act, create} from 'react-test-renderer';
 import SwipeItemSelectionList from './index';
 import ItemSelectionButton from 'molecules/ItemSelectionButton';
-import {act, fireEvent} from '@testing-library/react-native';
 
 describe('SwipeItemSelectionList component', () => {
 	describe('does not render', () => {
@@ -20,8 +19,8 @@ describe('SwipeItemSelectionList component', () => {
 
 			const ItemSelectionButtonComp = root.findByType(ItemSelectionButton);
 
-			await act(async () => fireEvent(ItemSelectionButtonComp, 'onSelection'));
-			await act(async () => fireEvent(ItemSelectionButtonComp, 'onSelection'));
+			await act(async () => ItemSelectionButtonComp.props.onSelection());
+			await act(async () => ItemSelectionButtonComp.props.onSelection());
 
 			expect(toJSON()).toMatchSnapshot();
 		});
@@ -32,8 +31,8 @@ describe('SwipeItemSelectionList component', () => {
 			);
 
 			const ItemSelectionButtonComp = root.findByType(ItemSelectionButton);
-			await act(async () => fireEvent(ItemSelectionButtonComp, 'onSelection'));
-			await act(async () => fireEvent(ItemSelectionButtonComp, 'onSelection'));
+			await act(async () => ItemSelectionButtonComp.props.onSelection());
+			await act(async () => ItemSelectionButtonComp.props.onSelection());
 
 			expect(toJSON()).toMatchSnapshot();
 		});

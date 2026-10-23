@@ -3,7 +3,8 @@ import React from 'react';
 import {create} from 'react-test-renderer';
 import LoadingFullScreen from './index';
 
-jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
+jest.mock('react-native/src/private/animated/NativeAnimatedHelper');
+jest.useFakeTimers();
 jest.spyOn(React, 'useEffect').mockImplementation((f) => f());
 
 describe('LoadingFullScreen component', () => {

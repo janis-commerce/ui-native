@@ -4,7 +4,8 @@ import {Text, View} from 'react-native';
 import Loading from './';
 import {Path} from 'react-native-svg';
 
-jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
+jest.mock('react-native/src/private/animated/NativeAnimatedHelper');
+jest.useFakeTimers();
 jest.spyOn(React, 'useEffect').mockImplementation((f) => f());
 
 const validProps = {

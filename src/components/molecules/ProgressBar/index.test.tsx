@@ -5,7 +5,8 @@ import * as utils from './utils';
 import ProgressBar from './';
 import {palette} from 'theme/palette';
 
-jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
+jest.mock('react-native/src/private/animated/NativeAnimatedHelper');
+jest.useFakeTimers();
 jest.spyOn(React, 'useEffect').mockImplementation((f) => f());
 const getPercentageSpy = jest.spyOn(utils, 'getPercentage');
 const getBarColorSpy = jest.spyOn(utils, 'getBarColor');

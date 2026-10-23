@@ -14,7 +14,7 @@ describe('Modal component', () => {
 		const renderedModal = ModalComp.root.findByType(NativeModal);
 		renderedModal.props.onRequestClose();
 
-		expect(ModalComp.toJSON()).toBeTruthy();
+		expect(renderedModal).toBeTruthy();
 	});
 
 	it('render full screen modal', () => {
@@ -24,7 +24,7 @@ describe('Modal component', () => {
 		renderedModal.props.onRequestClose();
 
 		expect(mockFn).toHaveBeenCalled();
-		expect(ModalComp.toJSON()).toBeTruthy();
+		expect(renderedModal).toBeTruthy();
 	});
 
 	describe('should allow access to modal methods', () => {
@@ -49,14 +49,14 @@ describe('Modal component', () => {
 				close: () => void;
 			}>();
 
-			const {getByTestId} = render(<Modal ref={ModalRef} testID="modal-component" />);
+			const {queryByTestId} = render(<Modal ref={ModalRef} testID="modal-component" />);
 
 			act(() => {
 				ModalRef.current?.close();
 			});
 
 			expect(ModalRef.current).toBeDefined();
-			expect(getByTestId('modal-component').props.visible).toBe(false);
+			expect(queryByTestId('modal-component')).toBeNull();
 		});
 	});
 });

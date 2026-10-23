@@ -3,8 +3,8 @@ import {render, fireEvent} from '@testing-library/react-native';
 import Input, {InputProps} from './index';
 
 jest.mock('react-native/Libraries/Utilities/Platform', () => ({
-	OS: 'web',
-	select: () => null,
+	__esModule: true,
+	default: {OS: 'web', select: () => null},
 }));
 
 describe('Input Component', () => {

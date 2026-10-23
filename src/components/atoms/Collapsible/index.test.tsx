@@ -3,6 +3,8 @@ import Collapsible from './index';
 import {Pressable, View} from 'react-native';
 import {create, act} from 'react-test-renderer';
 
+jest.useFakeTimers();
+
 const HeaderMock = () => <View />;
 const ContentMock = () => <View />;
 const mockedFunction = jest.fn();

@@ -12,7 +12,8 @@ const validData = {
 };
 
 jest.spyOn(React, 'useEffect').mockImplementation((f) => f());
-jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
+jest.mock('react-native/src/private/animated/NativeAnimatedHelper');
+jest.useFakeTimers();
 
 describe('Button component', () => {
 	describe('it does not render', () => {

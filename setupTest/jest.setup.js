@@ -78,3 +78,16 @@ jest.mock('react-native-date-picker', () => {
 });
 
 jest.spyOn(console, 'warn').mockImplementation(() => {});
+
+// React 19 no longer mounts synchronously outside act(), so create() would return an unmounted renderer.
+jest.mock('react-test-renderer', () => {
+	const testLib = jest.requireActual('react-test-renderer');
+	const create = (...args) => {
+		let renderer;
+		testLib.act(() => {
+			renderer = testLib.create(...args);
+		});
+		return renderer;
+	};
+	return {...testLib, create};
+});
