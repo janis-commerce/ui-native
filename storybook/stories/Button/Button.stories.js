@@ -5,49 +5,64 @@ export default {
 	title: 'Components/Button',
 	argTypes: {
 		icon: {
-			control: {type: 'select'},
-			options: {
-				None: null,
-				Box: 'box',
-				Check: 'check_bold',
-				Cross: 'cross_bold',
-				Keyboard: 'keyboard',
+			control: {
+				type: 'select',
+				labels: {
+					null: 'None',
+					box: 'Box',
+					check_bold: 'Check',
+					cross_bold: 'Cross',
+					keyboard: 'Keyboard',
+				},
 			},
+			options: [null, 'box', 'check_bold', 'cross_bold', 'keyboard'],
 		},
 		type: {
-			control: {type: 'select'},
-			options: {
-				Main: 'main',
-				Secondary: 'secondary',
+			control: {
+				type: 'select',
+				labels: {
+					main: 'Main',
+					secondary: 'Secondary',
+				},
 			},
+			options: ['main', 'secondary'],
 		},
 		variant: {
-			control: {type: 'select'},
-			options: {
-				Contained: 'contained',
-				Outlined: 'outlined',
-				Text: 'text',
+			control: {
+				type: 'select',
+				labels: {
+					contained: 'Contained',
+					outlined: 'Outlined',
+					text: 'Text',
+				},
 			},
+			options: ['contained', 'outlined', 'text'],
 		},
 		iconPosition: {
-			control: {type: 'select'},
-			options: {
-				Top: 'top',
-				Bottom: 'bottom',
-				Left: 'left',
-				Right: 'right',
+			control: {
+				type: 'select',
+				labels: {
+					top: 'Top',
+					bottom: 'Bottom',
+					left: 'Left',
+					right: 'Right',
+				},
 			},
+			options: ['top', 'bottom', 'left', 'right'],
 		},
 		color: {
-			control: {type: 'select'},
-			options: {
-				Primary: 'primary',
-				Black: 'black',
-				Success: 'success',
-				Error: 'error',
-				Warning: 'warning',
-				Alert: 'alert',
+			control: {
+				type: 'select',
+				labels: {
+					primary: 'Primary',
+					black: 'Black',
+					success: 'Success',
+					error: 'Error',
+					warning: 'Warning',
+					alert: 'Alert',
+				},
 			},
+			options: ['primary', 'black', 'success', 'error', 'warning', 'alert'],
 		},
 	},
 };

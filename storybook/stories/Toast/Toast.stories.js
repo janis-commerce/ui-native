@@ -7,28 +7,37 @@ export default {
 	title: 'Components/Toast',
 	argTypes: {
 		type: {
-			control: {type: 'select'},
-			options: {
-				Success: 'success',
-				Notice: 'notice',
-				Warning: 'warning',
-				Error: 'error',
-				Action: 'action',
+			control: {
+				type: 'select',
+				labels: {
+					success: 'Success',
+					notice: 'Notice',
+					warning: 'Warning',
+					error: 'Error',
+					action: 'Action',
+				},
 			},
+			options: ['success', 'notice', 'warning', 'error', 'action'],
 		},
 		customIcon: {
-			control: {type: 'select'},
-			options: {
-				None: null,
-				Janis: 'iso_janis',
+			control: {
+				type: 'select',
+				labels: {
+					null: 'None',
+					iso_janis: 'Janis',
+				},
 			},
+			options: [null, 'iso_janis'],
 		},
 		actionTitle: {
-			control: {type: 'select'},
-			options: {
-				None: null,
-				Select: 'Select',
+			control: {
+				type: 'select',
+				labels: {
+					null: 'None',
+					Select: 'Select',
+				},
 			},
+			options: [null, 'Select'],
 		},
 	},
 	decorators: [

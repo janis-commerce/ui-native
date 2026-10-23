@@ -13,14 +13,17 @@ export default {
 			options: ['currency', 'number', 'text', 'email', 'phone'],
 		},
 		variant: {
-			control: {type: 'select'},
-			options: {
-				default: 'default',
-				weightable: 'weightable',
-				amountTotal: 'amountTotal',
-				currency: 'currency',
-				numeric: 'numeric',
+			control: {
+				type: 'select',
+				labels: {
+					default: 'default',
+					weightable: 'weightable',
+					amountTotal: 'amountTotal',
+					currency: 'currency',
+					numeric: 'numeric',
+				},
 			},
+			options: ['default', 'weightable', 'amountTotal', 'currency', 'numeric'],
 		},
 	},
 };

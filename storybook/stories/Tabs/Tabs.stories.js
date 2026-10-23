@@ -24,11 +24,14 @@ export default {
 	title: 'Components/Tabs',
 	argTypes: {
 		position: {
-			control: {type: 'select'},
-			options: {
-				Top: 'top',
-				Bottom: 'bottom',
+			control: {
+				type: 'select',
+				labels: {
+					top: 'Top',
+					bottom: 'Bottom',
+				},
 			},
+			options: ['top', 'bottom'],
 		},
 	},
 	decorators: [
