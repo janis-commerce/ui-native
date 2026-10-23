@@ -5,7 +5,7 @@ import {DropdownMeasures} from '../../';
 export interface DropdownProps {
 	show: boolean;
 	setShow: (isShowed: boolean) => void;
-	children: React.Component | React.ReactNode;
+	children: React.ReactNode;
 	measures: DropdownMeasures;
 }
 

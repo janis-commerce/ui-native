@@ -7,7 +7,7 @@ import BaseButton from 'atoms/BaseButton';
 import Typography from 'atoms/Typography';
 import {isObject} from 'utils';
 
-type Data = Scene[] | null | undefined;
+type Data = ArrayLike<Scene> | null | undefined;
 
 interface Scene {
 	title: string;

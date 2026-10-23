@@ -8,7 +8,7 @@ interface SwitcherProps {
 	isMulti: boolean;
 	variant: VariantOptions;
 	measures: DropdownMeasures;
-	children: React.Component | React.ReactNode;
+	children: React.ReactNode;
 	modalAcceptText: string;
 	setShow: (isShowed: boolean) => void;
 }

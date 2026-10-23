@@ -22,7 +22,7 @@ export type Names = keyof typeof svgsMapping;
 
 export const svgsNames = Object.keys(svgsMapping) as Names[];
 
-export interface Isvg extends SvgProps, ViewProps {
+export interface Isvg extends SvgProps, Omit<ViewProps, 'hitSlop'> {
 	name?: Names;
 	width?: number;
 	height?: number;

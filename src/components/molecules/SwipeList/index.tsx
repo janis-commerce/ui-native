@@ -1,4 +1,4 @@
-import React, {FC, Ref} from 'react';
+import React, {FC, ReactNode, Ref} from 'react';
 import SwipeUp, {SwipeUpProps} from 'atoms/SwipeUp';
 import Button, {ButtonProps} from 'molecules/Button';
 import BottomSheet, {BottomSheetProps} from '@gorhom/bottom-sheet';
@@ -6,9 +6,12 @@ import {SwipeUpScrollView} from 'atoms/SwipeUp/childComponents';
 import {StyleSheet, View} from 'react-native';
 import {verticalScale} from 'scale';
 
-export interface SwipeListProps extends SwipeUpProps, BottomSheetProps {
+export interface SwipeListProps
+	extends Omit<SwipeUpProps, 'children'>,
+		Omit<BottomSheetProps, 'children'> {
+	children?: ReactNode;
 	ref?: Ref<BottomSheet>;
-	renderHeader?: () => void;
+	renderHeader?: () => ReactNode;
 	actions?: ButtonProps[];
 }
 
@@ -19,7 +22,7 @@ const styles = StyleSheet.create({
 });
 
 const SwipeList: FC<SwipeListProps> = React.forwardRef(
-	({renderHeader = () => {}, actions = [], children, ...props}, ref: Ref<BottomSheet>) => {
+	({renderHeader = () => null, actions = [], children, ...props}, ref: Ref<BottomSheet>) => {
 		if (!children) {
 			return null;
 		}

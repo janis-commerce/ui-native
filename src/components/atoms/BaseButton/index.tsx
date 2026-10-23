@@ -1,5 +1,11 @@
 import React, {FC, ReactNode} from 'react';
-import {Pressable as RNPressable, PressableProps, StyleSheet} from 'react-native';
+import {
+	Pressable as RNPressable,
+	PressableProps,
+	StyleProp,
+	StyleSheet,
+	ViewStyle,
+} from 'react-native';
 import {Pressable as GHPressable} from 'react-native-gesture-handler';
 import {moderateScale, scaledForDevice} from 'scale';
 
@@ -10,7 +16,7 @@ const GestureHandlerPressable = GHPressable as unknown as typeof RNPressable;
 export interface BaseButtonProps extends PressableProps {
 	borderRadius?: number;
 	children?: ReactNode | null;
-	pressedStyle?: ReactNode;
+	pressedStyle?: StyleProp<ViewStyle>;
 	style?: any;
 	isGestureHandler?: boolean;
 }

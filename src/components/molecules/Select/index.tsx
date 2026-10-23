@@ -40,7 +40,7 @@ interface CustomOptionComponentProps {
 	callbackOptionSelected: (option: Option) => void;
 }
 
-export type CustomOptionComponent = (props: CustomOptionComponentProps) => React.Component;
+export type CustomOptionComponent = (props: CustomOptionComponentProps) => React.ReactNode;
 
 interface SelectProps {
 	options: Option[];

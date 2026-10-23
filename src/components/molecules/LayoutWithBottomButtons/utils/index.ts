@@ -1,9 +1,9 @@
 import {keyColor} from 'molecules/Button';
-import {PressableProps, ViewStyle, TextStyle} from 'react-native';
+import {DimensionValue, PressableProps, ViewStyle, TextStyle} from 'react-native';
 import {moderateScale, scaledForDevice} from 'scale';
 import {palette} from 'theme/palette';
 
-export interface IlayoutButtons extends PressableProps {
+export interface IlayoutButtons extends Omit<PressableProps, 'children'> {
 	value?: string | null;
 	icon?: string;
 	iconRight?: boolean;
@@ -67,12 +67,12 @@ export const buttonWrapperVariantStyles = (variant: string) => ({
 	}),
 });
 
-const validWidth = (width: string | number | undefined) => {
+const validWidth = (width: string | number | undefined): DimensionValue | null => {
 	if (typeof width === 'number' && !Number.isNaN(width)) {
 		return width;
 	}
 	if (typeof width === 'string' && width.includes('%')) {
-		return width;
+		return width as DimensionValue;
 	}
 	return null;
 };
@@ -90,7 +90,7 @@ export const parseButtonsStyles = (buttons: Array<IlayoutButtons>, variant: stri
 		currentVariant === validVariants.rounded || currentVariant === validVariants.roundedOnTop;
 
 	if (newButtons.length === 3 && areButtonsRounded) {
-		const parsedButtons = newButtons.map((btn, idx) => {
+		const parsedButtons = newButtons.map((btn, idx): IlayoutButtons => {
 			const {backgroundColor, pressedColor} = getBackgroundColor(btn);
 			if (idx === 0) {
 				return {
@@ -122,7 +122,7 @@ export const parseButtonsStyles = (buttons: Array<IlayoutButtons>, variant: stri
 
 	if (newButtons.length === 2 && areButtonsRounded) {
 		let isThereAnOnlyIconBtn = false;
-		const parsedButtons = newButtons.map((btn, idx) => {
+		const parsedButtons = newButtons.map((btn, idx): IlayoutButtons => {
 			const {backgroundColor, pressedColor} = getBackgroundColor(btn);
 			if (!isThereAnOnlyIconBtn) {
 				isThereAnOnlyIconBtn = !!btn.icon && !btn.value;
@@ -162,7 +162,7 @@ export const parseButtonsStyles = (buttons: Array<IlayoutButtons>, variant: stri
 	}
 
 	if (newButtons.length === 1 && areButtonsRounded) {
-		const parsedButtons = newButtons.map((btn) => {
+		const parsedButtons = newButtons.map((btn): IlayoutButtons => {
 			const {backgroundColor, pressedColor} = getBackgroundColor(btn);
 			return {
 				...btn,
@@ -180,7 +180,7 @@ export const parseButtonsStyles = (buttons: Array<IlayoutButtons>, variant: stri
 	}
 
 	const flex = 1 / buttons.length;
-	const parsedButtons = newButtons.map((btn) => {
+	const parsedButtons = newButtons.map((btn): IlayoutButtons => {
 		const {backgroundColor, pressedColor} = getBackgroundColor(btn);
 		return {
 			...btn,
