@@ -20,6 +20,7 @@ DerivedData
 *.hmap
 *.ipa
 *.xcuserstate
+**/.xcode.env.local
 
 # Android/IntelliJ
 #
@@ -29,6 +30,8 @@ build/
 local.properties
 *.iml
 *.hprof
+.cxx/
+.kotlin/
 
 # node.js
 #
@@ -57,6 +60,10 @@ buck-out/
 
 # CocoaPods
 /ios/Pods/
+/vendor/bundle/
+
+# Metro
+.metro-health-check*
 
 #coverage
 coverage
