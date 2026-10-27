@@ -7,10 +7,11 @@ import {moderateScale, horizontalScale, scaledForDevice} from 'scale';
 
 export interface ClientInfo {
 	name: string;
+	logoUrl?: string;
 	onPress?: () => void;
 }
 
-export interface ClientSelectorProps extends ClientInfo {
+export interface ClientSelectorProps extends Omit<ClientInfo, 'logoUrl'> {
 	style?: StyleProp<ViewStyle>;
 	testID?: string;
 }

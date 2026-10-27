@@ -9,8 +9,6 @@ import {composeTestID} from 'utils';
 
 export interface HeaderProps {
 	onMenuPress: () => void;
-	userName: string;
-	userAvatar?: string;
 	avatarBgColor?: string;
 	client?: ClientInfo;
 	style?: ViewStyle;
@@ -38,32 +36,25 @@ const styles = StyleSheet.create({
 	},
 });
 
-const Header: FC<HeaderProps> = ({
-	onMenuPress,
-	userName,
-	userAvatar,
-	avatarBgColor,
-	client,
-	style,
-	testID,
-}) => (
+const Header: FC<HeaderProps> = ({onMenuPress, avatarBgColor, client, style, testID}) => (
 	<View style={[styles.container, style]} testID={testID}>
 		<MenuButton onPress={onMenuPress} testID={composeTestID(testID, 'menu')} />
 
 		{!!client?.name && (
-			<ClientSelector
-				{...client}
-				style={styles.clientSelector}
-				testID={composeTestID(testID, 'client-selector')}
-			/>
+			<>
+				<ClientSelector
+					{...client}
+					style={styles.clientSelector}
+					testID={composeTestID(testID, 'client-selector')}
+				/>
+				<Avatar
+					customSize={validAvatarSize}
+					imageUrl={client.logoUrl}
+					placeholder={client.name}
+					bgColor={avatarBgColor}
+				/>
+			</>
 		)}
-
-		<Avatar
-			customSize={validAvatarSize}
-			imageUrl={userAvatar}
-			placeholder={userName}
-			bgColor={avatarBgColor}
-		/>
 	</View>
 );
 

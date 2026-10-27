@@ -8,6 +8,7 @@ import {composeTestID} from 'utils';
 
 export interface UserInfoProps {
 	greeting: string;
+	userName: string;
 	appName?: string;
 	environment?: EnvironmentType;
 	illustration?: ComponentType | null;
@@ -38,6 +39,7 @@ const styles = StyleSheet.create({
 
 const UserInfo: FC<UserInfoProps> = ({
 	greeting,
+	userName,
 	appName,
 	environment,
 	illustration: Illustration = null,
@@ -47,8 +49,11 @@ const UserInfo: FC<UserInfoProps> = ({
 }) => (
 	<View style={[styles.container, style]} testID={testID}>
 		<View style={styles.greetingText}>
-			<Typography type="heading" size="large">
+			<Typography type="heading" size="small">
 				{greeting}
+			</Typography>
+			<Typography type="heading" size="medium">
+				{userName}
 			</Typography>
 			<EnvironmentChip
 				environment={environment}

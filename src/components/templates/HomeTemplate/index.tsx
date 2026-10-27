@@ -18,7 +18,6 @@ export interface HomeTemplateProps {
 	userName: string;
 	greeting: string;
 	appName?: string;
-	userAvatar?: string;
 	avatarBgColor?: string;
 	environment?: EnvironmentType;
 	onMenuPress: () => void;
@@ -98,7 +97,6 @@ const HomeTemplate: FC<HomeTemplateProps> = ({
 	userName,
 	greeting,
 	appName,
-	userAvatar,
 	avatarBgColor,
 	environment,
 	onMenuPress,
@@ -128,8 +126,6 @@ const HomeTemplate: FC<HomeTemplateProps> = ({
 		<View style={styles.container} testID={testID}>
 			<Header
 				onMenuPress={onMenuPress}
-				userName={userName}
-				userAvatar={userAvatar}
 				avatarBgColor={avatarBgColor}
 				client={client}
 				testID={composeTestID(testID, 'header')}
@@ -137,6 +133,7 @@ const HomeTemplate: FC<HomeTemplateProps> = ({
 
 			<UserInfo
 				greeting={greeting}
+				userName={userName}
 				appName={appName}
 				environment={environment}
 				illustration={Illustration}

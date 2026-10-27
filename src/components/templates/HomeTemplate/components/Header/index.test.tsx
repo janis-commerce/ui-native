@@ -5,7 +5,6 @@ import ClientSelector from 'molecules/ClientSelector';
 import Header from './index';
 
 const defaultProps = {
-	userName: 'Juan Carlos',
 	onMenuPress: jest.fn(),
 };
 
@@ -19,17 +18,16 @@ describe('Header component', () => {
 		expect(toJSON()).toBeTruthy();
 	});
 
-	it('builds the avatar from the user name', () => {
+	it('builds the avatar from the client logo and name', () => {
 		const {root} = create(
 			<Header
 				{...defaultProps}
-				userAvatar="https://example.com/avatar.jpg"
-				avatarBgColor="#E8EAF6"
+				client={{name: 'Disco Martinez', logoUrl: 'https://example.com/logo.png'}}
 			/>
 		);
 		const avatar = root.findByType(Avatar);
-		expect(avatar.props.placeholder).toBe('Juan Carlos');
-		expect(avatar.props.imageUrl).toBe('https://example.com/avatar.jpg');
+		expect(avatar.props.imageUrl).toBe('https://example.com/logo.png');
+		expect(avatar.props.placeholder).toBe('Disco Martinez');
 	});
 
 	it('calls onMenuPress when menu button is pressed', () => {
@@ -51,13 +49,15 @@ describe('Header component', () => {
 		expect(onPress).toHaveBeenCalledTimes(1);
 	});
 
-	it('does not render the client selector without a client', () => {
+	it('does not render the client selector nor the avatar without a client', () => {
 		const {root} = create(<Header {...defaultProps} />);
 		expect(root.findAllByType(ClientSelector)).toHaveLength(0);
+		expect(root.findAllByType(Avatar)).toHaveLength(0);
 	});
 
-	it('does not render the client selector without a client name', () => {
+	it('does not render the client selector nor the avatar without a client name', () => {
 		const {root} = create(<Header {...defaultProps} client={{name: ''}} />);
 		expect(root.findAllByType(ClientSelector)).toHaveLength(0);
+		expect(root.findAllByType(Avatar)).toHaveLength(0);
 	});
 });

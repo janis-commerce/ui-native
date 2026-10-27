@@ -6,7 +6,7 @@ import HomeTemplate from './index';
 
 const defaultProps = {
 	userName: 'Juan Carlos',
-	greeting: 'Bienvenido,\nJuan Carlos',
+	greeting: 'Bienvenido,',
 	sectionTitle: 'Seleccioná un módulo',
 	onMenuPress: jest.fn(),
 	modules: [
@@ -50,10 +50,13 @@ describe('HomeTemplate component', () => {
 		expect(json).toContain('Control');
 	});
 
-	it('renders the greeting it receives', () => {
-		const tree = create(<HomeTemplate {...defaultProps} greeting="Good morning, Juan" />);
+	it('renders the greeting and the user name it receives', () => {
+		const tree = create(
+			<HomeTemplate {...defaultProps} greeting="Good morning," userName="Juan" />
+		);
 		const json = JSON.stringify(tree.toJSON());
-		expect(json).toContain('Good morning, Juan');
+		expect(json).toContain('Good morning,');
+		expect(json).toContain('Juan');
 	});
 
 	it('renders with custom section title', () => {
