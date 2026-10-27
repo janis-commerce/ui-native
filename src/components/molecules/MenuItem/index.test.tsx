@@ -1,6 +1,7 @@
 import React from 'react';
 import {create, act} from 'react-test-renderer';
 import {Pressable, View} from 'react-native';
+import Typography from 'atoms/Typography';
 import MenuItem from './index';
 
 const defaultProps = {
@@ -58,6 +59,19 @@ describe('MenuItem component', () => {
 			return style && style.borderRadius;
 		});
 		expect(circleView).toBeTruthy();
+	});
+
+	it('uses the regular medium title next to the icon circle', () => {
+		const {root} = create(<MenuItem {...defaultProps} />);
+		expect(root.findByType(Typography).props).toMatchObject({
+			type: 'title',
+			size: 'mediumRegular',
+		});
+	});
+
+	it('uses the large body text without the icon circle', () => {
+		const {root} = create(<MenuItem {...defaultProps} showIconCircle={false} />);
+		expect(root.findByType(Typography).props).toMatchObject({type: 'body', size: 'large'});
 	});
 
 	it('does not render icon circle when showIconCircle is false', () => {

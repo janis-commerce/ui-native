@@ -15,7 +15,7 @@ export interface EnvironmentChipProps {
 
 const styles = StyleSheet.create({
 	container: {
-		marginTop: scaledForDevice(6, moderateScale),
+		marginTop: scaledForDevice(8, moderateScale),
 		alignSelf: 'flex-start',
 	},
 });

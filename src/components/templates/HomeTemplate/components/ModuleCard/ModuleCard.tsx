@@ -3,7 +3,7 @@ import {Pressable, View, StyleSheet, ViewStyle} from 'react-native';
 import Icon from 'atoms/Icon';
 import Typography from 'atoms/Typography';
 import Badge from 'atoms/Badge';
-import {base, grey, primary, white} from 'theme/palette';
+import {base, black, grey, primary, secondaryBlue} from 'theme/palette';
 import {moderateScale, horizontalScale, scaledForDevice} from 'scale';
 import cardLayout from './styles';
 
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
 		opacity: 0.4,
 	},
 	iconContainer: {
-		backgroundColor: white.light,
+		backgroundColor: secondaryBlue.light,
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
@@ -78,7 +78,7 @@ const ModuleCard: FC<ModuleCardProps> = ({
 			</View>
 
 			<View style={cardLayout.content}>
-				<Typography type="title" size="large" color={base.black}>
+				<Typography type="title" size="mediumRegular" color={black.main}>
 					{title}
 				</Typography>
 				{!!subtitle && (

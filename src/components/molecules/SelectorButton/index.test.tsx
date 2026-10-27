@@ -1,17 +1,20 @@
 import React from 'react';
 import {create} from 'react-test-renderer';
 import {Pressable} from 'react-native';
-import ClientSelector from './index';
+import Typography from 'atoms/Typography';
+import SelectorButton from './index';
 
-describe('ClientSelector component', () => {
-	it('renders the client name', () => {
-		const tree = create(<ClientSelector name="fizzmodarg" />);
-		expect(JSON.stringify(tree.toJSON())).toContain('fizzmodarg');
+describe('SelectorButton component', () => {
+	it('renders the label in a single line', () => {
+		const {root} = create(<SelectorButton label="Disco Martínez" />);
+		const label = root.findByType(Typography);
+		expect(label.props.children).toBe('Disco Martínez');
+		expect(label.props.numberOfLines).toBe(1);
 	});
 
 	it('shows the chevron and calls onPress when it is selectable', () => {
 		const onPress = jest.fn();
-		const {root} = create(<ClientSelector name="fizzmodarg" onPress={onPress} />);
+		const {root} = create(<SelectorButton label="Disco Martínez" onPress={onPress} />);
 		expect(root.findAllByProps({name: 'chevron_down'}).length).toBeGreaterThan(0);
 
 		root.findByType(Pressable).props.onPress();
@@ -19,7 +22,7 @@ describe('ClientSelector component', () => {
 	});
 
 	it('hides the chevron and disables the press without onPress', () => {
-		const {root} = create(<ClientSelector name="fizzmodarg" />);
+		const {root} = create(<SelectorButton label="Disco Martínez" />);
 		expect(root.findAllByProps({name: 'chevron_down'})).toHaveLength(0);
 		expect(root.findByType(Pressable).props.disabled).toBe(true);
 	});

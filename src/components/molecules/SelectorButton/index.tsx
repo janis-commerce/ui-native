@@ -2,16 +2,15 @@ import React, {FC} from 'react';
 import {Pressable, StyleSheet, StyleProp, ViewStyle} from 'react-native';
 import Typography from 'atoms/Typography';
 import Icon from 'atoms/Icon';
-import {primary} from 'theme/palette';
+import {black, primary} from 'theme/palette';
 import {moderateScale, horizontalScale, scaledForDevice} from 'scale';
 
-export interface ClientInfo {
-	name: string;
-	logoUrl?: string;
+export interface SelectorInfo {
+	label: string;
 	onPress?: () => void;
 }
 
-export interface ClientSelectorProps extends Omit<ClientInfo, 'logoUrl'> {
+export interface SelectorButtonProps extends SelectorInfo {
 	style?: StyleProp<ViewStyle>;
 	testID?: string;
 }
@@ -23,19 +22,22 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		alignItems: 'center',
 	},
+	label: {
+		flexShrink: 1,
+	},
 	chevron: {
-		marginLeft: scaledForDevice(4, horizontalScale),
+		marginLeft: scaledForDevice(8, horizontalScale),
 	},
 });
 
-const ClientSelector: FC<ClientSelectorProps> = ({name, onPress, style, testID}) => (
+const SelectorButton: FC<SelectorButtonProps> = ({label, onPress, style, testID}) => (
 	<Pressable
 		onPress={onPress}
 		disabled={!onPress}
 		style={[styles.container, style]}
 		testID={testID}>
-		<Typography type="body" size="medium" color={primary.main}>
-			{name}
+		<Typography type="title" size="large" color={black.main} numberOfLines={1} style={styles.label}>
+			{label}
 		</Typography>
 		{!!onPress && (
 			<Icon
@@ -48,4 +50,4 @@ const ClientSelector: FC<ClientSelectorProps> = ({name, onPress, style, testID})
 	</Pressable>
 );
 
-export default ClientSelector;
+export default SelectorButton;

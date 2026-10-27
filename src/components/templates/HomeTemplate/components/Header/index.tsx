@@ -2,22 +2,24 @@ import React, {FC} from 'react';
 import {View, StyleSheet, ViewStyle} from 'react-native';
 import MenuButton from 'atoms/MenuButton';
 import Avatar from 'molecules/Avatar';
-import ClientSelector, {ClientInfo} from 'molecules/ClientSelector';
-import {base} from 'theme/palette';
+import SelectorButton, {SelectorInfo} from 'molecules/SelectorButton';
+import type {ClientInfo} from 'ts/interfaces/client';
+import {base, black, white} from 'theme/palette';
 import {moderateScale, horizontalScale, scaledForDevice} from 'scale';
 import {composeTestID} from 'utils';
 
 export interface HeaderProps {
-	onMenuPress: () => void;
+	onMenuPress?: () => void;
 	avatarBgColor?: string;
 	client?: ClientInfo;
+	selector?: SelectorInfo;
 	style?: ViewStyle;
 	testID?: string;
 }
 
-const validPaddingHorizontal = scaledForDevice(24, horizontalScale);
-const validPaddingTop = scaledForDevice(16, moderateScale);
-const validPaddingBottom = scaledForDevice(20, moderateScale);
+const validPaddingHorizontal = scaledForDevice(16, horizontalScale);
+const validPaddingVertical = scaledForDevice(10, moderateScale);
+const validSelectorMarginHorizontal = scaledForDevice(16, horizontalScale);
 const validAvatarSize = scaledForDevice(36, moderateScale);
 
 const styles = StyleSheet.create({
@@ -26,34 +28,48 @@ const styles = StyleSheet.create({
 		justifyContent: 'space-between',
 		alignItems: 'center',
 		paddingHorizontal: validPaddingHorizontal,
-		paddingTop: validPaddingTop,
-		paddingBottom: validPaddingBottom,
+		paddingVertical: validPaddingVertical,
 		backgroundColor: base.white,
+		shadowColor: black.main,
+		shadowOffset: {width: 0, height: 2},
+		shadowOpacity: 0.15,
+		shadowRadius: 5,
+		elevation: 3,
+		zIndex: 1,
 	},
-	clientSelector: {
+	selector: {
 		flex: 1,
 		justifyContent: 'center',
+		marginHorizontal: validSelectorMarginHorizontal,
 	},
 });
 
-const Header: FC<HeaderProps> = ({onMenuPress, avatarBgColor, client, style, testID}) => (
+const Header: FC<HeaderProps> = ({
+	onMenuPress,
+	avatarBgColor = white.dark,
+	client,
+	selector,
+	style,
+	testID,
+}) => (
 	<View style={[styles.container, style]} testID={testID}>
-		<MenuButton onPress={onMenuPress} testID={composeTestID(testID, 'menu')} />
+		{!!onMenuPress && <MenuButton onPress={onMenuPress} testID={composeTestID(testID, 'menu')} />}
+
+		{!!selector?.label && (
+			<SelectorButton
+				{...selector}
+				style={styles.selector}
+				testID={composeTestID(testID, 'selector')}
+			/>
+		)}
 
 		{!!client?.name && (
-			<>
-				<ClientSelector
-					{...client}
-					style={styles.clientSelector}
-					testID={composeTestID(testID, 'client-selector')}
-				/>
-				<Avatar
-					customSize={validAvatarSize}
-					imageUrl={client.logoUrl}
-					placeholder={client.name}
-					bgColor={avatarBgColor}
-				/>
-			</>
+			<Avatar
+				customSize={validAvatarSize}
+				imageUrl={client.logoUrl}
+				placeholder={client.name}
+				bgColor={avatarBgColor}
+			/>
 		)}
 	</View>
 );

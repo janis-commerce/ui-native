@@ -9,7 +9,7 @@ const cardLayout = StyleSheet.create({
 		flexDirection: 'row',
 		alignItems: 'center',
 		backgroundColor: base.white,
-		borderRadius: scaledForDevice(10, moderateScale),
+		borderRadius: scaledForDevice(16, moderateScale),
 		paddingVertical: scaledForDevice(16, moderateScale),
 		paddingHorizontal: scaledForDevice(14, horizontalScale),
 		marginBottom: scaledForDevice(8, moderateScale),
@@ -19,7 +19,7 @@ const cardLayout = StyleSheet.create({
 		width: validIconContainerSize,
 		height: validIconContainerSize,
 		borderRadius: validIconContainerSize / 2,
-		marginRight: scaledForDevice(14, horizontalScale),
+		marginRight: scaledForDevice(16, horizontalScale),
 	},
 	content: {
 		flex: 1,

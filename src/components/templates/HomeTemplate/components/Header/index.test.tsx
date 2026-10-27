@@ -1,12 +1,16 @@
 import React from 'react';
 import {create} from 'react-test-renderer';
+import MenuButton from 'atoms/MenuButton';
 import Avatar from 'molecules/Avatar';
-import ClientSelector from 'molecules/ClientSelector';
+import SelectorButton from 'molecules/SelectorButton';
+import {white} from 'theme/palette';
 import Header from './index';
 
 const defaultProps = {
 	onMenuPress: jest.fn(),
 };
+
+const client = {name: 'Disco Martinez', logoUrl: 'https://example.com/logo.png'};
 
 describe('Header component', () => {
 	beforeEach(() => {
@@ -19,15 +23,16 @@ describe('Header component', () => {
 	});
 
 	it('builds the avatar from the client logo and name', () => {
-		const {root} = create(
-			<Header
-				{...defaultProps}
-				client={{name: 'Disco Martinez', logoUrl: 'https://example.com/logo.png'}}
-			/>
-		);
+		const {root} = create(<Header {...defaultProps} client={client} />);
 		const avatar = root.findByType(Avatar);
 		expect(avatar.props.imageUrl).toBe('https://example.com/logo.png');
 		expect(avatar.props.placeholder).toBe('Disco Martinez');
+		expect(avatar.props.bgColor).toBe(white.dark);
+	});
+
+	it('uses the avatar background color it receives', () => {
+		const {root} = create(<Header {...defaultProps} client={client} avatarBgColor="#FF6E08" />);
+		expect(root.findByType(Avatar).props.bgColor).toBe('#FF6E08');
 	});
 
 	it('calls onMenuPress when menu button is pressed', () => {
@@ -37,27 +42,32 @@ describe('Header component', () => {
 		expect(defaultProps.onMenuPress).toHaveBeenCalledTimes(1);
 	});
 
-	it('renders the client selector with the client it receives', () => {
+	it('hides the menu button without onMenuPress', () => {
+		const {root} = create(<Header />);
+		expect(root.findAllByType(MenuButton)).toHaveLength(0);
+	});
+
+	it('renders the selector with the label and action it receives', () => {
 		const onPress = jest.fn();
 		const {root} = create(
-			<Header {...defaultProps} client={{name: 'Disco Martinez', onPress}} testID="header" />
+			<Header {...defaultProps} selector={{label: 'Belgrano', onPress}} testID="header" />
 		);
-		const clientSelector = root.findByProps({testID: 'header-client-selector'});
-		expect(clientSelector.props.name).toBe('Disco Martinez');
+		const selector = root.findByProps({testID: 'header-selector'});
+		expect(selector.props.label).toBe('Belgrano');
 
-		clientSelector.props.onPress();
+		selector.props.onPress();
 		expect(onPress).toHaveBeenCalledTimes(1);
 	});
 
-	it('does not render the client selector nor the avatar without a client', () => {
+	it('renders neither the selector nor the avatar without them', () => {
 		const {root} = create(<Header {...defaultProps} />);
-		expect(root.findAllByType(ClientSelector)).toHaveLength(0);
+		expect(root.findAllByType(SelectorButton)).toHaveLength(0);
 		expect(root.findAllByType(Avatar)).toHaveLength(0);
 	});
 
-	it('does not render the client selector nor the avatar without a client name', () => {
-		const {root} = create(<Header {...defaultProps} client={{name: ''}} />);
-		expect(root.findAllByType(ClientSelector)).toHaveLength(0);
+	it('renders neither the selector nor the avatar when their texts are empty', () => {
+		const {root} = create(<Header {...defaultProps} client={{name: ''}} selector={{label: ''}} />);
+		expect(root.findAllByType(SelectorButton)).toHaveLength(0);
 		expect(root.findAllByType(Avatar)).toHaveLength(0);
 	});
 });

@@ -2,7 +2,8 @@ import React from 'react';
 import {create, act} from 'react-test-renderer';
 import {View} from 'react-native';
 import Skeleton from 'atoms/Skeleton';
-import ClientSelector from 'molecules/ClientSelector';
+import Svg from 'atoms/Svg';
+import Avatar from 'molecules/Avatar';
 import Menu from './index';
 
 const defaultProps = {
@@ -111,20 +112,28 @@ describe('Menu component', () => {
 		expect(root.findByProps({testID: 'menu-logout'})).toBeTruthy();
 	});
 
-	it('renders the client selector below the user', () => {
-		const onPress = jest.fn();
+	it('renders the client with its logo below the user', () => {
 		const {root} = create(
-			<Menu {...defaultProps} client={{name: 'fizzmodarg', onPress}} testID="menu" />
+			<Menu
+				{...defaultProps}
+				client={{name: 'fizzmodarg', logoUrl: 'https://example.com/logo.png'}}
+				testID="menu"
+			/>
 		);
-		const clientSelector = root.findByProps({testID: 'menu-client-selector'});
-		expect(clientSelector.props.name).toBe('fizzmodarg');
-
-		clientSelector.props.onPress();
-		expect(onPress).toHaveBeenCalledTimes(1);
+		const clientRow = root.findByProps({testID: 'menu-client'});
+		const clientAvatar = clientRow.findByType(Avatar);
+		expect(clientAvatar.props.imageUrl).toBe('https://example.com/logo.png');
+		expect(clientAvatar.props.placeholder).toBe('fizzmodarg');
+		expect(clientRow.findByProps({children: 'fizzmodarg'})).toBeTruthy();
 	});
 
-	it('does not render the client selector without a client name', () => {
-		const {root} = create(<Menu {...defaultProps} client={{name: ''}} />);
-		expect(root.findAllByType(ClientSelector)).toHaveLength(0);
+	it('does not render the client without a client name', () => {
+		const {root} = create(<Menu {...defaultProps} client={{name: ''}} testID="menu" />);
+		expect(root.findAllByProps({testID: 'menu-client'})).toHaveLength(0);
+	});
+
+	it('shows the Janis Commerce logo next to the version', () => {
+		const {root} = create(<Menu {...defaultProps} />);
+		expect(root.findByType(Svg).props.name).toBe('janis-commerce-logo');
 	});
 });

@@ -1,17 +1,12 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 import HomeTemplate from 'templates/HomeTemplate';
+import {MenuProvider} from 'organisms/Menu';
 
 export default {
 	title: 'Components/HomeTemplate',
 	argTypes: {
 		loading: {
-			control: {type: 'boolean'},
-		},
-		showDisabledToggle: {
-			control: {type: 'boolean'},
-		},
-		initialShowDisabled: {
 			control: {type: 'boolean'},
 		},
 	},
@@ -28,20 +23,6 @@ const modulesWithDisabled = [
 	{id: 'consolidation', icon: 'round', title: 'Consolidación', onPress: () => {}, disabled: true},
 ];
 
-const MockIllustration = () => (
-	<View
-		style={{
-			width: 80,
-			height: 80,
-			borderRadius: 40,
-			backgroundColor: '#E8EAF6',
-			justifyContent: 'center',
-			alignItems: 'center',
-		}}>
-		<Text style={{fontSize: 30}}>📦</Text>
-	</View>
-);
-
 const ShiftChipMock = () => (
 	<View style={{flexDirection: 'row', alignItems: 'center', marginTop: 10}}>
 		<View
@@ -57,61 +38,70 @@ const ShiftChipMock = () => (
 	</View>
 );
 
-export const Complete = (props) => <HomeTemplate {...props} />;
+const menuProps = {
+	userInfo: {name: 'Juan Carlos', email: 'juan.carlos@janiscommerce.com'},
+	menuItems: [
+		{id: 'notifications', icon: 'bell', title: 'Notificaciones', onPress: () => {}, badge: 9},
+		{id: 'settings', icon: 'gear', title: 'Configuración', onPress: () => {}},
+	],
+	client: {name: 'fizzmodarg'},
+	onLogout: () => {},
+	logoutLabel: 'Cerrar sesión',
+	versionLabel: 'Versión 2.8.0',
+};
+
+const HomeWithMenu = (props) => (
+	<MenuProvider {...menuProps}>
+		<HomeTemplate {...props} />
+	</MenuProvider>
+);
+
+export const Complete = (props) => <HomeWithMenu {...props} />;
 
 Complete.storyName = 'Complete (Picking)';
 Complete.args = {
 	userName: 'Juan Carlos',
 	greeting: 'Bienvenido,',
 	appName: 'Picking',
-	avatarBgColor: '#E8EAF6',
 	environment: 'beta',
-	onMenuPress: () => {},
-	client: {name: 'fizzmodarg', onPress: () => {}},
+	client: {name: 'fizzmodarg'},
+	selector: {label: 'Belgrano', onPress: () => {}},
 	modules: defaultModules,
 	sectionTitle: 'Seleccioná un módulo',
-	illustration: MockIllustration,
 	headerExtra: <ShiftChipMock />,
 	loading: false,
-	showDisabledToggle: true,
-	initialShowDisabled: true,
 };
 
-export const WithDisabledModules = (props) => <HomeTemplate {...props} />;
+export const WithDisabledModules = (props) => <HomeWithMenu {...props} />;
 
-WithDisabledModules.storyName = 'With Disabled Modules + Toggle';
+WithDisabledModules.storyName = 'With Disabled Modules';
 WithDisabledModules.args = {
 	userName: 'Pablo',
 	greeting: 'Bienvenido,',
 	appName: 'Picking',
 	environment: 'qa',
-	onMenuPress: () => {},
 	modules: modulesWithDisabled,
 	sectionTitle: 'Seleccioná un módulo',
 	loading: false,
-	showDisabledToggle: true,
-	initialShowDisabled: true,
 };
 
-export const LoadingState = (props) => <HomeTemplate {...props} />;
+export const LoadingState = (props) => <HomeWithMenu {...props} />;
 
 LoadingState.storyName = 'Loading State';
 LoadingState.args = {
 	userName: 'Juan Carlos',
 	greeting: 'Bienvenido,',
-	onMenuPress: () => {},
 	modules: defaultModules,
 	sectionTitle: 'Seleccioná un módulo',
 	loading: true,
 };
 
-export const Minimal = (props) => <HomeTemplate {...props} />;
+export const Minimal = (props) => <HomeWithMenu {...props} />;
 
 Minimal.storyName = 'Minimal (No extras)';
 Minimal.args = {
 	userName: 'Laura',
 	greeting: 'Bienvenida,',
-	onMenuPress: () => {},
 	modules: [
 		{id: 'delivery', icon: 'shipping_big_truck', title: 'Delivery', onPress: () => {}},
 		{id: 'pickup', icon: 'store', title: 'Pickup', onPress: () => {}},
@@ -121,7 +111,7 @@ Minimal.args = {
 	loading: false,
 };
 
-export const WMSExample = (props) => <HomeTemplate {...props} />;
+export const WMSExample = (props) => <HomeWithMenu {...props} />;
 
 WMSExample.storyName = 'WMS Example';
 WMSExample.args = {
@@ -129,8 +119,8 @@ WMSExample.args = {
 	greeting: 'Bienvenido,',
 	appName: 'WMS',
 	environment: 'qa',
-	onMenuPress: () => {},
-	client: {name: 'Disco Martinez'},
+	client: {name: 'Disco'},
+	selector: {label: 'Disco Martínez', onPress: () => {}},
 	modules: [
 		{id: 'reception', icon: 'box_arrow_right', title: 'Ingreso de mercaderías', onPress: () => {}},
 		{
@@ -154,8 +144,5 @@ WMSExample.args = {
 		},
 	],
 	sectionTitle: 'Seleccioná un módulo',
-	illustration: MockIllustration,
 	loading: false,
-	showDisabledToggle: true,
-	initialShowDisabled: true,
 };

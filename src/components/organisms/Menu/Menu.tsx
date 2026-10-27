@@ -6,8 +6,8 @@ import Svg from 'atoms/Svg';
 import List, {TypeList} from 'atoms/List';
 import Skeleton from 'atoms/Skeleton';
 import MenuItem, {MenuItemProps} from 'molecules/MenuItem';
-import ClientSelector, {ClientInfo} from 'molecules/ClientSelector';
-import {base, grey, white} from 'theme/palette';
+import type {ClientInfo} from 'ts/interfaces/client';
+import {base, black, grey, white} from 'theme/palette';
 import {moderateScale, horizontalScale, scaledForDevice} from 'scale';
 import {composeTestID} from 'utils';
 
@@ -34,17 +34,19 @@ export interface MenuProps {
 	testID?: string;
 }
 
-const validHeaderPadding = scaledForDevice(20, moderateScale);
-const validHeaderPaddingHorizontal = scaledForDevice(20, horizontalScale);
+const validPaddingHorizontal = scaledForDevice(16, horizontalScale);
+const validHeaderPaddingVertical = scaledForDevice(20, moderateScale);
 const validAvatarSize = scaledForDevice(36, moderateScale);
-const validUserTextMarginLeft = scaledForDevice(12, horizontalScale);
+const validUserTextMarginLeft = scaledForDevice(8, horizontalScale);
 const validNameMarginBottom = scaledForDevice(2, moderateScale);
+const validClientPaddingTop = scaledForDevice(24, moderateScale);
+const validClientPaddingBottom = scaledForDevice(16, moderateScale);
+const validClientNameMarginLeft = scaledForDevice(16, horizontalScale);
 const validHeaderExtraPadding = scaledForDevice(8, moderateScale);
-const validMenuPaddingTop = scaledForDevice(8, moderateScale);
+const validMenuPaddingTop = scaledForDevice(12, moderateScale);
 const validBrandPaddingVertical = scaledForDevice(16, moderateScale);
-const validBrandPaddingHorizontal = scaledForDevice(20, horizontalScale);
-const validJanisLogoSize = scaledForDevice(24, moderateScale);
-const validDividerMarginHorizontal = scaledForDevice(17, horizontalScale);
+const validLogoWidth = scaledForDevice(94, horizontalScale);
+const validLogoHeight = scaledForDevice(22, moderateScale);
 
 const styles = StyleSheet.create({
 	container: {
@@ -52,13 +54,9 @@ const styles = StyleSheet.create({
 		backgroundColor: base.white,
 	},
 	header: {
-		padding: validHeaderPadding,
+		paddingHorizontal: validPaddingHorizontal,
+		paddingVertical: validHeaderPaddingVertical,
 		backgroundColor: white.light,
-		shadowColor: base.black,
-		shadowOffset: {width: 0, height: 2},
-		shadowOpacity: 0.08,
-		shadowRadius: 4,
-		elevation: 2,
 	},
 	userRow: {
 		flexDirection: 'row',
@@ -71,14 +69,29 @@ const styles = StyleSheet.create({
 	userName: {
 		marginBottom: validNameMarginBottom,
 	},
+	clientRow: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		paddingHorizontal: validPaddingHorizontal,
+		paddingTop: validClientPaddingTop,
+		paddingBottom: validClientPaddingBottom,
+	},
+	clientName: {
+		flex: 1,
+		marginLeft: validClientNameMarginLeft,
+	},
 	divider: {
 		height: 1,
-		backgroundColor: grey[200],
-		marginHorizontal: validDividerMarginHorizontal,
+		backgroundColor: white.main,
+		marginHorizontal: validPaddingHorizontal,
+	},
+	footerDivider: {
+		height: 1,
+		backgroundColor: white.main,
 	},
 	headerExtra: {
 		paddingVertical: validHeaderExtraPadding,
-		paddingHorizontal: validHeaderPaddingHorizontal,
+		paddingHorizontal: validPaddingHorizontal,
 	},
 	menuItems: {
 		flex: 1,
@@ -92,13 +105,13 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'space-between',
 		paddingVertical: validBrandPaddingVertical,
-		paddingHorizontal: validBrandPaddingHorizontal,
+		paddingHorizontal: validPaddingHorizontal,
 	},
 	skeletonItem: {
 		flexDirection: 'row',
 		alignItems: 'center',
-		paddingVertical: scaledForDevice(14, moderateScale),
-		paddingHorizontal: scaledForDevice(20, horizontalScale),
+		paddingVertical: scaledForDevice(12, moderateScale),
+		paddingHorizontal: validPaddingHorizontal,
 	},
 	skeletonIcon: {
 		width: scaledForDevice(36, moderateScale),
@@ -121,6 +134,25 @@ const MenuSkeleton: FC = () => (
 			</View>
 		))}
 	</>
+);
+
+const ClientRow: FC<{client: ClientInfo; testID?: string}> = ({client, testID}) => (
+	<View style={styles.clientRow} testID={testID}>
+		<Avatar
+			customSize={validAvatarSize}
+			imageUrl={client.logoUrl}
+			placeholder={client.name}
+			bgColor={white.dark}
+		/>
+		<Typography
+			type="title"
+			size="mediumRegular"
+			color={black.main}
+			numberOfLines={1}
+			style={styles.clientName}>
+			{client.name}
+		</Typography>
+	</View>
 );
 
 const renderMenuItem = ({item: {id, ...menuItemProps}}: {item: MenuItemData}) => (
@@ -164,15 +196,9 @@ const Menu: FC<MenuProps> = ({
 				</View>
 			</View>
 
-			<View style={styles.divider} />
-
 			{!!client?.name && (
 				<>
-					<ClientSelector
-						{...client}
-						style={styles.headerExtra}
-						testID={composeTestID(testID, 'client-selector')}
-					/>
+					<ClientRow client={client} testID={composeTestID(testID, 'client')} />
 					<View style={styles.divider} />
 				</>
 			)}
@@ -200,9 +226,9 @@ const Menu: FC<MenuProps> = ({
 					showIconCircle={false}
 					testID={composeTestID(testID, 'logout')}
 				/>
-				<View style={styles.divider} />
+				<View style={styles.footerDivider} />
 				<View style={styles.brandFooter}>
-					<Svg name="janis-iso" size={validJanisLogoSize} />
+					<Svg name="janis-commerce-logo" width={validLogoWidth} height={validLogoHeight} />
 					<Typography type="body" size="small" color={grey[400]}>
 						{versionLabel}
 					</Typography>

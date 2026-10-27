@@ -33,7 +33,6 @@ import ItemSelectionButton from 'molecules/ItemSelectionButton';
 import MainCardList from 'molecules/MainCardList';
 import Input from 'molecules/Input';
 import BaseDetail from 'molecules/BaseDetail';
-import MenuItem from 'molecules/MenuItem';
 
 // Organisms
 import ScreenActions from 'organisms/ScreenActions';
@@ -42,7 +41,7 @@ import FullScreenMessage from 'organisms/FullScreenMessage';
 import SwipeItemSelectionList from 'organisms/SwipeItemSelectionList';
 import ErrorBoundary from 'molecules/ErrorBoundary';
 import ProductDetail from 'organisms/ProductDetail';
-import Menu from 'organisms/Menu';
+import {MenuProvider, useMenu} from 'organisms/Menu';
 import Drawer from 'organisms/Drawer';
 
 // Templates
@@ -94,8 +93,8 @@ export {
 	BaseDetail,
 	ProductDetail,
 	MenuButton,
-	MenuItem,
-	Menu,
+	MenuProvider,
+	useMenu,
 	Drawer,
 	HomeTemplate,
 	DatePicker,
