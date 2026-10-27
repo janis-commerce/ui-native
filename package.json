@@ -22,7 +22,7 @@
 		"validate:code": "npm run lint -- --fix && tsc --project tsconfig.build.json --noEmit && npm t",
 		"test:commit": "jest --colors --bail --passWithNoTests --findRelatedTests",
 		"test:coverage": "tsc --noEmit && jest --collectCoverage --detectOpenHandles",
-		"build": "rm -rf dist && tsc --project tsconfig.build.json && cp -r android ios dist && tsc-alias -p tsconfig.aliases.json",
+		"build": "rm -rf dist && tsc --project tsconfig.build.json && mkdir -p dist/android/app/src/main && cp -r android/app/src/main/assets dist/android/app/src/main/ && tsc-alias -p tsconfig.aliases.json",
 		"update-stories": "sb-rn-get-stories --config-path .ondevice --use-js",
 		"storybook-web": "node scripts/set-app-mode.js web && storybook dev -p 6006 -c .storybook",
 		"storybook-web-build": "node scripts/set-app-mode.js web && storybook build -c .storybook -o .storybook_static",
