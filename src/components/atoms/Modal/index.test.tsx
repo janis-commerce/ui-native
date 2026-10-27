@@ -1,20 +1,28 @@
 import React, {createRef} from 'react';
 import {render} from '@testing-library/react-native';
 import {act, create} from 'react-test-renderer';
-import Modal from './index';
+import Modal, {ModalMethods} from './index';
 import {View, Modal as NativeModal} from 'react-native';
 
 describe('Modal component', () => {
-	it('render defaulModal', () => {
+	it('closes when the native modal requests it', () => {
+		const ModalRef = createRef<ModalMethods>();
 		const ModalComp = create(
-			<Modal>
+			<Modal ref={ModalRef}>
 				<View />
 			</Modal>
 		);
 		const renderedModal = ModalComp.root.findByType(NativeModal);
-		renderedModal.props.onRequestClose();
 
-		expect(renderedModal).toBeTruthy();
+		act(() => {
+			ModalRef.current?.open?.();
+		});
+		expect(renderedModal.props.visible).toBe(true);
+
+		act(() => {
+			renderedModal.props.onRequestClose();
+		});
+		expect(renderedModal.props.visible).toBe(false);
 	});
 
 	it('render full screen modal', () => {
@@ -24,7 +32,6 @@ describe('Modal component', () => {
 		renderedModal.props.onRequestClose();
 
 		expect(mockFn).toHaveBeenCalled();
-		expect(renderedModal).toBeTruthy();
 	});
 
 	describe('should allow access to modal methods', () => {
