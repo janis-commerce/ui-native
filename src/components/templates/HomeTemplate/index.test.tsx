@@ -131,17 +131,14 @@ describe('HomeTemplate component', () => {
 		expect(root.findByType(ScrollView).findAll(isSectionTitle)).toHaveLength(0);
 	});
 
-	it('passes the client and the selector to the header', () => {
+	it('passes the client to the header', () => {
 		const {root} = create(
 			<HomeTemplate
 				{...defaultProps}
 				client={{name: 'fizzmodarg', logoUrl: 'https://example.com/logo.png'}}
-				selector={{label: 'Belgrano', onPress: jest.fn()}}
-				testID="home"
 			/>
 		);
 		expect(root.findByType(Avatar).props.imageUrl).toBe('https://example.com/logo.png');
-		expect(root.findByProps({testID: 'home-header-selector'}).props.label).toBe('Belgrano');
 	});
 
 	it('renders disabled modules after enabled ones', () => {

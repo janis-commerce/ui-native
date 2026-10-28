@@ -65,7 +65,6 @@ Complete.args = {
 	appName: 'Picking',
 	environment: 'beta',
 	client: {name: 'fizzmodarg'},
-	selector: {label: 'Belgrano', onPress: () => {}},
 	modules: defaultModules,
 	sectionTitle: 'Seleccioná un módulo',
 	headerExtra: <ShiftChipMock />,
@@ -120,7 +119,6 @@ WMSExample.args = {
 	appName: 'WMS',
 	environment: 'qa',
 	client: {name: 'Disco'},
-	selector: {label: 'Disco Martínez', onPress: () => {}},
 	modules: [
 		{id: 'reception', icon: 'box_arrow_right', title: 'Ingreso de mercaderías', onPress: () => {}},
 		{

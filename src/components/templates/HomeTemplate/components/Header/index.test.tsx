@@ -2,7 +2,6 @@ import React from 'react';
 import {create} from 'react-test-renderer';
 import MenuButton from 'atoms/MenuButton';
 import Avatar from 'molecules/Avatar';
-import SelectorButton from 'molecules/SelectorButton';
 import {white} from 'theme/palette';
 import Header from './index';
 
@@ -47,27 +46,13 @@ describe('Header component', () => {
 		expect(root.findAllByType(MenuButton)).toHaveLength(0);
 	});
 
-	it('renders the selector with the label and action it receives', () => {
-		const onPress = jest.fn();
-		const {root} = create(
-			<Header {...defaultProps} selector={{label: 'Belgrano', onPress}} testID="header" />
-		);
-		const selector = root.findByProps({testID: 'header-selector'});
-		expect(selector.props.label).toBe('Belgrano');
-
-		selector.props.onPress();
-		expect(onPress).toHaveBeenCalledTimes(1);
-	});
-
-	it('renders neither the selector nor the avatar without them', () => {
+	it('does not render the avatar without a client', () => {
 		const {root} = create(<Header {...defaultProps} />);
-		expect(root.findAllByType(SelectorButton)).toHaveLength(0);
 		expect(root.findAllByType(Avatar)).toHaveLength(0);
 	});
 
-	it('renders neither the selector nor the avatar when their texts are empty', () => {
-		const {root} = create(<Header {...defaultProps} client={{name: ''}} selector={{label: ''}} />);
-		expect(root.findAllByType(SelectorButton)).toHaveLength(0);
+	it('does not render the avatar without a client name', () => {
+		const {root} = create(<Header {...defaultProps} client={{name: ''}} />);
 		expect(root.findAllByType(Avatar)).toHaveLength(0);
 	});
 });

@@ -1,7 +1,6 @@
 import React, {FC, ReactElement} from 'react';
 import {View, ScrollView, StyleSheet} from 'react-native';
 import Typography from 'atoms/Typography';
-import type {SelectorInfo} from 'molecules/SelectorButton';
 import {useMenu} from 'organisms/Menu';
 import type {ClientInfo} from 'ts/interfaces/client';
 import Header from './components/Header';
@@ -23,7 +22,6 @@ export interface HomeTemplateProps {
 	avatarBgColor?: string;
 	environment?: EnvironmentType;
 	client?: ClientInfo;
-	selector?: SelectorInfo;
 	modules: ModuleConfig[];
 	sectionTitle: string;
 	headerExtra?: ReactElement | null;
@@ -81,7 +79,6 @@ const HomeTemplate: FC<HomeTemplateProps> = ({
 	avatarBgColor,
 	environment,
 	client,
-	selector,
 	modules,
 	sectionTitle,
 	headerExtra = null,
@@ -103,7 +100,6 @@ const HomeTemplate: FC<HomeTemplateProps> = ({
 				onMenuPress={menu?.openMenu}
 				avatarBgColor={avatarBgColor}
 				client={client}
-				selector={selector}
 				testID={composeTestID(testID, 'header')}
 			/>
 
