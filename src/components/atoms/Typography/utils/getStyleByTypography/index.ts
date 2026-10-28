@@ -1,7 +1,7 @@
 import {StyleSheet, TextStyle} from 'react-native';
 import typography, {Typography} from 'theme/typography';
 type TypographyType = keyof Typography;
-type TypographySize = 'large' | 'medium' | 'small';
+type TypographySize = 'large' | 'medium' | 'mediumRegular' | 'small';
 interface TypographyStyle {
 	[key: string]: TextStyle;
 }

@@ -65,7 +65,7 @@ No usar valores hardcodeados en px.
 
 ## Tests
 
-Usa `react-test-renderer`, no React Testing Library. Los mocks globales (reanimated, gesture-handler, bottom-sheet, date-picker, toast-message) ya están configurados en `setupTest/jest.setup.js` — no hace falta redefinirlos en cada test.
+Usa `react-test-renderer`, no React Testing Library. Los mocks globales (reanimated, gesture-handler, bottom-sheet, date-picker, toast-message, safe-area-context) ya están configurados en `setupTest/jest.setup.js` — no hace falta redefinirlos en cada test.
 
 ## Peer dependencies nativas
 
@@ -77,3 +77,4 @@ Varios componentes dependen de módulos nativos declarados como `peerDependencie
 - `react-native-reanimated` + `react-native-gesture-handler` (SwipeUp, SwipeList)
 - `@react-native-async-storage/async-storage`
 - `react-native-toast-message`
+- `react-native-safe-area-context` (Drawer)

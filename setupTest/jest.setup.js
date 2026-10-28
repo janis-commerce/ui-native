@@ -62,6 +62,14 @@ jest.mock('react-native-gesture-handler', () => {
 	};
 });
 
+jest.mock('react-native-safe-area-context', () => {
+	const View = require('react-native').View;
+	return {
+		SafeAreaProvider: ({children}) => children,
+		SafeAreaView: View,
+	};
+});
+
 jest.mock('react-native-toast-message', () => ({
 	show: jest.fn(),
 	hide: jest.fn(),

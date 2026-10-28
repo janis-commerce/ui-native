@@ -1,11 +1,14 @@
 import {
 	Alert,
+	Badge,
 	Base,
 	Black,
 	Env,
 	Error,
 	GreyScale,
+	MidnightBlue,
 	Primary,
+	SecondaryBlue,
 	Success,
 	Warning,
 	White,
@@ -59,8 +62,18 @@ const alert: Alert = {
 	dark: '#FFBA0C',
 };
 const environment: Env = {
-	qa: '#1DB779',
-	beta: '#F13B70',
+	qa: '#33415C',
+	beta: '#FF6E08',
+};
+const badge: Badge = {
+	main: '#F13B70',
+};
+const midnightBlue: MidnightBlue = {
+	main: '#001233',
+};
+const secondaryBlue: SecondaryBlue = {
+	main: '#E4ECFA',
+	light: '#F1F5FD',
 };
 
 const palette: Palette = {
@@ -74,6 +87,24 @@ const palette: Palette = {
 	warning,
 	alert,
 	environment,
+	badge,
+	midnightBlue,
+	secondaryBlue,
 };
 
-export {primary, black, white, grey, base, success, error, warning, alert, environment, palette};
+export {
+	primary,
+	black,
+	white,
+	grey,
+	base,
+	success,
+	error,
+	warning,
+	alert,
+	environment,
+	badge,
+	midnightBlue,
+	secondaryBlue,
+	palette,
+};

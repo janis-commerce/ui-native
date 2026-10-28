@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Apps can now build the redesigned Home from a single `HomeTemplate`: a header with the menu button and the client logo, the greeting and user name with the environment chip, and the module cards over a light blue gradient, with badges, subtitles, loading skeletons and the disabled modules listed last. The section title stays fixed while the cards scroll, the menu button shows up when the app mounts `MenuProvider`, and every text is received already translated [APPSRN-494](https://janiscommerce.atlassian.net/browse/APPSRN-494)
+- Apps can now mount the side menu once with `MenuProvider` and open it from any screen with `useMenu()` and `MenuButton`, so no screen has to build or pass the menu state: it opens above the whole screen, navigation header included, closes from the overlay or the Android back button, and runs the selected item or logout action once it has finished closing. It shows the user, the client with its logo, the items with badges, the logout action and the version label [APPSRN-494](https://janiscommerce.atlassian.net/browse/APPSRN-494)
+- `Drawer` can now show any content in a side panel that slides in from the left or the right above the whole screen, and notifies with `onClosed` when it finishes closing [APPSRN-494](https://janiscommerce.atlassian.net/browse/APPSRN-494)
+- `palette` now includes `badge.main`, `midnightBlue.main` and `secondaryBlue` (`main` and `light`) [APPSRN-494](https://janiscommerce.atlassian.net/browse/APPSRN-494)
+- `Typography` now supports the `mediumRegular` size for the `title` type [APPSRN-494](https://janiscommerce.atlassian.net/browse/APPSRN-494)
+- **Internal** `composeTestID(testID, suffix)` in `utils` builds child `testID`s and returns `undefined` when the parent has none, so components stop emitting `undefined-*` ids [APPSRN-494](https://janiscommerce.atlassian.net/browse/APPSRN-494)
+
+### Changed
+
+- `palette.environment` now uses the colors the apps already use for each environment, `qa` `#33415C` and `beta` `#FF6E08`, so the environment is identified the same way in every app [APPSRN-494](https://janiscommerce.atlassian.net/browse/APPSRN-494)
+
 ## [2.6.1] 2026-09-02
 
 ### Fixed
