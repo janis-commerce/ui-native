@@ -18,13 +18,11 @@ const defaultUserInfo = {
 };
 
 const defaultMenuItems = [
-	{id: 'store', icon: 'store', title: 'Palermo', onPress: () => {}},
-	{id: 'end-shift', icon: 'stop', title: 'Terminar turno', onPress: () => {}},
-	{id: 'notifications', icon: 'bell', title: 'Notificaciones', onPress: () => {}, badge: 23},
+	{id: 'notifications', icon: 'bell', title: 'Notificaciones', onPress: () => {}, badge: 9},
 	{id: 'settings', icon: 'gear', title: 'Configuración', onPress: () => {}},
 ];
 
-const defaultClient = {name: 'fizzmodarg', onPress: () => {}};
+const defaultClient = {name: 'fizzmodarg'};
 
 const Container = ({children}) => (
 	<View style={{flex: 1, width: 300, backgroundColor: '#fff'}}>{children}</View>
@@ -70,14 +68,14 @@ export const WithHeaderExtra = (props) => (
 			{...props}
 			headerExtra={
 				<View style={{paddingVertical: 8}}>
-					<Text style={{color: '#2979FF', fontSize: 14}}>WH Constituyentes ▼</Text>
+					<Text style={{color: '#2979FF', fontSize: 14}}>Contenido extra de la app</Text>
 				</View>
 			}
 		/>
 	</Container>
 );
 
-WithHeaderExtra.storyName = 'With Header Extra (Warehouse Selector)';
+WithHeaderExtra.storyName = 'With Header Extra';
 WithHeaderExtra.args = {
 	userInfo: defaultUserInfo,
 	menuItems: defaultMenuItems,

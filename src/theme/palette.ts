@@ -6,7 +6,9 @@ import {
 	Env,
 	Error,
 	GreyScale,
+	MidnightBlue,
 	Primary,
+	SecondaryBlue,
 	Success,
 	Warning,
 	White,
@@ -66,6 +68,13 @@ const environment: Env = {
 const badge: Badge = {
 	main: '#F13B70',
 };
+const midnightBlue: MidnightBlue = {
+	main: '#001233',
+};
+const secondaryBlue: SecondaryBlue = {
+	main: '#E4ECFA',
+	light: '#F1F5FD',
+};
 
 const palette: Palette = {
 	primary,
@@ -79,6 +88,8 @@ const palette: Palette = {
 	alert,
 	environment,
 	badge,
+	midnightBlue,
+	secondaryBlue,
 };
 
 export {
@@ -93,5 +104,7 @@ export {
 	alert,
 	environment,
 	badge,
+	midnightBlue,
+	secondaryBlue,
 	palette,
 };

@@ -9,6 +9,7 @@ export type DrawerPosition = 'left' | 'right';
 export interface DrawerProps {
 	isOpen: boolean;
 	onClose: () => void;
+	onClosed?: () => void;
 	children: ReactElement;
 	position?: DrawerPosition;
 	width?: number;
@@ -18,11 +19,12 @@ export interface DrawerProps {
 	testID?: string;
 }
 
-const DEFAULT_WIDTH_RATIO = 0.78;
+const DEFAULT_WIDTH_RATIO = 320 / 360;
 
 const Drawer: FC<DrawerProps> = ({
 	isOpen,
 	onClose,
+	onClosed,
 	children,
 	position = 'left',
 	width,
@@ -39,6 +41,11 @@ const Drawer: FC<DrawerProps> = ({
 		new Animated.Value(position === 'left' ? -drawerWidth : screenWidth)
 	).current;
 	const overlayOpacity = useRef(new Animated.Value(0)).current;
+	const onClosedRef = useRef(onClosed);
+
+	useEffect(() => {
+		onClosedRef.current = onClosed;
+	}, [onClosed]);
 
 	useEffect(() => {
 		const openValue = position === 'left' ? 0 : screenWidth - drawerWidth;
@@ -66,6 +73,7 @@ const Drawer: FC<DrawerProps> = ({
 		animation.start(({finished}) => {
 			if (finished && !isOpen) {
 				setIsRendered(false);
+				onClosedRef.current?.();
 			}
 		});
 

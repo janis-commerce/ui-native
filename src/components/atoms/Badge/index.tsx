@@ -10,15 +10,16 @@ export interface BadgeProps {
 	testID?: string;
 }
 
-const validBadgeSize = scaledForDevice(20, moderateScale);
+const validBadgeHeight = scaledForDevice(18, moderateScale);
+const validBadgeMinWidth = scaledForDevice(24, horizontalScale);
 const validBadgePadding = scaledForDevice(4, horizontalScale);
 
 const styles = StyleSheet.create({
 	badge: {
 		backgroundColor: badgeColor.main,
-		borderRadius: validBadgeSize / 2,
-		minWidth: validBadgeSize,
-		height: validBadgeSize,
+		borderRadius: validBadgeHeight / 2,
+		minWidth: validBadgeMinWidth,
+		height: validBadgeHeight,
 		justifyContent: 'center',
 		alignItems: 'center',
 		paddingHorizontal: validBadgePadding,
@@ -32,7 +33,7 @@ const Badge: FC<BadgeProps> = ({count, style, testID}) => {
 
 	return (
 		<View style={[styles.badge, style]} testID={testID}>
-			<Typography type="label" size="small" color={base.white}>
+			<Typography type="label" size="medium" color={base.white}>
 				{String(count)}
 			</Typography>
 		</View>

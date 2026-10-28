@@ -19,6 +19,7 @@ export type Typography = {
 	title: {
 		large: TypographyItem;
 		medium: TypographyItem;
+		mediumRegular: TypographyItem;
 		small: TypographyItem;
 	};
 	label: {
@@ -72,6 +73,11 @@ const typography: Typography = {
 			fontSize: scaleSize(18),
 			fontWeight: '700',
 			lineHeight: 22,
+		},
+		mediumRegular: {
+			fontSize: scaleSize(18),
+			fontWeight: '400',
+			lineHeight: 21,
 		},
 		small: {
 			fontSize: scaleSize(14),

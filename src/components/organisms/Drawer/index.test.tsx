@@ -4,7 +4,7 @@ import {Animated, Modal, StyleSheet, Text, View} from 'react-native';
 import Drawer from './index';
 
 const SCREEN_WIDTH = 750;
-const DEFAULT_WIDTH = SCREEN_WIDTH * 0.78;
+const DEFAULT_WIDTH = SCREEN_WIDTH * (320 / 360);
 
 const defaultProps = {
 	isOpen: false,
@@ -109,6 +109,21 @@ describe('Drawer component', () => {
 
 		act(() => onCloseAnimationEnd({finished: true}));
 		expect(isVisible(tree.root)).toBe(false);
+	});
+
+	it('notifies when the close animation finishes', () => {
+		const onClosed = jest.fn();
+		const tree = render(<Drawer {...defaultProps} isOpen onClosed={onClosed} />);
+		act(() => {
+			tree.update(<Drawer {...defaultProps} isOpen={false} onClosed={onClosed} />);
+		});
+		const onCloseAnimationEnd = startAnimation.mock.calls[1][0];
+
+		act(() => onCloseAnimationEnd({finished: false}));
+		expect(onClosed).not.toHaveBeenCalled();
+
+		act(() => onCloseAnimationEnd({finished: true}));
+		expect(onClosed).toHaveBeenCalledTimes(1);
 	});
 
 	it('stops the running animation on unmount', () => {
