@@ -35,6 +35,8 @@ const SKELETON_MODULES_COUNT = 4;
 const validSectionPaddingHorizontal = scaledForDevice(24, horizontalScale);
 const validSectionPaddingVertical = scaledForDevice(24, moderateScale);
 const validSectionBorderRadius = scaledForDevice(30, moderateScale);
+const validCardsTopGap = scaledForDevice(16, moderateScale);
+const validCardShadowSpace = scaledForDevice(8, moderateScale);
 
 const styles = StyleSheet.create({
 	container: {
@@ -53,10 +55,12 @@ const styles = StyleSheet.create({
 	},
 	cards: {
 		flex: 1,
+		marginTop: validCardsTopGap,
 	},
 	cardsContent: {
 		paddingHorizontal: validSectionPaddingHorizontal,
-		paddingVertical: validSectionPaddingVertical,
+		paddingTop: validCardShadowSpace,
+		paddingBottom: validSectionPaddingVertical,
 	},
 });
 
