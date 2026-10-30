@@ -4,7 +4,7 @@ import getStyleByTypography from './utils/getStyleByTypography';
 
 export type TypographyType = 'display' | 'heading' | 'title' | 'label' | 'body' | 'overline';
 
-export type TypographySize = 'large' | 'medium' | 'small';
+export type TypographySize = 'large' | 'medium' | 'mediumRegular' | 'small';
 
 interface TypographyProps extends TextProps {
 	children?: ReactElement | string;

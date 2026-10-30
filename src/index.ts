@@ -15,6 +15,7 @@ import BaseInput from 'atoms/BaseInput';
 import Typography from 'atoms/Typography';
 import Collapsible from 'atoms/Collapsible';
 import Modal from 'atoms/Modal';
+import MenuButton from 'atoms/MenuButton';
 import {DatePicker, DatePickerModal} from 'atoms/DatePicker';
 
 // Molecules
@@ -40,6 +41,11 @@ import FullScreenMessage from 'organisms/FullScreenMessage';
 import SwipeItemSelectionList from 'organisms/SwipeItemSelectionList';
 import ErrorBoundary from 'molecules/ErrorBoundary';
 import ProductDetail from 'organisms/ProductDetail';
+import {MenuProvider, useMenu} from 'organisms/Menu';
+import Drawer from 'organisms/Drawer';
+
+// Templates
+import HomeTemplate from 'templates/HomeTemplate';
 
 // Misc
 import {palette} from 'theme/palette';
@@ -86,6 +92,11 @@ export {
 	Modal,
 	BaseDetail,
 	ProductDetail,
+	MenuButton,
+	MenuProvider,
+	useMenu,
+	Drawer,
+	HomeTemplate,
 	DatePicker,
 	DatePickerModal,
 };

@@ -7,3 +7,6 @@ export const isDevEnv = () => {
 };
 
 export const isArray = (arr: any[]) => !!(arr instanceof Array);
+
+export const composeTestID = (testID: string | undefined, suffix: string) =>
+	testID ? `${testID}-${suffix}` : undefined;

@@ -13,6 +13,17 @@ export interface Env {
 	qa: string;
 	beta: string;
 }
+
+export interface Badge {
+	main: string;
+}
+export interface MidnightBlue {
+	main: string;
+}
+export interface SecondaryBlue {
+	main: string;
+	light: string;
+}
 export interface Base {
 	[key: string]: string;
 	black: string;
@@ -50,4 +61,7 @@ export interface Palette {
 	warning: Warning;
 	alert: Alert;
 	environment: Env;
+	badge: Badge;
+	midnightBlue: MidnightBlue;
+	secondaryBlue: SecondaryBlue;
 }
