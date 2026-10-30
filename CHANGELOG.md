@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.7.0] 2026-10-30
+
 ### Added
 
 - Apps can now build the redesigned Home from a single `HomeTemplate`: a header with the menu button and the client logo, the greeting and user name with the environment chip, and the module cards over a light blue gradient, with badges, subtitles, loading skeletons and the disabled modules listed last. The section title stays fixed while the cards scroll, the menu button shows up when the app mounts `MenuProvider`, and every text is received already translated [APPSRN-494](https://janiscommerce.atlassian.net/browse/APPSRN-494)
@@ -19,6 +21,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - `palette.environment` now uses the colors the apps already use for each environment, `qa` `#33415C` and `beta` `#FF6E08`, so the environment is identified the same way in every app [APPSRN-494](https://janiscommerce.atlassian.net/browse/APPSRN-494)
+- The published package now ships only the font assets, still at `dist/android/app/src/main/assets` (the path apps add to `assets.srcDirs`), so installing it no longer brings the React Native template app that used to be copied into `dist/android` and `dist/ios` [APPSRN-521](https://janiscommerce.atlassian.net/browse/APPSRN-521)
+- Component prop types now type-check against React 19 and React Native 0.80: `BaseButton` `pressedStyle` takes a view style, and `SwipeList` `renderHeader` and `Select` custom option renderers return a `ReactNode`, so TypeScript apps on those versions can pass them without casts [APPSRN-521](https://janiscommerce.atlassian.net/browse/APPSRN-521)
+- **Internal** `npm run storybook:android` builds and opens the on-device Storybook again: the development environment now runs React Native 0.80.3, React 19.1 and Jest 29, the versions the apps run, `android/` and `ios/` were regenerated from the RN 0.80.3 template (New Architecture, Hermes, `armeabi-v7a` and `arm64-v8a` only) and the on-device Storybook moved from 6.5 to 10 [APPSRN-521](https://janiscommerce.atlassian.net/browse/APPSRN-521)
+- **Internal** Migrated the web Storybook from 6.5 to 10 on Vite (`@storybook/react-native-web-vite`), since 6.5 renders with `ReactDOM.render`, which React 19 removed [APPSRN-521](https://janiscommerce.atlassian.net/browse/APPSRN-521)
 
 ## [2.6.1] 2026-09-02
 
