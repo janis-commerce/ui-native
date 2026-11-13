@@ -103,7 +103,7 @@ describe('Switch', () => {
 		it('is at the start when unchecked', () => {
 			const root = render(<Switch checked={false} />);
 
-			expect(getTrack(root).justifyContent).toBe('flex-start');
+			expect(getTrack(root).justifyContent).toBeUndefined();
 		});
 	});
 

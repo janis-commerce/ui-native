@@ -39,6 +39,9 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		alignItems: 'center',
 	},
+	trackChecked: {
+		justifyContent: 'flex-end',
+	},
 	thumb: {
 		width: thumbSize,
 		height: thumbSize,
@@ -90,11 +93,7 @@ const Switch: FC<SwitchProps> = ({checked, onChange, disabled = false, style, ..
 				accessibilityRole="switch"
 				accessibilityState={{checked, disabled}}>
 				{({pressed}) => (
-					<View
-						style={[
-							styles.track,
-							{backgroundColor: color, justifyContent: checked ? 'flex-end' : 'flex-start'},
-						]}>
+					<View style={[styles.track, {backgroundColor: color}, checked && styles.trackChecked]}>
 						<View>
 							{pressed && (
 								<View style={[styles.halo, {backgroundColor: `${color}${haloOpacity}`}]} />
