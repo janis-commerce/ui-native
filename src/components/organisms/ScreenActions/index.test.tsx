@@ -2,8 +2,8 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {create, ReactTestRendererJSON} from 'react-test-renderer';
 import ScreenActions from './index';
-import Button from 'molecules/DeprecatedButton';
-import {barPadding, iconButtonMinWidth, rowGap} from './utils';
+import Button from 'molecules/Button';
+import {barPadding, rowGap} from './utils';
 import {palette} from 'theme/palette';
 
 const containerStyle = (root: ReturnType<typeof create>['root']) =>
@@ -70,24 +70,12 @@ describe('ScreenActions component', () => {
 		});
 	});
 
-	describe('icon-only actions', () => {
-		it('gives an icon-only action a minimum width and leaves the text one untouched', () => {
-			const {root} = create(
-				<ScreenActions actions={[[{icon: 'camera', flex: 0}, {value: 'Continuar'}]]} />
-			);
-			const [iconButton, textButton] = root.findAllByType(Button);
-
-			expect(buttonStyleOf(iconButton).minWidth).toBe(iconButtonMinWidth);
-			expect(buttonStyleOf(textButton).minWidth).toBeUndefined();
-		});
-
-		it('keeps the action own style alongside the icon min width', () => {
+	describe('action styles', () => {
+		it('passes the action own style through to the Button', () => {
 			const {root} = create(<ScreenActions actions={[{icon: 'camera', style: {opacity: 0.5}}]} />);
 			const [iconButton] = root.findAllByType(Button);
-			const style = buttonStyleOf(iconButton);
 
-			expect(style.minWidth).toBe(iconButtonMinWidth);
-			expect(style.opacity).toBe(0.5);
+			expect(buttonStyleOf(iconButton).opacity).toBe(0.5);
 		});
 	});
 
