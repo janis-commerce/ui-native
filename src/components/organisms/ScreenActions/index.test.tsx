@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {create, ReactTestRendererJSON} from 'react-test-renderer';
 import ScreenActions from './index';
-import Button from 'molecules/Button';
+import Button from 'molecules/DeprecatedButton';
 import {barPadding, iconButtonMinWidth, rowGap} from './utils';
 import {palette} from 'theme/palette';
 

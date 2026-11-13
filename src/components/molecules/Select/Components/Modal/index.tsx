@@ -3,7 +3,7 @@ import {Modal as ModalComponent, StyleSheet, View} from 'react-native';
 import {base} from 'theme/palette';
 import {DropdownProps} from '../Dropdown';
 import {moderateScale, scaledForDevice} from 'scale';
-import Button from 'molecules/Button';
+import Button from 'molecules/DeprecatedButton';
 
 interface ModalProps extends DropdownProps {
 	isMulti: boolean;
