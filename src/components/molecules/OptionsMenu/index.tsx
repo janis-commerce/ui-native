@@ -4,6 +4,7 @@ import Icon from 'atoms/Icon';
 import {base, primary} from 'theme/palette';
 import {horizontalScale, moderateScale, scaledForDevice, verticalScale} from 'scale';
 import Option from './components/Option';
+import {getOptionKey} from './utils';
 import type {OptionsMenuOption, OptionsMenuProps} from './types';
 
 export type {OptionsMenuOption, OptionsMenuProps} from './types';
@@ -70,9 +71,15 @@ const OptionsMenu: FC<OptionsMenuProps> = ({options, color = primary.main, style
 			</Pressable>
 			<Modal visible={!!anchor} transparent animationType="fade" onRequestClose={close}>
 				<Pressable style={styles.backdrop} onPress={close}>
-					<View style={[styles.menu, anchor]}>
-						{options.map((option) => (
-							<Option key={option.title} {...option} onPress={() => select(option)} />
+					{/* Claims touches that disabled options and the menu padding don't, so they never reach the backdrop and close the menu. */}
+					<View style={[styles.menu, anchor]} onStartShouldSetResponder={() => true}>
+						{options.map((option, index) => (
+							<Option
+								key={getOptionKey(option, index)}
+								title={option.title}
+								disabled={option.disabled}
+								onPress={() => select(option)}
+							/>
 						))}
 					</View>
 				</Pressable>

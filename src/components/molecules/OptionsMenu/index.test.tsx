@@ -62,6 +62,16 @@ describe('OptionsMenu', () => {
 		});
 	});
 
+	it('keeps touches on the menu itself from reaching the backdrop', () => {
+		const tree = render([edit]);
+		openMenu(tree);
+
+		const menu = tree.root
+			.findByType(Modal)
+			.find((node) => node.type === View && Array.isArray(node.props.style));
+		expect(menu.props.onStartShouldSetResponder()).toBe(true);
+	});
+
 	it('closes and runs the action when an option is chosen', () => {
 		const tree = render([edit]);
 		openMenu(tree);
