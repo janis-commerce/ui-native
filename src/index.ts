@@ -33,6 +33,7 @@ import ItemSelectionButton from 'molecules/ItemSelectionButton';
 import MainCardList from 'molecules/MainCardList';
 import Input from 'molecules/Input';
 import BaseDetail from 'molecules/BaseDetail';
+import OptionsMenu from 'molecules/OptionsMenu';
 
 // Organisms
 import ScreenActions from 'organisms/ScreenActions';
@@ -93,6 +94,7 @@ export {
 	BaseDetail,
 	ProductDetail,
 	MenuButton,
+	OptionsMenu,
 	MenuProvider,
 	useMenu,
 	Drawer,
