@@ -15,6 +15,7 @@ const trackPadding = (trackHeight - thumbSize) / 2;
 const haloOffset = (haloSize - thumbSize) / 2;
 const checkSize = 12;
 const haloOpacity = '33';
+const swipeThreshold = 10;
 
 const getTrackColor = (checked: boolean, disabled: boolean) => {
 	if (disabled) {
@@ -69,7 +70,7 @@ const Switch: FC<SwitchProps> = ({checked, onChange, disabled = false, style, ..
 	const swipe = useRef(
 		PanResponder.create({
 			onMoveShouldSetPanResponder: (_, {dx, dy}) =>
-				!latest.current.disabled && Math.abs(dx) > 10 && Math.abs(dx) > Math.abs(dy),
+				!latest.current.disabled && Math.abs(dx) > swipeThreshold && Math.abs(dx) > Math.abs(dy),
 			onPanResponderRelease: (_, {dx}) => {
 				const next = dx > 0;
 				if (next !== latest.current.checked) {
