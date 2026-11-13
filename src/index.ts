@@ -7,6 +7,7 @@ import List from 'atoms/List';
 import Loading from 'atoms/Loading';
 import RadioButton from 'atoms/RadioButton';
 import StatusChip from 'atoms/StatusChip';
+import Switch from 'atoms/Switch';
 import Svg from 'atoms/Svg';
 import SwipeUp from 'atoms/SwipeUp';
 import {SwipeUpFlatList, SwipeUpScrollView, SwipeUpView} from 'atoms/SwipeUp/childComponents';
@@ -62,6 +63,7 @@ export {
 	Loading,
 	Svg,
 	StatusChip,
+	Switch,
 	palette,
 	LoadingFullScreen,
 	RadioButton,
