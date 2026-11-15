@@ -19,7 +19,11 @@ const styles = StyleSheet.create({
 	},
 });
 
-const Option: FC<OptionsMenuOption> = ({title, onPress, disabled}) => (
+const Option: FC<Pick<OptionsMenuOption, 'title' | 'onPress' | 'disabled'>> = ({
+	title,
+	onPress,
+	disabled,
+}) => (
 	<Pressable
 		// Apps are plain JS and may pass a count; RN's accessibility action only blocks a strict `true`.
 		disabled={!!disabled}
