@@ -21,10 +21,15 @@ const styles = StyleSheet.create({
 
 const Option: FC<OptionsMenuOption> = ({title, onPress, disabled}) => (
 	<Pressable
-		disabled={disabled}
+		// Apps are plain JS and may pass a count; RN's accessibility action only blocks a strict `true`.
+		disabled={!!disabled}
 		onPress={onPress}
 		style={({pressed}) => [styles.container, pressed && styles.pressed]}>
-		<Typography type="body" size="large" color={disabled ? grey[400] : black.main}>
+		<Typography
+			type="body"
+			size="large"
+			color={disabled ? grey[400] : black.main}
+			numberOfLines={1}>
 			{title}
 		</Typography>
 	</Pressable>

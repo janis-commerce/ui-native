@@ -1,10 +1,9 @@
-import React, {FC, useRef, useState} from 'react';
+import React, {FC, useEffect, useRef, useState} from 'react';
 import {Modal, Pressable, StyleSheet, View, useWindowDimensions} from 'react-native';
 import Icon from 'atoms/Icon';
 import {base, primary} from 'theme/palette';
 import {horizontalScale, moderateScale, scaledForDevice, verticalScale} from 'scale';
 import Option from './components/Option';
-import {getOptionKey} from './utils';
 import type {OptionsMenuOption, OptionsMenuProps} from './types';
 
 export type {OptionsMenuOption, OptionsMenuProps} from './types';
@@ -15,7 +14,10 @@ interface Anchor {
 }
 
 const validIconSize = scaledForDevice(24, moderateScale);
+// Brings the touch area to 48 (Android's minimum target) around the 24 icon.
+const validButtonPadding = scaledForDevice(12, moderateScale);
 const validMinWidth = scaledForDevice(167, horizontalScale);
+const validMaxWidth = scaledForDevice(280, horizontalScale);
 const validRadius = scaledForDevice(4, moderateScale);
 const validMenuPadding = scaledForDevice(8, verticalScale);
 const validShadowRadius = scaledForDevice(4, moderateScale);
@@ -26,12 +28,16 @@ const styles = StyleSheet.create({
 	verticalIcon: {
 		transform: [{rotate: '90deg'}],
 	},
+	button: {
+		padding: validButtonPadding,
+	},
 	backdrop: {
 		flex: 1,
 	},
 	menu: {
 		position: 'absolute',
 		minWidth: validMinWidth,
+		maxWidth: validMaxWidth,
 		paddingVertical: validMenuPadding,
 		backgroundColor: base.white,
 		borderRadius: validRadius,
@@ -47,8 +53,16 @@ const OptionsMenu: FC<OptionsMenuProps> = ({options, color = primary.main, style
 	const buttonRef = useRef<View>(null);
 	const [anchor, setAnchor] = useState<Anchor | null>(null);
 	const {width: windowWidth} = useWindowDimensions();
+	const hasOptions = !!options?.length;
 
-	if (!options?.length) {
+	// Without this the menu remembers it was open and pops back up on its own when options return.
+	useEffect(() => {
+		if (!hasOptions) {
+			setAnchor(null);
+		}
+	}, [hasOptions]);
+
+	if (!hasOptions) {
 		return null;
 	}
 
@@ -66,16 +80,16 @@ const OptionsMenu: FC<OptionsMenuProps> = ({options, color = primary.main, style
 
 	return (
 		<View ref={buttonRef} style={style} collapsable={false}>
-			<Pressable onPress={open} testID={testID}>
+			<Pressable onPress={open} style={styles.button} testID={testID}>
 				<Icon name="options" size={validIconSize} color={color} style={styles.verticalIcon} />
 			</Pressable>
 			<Modal visible={!!anchor} transparent animationType="fade" onRequestClose={close}>
 				<Pressable style={styles.backdrop} onPress={close}>
-					{/* Claims touches that disabled options and the menu padding don't, so they never reach the backdrop and close the menu. */}
+					{/* Disabled options don't take the touch, so without this it reaches the backdrop and closes the menu. */}
 					<View style={[styles.menu, anchor]} onStartShouldSetResponder={() => true}>
 						{options.map((option, index) => (
 							<Option
-								key={getOptionKey(option, index)}
+								key={option.key ?? option.id ?? String(index)}
 								title={option.title}
 								disabled={option.disabled}
 								onPress={() => select(option)}

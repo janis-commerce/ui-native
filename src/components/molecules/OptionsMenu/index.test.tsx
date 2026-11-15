@@ -56,6 +56,7 @@ describe('OptionsMenu', () => {
 		const menu = tree.root
 			.findByType(Modal)
 			.find((node) => node.type === View && Array.isArray(node.props.style));
+		expect(menu.props.style[0].maxWidth).toBeDefined();
 		expect(menu.props.style[1]).toEqual({
 			top: 44,
 			right: Dimensions.get('window').width - 324,
@@ -89,6 +90,16 @@ describe('OptionsMenu', () => {
 		act(() => tree.root.findByType(Modal).findAllByType(Pressable)[0].props.onPress());
 
 		expect(edit.onPress).not.toHaveBeenCalled();
+		expect(tree.root.findByType(Modal).props.visible).toBe(false);
+	});
+
+	it('stays closed when options come back after being emptied while open', () => {
+		const tree = render([edit]);
+		openMenu(tree);
+
+		act(() => tree.update(<OptionsMenu options={[]} testID="options-menu" />));
+		act(() => tree.update(<OptionsMenu options={[edit]} testID="options-menu" />));
+
 		expect(tree.root.findByType(Modal).props.visible).toBe(false);
 	});
 

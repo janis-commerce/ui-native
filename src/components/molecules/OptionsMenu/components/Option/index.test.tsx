@@ -23,6 +23,19 @@ describe('OptionsMenu Option', () => {
 		expect(root.findByType(Typography).props.color).toBe(grey[400]);
 	});
 
+	it('passes a strict boolean to Pressable when disabled comes as a truthy non-boolean', () => {
+		const disabled = 3 as unknown as boolean;
+		const {root} = create(<Option title="Retomar" onPress={jest.fn()} disabled={disabled} />);
+
+		expect(root.findByType(Pressable).props.disabled).toBe(true);
+	});
+
+	it('keeps long titles on a single line', () => {
+		const {root} = create(<Option title="Editar" onPress={jest.fn()} />);
+
+		expect(root.findByType(Typography).props.numberOfLines).toBe(1);
+	});
+
 	it('highlights while pressed', () => {
 		const {root} = create(<Option title="Editar" onPress={jest.fn()} />);
 		const styleFn = root.findByType(Pressable).props.style;
