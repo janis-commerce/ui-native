@@ -40,6 +40,11 @@ describe('OptionsMenu', () => {
 		expect(create(<OptionsMenu options={[]} />).toJSON()).toBeNull();
 	});
 
+	it('renders nothing when options are missing', () => {
+		const missing = undefined as unknown as OptionsMenuOption[];
+		expect(create(<OptionsMenu options={missing} />).toJSON()).toBeNull();
+	});
+
 	it('renders the options icon rotated so it reads vertical', () => {
 		const icon = render([edit]).root.findByType(Icon);
 		expect(icon.props.name).toBe('options');

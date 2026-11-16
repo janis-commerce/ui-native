@@ -1,7 +1,7 @@
 import React, {FC, useEffect, useRef, useState} from 'react';
 import {Modal, Pressable, StyleSheet, View, useWindowDimensions} from 'react-native';
 import Icon from 'atoms/Icon';
-import {base, primary} from 'theme/palette';
+import {base} from 'theme/palette';
 import {horizontalScale, moderateScale, scaledForDevice, verticalScale} from 'scale';
 import Option from './components/Option';
 import type {OptionsMenuOption, OptionsMenuProps} from './types';
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
 	},
 });
 
-const OptionsMenu: FC<OptionsMenuProps> = ({options, color = primary.main, style, testID}) => {
+const OptionsMenu: FC<OptionsMenuProps> = ({options, color, style, testID}) => {
 	const buttonRef = useRef<View>(null);
 	const [anchor, setAnchor] = useState<Anchor | null>(null);
 	const {width: windowWidth} = useWindowDimensions();

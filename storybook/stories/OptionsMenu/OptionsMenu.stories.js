@@ -23,8 +23,6 @@ export const Default = () => (
 	</Container>
 );
 
-Default.storyName = 'Default';
-
 export const WithDisabledOption = () => (
 	<Container>
 		<OptionsMenu
