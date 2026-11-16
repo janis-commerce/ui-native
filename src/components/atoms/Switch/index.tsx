@@ -1,5 +1,5 @@
-import React, {FC, useRef} from 'react';
-import {PanResponder, Pressable, StyleSheet, View} from 'react-native';
+import React, {FC} from 'react';
+import {Pressable, StyleSheet, View} from 'react-native';
 import Icon from 'atoms/Icon';
 import {base, grey, primary} from 'theme/palette';
 import {horizontalScale, moderateScale, scaledForDevice} from 'scale';
@@ -15,7 +15,6 @@ const trackPadding = (trackHeight - thumbSize) / 2;
 const haloOffset = (haloSize - thumbSize) / 2;
 const checkSize = 12;
 const haloOpacity = '33';
-const swipeThreshold = 10;
 
 const getTrackColor = (checked: boolean, disabled: boolean) => {
 	if (disabled) {
@@ -63,49 +62,25 @@ const styles = StyleSheet.create({
 const Switch: FC<SwitchProps> = ({checked, onChange, disabled = false, style, ...props}) => {
 	const color = getTrackColor(checked, disabled);
 
-	// The responder is created once because it keeps the gesture state inside it: a new one
-	// built by a re-render mid-swipe would release with dx 0. The ref gives it the latest props.
-	const latest = useRef({checked, disabled, onChange});
-	latest.current = {checked, disabled, onChange};
-
-	// On a wrapper because RN only lets ancestors of the current responder (the Pressable)
-	// take over on move; taking over cancels the Pressable's touch, so a swipe never fires onPress.
-	const swipe = useRef(
-		PanResponder.create({
-			onMoveShouldSetPanResponder: (_, {dx, dy}) =>
-				!latest.current.disabled && Math.abs(dx) > swipeThreshold && Math.abs(dx) > Math.abs(dy),
-			onPanResponderRelease: (_, {dx}) => {
-				const next = dx > 0;
-				if (next !== latest.current.checked) {
-					latest.current.onChange?.(next);
-				}
-			},
-		})
-	).current;
-
 	return (
-		<View style={style} {...swipe.panHandlers}>
-			<Pressable
-				{...props}
-				style={styles.touchTarget}
-				disabled={disabled}
-				onPress={() => onChange?.(!checked)}
-				accessibilityRole="switch"
-				accessibilityState={{checked, disabled}}>
-				{({pressed}) => (
-					<View style={[styles.track, {backgroundColor: color}, checked && styles.trackChecked]}>
-						<View>
-							{pressed && (
-								<View style={[styles.halo, {backgroundColor: `${color}${haloOpacity}`}]} />
-							)}
-							<View style={styles.thumb}>
-								<Icon name="check_bold" color={color} size={checkSize} />
-							</View>
+		<Pressable
+			{...props}
+			style={[styles.touchTarget, style]}
+			disabled={disabled}
+			onPress={() => onChange?.(!checked)}
+			accessibilityRole="switch"
+			accessibilityState={{checked, disabled}}>
+			{({pressed}) => (
+				<View style={[styles.track, {backgroundColor: color}, checked && styles.trackChecked]}>
+					<View>
+						{pressed && <View style={[styles.halo, {backgroundColor: `${color}${haloOpacity}`}]} />}
+						<View style={styles.thumb}>
+							<Icon name="check_bold" color={color} size={checkSize} />
 						</View>
 					</View>
-				)}
-			</Pressable>
-		</View>
+				</View>
+			)}
+		</Pressable>
 	);
 };
 

@@ -1,6 +1,6 @@
 import React from 'react';
-import {act, create} from 'react-test-renderer';
-import {PanResponder, Pressable, StyleSheet, View} from 'react-native';
+import {create} from 'react-test-renderer';
+import {Pressable, StyleSheet, View} from 'react-native';
 import Icon from 'atoms/Icon';
 import Switch from './index';
 
@@ -17,17 +17,6 @@ const getTrack = (root: ReturnType<typeof render>) =>
 
 const findHalos = (root: ReturnType<typeof render>) =>
 	findStyles(root, ({position}) => position === 'absolute');
-
-const spyOnSwipe = () => {
-	const spy = jest.spyOn(PanResponder, 'create');
-	const getConfig = () => spy.mock.calls[0][0] as any;
-
-	return {
-		shouldCapture: (dx: number, dy: number) =>
-			getConfig().onMoveShouldSetPanResponder({}, {dx, dy}),
-		release: (dx: number) => getConfig().onPanResponderRelease({}, {dx}),
-	};
-};
 
 describe('Switch', () => {
 	describe('onChange', () => {
@@ -67,6 +56,14 @@ describe('Switch', () => {
 		const root = render(<Switch checked />);
 
 		expect(root.findByType(Icon).props.name).toBe('check_bold');
+	});
+
+	it('applies the style on top of the touch target', () => {
+		const {props} = render(<Switch checked style={{margin: 4}} />).findByType(Pressable);
+
+		expect(StyleSheet.flatten(props.style)).toEqual(
+			expect.objectContaining({margin: 4, minWidth: 48})
+		);
 	});
 
 	it('passes disabled to the pressable so it ignores touches', () => {
@@ -119,56 +116,6 @@ describe('Switch', () => {
 			const [halo] = findHalos(root);
 
 			expect(halo.backgroundColor).toBe('#2979FF33');
-		});
-	});
-
-	describe('swipe', () => {
-		afterEach(() => jest.restoreAllMocks());
-
-		it('captures horizontal moves longer than 10', () => {
-			const swipe = spyOnSwipe();
-			render(<Switch checked={false} />);
-
-			expect(swipe.shouldCapture(11, 0)).toBe(true);
-			expect(swipe.shouldCapture(10, 0)).toBe(false);
-			expect(swipe.shouldCapture(20, 30)).toBe(false);
-		});
-
-		it('does not capture when disabled', () => {
-			const swipe = spyOnSwipe();
-			render(<Switch checked={false} disabled />);
-
-			expect(swipe.shouldCapture(20, 0)).toBe(false);
-		});
-
-		it('sends true when swiped right and false when swiped left', () => {
-			const swipe = spyOnSwipe();
-			const onChange = jest.fn();
-			const renderer = create(<Switch checked={false} onChange={onChange} />);
-
-			swipe.release(20);
-			expect(onChange).toHaveBeenLastCalledWith(true);
-
-			act(() => renderer.update(<Switch checked onChange={onChange} />));
-			swipe.release(-20);
-			expect(onChange).toHaveBeenLastCalledWith(false);
-		});
-
-		it('does not send anything when swiped towards the side it is already on', () => {
-			const swipe = spyOnSwipe();
-			const onChange = jest.fn();
-			render(<Switch checked onChange={onChange} />);
-
-			swipe.release(20);
-
-			expect(onChange).not.toHaveBeenCalled();
-		});
-
-		it('does not fail when onChange is not passed', () => {
-			const swipe = spyOnSwipe();
-			render(<Switch checked={false} />);
-
-			expect(() => swipe.release(20)).not.toThrow();
 		});
 	});
 });
