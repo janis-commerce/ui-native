@@ -22,3 +22,7 @@ export interface ButtonProps
 	shape?: ButtonShape;
 	disabled?: boolean;
 }
+
+export type ButtonAppearance = Required<
+	Pick<ButtonProps, 'size' | 'variant' | 'color' | 'shape' | 'iconPosition'>
+>;

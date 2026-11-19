@@ -5,7 +5,7 @@ import {palette} from 'theme/palette';
 import BaseButton from 'atoms/BaseButton';
 import Icon from 'atoms/Icon';
 import Typography from 'atoms/Typography';
-import Button from './';
+import Button, {ButtonProps} from './';
 
 const hScale = (size: number) => scaledForDevice(size, horizontalScale);
 const vScale = (size: number) => scaledForDevice(size, verticalScale);
@@ -104,6 +104,23 @@ describe('Button', () => {
 			expect(container.borderWidth).toBe(borderWidth);
 		}
 	);
+
+	it('values outside the API fall back to the defaults instead of breaking the render', () => {
+		const legacyProps = {
+			color: 'warning',
+			size: 'medium',
+			variant: 'text',
+			iconPosition: 'top',
+		} as unknown as ButtonProps;
+		const {root} = create(<Button value="Scan" icon="scanner" {...legacyProps} />);
+		const baseButton = root.findByType(BaseButton);
+		const [container] = baseButton.props.style;
+
+		expect(container.backgroundColor).toBe(palette.primary.main);
+		expect(baseButton.props.borderRadius).toBe(48);
+		expect(root.findByType(Typography).props.size).toBe('large');
+		expect(baseButton.props.children[0].type).toBe(Icon);
+	});
 
 	it('merges the consumer style after the container', () => {
 		const {root} = create(<Button value="Confirm" style={{flex: 1}} />);

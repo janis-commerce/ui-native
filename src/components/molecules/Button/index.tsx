@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import BaseButton from 'atoms/BaseButton';
 import Icon from 'atoms/Icon';
 import Typography from 'atoms/Typography';
-import getButtonStyles, {labelSize} from './utils';
+import getButtonStyles, {labelSize, resolveAppearance} from './utils';
 import {ButtonProps, ButtonType} from './types';
 
 const deriveType = (value?: string, icon?: string): ButtonType => {
@@ -16,16 +16,17 @@ const deriveType = (value?: string, icon?: string): ButtonType => {
 /**
  * Botón del design system. El tipo (text / icon / icon-text) se deriva de qué
  * props llegan con contenido (`value` vacío cuenta como sin texto); `shape`
- * solo aplica a los botones icon-only.
+ * solo aplica a los botones icon-only. Un valor fuera de la API en las props
+ * de apariencia cae en su default.
  */
 const Button: FC<ButtonProps> = ({
 	value,
 	icon,
-	iconPosition = 'left',
-	size = 'large',
-	variant = 'contained',
-	color = 'primary',
-	shape = 'oval',
+	iconPosition,
+	size,
+	variant,
+	color,
+	shape,
 	disabled = false,
 	style,
 	...props
@@ -35,13 +36,10 @@ const Button: FC<ButtonProps> = ({
 	}
 
 	const type = deriveType(value, icon);
+	const appearance = resolveAppearance({size, variant, color, shape, iconPosition});
 	const {container, pressed, contentColor, iconMargin, borderRadius} = getButtonStyles({
+		...appearance,
 		type,
-		size,
-		variant,
-		color,
-		shape,
-		iconPosition,
 		disabled,
 	});
 
@@ -56,13 +54,13 @@ const Button: FC<ButtonProps> = ({
 			pressedStyle={!disabled && pressed}
 			borderRadius={borderRadius}
 			disabled={disabled}>
-			{iconPosition === 'left' && iconElement}
+			{appearance.iconPosition === 'left' && iconElement}
 			{!!value && (
-				<Typography type="label" size={labelSize[size]} color={contentColor}>
+				<Typography type="label" size={labelSize[appearance.size]} color={contentColor}>
 					{value}
 				</Typography>
 			)}
-			{iconPosition === 'right' && iconElement}
+			{appearance.iconPosition === 'right' && iconElement}
 		</BaseButton>
 	);
 };

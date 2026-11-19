@@ -4,6 +4,7 @@ import {horizontalScale, scaledForDevice, verticalScale} from 'scale';
 import {palette} from 'theme/palette';
 import styleVariants from 'utils/styleVariants';
 import {
+	ButtonAppearance,
 	ButtonColor,
 	ButtonIconPosition,
 	ButtonShape,
@@ -104,13 +105,32 @@ const iconGapMargin = (iconPosition: ButtonIconPosition): TextStyle =>
 
 export const labelSize: Record<ButtonSize, TypographySize> = {large: 'large', small: 'medium'};
 
-export interface ButtonStyleParams {
+const validOrDefault = <Value extends string>(
+	received: Value | undefined,
+	validValues: readonly Value[],
+	fallback: Value
+): Value => (received !== undefined && validValues.includes(received) ? received : fallback);
+
+/**
+ * Las apps en JS pueden pasar valores que el tipo no admite (como los de `DeprecatedButton`):
+ * cada uno cae en su default.
+ */
+export const resolveAppearance = ({
+	size,
+	variant,
+	color,
+	shape,
+	iconPosition,
+}: Partial<ButtonAppearance>): ButtonAppearance => ({
+	size: validOrDefault(size, ['large', 'small'], 'large'),
+	variant: validOrDefault(variant, ['contained', 'outlined', 'cleaned'], 'contained'),
+	color: validOrDefault(color, ['primary', 'black', 'success', 'error'], 'primary'),
+	shape: validOrDefault(shape, ['oval', 'circle'], 'oval'),
+	iconPosition: validOrDefault(iconPosition, ['left', 'right'], 'left'),
+});
+
+export interface ButtonStyleParams extends ButtonAppearance {
 	type: ButtonType;
-	size: ButtonSize;
-	variant: ButtonVariant;
-	color: ButtonColor;
-	shape: ButtonShape;
-	iconPosition: ButtonIconPosition;
 	disabled: boolean;
 }
 

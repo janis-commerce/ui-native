@@ -1,6 +1,7 @@
 import {horizontalScale, scaledForDevice, verticalScale} from 'scale';
 import {palette} from 'theme/palette';
-import getButtonStyles, {labelSize, ButtonStyleParams} from './';
+import getButtonStyles, {labelSize, resolveAppearance, ButtonStyleParams} from './';
+import {ButtonAppearance} from '../types';
 
 const hScale = (size: number) => scaledForDevice(size, horizontalScale);
 const vScale = (size: number) => scaledForDevice(size, verticalScale);
@@ -202,5 +203,43 @@ describe('getButtonStyles', () => {
 
 	it('labelSize maps button sizes to Typography sizes', () => {
 		expect(labelSize).toEqual({large: 'large', small: 'medium'});
+	});
+});
+
+describe('resolveAppearance', () => {
+	const defaultAppearance: ButtonAppearance = {
+		size: 'large',
+		variant: 'contained',
+		color: 'primary',
+		shape: 'oval',
+		iconPosition: 'left',
+	};
+
+	it('omitted props take their default', () => {
+		expect(resolveAppearance({})).toEqual(defaultAppearance);
+	});
+
+	it('values outside the API fall back to the default, as JS apps can pass them', () => {
+		const legacyAppearance = {
+			size: 'medium',
+			variant: 'text',
+			color: 'warning',
+			shape: 'square',
+			iconPosition: 'top',
+		} as unknown as Partial<ButtonAppearance>;
+
+		expect(resolveAppearance(legacyAppearance)).toEqual(defaultAppearance);
+	});
+
+	it('keeps the values of the API', () => {
+		const appearance: ButtonAppearance = {
+			size: 'small',
+			variant: 'outlined',
+			color: 'error',
+			shape: 'circle',
+			iconPosition: 'right',
+		};
+
+		expect(resolveAppearance(appearance)).toEqual(appearance);
 	});
 });
