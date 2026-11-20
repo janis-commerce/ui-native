@@ -2,7 +2,6 @@ import React, {FC} from 'react';
 import {Pressable, ViewStyle} from 'react-native';
 import Icon from 'atoms/Icon';
 import {primary} from 'theme/palette';
-import {moderateScale, scaledForDevice} from 'scale';
 
 export interface MenuButtonProps {
 	onPress: () => void;
@@ -12,12 +11,10 @@ export interface MenuButtonProps {
 	testID?: string;
 }
 
-const validIconSize = scaledForDevice(24, moderateScale);
-
 const MenuButton: FC<MenuButtonProps> = ({
 	onPress,
 	color = primary.main,
-	size = validIconSize,
+	size = 24,
 	style,
 	testID,
 }) => (

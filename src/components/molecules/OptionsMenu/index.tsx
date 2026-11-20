@@ -13,7 +13,6 @@ interface Anchor {
 	right: number;
 }
 
-const validIconSize = scaledForDevice(24, moderateScale);
 // Brings the touch area to 48 (Android's minimum target) around the 24 icon.
 const validButtonPadding = scaledForDevice(12, moderateScale);
 const validMinWidth = scaledForDevice(167, horizontalScale);
@@ -86,7 +85,7 @@ const OptionsMenu: FC<OptionsMenuProps> = ({options, color, accessibilityLabel, 
 				testID={testID}
 				accessibilityRole="button"
 				accessibilityLabel={accessibilityLabel}>
-				<Icon name="options" size={validIconSize} color={color} style={styles.verticalIcon} />
+				<Icon name="options" size={24} color={color} style={styles.verticalIcon} />
 			</Pressable>
 			<Modal visible={!!anchor} transparent animationType="fade" onRequestClose={close}>
 				<Pressable style={styles.backdrop} onPress={close}>

@@ -48,6 +48,8 @@ describe('OptionsMenu', () => {
 	it('renders the options icon rotated so it reads vertical', () => {
 		const icon = render([edit]).root.findByType(Icon);
 		expect(icon.props.name).toBe('options');
+		// Icon scales its own size; passing a pre-scaled value would scale it twice.
+		expect(icon.props.size).toBe(24);
 		expect(icon.props.style.transform).toEqual([{rotate: '90deg'}]);
 	});
 
