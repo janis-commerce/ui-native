@@ -25,6 +25,11 @@ describe('MenuButton component', () => {
 		expect(root.findByType(Icon).props.color).toBe('#FF0000');
 	});
 
+	it('passes the default size unscaled, since Icon scales it', () => {
+		const {root} = create(<MenuButton onPress={jest.fn()} />);
+		expect(root.findByType(Icon).props.size).toBe(24);
+	});
+
 	it('renders with custom size', () => {
 		const {root} = create(<MenuButton onPress={jest.fn()} size={32} />);
 		expect(root.findByType(Icon).props.size).toBe(32);
