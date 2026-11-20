@@ -13,6 +13,8 @@ export interface OptionsMenuOption {
 export interface OptionsMenuProps {
 	options: OptionsMenuOption[];
 	color?: string;
+	/** Announced by TalkBack/VoiceOver for the ⋮ button; the font glyph has no readable name. */
+	accessibilityLabel?: string;
 	style?: StyleProp<ViewStyle>;
 	testID?: string;
 }

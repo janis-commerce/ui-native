@@ -13,6 +13,7 @@ describe('OptionsMenu Option', () => {
 		act(() => root.findByType(Pressable).props.onPress());
 
 		expect(onPress).toHaveBeenCalledTimes(1);
+		expect(root.findByType(Pressable).props.accessibilityRole).toBe('menuitem');
 		expect(root.findByType(Typography).props.color).toBe(black.main);
 	});
 

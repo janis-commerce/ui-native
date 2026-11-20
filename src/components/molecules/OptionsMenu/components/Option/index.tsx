@@ -25,6 +25,7 @@ const Option: FC<Pick<OptionsMenuOption, 'title' | 'onPress' | 'disabled'>> = ({
 	disabled,
 }) => (
 	<Pressable
+		accessibilityRole="menuitem"
 		// Apps are plain JS and may pass a count; RN's accessibility action only blocks a strict `true`.
 		disabled={!!disabled}
 		onPress={onPress}

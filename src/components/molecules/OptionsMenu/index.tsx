@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
 	},
 });
 
-const OptionsMenu: FC<OptionsMenuProps> = ({options, color, style, testID}) => {
+const OptionsMenu: FC<OptionsMenuProps> = ({options, color, accessibilityLabel, style, testID}) => {
 	const buttonRef = useRef<View>(null);
 	const [anchor, setAnchor] = useState<Anchor | null>(null);
 	const {width: windowWidth} = useWindowDimensions();
@@ -80,7 +80,12 @@ const OptionsMenu: FC<OptionsMenuProps> = ({options, color, style, testID}) => {
 
 	return (
 		<View ref={buttonRef} style={style} collapsable={false}>
-			<Pressable onPress={open} style={styles.button} testID={testID}>
+			<Pressable
+				onPress={open}
+				style={styles.button}
+				testID={testID}
+				accessibilityRole="button"
+				accessibilityLabel={accessibilityLabel}>
 				<Icon name="options" size={validIconSize} color={color} style={styles.verticalIcon} />
 			</Pressable>
 			<Modal visible={!!anchor} transparent animationType="fade" onRequestClose={close}>

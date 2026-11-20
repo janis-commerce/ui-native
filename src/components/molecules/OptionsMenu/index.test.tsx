@@ -51,6 +51,20 @@ describe('OptionsMenu', () => {
 		expect(icon.props.style.transform).toEqual([{rotate: '90deg'}]);
 	});
 
+	it('exposes the button to screen readers with the given label', () => {
+		let tree: ReactTestRenderer;
+		act(() => {
+			tree = create(
+				<OptionsMenu options={[edit]} accessibilityLabel="Más opciones" testID="options-menu" />
+			);
+		});
+		const button = tree!.root.find(
+			(node) => node.type === Pressable && node.props.testID === 'options-menu'
+		);
+		expect(button.props.accessibilityRole).toBe('button');
+		expect(button.props.accessibilityLabel).toBe('Más opciones');
+	});
+
 	it('starts closed and opens below the button, aligned to its right edge', () => {
 		const tree = render([edit]);
 		expect(tree.root.findByType(Modal).props.visible).toBe(false);
