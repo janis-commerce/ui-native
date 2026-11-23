@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.9.0] 2026-11-23
+
+### Added
+
+- Apps can now render the header options menu (⋮) from ui-native without react-native-paper: it opens below the button, closes on selection, outside tap or back, shows disabled options greyed out without running them, and screen readers announce the button with the label the app passes [ATR-2950](https://janiscommerce.atlassian.net/browse/ATR-2950)
+
+### Fixed
+
+- `MenuButton`'s default icon is now scaled once, so it no longer renders larger than intended on screens wider than 360 dp [ATR-2950](https://janiscommerce.atlassian.net/browse/ATR-2950)
+
 ## [2.8.0] 2026-11-17
 
 ### Added
