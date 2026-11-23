@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.8.0] 2026-11-17
+
+### Added
+
+- Apps can now use the design system's on/off control with `Switch`: it toggles with a tap and notifies the new value, with the pressed and disabled states of the design [ATR-2949](https://janiscommerce.atlassian.net/browse/ATR-2949)
+
 ## [2.7.0] 2026-10-30
 
 ### Added
