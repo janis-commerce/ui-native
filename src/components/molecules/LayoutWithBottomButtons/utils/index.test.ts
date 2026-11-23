@@ -1,4 +1,4 @@
-import {keyColor} from 'molecules/Button';
+import {keyColor} from 'molecules/DeprecatedButton';
 import {buttonWrapperVariantStyles, parseButtonsStyles} from './index';
 import {moderateScale, scaledForDevice} from 'scale';
 

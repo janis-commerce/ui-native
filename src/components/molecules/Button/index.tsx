@@ -1,117 +1,76 @@
 import React, {FC} from 'react';
-import {ViewStyle, StyleSheet, TextStyle, View} from 'react-native';
-import BaseButton, {BaseButtonProps} from 'atoms/BaseButton';
-import getButtonStyles from './utils/getButtonStyles';
-import Loading from 'atoms/Loading';
-import Typography from 'atoms/Typography';
+import BaseButton from 'atoms/BaseButton';
 import Icon from 'atoms/Icon';
+import Typography from 'atoms/Typography';
+import getButtonStyles, {labelSize, resolveAppearance} from './utils';
+import {ButtonProps, ButtonType} from './types';
 
-export const types = {
-	main: 'main',
-	secondary: 'secondary',
+const deriveType = (value?: string, icon?: string): ButtonType => {
+	if (icon && value) {
+		return 'iconText';
+	}
+
+	return icon ? 'icon' : 'text';
 };
 
-export const variant = {
-	contained: 'contained',
-	outlined: 'outlined',
-	text: 'text',
-};
-
-export const color = {
-	primary: 'primary',
-	black: 'black',
-	success: 'success',
-	error: 'error',
-	warning: 'warning',
-	alert: 'alert',
-};
-
-export const iconPosition = {
-	top: 'top',
-	bottom: 'bottom',
-	left: 'left',
-	right: 'right',
-};
-
-export type buttonType = typeof types;
-export type keyType = keyof buttonType;
-
-export type buttonVariant = typeof variant;
-export type keyVariant = keyof buttonVariant;
-
-export type buttonColor = typeof color;
-export type keyColor = keyof buttonColor;
-
-export type buttonIconPosition = typeof iconPosition;
-export type keyIconPosition = keyof buttonIconPosition;
-
-export interface ButtonProps extends BaseButtonProps {
-	type?: keyType;
-	variant?: keyVariant;
-	color?: keyColor;
-	isLoading?: boolean;
-	value?: string | null;
-	icon?: string;
-	iconPosition?: keyIconPosition;
-	disabled?: boolean;
-	style?: ViewStyle;
-	pressedStyle?: ViewStyle;
-	iconStyle?: TextStyle;
-	textStyle?: TextStyle;
-}
-
+/**
+ * Botón del design system. El tipo (text / icon / icon-text) se deriva de qué
+ * props llegan con contenido (`value` vacío cuenta como sin texto); `shape`
+ * solo aplica a los botones icon-only. Un valor fuera de la API en las props
+ * de apariencia cae en su default.
+ */
 const Button: FC<ButtonProps> = ({
-	type = 'main',
-	variant = 'contained',
-	color = 'primary',
-	iconPosition = 'left',
-	isLoading = false,
-	value = '',
-	icon = null,
+	value,
+	icon,
+	iconPosition,
+	size,
+	variant,
+	color,
+	shape,
 	disabled = false,
 	style,
-	iconStyle,
-	textStyle,
 	...props
 }) => {
 	if (!value && !icon) {
 		return null;
 	}
 
-	const validDisabled = disabled || isLoading;
-	const hasIconAndText = !!icon && !!value;
-	const borderRadius = variant === 'text' ? 6 : 50;
-
-	const {loadingColor, ...buttonStyles} = getButtonStyles({
+	const type = deriveType(value, icon);
+	const appearance = resolveAppearance({size, variant, color, shape, iconPosition});
+	const {container, pressed, contentColor, iconMargin, borderRadius} = getButtonStyles({
+		...appearance,
 		type,
-		variant,
-		color,
-		iconPosition,
-		isLoading,
-		isDisabled: disabled,
-		hasIconAndText,
+		disabled,
 	});
-	const styles = StyleSheet.create(buttonStyles);
 
-	const LoadingComponent = <Loading isLoading={isLoading} color={loadingColor} size={24} />;
-
-	const WrapperComponent = (
-		<View style={styles.direction}>
-			{icon && <Icon name={icon} style={[styles.icon, iconStyle]} size={24} />}
-			{!!value && <Typography style={[styles.text, textStyle]}>{value}</Typography>}
-		</View>
+	const iconElement = !!icon && (
+		<Icon name={icon} color={contentColor} size={24} style={iconMargin} />
 	);
 
 	return (
 		<BaseButton
-			style={[styles.container, style]}
-			pressedStyle={!validDisabled && styles.pressed}
+			{...props}
+			style={[container, style]}
+			pressedStyle={!disabled && pressed}
 			borderRadius={borderRadius}
-			disabled={validDisabled}
-			{...props}>
-			{isLoading ? LoadingComponent : WrapperComponent}
+			disabled={disabled}>
+			{appearance.iconPosition === 'left' && iconElement}
+			{!!value && (
+				<Typography type="label" size={labelSize[appearance.size]} color={contentColor}>
+					{value}
+				</Typography>
+			)}
+			{appearance.iconPosition === 'right' && iconElement}
 		</BaseButton>
 	);
 };
 
+export type {
+	ButtonProps,
+	ButtonSize,
+	ButtonVariant,
+	ButtonColor,
+	ButtonShape,
+	ButtonIconPosition,
+} from './types';
 export default Button;

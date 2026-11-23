@@ -22,6 +22,7 @@ import {DatePicker, DatePickerModal} from 'atoms/DatePicker';
 // Molecules
 import Avatar from 'molecules/Avatar';
 import Button from 'molecules/Button';
+import DeprecatedButton from 'molecules/DeprecatedButton';
 import Carousel from 'molecules/Carousel';
 import LayoutWithBottomButtons from 'molecules/LayoutWithBottomButtons';
 import ProgressBar from 'molecules/ProgressBar';
@@ -78,6 +79,7 @@ export {
 	List,
 	BaseButton,
 	Button,
+	DeprecatedButton,
 	getScale,
 	LayoutWithBottomButtons,
 	FullScreenMessage,
